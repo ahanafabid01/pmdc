@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo isset($page_title) ? $page_title : 'Phulpur Mohila Degree College | Excellence in Education'; ?></title>
-    <meta name="description" content="Phulpur Mohila Degree College — A leading women's degree college in Phulpur, Mymensingh offering HSC programs in Science, Commerce and Humanities under the Bangladesh Education Board.">
+    <meta name="description" content="<?php echo isset($page_meta_description) ? htmlspecialchars($page_meta_description, ENT_QUOTES, 'UTF-8') : 'Phulpur Mohila Degree College - A leading women\'s degree college in Phulpur, Mymensingh offering HSC programs in Science, Commerce and Humanities under the Bangladesh Education Board.'; ?>">
+    <?php if(isset($page_meta_tags)) echo $page_meta_tags; ?>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">

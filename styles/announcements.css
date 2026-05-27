@@ -114,6 +114,8 @@
     color: var(--navy); margin-bottom: 8px;
     line-height: 1.35;
 }
+.ann-title-link { color: var(--navy); }
+.ann-title-link:hover { color: var(--blue); }
 .ann-body p {
     font-size: .83rem; color: var(--muted);
     line-height: 1.7; margin-bottom: 12px;
