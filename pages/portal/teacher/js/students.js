@@ -26,6 +26,8 @@ const YEAR_LABELS = {
     xii: { label:'HSC 2nd Year', labelBn:'দ্বাদশ শ্রেণি', cls:'xii' },
 };
 
+const STUDENTS_STORAGE_KEY = 'pmdc_teacher_students_v1';
+
 function rnd(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
 
 /** Generate realistic mock student data */
@@ -116,7 +118,24 @@ function generateStudents() {
    STATE
 ═══════════════════════════════════════════════════ */
 
-let allStudents     = generateStudents();
+function loadStudentsFromStorage() {
+    try {
+        const raw = localStorage.getItem(STUDENTS_STORAGE_KEY);
+        const parsed = raw ? JSON.parse(raw) : null;
+        if (Array.isArray(parsed) && parsed.length) return parsed;
+    } catch (_err) {
+        // fallback below
+    }
+    const generated = generateStudents();
+    localStorage.setItem(STUDENTS_STORAGE_KEY, JSON.stringify(generated));
+    return generated;
+}
+
+function persistStudentsToStorage() {
+    localStorage.setItem(STUDENTS_STORAGE_KEY, JSON.stringify(allStudents));
+}
+
+let allStudents     = loadStudentsFromStorage();
 let filtered        = [...allStudents];
 let currentPage     = 1;
 const PAGE_SIZE     = 15;
@@ -676,6 +695,7 @@ $('studentForm').addEventListener('submit', function(e) {
         showToast(`Student "${studentData.name}" added successfully!`);
     }
 
+    persistStudentsToStorage();
     $('addEditModal').classList.remove('open');
     applyFilters();
 });
@@ -696,6 +716,7 @@ $('confirmDelete').addEventListener('click', () => {
     if (!deleteTargetId) return;
     const s   = allStudents.find(x => x.id === deleteTargetId);
     allStudents = allStudents.filter(x => x.id !== deleteTargetId);
+    persistStudentsToStorage();
     deleteTargetId = null;
     $('deleteModal').classList.remove('open');
     applyFilters();
