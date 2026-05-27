@@ -1,0 +1,392 @@
+/* Admin Portal - Extends Student Portal with Admin-specific Styles */
+@import url('student-portal.css');
+
+:root {
+    --admin-primary: #0A2E4E;
+    --admin-secondary: #1F5FA8;
+    --admin-accent: #0d3a5c;
+}
+
+/* Override sidebar for admin */
+.sidebar {
+    background: linear-gradient(180deg, var(--primary-color) 0%, #0d3a5c 100%);
+}
+
+.sidebar .logo span::after {
+    content: ' Admin';
+    font-size: 0.7rem;
+}
+
+/* Admin Banner */
+.admin-banner {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--soft-blue) 100%);
+}
+
+.system-status {
+    display: flex;
+    align-items: center;
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 8px;
+    color: var(--white);
+    font-weight: 600;
+}
+
+.stat-change {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    margin-top: 5px;
+}
+
+.stat-change.positive {
+    color: var(--success-color);
+}
+
+/* Data Table */
+.data-table {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead th {
+    background: var(--off-white);
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--text-dark);
+    border-bottom: 2px solid var(--border-color);
+}
+
+tbody td {
+    padding: 12px;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.875rem;
+}
+
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.status-badge.pending {
+    background: #fef3c7;
+    color: #b7791f;
+}
+
+.status-badge.approved {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.status-badge.rejected {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.filter-select {
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.875rem;
+    outline: none;
+    cursor: pointer;
+}
+
+/* Financial Grid */
+.financial-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.finance-item {
+    padding: 20px;
+    background: var(--off-white);
+    border-radius: 10px;
+}
+
+.finance-item h4 {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 10px;
+}
+
+.finance-item .amount {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 5px;
+}
+
+.finance-item .trend {
+    font-size: 0.8rem;
+    color: var(--text-light);
+}
+
+.finance-item .trend.up {
+    color: var(--success-color);
+}
+
+/* Activity List */
+.activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.activity-item {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.activity-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    flex-shrink: 0;
+}
+
+.activity-icon.success {
+    background: var(--success-color);
+}
+
+.activity-icon.info {
+    background: var(--info-color);
+}
+
+.activity-icon.warning {
+    background: var(--warning-color);
+}
+
+.activity-details h4 {
+    font-size: 0.9rem;
+    margin-bottom: 3px;
+}
+
+.activity-details p {
+    font-size: 0.8rem;
+    color: var(--text-light);
+}
+
+/* Approval List */
+.approval-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.approval-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: var(--off-white);
+    border-radius: 10px;
+}
+
+.approval-info h4 {
+    font-size: 0.9rem;
+    margin-bottom: 3px;
+}
+
+.approval-info p {
+    font-size: 0.8rem;
+    color: var(--text-light);
+}
+
+.approval-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-approve,
+.btn-reject {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-approve {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.btn-approve:hover {
+    background: #a7f3d0;
+}
+
+.btn-reject {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.btn-reject:hover {
+    background: #fecaca;
+}
+
+/* Attendance Chart */
+.attendance-chart {
+    text-align: center;
+}
+
+.chart-wrapper {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 20px;
+    position: relative;
+}
+
+.chart-wrapper svg {
+    width: 100%;
+    height: 100%;
+}
+
+.chart-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.chart-center .percentage {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.chart-center .label {
+    font-size: 0.8rem;
+    color: var(--text-light);
+}
+
+.attendance-stats {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.stat-row {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.875rem;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.dot.present {
+    background: #38a169;
+}
+
+.dot.absent {
+    background: #e53e3e;
+}
+
+/* Health Metrics */
+.health-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.metric {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.metric-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.metric-bar {
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.metric-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.metric-value {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    text-align: right;
+}
+
+/* Action Grid Override */
+.action-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.action-card:hover {
+    background: var(--admin-primary);
+    border-color: var(--admin-primary);
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .financial-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .data-table {
+        font-size: 0.8rem;
+    }
+    
+    thead th,
+    tbody td {
+        padding: 8px;
+    }
+    
+    .system-status {
+        margin-top: 15px;
+    }
+    
+    .approval-item {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .approval-actions {
+        align-self: flex-start;
+    }
+}
