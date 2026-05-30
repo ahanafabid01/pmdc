@@ -40,7 +40,7 @@ if ($announcement) {
     $page_meta_description = pmdc_meta_excerpt($announcement['body'], 150);
     $currentUrl = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https://' : 'http://')
         . ($_SERVER['HTTP_HOST'] ?? 'localhost')
-        . ($_SERVER['REQUEST_URI'] ?? '/announcements/view.php?id=' . $announcement['id']);
+        . ($_SERVER['REQUEST_URI'] ?? '/pages/announcement-detail.php?id=' . $announcement['id']);
     $page_meta_tags = "\n"
         . '<meta property="og:title" content="' . htmlspecialchars($announcement['title'], ENT_QUOTES, 'UTF-8') . '">' . "\n"
         . '<meta property="og:description" content="' . htmlspecialchars($page_meta_description, ENT_QUOTES, 'UTF-8') . '">' . "\n"
@@ -69,7 +69,7 @@ include '../includes/header.php';
                 <i class="fas fa-file-circle-xmark"></i>
                 <h2>Announcement Not Found</h2>
                 <p>This announcement may have been removed or does not exist.</p>
-                <a href="../pages/announcements.php" class="btn btn-primary">Back to Announcements</a>
+                <a href="announcements.php" class="btn btn-primary">Back to Announcements</a>
             </div>
         </div>
     </section>
@@ -149,12 +149,12 @@ include '../includes/header.php';
                     <?php if ($prevAnn || $nextAnn): ?>
                         <div class="ann-detail-nav detail-animate">
                             <?php if ($prevAnn): ?>
-                                <a href="view.php?id=<?php echo (int)$prevAnn['id']; ?>" class="ann-nav-link left">
+                                <a href="announcement-detail.php?id=<?php echo (int)$prevAnn['id']; ?>" class="ann-nav-link left">
                                     <span class="arr">&larr;</span> Previous Announcement
                                 </a>
                             <?php endif; ?>
                             <?php if ($nextAnn): ?>
-                                <a href="view.php?id=<?php echo (int)$nextAnn['id']; ?>" class="ann-nav-link right">
+                                <a href="announcement-detail.php?id=<?php echo (int)$nextAnn['id']; ?>" class="ann-nav-link right">
                                     Next Announcement <span class="arr">&rarr;</span>
                                 </a>
                             <?php endif; ?>
@@ -168,7 +168,7 @@ include '../includes/header.php';
                         <div class="recent-ann-list">
                             <?php foreach ($recentAnnouncements as $recent): ?>
                                 <?php $rts = strtotime($recent['date']); ?>
-                                <a href="view.php?id=<?php echo (int)$recent['id']; ?>" class="recent-ann-item">
+                                <a href="announcement-detail.php?id=<?php echo (int)$recent['id']; ?>" class="recent-ann-item">
                                     <div class="ann-date">
                                         <span class="ad-day"><?php echo date('d', $rts); ?></span>
                                         <span class="ad-mon"><?php echo date('M', $rts); ?></span>
@@ -177,7 +177,7 @@ include '../includes/header.php';
                                 </a>
                             <?php endforeach; ?>
                         </div>
-                        <a href="../pages/announcements.php" class="view-all-ann">View All Announcements <i class="fas fa-arrow-right"></i></a>
+                        <a href="announcements.php" class="view-all-ann">View All Announcements <i class="fas fa-arrow-right"></i></a>
                     </div>
 
                     <div class="sidebar-card reveal sidebar-stagger">
@@ -198,7 +198,7 @@ include '../includes/header.php';
             </div>
 
             <div class="ann-back-row reveal">
-                <a href="../pages/announcements.php" class="ann-back-link">&larr; Back to Announcements</a>
+                <a href="announcements.php" class="ann-back-link">&larr; Back to Announcements</a>
             </div>
         </div>
     </section>
@@ -207,4 +207,3 @@ include '../includes/header.php';
 <?php endif; ?>
 
 <?php include '../includes/footer.php'; ?>
-

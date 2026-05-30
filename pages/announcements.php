@@ -51,7 +51,7 @@ include '../includes/header.php';
                         <?php foreach ($announcements as $item): ?>
                             <?php
                             $ts = strtotime($item['date']);
-                            $detailUrl = '../announcements/view.php?id=' . urlencode((string)$item['id']);
+                            $detailUrl = 'announcement-detail.php?id=' . urlencode((string)$item['id']);
                             ?>
                             <div class="ann-item reveal" data-category="<?php echo htmlspecialchars($item['category'], ENT_QUOTES, 'UTF-8'); ?>">
                                 <div class="ann-date">
