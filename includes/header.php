@@ -55,6 +55,7 @@
                 <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/about.php"        class="nav-link <?php echo isset($page) && $page == 'about' ? 'active' : ''; ?>">About</a></li>
                 <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/academics.php"    class="nav-link <?php echo isset($page) && $page == 'academics' ? 'active' : ''; ?>">Academics</a></li>
                 <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/announcements.php" class="nav-link <?php echo isset($page) && $page == 'announcements' ? 'active' : ''; ?>">Announcements</a></li>
+                <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/teachers.php"      class="nav-link <?php echo isset($page) && $page == 'teachers' ? 'active' : ''; ?>">Teachers &amp; Staff</a></li>
                 <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/results.php"      class="nav-link <?php echo isset($page) && $page == 'results' ? 'active' : ''; ?>">Results</a></li>
                 <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/contact.php"      class="nav-link <?php echo isset($page) && $page == 'contact' ? 'active' : ''; ?>">Contact</a></li>
                 <li><a href="#" onclick="openModal('Apply Now')" class="nav-link nav-apply">Apply Now</a></li>
