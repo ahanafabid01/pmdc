@@ -18,8 +18,10 @@
  *    - No cross-exam GPA
  *    - Each exam produces its own separate GPA
  *
- *  GPA per exam = Sum of all subject GPs ÷ number of subjects
- *  (Bangladesh Board standard grading scale)
+ *  GPA per exam follows the HSC 4th subject rule:
+ *    - Compulsory F makes overall GPA 0.00
+ *    - Optional subject contributes only GP above 2.00
+ *    - Denominator is compulsory subject count only
  * ══════════════════════════════════════════════════════════
  */
 
@@ -74,7 +76,7 @@ const SUBJECTS = {
         { code:'174', name:'Physics 1st Paper',       fullMarks: 100 },
         { code:'176', name:'Chemistry 1st Paper',     fullMarks: 100 },
         { code:'178', name:'Biology 1st Paper',       fullMarks: 100 },
-        { code:'265', name:'Higher Math 1st Paper',   fullMarks: 100 },
+        { code:'265', name:'Higher Math 1st Paper',   fullMarks: 100, optional: true },
         { code:'275', name:'ICT',                     fullMarks: 100 },
     ],
     sci_xii: [
@@ -85,7 +87,7 @@ const SUBJECTS = {
         { code:'175', name:'Physics 2nd Paper',       fullMarks: 100 },
         { code:'177', name:'Chemistry 2nd Paper',     fullMarks: 100 },
         { code:'179', name:'Biology 2nd Paper',       fullMarks: 100 },
-        { code:'266', name:'Higher Math 2nd Paper',   fullMarks: 100 },
+        { code:'266', name:'Higher Math 2nd Paper',   fullMarks: 100, optional: true },
         { code:'275', name:'ICT',                     fullMarks: 100 },
     ],
     com_xi: [
@@ -96,7 +98,7 @@ const SUBJECTS = {
         { code:'253', name:'Accounting 1st Paper',        fullMarks: 100 },
         { code:'277', name:'Business Organisation 1st',   fullMarks: 100 },
         { code:'292', name:'Finance & Banking 1st',       fullMarks: 100 },
-        { code:'286', name:'Production Mgmt 1st Paper',   fullMarks: 100 },
+        { code:'286', name:'Production Mgmt 1st Paper',   fullMarks: 100, optional: true },
         { code:'275', name:'ICT',                         fullMarks: 100 },
     ],
     com_xii: [
@@ -107,7 +109,7 @@ const SUBJECTS = {
         { code:'254', name:'Accounting 2nd Paper',        fullMarks: 100 },
         { code:'278', name:'Business Organisation 2nd',   fullMarks: 100 },
         { code:'293', name:'Finance & Banking 2nd',       fullMarks: 100 },
-        { code:'287', name:'Production Mgmt 2nd Paper',   fullMarks: 100 },
+        { code:'287', name:'Production Mgmt 2nd Paper',   fullMarks: 100, optional: true },
         { code:'275', name:'ICT',                         fullMarks: 100 },
     ],
     hum_xi: [
@@ -118,7 +120,7 @@ const SUBJECTS = {
         { code:'269', name:'Civics & Gov. 1st Paper',     fullMarks: 100 },
         { code:'117', name:'Sociology 1st Paper',         fullMarks: 100 },
         { code:'109', name:'Economics 1st Paper',         fullMarks: 100 },
-        { code:'304', name:'History 1st Paper',           fullMarks: 100 },
+        { code:'304', name:'History 1st Paper',           fullMarks: 100, optional: true },
         { code:'275', name:'ICT',                         fullMarks: 100 },
     ],
     hum_xii: [
@@ -129,7 +131,7 @@ const SUBJECTS = {
         { code:'270', name:'Civics & Gov. 2nd Paper',     fullMarks: 100 },
         { code:'118', name:'Sociology 2nd Paper',         fullMarks: 100 },
         { code:'110', name:'Economics 2nd Paper',         fullMarks: 100 },
-        { code:'305', name:'History 2nd Paper',           fullMarks: 100 },
+        { code:'305', name:'History 2nd Paper',           fullMarks: 100, optional: true },
         { code:'275', name:'ICT',                         fullMarks: 100 },
     ],
 };
@@ -154,14 +156,29 @@ function markToGrade(mark, fullMarks) {
 }
 
 /**
- * Calculate GPA for one exam from an array of {mark, fullMarks} objects.
- * GPA = Σ GP ÷ n  (Bangladesh Board standard)
+ * Calculate GPA for one exam with the HSC 4th subject rule.
+ * Optional subject contributes max(0, GP - 2.00), and compulsory F forces GPA 0.00.
  * Returns null if any marks are missing.
  */
 function calcExamGPA(subjectResults) {
-    if (!subjectResults || subjectResults.some(r => r.mark === null)) return null;
-    const totalGP = subjectResults.reduce((sum, r) => sum + markToGrade(r.mark, r.fullMarks).gp, 0);
-    return Math.round((totalGP / subjectResults.length) * 100) / 100;
+    if (!subjectResults || subjectResults.some(r => r.mark === null || Number.isNaN(Number(r.mark)))) return null;
+
+    const compulsory = subjectResults.filter(r => !r.isOptional);
+    const optional = subjectResults.filter(r => r.isOptional);
+
+    if (!compulsory.length) return null;
+
+    const compulsoryGrades = compulsory.map(r => markToGrade(r.mark, r.fullMarks));
+    if (compulsoryGrades.some(g => g.gp === 0.00)) return 0.00;
+
+    const compulsoryTotal = compulsoryGrades.reduce((sum, g) => sum + g.gp, 0);
+    const optionalBonus = optional.reduce((sum, r) => {
+        const gp = markToGrade(r.mark, r.fullMarks).gp;
+        return sum + Math.max(0, gp - 2.00);
+    }, 0);
+
+    const gpa = (compulsoryTotal + optionalBonus) / compulsory.length;
+    return Math.min(5.00, Math.round(gpa * 100) / 100);
 }
 
 /** GPA number → overall letter grade */
@@ -220,6 +237,7 @@ function generateStudents() {
                 ? subjects.map(sub => ({
                     mark:      rnd(33, sub.fullMarks),
                     fullMarks: sub.fullMarks,
+                    isOptional: !!sub.optional,
                 }))
                 : null;
         });
@@ -266,6 +284,10 @@ function gpaPill(gpa) {
     return `<span class="gpa-pill" style="background:${g.bg};color:${g.color};border-color:${g.color}40;">
                 ${g.letter}<small>${gpa.toFixed(2)}</small>
             </span>`;
+}
+
+function subjectNameWithOptional(sub) {
+    return `${sub.name}${sub.optional ? ' <span class="optional-subject-badge">Optional</span>' : ''}`;
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -661,12 +683,15 @@ window.showResultSheet = function (studentId) {
                             const g = markToGrade(r.mark, r.fullMarks);
                             return `
                                 <tr>
-                                    <td>${sub.name}</td>
+                                    <td>${subjectNameWithOptional(sub)}</td>
                                     <td><code>${sub.code}</code></td>
                                     <td>${sub.fullMarks}</td>
                                     <td><strong style="color:${g.color};">${r.mark}</strong></td>
                                     <td><span class="grade-letter" style="color:${g.color};">${g.letter}</span></td>
-                                    <td>${g.gp.toFixed(2)}</td>
+                                    <td>
+                                        ${g.gp.toFixed(2)}
+                                        ${sub.optional ? `<small class="optional-bonus-note">adds ${Math.max(0, g.gp - 2.00).toFixed(2)}</small>` : ''}
+                                    </td>
                                 </tr>`;
                         }).join('')}
                     </tbody>
@@ -679,7 +704,7 @@ window.showResultSheet = function (studentId) {
                         </tr>
                     </tfoot>
                 </table>
-                <p class="rs-note"><i class="fas fa-info-circle"></i> This result is for <strong>${exam.label}</strong> only. Each exam GPA is independent — there is no combined total.</p>
+                <p class="rs-note"><i class="fas fa-info-circle"></i> This result is for <strong>${exam.label}</strong> only. Optional subject rule applied: only grade points above 2.00 are added, and any compulsory F makes GPA 0.00.</p>
                 ` : `<div class="rs-empty"><i class="fas fa-hourglass-half"></i> Marks not yet entered for this exam.</div>`}
             </div>`;
     });
@@ -748,7 +773,7 @@ window.openEnterMarks = function (studentId) {
                             const prev = existing ? existing[i].mark : '';
                             return `
                                 <tr>
-                                    <td>${sub.name}</td>
+                                    <td>${subjectNameWithOptional(sub)}</td>
                                     <td><code>${sub.code}</code></td>
                                     <td>${sub.fullMarks}</td>
                                     <td>
@@ -756,6 +781,7 @@ window.openEnterMarks = function (studentId) {
                                                class="mark-input"
                                                data-exam="${exam.key}" data-idx="${i}"
                                                data-full="${sub.fullMarks}"
+                                               data-optional="${sub.optional ? '1' : '0'}"
                                                value="${prev}"
                                                placeholder="0–${sub.fullMarks}"
                                                oninput="liveGrade(this, '${exam.key}')">
@@ -840,6 +866,7 @@ function recalcExamGPA(examKey, subjectCount) {
     const marks    = inputs.map(inp => ({
         mark:      parseInt(inp.value),
         fullMarks: parseInt(inp.dataset.full),
+        isOptional: inp.dataset.optional === '1',
     }));
     const allFilled = marks.every(m => !isNaN(m.mark));
     const gpaEl     = document.getElementById(`live-gpa-${examKey}`);
@@ -871,6 +898,7 @@ window.saveMarks = function (studentId) {
         const marks  = inputs.map(inp => ({
             mark:      parseInt(inp.value) || 0,
             fullMarks: parseInt(inp.dataset.full),
+            isOptional: inp.dataset.optional === '1',
         }));
         // Only save if at least one mark was entered
         if (marks.some(m => m.mark > 0)) {

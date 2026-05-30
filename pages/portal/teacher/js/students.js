@@ -28,6 +28,18 @@ const YEAR_LABELS = {
 
 const STUDENTS_STORAGE_KEY = 'pmdc_teacher_students_v1';
 
+const OPTIONAL_SUBJECTS = {
+    science: [
+        { value: 'higher_math', label: 'Higher Math' },
+    ],
+    commerce: [
+        { value: 'production_management', label: 'Production Management' },
+    ],
+    humanities: [
+        { value: 'history', label: 'History' },
+    ],
+};
+
 function rnd(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
 
 /** Generate realistic mock student data */
@@ -76,6 +88,7 @@ function generateStudents() {
             regno:        `${2024}${String(i + 1).padStart(8, '0')}`,
             year,
             group,
+            optionalSubject: OPTIONAL_SUBJECTS[group]?.[0]?.value || '',
             section:      sections[i % 3],
             session:      sessions[i % sessions.length],
             institution:  'Phulpur Mohila Degree College',
@@ -149,6 +162,32 @@ let deleteTargetId  = null;
 const $ = id => document.getElementById(id);
 
 function fmt(val, fallback = '—') { return (val && val.trim && val.trim()) ? val : fallback; }
+
+function getOptionalSubjectLabel(group, value) {
+    const subject = (OPTIONAL_SUBJECTS[group] || []).find(item => item.value === value);
+    return subject ? subject.label : '—';
+}
+
+function populateOptionalSubject(group, selected = '') {
+    const select = $('optionalSubject');
+    if (!select) return;
+
+    const options = OPTIONAL_SUBJECTS[group] || [];
+    if (!options.length) {
+        select.innerHTML = '<option value="">Select academic group first</option>';
+        select.disabled = true;
+        return;
+    }
+
+    select.disabled = false;
+    select.innerHTML = options.map(opt =>
+        `<option value="${opt.value}" ${opt.value === selected ? 'selected' : ''}>${opt.label}</option>`
+    ).join('');
+
+    if (selected && !options.some(opt => opt.value === selected)) {
+        select.value = options[0].value;
+    }
+}
 
 /* ═══════════════════════════════════════════════════
    RENDER TABLE
@@ -410,6 +449,7 @@ window.viewStudent = function(id) {
                 ${dRow('Institution', s.institution)}
                 ${dRow('Year', yr.label)}
                 ${dRow('Group (বিভাগ)', grp.label)}
+                ${dRow('Optional Subject', getOptionalSubjectLabel(s.group, s.optionalSubject))}
                 ${dRow('Section', `Section ${s.section}`)}
                 ${dRow('Roll No.', s.roll)}
                 ${dRow('Registration No.', s.regno)}
@@ -473,6 +513,10 @@ document.querySelectorAll('.ftab').forEach(tab => {
 
 $('addStudentBtn').addEventListener('click', () => openStudentForm(null));
 
+$('group')?.addEventListener('change', function() {
+    populateOptionalSubject(this.value, '');
+});
+
 function openStudentForm(studentId) {
     const isEdit = studentId !== null;
     const s      = isEdit ? allStudents.find(x => x.id === studentId) : null;
@@ -486,6 +530,7 @@ function openStudentForm(studentId) {
     // Reset form
     $('studentForm').reset();
     clearErrors();
+    populateOptionalSubject('', '');
 
     // Reset photo
     $('photoPreview').innerHTML = `<i class="fas fa-user-circle"></i><span>No photo uploaded</span>`;
@@ -503,6 +548,7 @@ function openStudentForm(studentId) {
         $('regno').value         = s.regno;
         $('hscYear').value       = s.year;
         $('group').value         = s.group;
+        populateOptionalSubject(s.group, s.optionalSubject || OPTIONAL_SUBJECTS[s.group]?.[0]?.value || '');
         $('section').value       = s.section;
         $('session').value       = s.session;
         $('institution').value   = s.institution;
@@ -649,6 +695,7 @@ $('studentForm').addEventListener('submit', function(e) {
         regno:        $('regno').value.trim(),
         year:         $('hscYear').value,
         group:        $('group').value,
+        optionalSubject: $('optionalSubject').value || OPTIONAL_SUBJECTS[$('group').value]?.[0]?.value || '',
         section:      $('section').value || 'A',
         session:      $('session').value.trim() || '2024–2025',
         institution:  $('institution').value.trim(),
@@ -736,10 +783,11 @@ $('deleteModal').addEventListener('click', e => {
 ═══════════════════════════════════════════════════ */
 
 $('exportBtn').addEventListener('click', () => {
-    const headers = ['Roll No','Name','Year','Group','Section','Phone','Email','Father','Mother','Date Added'];
+    const headers = ['Roll No','Name','Year','Group','Optional Subject','Section','Phone','Email','Father','Mother','Date Added'];
     const rows    = filtered.map(s => [
         s.roll, `"${s.name}"`, YEAR_LABELS[s.year].label,
         GROUP_LABELS[s.group].label.split('(')[0].trim(),
+        getOptionalSubjectLabel(s.group, s.optionalSubject),
         `Section ${s.section}`, s.phone, s.email,
         `"${s.fatherName}"`, `"${s.motherName}"`, s.addedDate,
     ].join(','));

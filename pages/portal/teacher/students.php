@@ -288,6 +288,12 @@
                             <span class="err" id="err-group"></span>
                         </div>
                         <div class="form-group">
+                            <label for="optionalSubject">Optional Subject</label>
+                            <select id="optionalSubject">
+                                <option value="">Select academic group first</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="section">Section</label>
                             <select id="section">
                                 <option value="">Select Section</option>
