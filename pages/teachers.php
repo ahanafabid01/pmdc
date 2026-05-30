@@ -342,19 +342,24 @@ include '../includes/header.php';
         render(staff, searchQuery, currentFilter);
     });
 
-    /* Sticky filter bar */
+    /* Sticky filter bar — becomes sticky once hero scrolls past */
     const filterBar = document.getElementById('tsFilterBar');
-    const heroEnd   = document.querySelector('.ts-hero');
-    const io = new IntersectionObserver(([entry]) => {
+    const heroEl    = document.querySelector('.ts-hero');
+    const stickyObs = new IntersectionObserver(([entry]) => {
         filterBar.classList.toggle('sticky', !entry.isIntersecting);
     }, { threshold: 0 });
-    io.observe(heroEnd);
+    stickyObs.observe(heroEl);
 
-    /* Section heading reveal */
+    /* Section heading reveal — uses same .visible class as main.css */
     const revealObs = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); revealObs.unobserve(e.target); } });
-    }, { threshold: .15 });
-    document.querySelectorAll('.staff-section-head.reveal').forEach(el => revealObs.observe(el));
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add('visible');
+                revealObs.unobserve(e.target);
+            }
+        });
+    }, { threshold: .1 });
+    document.querySelectorAll('.staff-section-head').forEach(el => revealObs.observe(el));
     </script>
 
 <?php include '../includes/footer.php'; ?>

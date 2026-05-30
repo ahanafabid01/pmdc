@@ -45,17 +45,17 @@
 .ths-val { font-size: .95rem; font-weight: 800; color: #fff; line-height: 1; }
 .ths-lbl { font-size: .72rem; color: rgba(255,255,255,.55); }
 
-/* ── Filter Bar ──────────────────────────────────────────── */
 .ts-filter-bar {
     background: #fff;
     border-bottom: 1px solid var(--border);
-    z-index: 100;
+    z-index: 99;
     transition: box-shadow .2s ease;
+    position: relative;
 }
 .ts-filter-bar.sticky {
     position: sticky;
-    top: 0;
-    box-shadow: 0 2px 16px rgba(0,0,0,.09);
+    top: 72px;  /* offset below sticky navbar */
+    box-shadow: 0 4px 20px rgba(0,0,0,.1);
 }
 .ts-filter-inner {
     display: flex;
@@ -103,8 +103,11 @@
 .ts-search-wrap input::placeholder { color: #94a3b8; }
 
 /* ── Staff Sections ──────────────────────────────────────── */
-.ts-content { background: var(--surface); }
-.staff-section { margin-bottom: 56px; }
+.ts-content {
+    background: var(--surface);
+    padding: 56px 0;  /* override --section-pad (96px) for tighter layout */
+}
+.staff-section { margin-bottom: 52px; }
 .staff-section:last-child { margin-bottom: 0; }
 
 .staff-section-head {
@@ -114,11 +117,12 @@
     margin-bottom: 24px;
     padding-bottom: 14px;
     border-bottom: 2px solid var(--border);
+    /* Use main.css .reveal system: opacity:0 + .visible triggers animation */
     opacity: 0;
     transform: translateY(16px);
     transition: opacity .45s ease, transform .45s ease;
 }
-.staff-section-head.revealed { opacity: 1; transform: translateY(0); }
+.staff-section-head.visible { opacity: 1; transform: translateY(0); }
 .ssh-left {
     display: flex; align-items: center; gap: 10px;
     font-size: 1.05rem; font-weight: 800; color: var(--navy);
@@ -148,7 +152,7 @@
     transition: transform .25s ease, box-shadow .25s ease;
 }
 .principal-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,.12); }
-.pc-photo { flex-shrink: 0; }
+.pc-photo { flex-shrink: 0; display: flex; align-items: center; }
 .pc-body  { flex: 1; min-width: 0; }
 .pc-top {
     display: flex;
@@ -174,6 +178,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+    min-width: 0;
 }
 
 /* ── Staff Card ──────────────────────────────────────────── */
@@ -264,14 +269,25 @@
     .staff-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 768px) {
+    .ts-filter-bar.sticky { top: 72px; }  /* keep below navbar on mobile too */
     .ts-filter-inner { flex-direction: column; align-items: stretch; }
-    .ts-search-wrap  { max-width: none; }
-    .principal-card  { flex-direction: column; align-items: center; text-align: center; }
-    .pc-top          { flex-direction: column; align-items: center; }
+    .ts-search-wrap  { max-width: none; min-width: 0; }
+    .principal-card  { flex-direction: column; align-items: center; text-align: center; padding: 22px 20px; }
+    .pc-photo        { margin-bottom: 8px; }
+    .pc-top          { flex-direction: column; align-items: center; text-align: center; }
     .pc-info .si-row { justify-content: center; }
+    .pc-name         { font-size: 1.1rem; }
+    .ts-content      { padding: 36px 0; }
+    .staff-section   { margin-bottom: 36px; }
 }
 @media (max-width: 600px) {
-    .staff-grid { grid-template-columns: 1fr; }
-    .ts-filter-btns { gap: 5px; }
-    .filter-btn { padding: 7px 12px; font-size: .76rem; }
+    .staff-grid     { grid-template-columns: 1fr; }
+    .ts-filter-btns { gap: 5px; flex-wrap: wrap; }
+    .filter-btn     { padding: 7px 12px; font-size: .76rem; }
+    .ts-hero-stats  { gap: 8px; }
+    .ths-badge      { padding: 7px 14px; font-size: .7rem; }
+}
+@media (max-width: 400px) {
+    .staff-grid   { grid-template-columns: 1fr; }
+    .ts-hero-stats { flex-direction: column; align-items: flex-start; }
 }
