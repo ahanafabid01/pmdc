@@ -15,45 +15,6 @@ include '../includes/header.php';
         </div>
     </section>
 
-    <!-- ══════════════════ CONTACT INFO STRIP ══════════════════ -->
-    <div class="contact-strip">
-        <div class="container">
-            <div class="cs-inner reveal">
-                <a href="tel:01712-227983" class="cs-item">
-                    <div class="cs-icon"><i class="fas fa-phone"></i></div>
-                    <div>
-                        <div class="cs-label">Phone</div>
-                        <div class="cs-val">01712-227983</div>
-                    </div>
-                </a>
-                <div class="cs-sep"></div>
-                <a href="mailto:pmdc@edu.bd" class="cs-item">
-                    <div class="cs-icon"><i class="fas fa-envelope"></i></div>
-                    <div>
-                        <div class="cs-label">Email</div>
-                        <div class="cs-val">pmdc@edu.bd</div>
-                    </div>
-                </a>
-                <div class="cs-sep"></div>
-                <div class="cs-item">
-                    <div class="cs-icon"><i class="fas fa-clock"></i></div>
-                    <div>
-                        <div class="cs-label">Office Hours</div>
-                        <div class="cs-val">Sun – Thu: 8:00 AM – 4:00 PM</div>
-                    </div>
-                </div>
-                <div class="cs-sep"></div>
-                <div class="cs-item">
-                    <div class="cs-icon"><i class="fas fa-map-marker-alt"></i></div>
-                    <div>
-                        <div class="cs-label">Location</div>
-                        <div class="cs-val">Phulpur, Mymensingh, Bangladesh</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- ══════════════════ MAIN SECTION ══════════════════ -->
     <section class="section-padding">
         <div class="container">
@@ -98,53 +59,6 @@ include '../includes/header.php';
                                 <div class="ii-label">Examination Cell</div>
                                 <div class="ii-val"><a href="mailto:exam@pmdc.edu.bd">exam@pmdc.edu.bd</a></div>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- Department Directory -->
-                    <div class="dept-directory reveal">
-                        <div class="dd-head">Department Directory</div>
-                        <div class="dd-item">
-                            <div class="dd-dept">
-                                <i class="fas fa-user-plus"></i>
-                                <span>Admission Office</span>
-                            </div>
-                            <a href="tel:+880170000001" class="dd-phone">+880-1700-000001</a>
-                        </div>
-                        <div class="dd-item">
-                            <div class="dd-dept">
-                                <i class="fas fa-flask"></i>
-                                <span>Science Department</span>
-                            </div>
-                            <a href="tel:+880170000002" class="dd-phone">+880-1700-000002</a>
-                        </div>
-                        <div class="dd-item">
-                            <div class="dd-dept">
-                                <i class="fas fa-briefcase"></i>
-                                <span>Commerce Department</span>
-                            </div>
-                            <a href="tel:+880170000003" class="dd-phone">+880-1700-000003</a>
-                        </div>
-                        <div class="dd-item">
-                            <div class="dd-dept">
-                                <i class="fas fa-book"></i>
-                                <span>Humanities Department</span>
-                            </div>
-                            <a href="tel:+880170000004" class="dd-phone">+880-1700-000004</a>
-                        </div>
-                        <div class="dd-item">
-                            <div class="dd-dept">
-                                <i class="fas fa-file-alt"></i>
-                                <span>Examination Cell</span>
-                            </div>
-                            <a href="tel:+880170000005" class="dd-phone">+880-1700-000005</a>
-                        </div>
-                        <div class="dd-item">
-                            <div class="dd-dept">
-                                <i class="fas fa-shield-alt"></i>
-                                <span>College Security</span>
-                            </div>
-                            <a href="tel:+880170000006" class="dd-phone">+880-1700-000006</a>
                         </div>
                     </div>
 
