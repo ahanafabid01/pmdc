@@ -11,8 +11,8 @@ include '../includes/header.php';
         <div class="ph-overlay"></div>
         <div class="container ph-content">
             <div class="ph-kicker reveal">About PMDC</div>
-            <h1 class="reveal">Empowering Women<br>Through Education Since 1980</h1>
-            <p class="reveal">Phulpur Mohila Degree College — a trusted institution dedicated to women's academic excellence in Phulpur, Mymensingh, Bangladesh.</p>
+            <h1 class="reveal">Empowering Women<br>Through Education Since 1994</h1>
+            <p class="reveal">Phulpur Mohila Degree College — ফুলপুর, ময়মনসিংহের নারী শিক্ষার একটি নির্ভরযোগ্য প্রতিষ্ঠান.</p>
         </div>
     </section>
 
@@ -27,8 +27,8 @@ include '../includes/header.php';
                              alt="Principal — Phulpur Mohila Degree College"
                              loading="lazy">
                         <div class="principal-name-plate">
-                            <div class="pnp-name">Principal</div>
-                            <div class="pnp-inst">Phulpur Mohila Degree College</div>
+                            <div class="pnp-name">Rowshan Ara Begum</div>
+                            <div class="pnp-inst">Principal, Phulpur Mohila Degree College</div>
                         </div>
                     </div>
                     <div class="quote-chip">
@@ -40,17 +40,17 @@ include '../includes/header.php';
                     <div class="section-kicker">A Message from the Principal</div>
                     <h2>Building Futures,<br>One Student at a Time</h2>
                     <p class="lead">
-                        Phulpur Mohila Degree College has been at the forefront of women's education in the Phulpur region for over four decades. Our college is not merely an academic institution — it is a community of women committed to learning, growth, and service.
+                        Phulpur Mohila Degree College was established in 1994 with the collective effort of people across all political lines, with the goal of enabling women in Phulpur to pursue higher education equally alongside men.
                     </p>
                     <p class="body-text">
-                        Affiliated with the Bangladesh Education Board, we offer HSC programmes across Science, Commerce, and Humanities groups, providing a solid foundation for our students' higher education and professional journeys. Our dedicated faculty and supportive environment ensure that every student receives the personalised attention she deserves.
+                        Degree programmes (BA, BSS, BSc) began from the 2003–2004 academic session, and HSC, including Business Management &amp; Technology (BMT), began from the 2004–2005 session. The college has experienced and trained faculty, disciplined administration, strong security, a large computer lab, library, and CCTV surveillance.
                     </p>
                     <p class="body-text">
                         I warmly welcome every student, parent, and visitor to our college. Together, we will continue to build a brighter tomorrow for the women of Phulpur.
                     </p>
                     <div class="signature-block">
                         <div class="sig-line"></div>
-                        <div class="sig-name">College Principal</div>
+                        <div class="sig-name">Rowshan Ara Begum</div>
                         <div class="sig-title">Phulpur Mohila Degree College, Mymensingh</div>
                     </div>
                 </div>
@@ -73,7 +73,7 @@ include '../includes/header.php';
                     </div>
                     <div class="mvv-label">Mission</div>
                     <h3>Our Mission</h3>
-                    <p>To provide high-quality, inclusive education to women in the Phulpur region — equipping them with knowledge, values, and skills to excel in their academic and professional lives under the national HSC curriculum.</p>
+                    <p>To provide high-quality, inclusive education to women in the Phulpur region — equipping them with knowledge, values, and skills to excel in their academic and professional lives.</p>
                 </div>
                 <div class="mvv-card reveal">
                     <div class="mvv-icon-wrap mvv-gold">
@@ -108,7 +108,7 @@ include '../includes/header.php';
                 <div class="tl-item tl-left reveal">
                     <div class="tl-dot"></div>
                     <div class="tl-card">
-                        <div class="tl-year">1980</div>
+                        <div class="tl-year">1994</div>
                         <h4>Foundation</h4>
                         <p>Phulpur Mohila Degree College was founded with the vision of providing quality higher secondary education to women in the Phulpur area of Mymensingh district.</p>
                     </div>
@@ -117,45 +117,27 @@ include '../includes/header.php';
                 <div class="tl-item tl-right reveal">
                     <div class="tl-dot"></div>
                     <div class="tl-card">
-                        <div class="tl-year">1985</div>
-                        <h4>Board Affiliation</h4>
-                        <p>Officially affiliated with the Bangladesh Education Board (Dhaka Board), allowing students to appear in the national HSC examinations.</p>
+                        <div class="tl-year">2003–04</div>
+                        <h4>Degree Programmes Begin</h4>
+                        <p>BA, BSS, and BSc degree programmes began from the 2003–2004 academic session.</p>
                     </div>
                 </div>
 
                 <div class="tl-item tl-left reveal">
                     <div class="tl-dot"></div>
                     <div class="tl-card">
-                        <div class="tl-year">1995</div>
-                        <h4>Science Department Expansion</h4>
-                        <p>The Science group was formally established with Physics, Chemistry, Biology, and Higher Mathematics, equipped with dedicated laboratory facilities.</p>
+                        <div class="tl-year">2004–05</div>
+                        <h4>HSC and BMT Launch</h4>
+                        <p>HSC, including Business Management &amp; Technology (BMT), began from the 2004–2005 academic session.</p>
                     </div>
                 </div>
 
                 <div class="tl-item tl-right reveal">
                     <div class="tl-dot"></div>
                     <div class="tl-card">
-                        <div class="tl-year">2005</div>
-                        <h4>ICT Integration</h4>
-                        <p>A modern computer lab was inaugurated and ICT (Information &amp; Communication Technology) was introduced as a compulsory subject across all groups.</p>
-                    </div>
-                </div>
-
-                <div class="tl-item tl-left reveal">
-                    <div class="tl-dot"></div>
-                    <div class="tl-card">
-                        <div class="tl-year">2015</div>
-                        <h4>92% Board Pass Rate</h4>
-                        <p>The college achieved its highest-ever board pass rate of 92%, with record numbers of students earning GPA 5.00, marking a milestone in academic excellence.</p>
-                    </div>
-                </div>
-
-                <div class="tl-item tl-right reveal">
-                    <div class="tl-dot"></div>
-                    <div class="tl-card">
-                        <div class="tl-year">2025</div>
-                        <h4>Digital Portal Launch</h4>
-                        <p>Launched the online Teacher Portal for digital student management, result tracking, and academic record-keeping — a step into modern institutional management.</p>
+                        <div class="tl-year">2026</div>
+                        <h4>Modern Facilities</h4>
+                        <p>The college continues to maintain experienced faculty, strong security, a large computer lab, library, and CCTV surveillance for women students.</p>
                     </div>
                 </div>
 
@@ -178,7 +160,7 @@ include '../includes/header.php';
                         <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&q=80" alt="College Principal" loading="lazy">
                     </div>
                     <div class="team-info">
-                        <h4>College Principal</h4>
+                        <h4>Rowshan Ara Begum</h4>
                         <span class="team-role">Head of Institution</span>
                         <p class="team-dept">Administration</p>
                         <div class="team-links">
@@ -238,7 +220,7 @@ include '../includes/header.php';
         <div class="container cta-inner reveal">
             <div>
                 <h2>Ready to Join Our College?</h2>
-                <p>HSC admissions are now open for Science, Commerce &amp; Humanities groups.</p>
+                <p>HSC and degree admissions are open for eligible students.</p>
             </div>
             <div class="cta-actions">
                 <a href="#" onclick="openModal('Apply Now')" class="btn btn-primary">

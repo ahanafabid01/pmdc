@@ -9,7 +9,7 @@
                         <div class="footer-logo-icon"><i class="fas fa-school"></i></div>
                         <span class="footer-logo-abbr">PMDC</span>
                     </div>
-                    <p>Phulpur Mohila Degree College — empowering women through quality education since 1980. Affiliated with the Bangladesh Education Board.</p>
+                    <p>Phulpur Mohila Degree College — empowering women through quality education since 1994. Offering HSC and degree programmes for women in Phulpur, Mymensingh.</p>
                     <div class="social-icons">
                         <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>

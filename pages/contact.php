@@ -19,19 +19,19 @@ include '../includes/header.php';
     <div class="contact-strip">
         <div class="container">
             <div class="cs-inner reveal">
-                <a href="tel:+880170000000" class="cs-item">
+                <a href="tel:01712-227983" class="cs-item">
                     <div class="cs-icon"><i class="fas fa-phone"></i></div>
                     <div>
                         <div class="cs-label">Phone</div>
-                        <div class="cs-val">+880-1700-000000</div>
+                        <div class="cs-val">01712-227983</div>
                     </div>
                 </a>
                 <div class="cs-sep"></div>
-                <a href="mailto:info@pmdc.edu.bd" class="cs-item">
+                <a href="mailto:pmdc@edu.bd" class="cs-item">
                     <div class="cs-icon"><i class="fas fa-envelope"></i></div>
                     <div>
                         <div class="cs-label">Email</div>
-                        <div class="cs-val">info@pmdc.edu.bd</div>
+                        <div class="cs-val">pmdc@edu.bd</div>
                     </div>
                 </a>
                 <div class="cs-sep"></div>
@@ -79,8 +79,8 @@ include '../includes/header.php';
                             <div class="ii-icon"><i class="fas fa-phone"></i></div>
                             <div class="ii-body">
                                 <div class="ii-label">Phone</div>
-                                <div class="ii-val"><a href="tel:+880170000000">+880-1700-000000</a></div>
-                                <div class="ii-note">Sun – Thu: 8:00 AM – 4:00 PM</div>
+                                <div class="ii-val"><a href="tel:01712-227983">01712-227983</a></div>
+                                <div class="ii-note">Principal: Rowshan Ara Begum</div>
                             </div>
                         </div>
 
@@ -88,7 +88,7 @@ include '../includes/header.php';
                             <div class="ii-icon"><i class="fas fa-envelope"></i></div>
                             <div class="ii-body">
                                 <div class="ii-label">General Email</div>
-                                <div class="ii-val"><a href="mailto:info@pmdc.edu.bd">info@pmdc.edu.bd</a></div>
+                                <div class="ii-val"><a href="mailto:pmdc@edu.bd">pmdc@edu.bd</a></div>
                             </div>
                         </div>
 

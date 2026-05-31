@@ -8,17 +8,17 @@ include 'includes/header.php';
     <header class="hero" id="home">
         <div class="container">
             <div class="hero-content">
-                <div class="hero-kicker">Bangladesh Education Board Affiliated</div>
+                <div class="hero-kicker">Established in 1994</div>
                 <h1>
                     Empowering Women Through<br>
                     <em>Quality Education</em>
                 </h1>
                 <p class="hero-desc">
-                    Phulpur Mohila Degree College — শিক্ষায় শ্রেষ্ঠত্বের পথে। Offering HSC programs in Science, Commerce &amp; Humanities for Class XI–XII under the National Curriculum.
+                    Phulpur Mohila Degree College — ফুলপুরের নারী শিক্ষার এক নির্ভরযোগ্য প্রতিষ্ঠান। We offer HSC and degree programmes in a secure, disciplined environment for women students.
                 </p>
                 <div class="hero-buttons">
                     <a href="#academics" class="btn btn-primary">
-                        <i class="fas fa-graduation-cap"></i> Explore HSC Groups
+                        <i class="fas fa-graduation-cap"></i> Explore Programmes
                     </a>
                     <a href="pages/contact.php" class="btn btn-outline">
                         <i class="fas fa-map-marker-alt"></i> Visit Us
@@ -66,25 +66,25 @@ include 'includes/header.php';
                 <div class="about-img-wrap">
                     <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&q=80" alt="PMDC College Library">
                     <div class="about-img-badge">
-                        <div class="aib-val">1980</div>
+                        <div class="aib-val">1994</div>
                         <div class="aib-lbl">Est.</div>
                     </div>
                 </div>
                 <div class="about-text">
                     <div class="section-kicker">About Our College</div>
-                    <h2>A Legacy of Women's<br>Excellence in Mymensingh</h2>
+                    <h2>A Legacy of Women's<br>Education in Phulpur</h2>
                     <p class="lead">
-                        Phulpur Mohila Degree College has been a beacon of women's education and empowerment for over four decades. Affiliated with the Bangladesh Education Board, we offer HSC programs — Class XI and Class XII — across three academic groups for women students in the Phulpur region.
+                        Phulpur Mohila Degree College was established in 1994 with the collective effort of people across all political lines, with the goal of enabling women in Phulpur to pursue higher education equally alongside men.
                     </p>
                     <p class="lead">
-                        We provide a nurturing academic environment with qualified faculty, well-equipped classrooms, and dedicated facilities focused on holistic development under the national HSC curriculum.
+                        Degree programmes (BA, BSS, BSc) began from the 2003–2004 academic session, and HSC, including Business Management &amp; Technology (BMT), began from the 2004–2005 session. The college has experienced and trained faculty, disciplined administration, strong security, a large computer lab, library, and CCTV surveillance.
                     </p>
                     <ul class="feature-list">
-                        <li><i class="fas fa-check-circle"></i> Bangladesh Education Board (Dhaka / Mymensingh Board) affiliated</li>
-                        <li><i class="fas fa-check-circle"></i> Science, Commerce &amp; Humanities groups offered</li>
-                        <li><i class="fas fa-check-circle"></i> Experienced and dedicated teaching faculty</li>
-                        <li><i class="fas fa-check-circle"></i> Scholarship opportunities for meritorious students</li>
-                        <li><i class="fas fa-check-circle"></i> Safe, women-only campus environment</li>
+                        <li><i class="fas fa-check-circle"></i> Women-only campus in Phulpur, Mymensingh</li>
+                        <li><i class="fas fa-check-circle"></i> HSC and degree programmes offered</li>
+                        <li><i class="fas fa-check-circle"></i> Experienced and trained faculty</li>
+                        <li><i class="fas fa-check-circle"></i> Large computer lab, library, and CCTV surveillance</li>
+                        <li><i class="fas fa-check-circle"></i> Disciplined and secure academic environment</li>
                     </ul>
                     <a href="pages/about.php" class="btn btn-ghost">
                         Read Our History <i class="fas fa-arrow-right"></i>
@@ -141,9 +141,9 @@ include 'includes/header.php';
     <section id="academics" class="section-padding">
         <div class="container">
             <div class="section-head reveal">
-                <div class="section-kicker">HSC Programmes</div>
+                <div class="section-kicker">HSC &amp; Degree Programmes</div>
                 <h2>Academic Groups (বিভাগসমূহ)</h2>
-                <p>Choose your academic group for Class XI–XII under the Bangladesh Education Board national curriculum.</p>
+                <p>Choose your academic group for Class XI–XII, or explore the degree programmes offered by the college.</p>
             </div>
             <div class="programs-grid">
 
@@ -228,7 +228,7 @@ include 'includes/header.php';
                         <div class="news-details">
                             <span class="news-tag tag-results"><i class="fas fa-trophy"></i> Results</span>
                             <h4>HSC Board Exam Results 2025 — 92% Pass Rate</h4>
-                            <p>Phulpur Mohila Degree College achieved an outstanding 92% pass rate in the HSC Annual Examination 2025, with 48 students receiving A+ (GPA 5.00).</p>
+                            <p>Phulpur Mohila Degree College continues to celebrate strong HSC outcomes, with students progressing through the Half-Yearly, Year-Change, Pre-Test, and Test examination system.</p>
                             <a href="pages/results.php" class="read-more">View Results <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
@@ -241,7 +241,7 @@ include 'includes/header.php';
                         <div class="news-details">
                             <span class="news-tag tag-exam"><i class="fas fa-calendar-alt"></i> Examination</span>
                             <h4>HSC Test Examination 2026 — Schedule Released</h4>
-                            <p>The pre-board test examination (টেস্ট পরীক্ষা) timetable for HSC 2nd Year students has been published. Collect admit cards from the college office.</p>
+                            <p>The Test Examination for HSC 2nd Year students is one of the college's key academic checkpoints. Admit cards must be collected 10 days before the exam.</p>
                             <a href="pages/announcements.php" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
@@ -254,7 +254,7 @@ include 'includes/header.php';
                         <div class="news-details">
                             <span class="news-tag tag-admission"><i class="fas fa-user-plus"></i> Admission</span>
                             <h4>Class XI Admission 2025–26 — Applications Open</h4>
-                            <p>Admissions for HSC 1st Year (একাদশ শ্রেণি) are now open for Science, Commerce, and Humanities groups. Eligible SSC/Dakhil pass students may apply via the central portal.</p>
+                            <p>Admissions are open for HSC 1st Year students in Science, Humanities, and Business Studies groups. Degree programme information can be obtained from the college office.</p>
                             <a href="pages/announcements.php" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
@@ -268,7 +268,7 @@ include 'includes/header.php';
                     <div class="event-card">
                         <h4>অভিভাবক সমাবেশ (Parents' Meeting)</h4>
                         <div class="event-meta"><i class="fas fa-clock"></i> 10:00 AM – 1:00 PM</div>
-                        <p>HSC 1st &amp; 2nd Year parents are invited to discuss academic progress with class teachers.</p>
+                        <p>Parents and guardians are invited to discuss academic progress, attendance, and discipline with class teachers.</p>
                     </div>
 
                     <div class="event-card">
@@ -278,9 +278,9 @@ include 'includes/header.php';
                     </div>
 
                     <div class="event-card">
-                        <h4>HSC বার্ষিক পরীক্ষা (Annual Examination)</h4>
-                        <div class="event-meta"><i class="fas fa-calendar"></i> Nov 15 – Dec 15</div>
-                        <p>Annual Board Examination for HSC 2nd Year (দ্বাদশ শ্রেণি) under the Bangladesh Education Board.</p>
+                        <h4>HSC Test Examination</h4>
+                        <div class="event-meta"><i class="fas fa-calendar"></i> Scheduled by college notice</div>
+                        <p>HSC 2nd Year students must pass the Test Examination to be eligible for HSC form fill-up.</p>
                     </div>
                 </aside>
 

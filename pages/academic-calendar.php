@@ -4,7 +4,7 @@ $page_group = 'academic';
 $page_title = 'Academic Calendar | Phulpur Mohila Degree College';
 $page_css   = 'academic.css';
 $base_path  = '../';
-$last_updated = 'May 31, 2025';
+$last_updated = 'May 31, 2026';
 
 $sessions = ['2024–2025', '2023–2024'];
 $currentSession = $_GET['session'] ?? '2024–2025';
@@ -13,14 +13,14 @@ $calendar = [
     'January 2025' => [
         ['date'=>'01 Jan', 'event'=>'New Year — College Closed',          'notes'=>'Public holiday', 'important'=>false],
         ['date'=>'15 Jan', 'event'=>'Class Commencement (2nd Year)',       'notes'=>'All groups resume', 'important'=>true],
-        ['date'=>'20 Jan', 'event'=>'Result of Annual Exam Published',     'notes'=>'2023–24 Annual Results', 'important'=>true],
+        ['date'=>'20 Jan', 'event'=>'Half-Yearly / Year-Change planning begins', 'notes'=>'Class XI exam schedule update', 'important'=>true],
     ],
     'February 2025' => [
         ['date'=>'01 Feb', 'event'=>'Half-Yearly Exam Registration Begins','notes'=>'Deadline: Feb 15', 'important'=>true],
         ['date'=>'21 Feb', 'event'=>'International Mother Language Day',   'notes'=>'College closed', 'important'=>false],
     ],
     'March 2025' => [
-        ['date'=>'01 Mar', 'event'=>'Half-Yearly Examination Begins',      'notes'=>'1st & 2nd Year', 'important'=>true],
+        ['date'=>'01 Mar', 'event'=>'Half-Yearly Examination Begins',      'notes'=>'HSC 1st Year', 'important'=>true],
         ['date'=>'15 Mar', 'event'=>'Half-Yearly Examination Ends',        'notes'=>'Results expected in April', 'important'=>true],
         ['date'=>'26 Mar', 'event'=>'Independence Day',                    'notes'=>'College closed', 'important'=>false],
     ],
@@ -31,8 +31,8 @@ $calendar = [
     ],
     'May 2025' => [
         ['date'=>'01 May', 'event'=>'May Day — College Closed',            'notes'=>'Public holiday', 'important'=>false],
-        ['date'=>'10 May', 'event'=>'Pre-Test Examination Registration',   'notes'=>'2nd Year only', 'important'=>true],
-        ['date'=>'25 May', 'event'=>'Pre-Test Examination Begins',         'notes'=>'2nd Year', 'important'=>true],
+        ['date'=>'10 May', 'event'=>'Pre-Test Examination Registration',   'notes'=>'HSC 2nd Year only', 'important'=>true],
+        ['date'=>'25 May', 'event'=>'Pre-Test Examination Begins',         'notes'=>'HSC 2nd Year', 'important'=>true],
     ],
     'June 2025' => [
         ['date'=>'07 Jun', 'event'=>'Eid-ul-Adha Vacation Begins',         'notes'=>'3-day holiday', 'important'=>false],
@@ -40,16 +40,16 @@ $calendar = [
     ],
     'July 2025' => [
         ['date'=>'05 Jul', 'event'=>'Pre-Test Result Published',           'notes'=>'Check notice board', 'important'=>true],
-        ['date'=>'15 Jul', 'event'=>'Test Exam Registration Begins',       'notes'=>'2nd Year only', 'important'=>true],
+        ['date'=>'15 Jul', 'event'=>'Test Exam Registration Begins',       'notes'=>'HSC 2nd Year only', 'important'=>true],
     ],
     'August 2025' => [
-        ['date'=>'01 Aug', 'event'=>'Test Examination Begins',             'notes'=>'2nd Year', 'important'=>true],
+        ['date'=>'01 Aug', 'event'=>'Test Examination Begins',             'notes'=>'HSC 2nd Year', 'important'=>true],
         ['date'=>'15 Aug', 'event'=>'National Mourning Day',               'notes'=>'College closed', 'important'=>false],
-        ['date'=>'20 Aug', 'event'=>'Test Examination Ends',               'notes'=>'', 'important'=>true],
+        ['date'=>'20 Aug', 'event'=>'Test Examination Ends',               'notes'=>'Admit cards issued 10 days before exam', 'important'=>true],
     ],
     'September 2025' => [
         ['date'=>'01 Sep', 'event'=>'College Foundation Day',              'notes'=>'Cultural program', 'important'=>false],
-        ['date'=>'10 Sep', 'event'=>'Test Result Published',               'notes'=>'2nd Year results', 'important'=>true],
+        ['date'=>'10 Sep', 'event'=>'Test Result Published',               'notes'=>'HSC 2nd Year results', 'important'=>true],
         ['date'=>'20 Sep', 'event'=>'HSC Board Exam Begins',              'notes'=>'Dhaka Board schedule', 'important'=>true],
     ],
     'October 2025' => [

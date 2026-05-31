@@ -11,7 +11,7 @@ include '../includes/header.php';
         <div class="container ph-content">
             <div class="ph-kicker reveal">PMDC</div>
             <h1 class="reveal">HSC Examination Results</h1>
-            <p class="reveal">Check and download published HSC results — Annual &amp; Test Examinations for Class XI &amp; XII.</p>
+            <p class="reveal">Check and download published HSC results — Half-Yearly, Year-Change, Pre-Test, and Test examinations for Class XI &amp; XII.</p>
         </div>
     </section>
 
@@ -51,8 +51,8 @@ include '../includes/header.php';
                                     <select id="examType" name="examType" required>
                                         <option value="">Select exam…</option>
                                         <optgroup label="HSC 1st Year — একাদশ শ্রেণি">
-                                            <option value="halfyearly_xi">Half-Yearly (অর্ধ-বার্ষিক)</option>
-                                            <option value="yearchange_xi">Year-Change (বার্ষান্তর)</option>
+                                            <option value="halfyearly_xi">Half-Yearly (ষাণ্মাসিক / অর্ধ-বার্ষিক)</option>
+                                            <option value="yearchange_xi">Year-Change (বার্ষিক)</option>
                                         </optgroup>
                                         <optgroup label="HSC 2nd Year — দ্বাদশ শ্রেণি">
                                             <option value="pretest_xii">Pre-Test (প্রি-টেস্ট)</option>
@@ -249,7 +249,7 @@ include '../includes/header.php';
 
                     <!-- Summary Stats -->
                     <div class="sidebar-stats reveal">
-                        <div class="ss-head">HSC Board Results 2025</div>
+                        <div class="ss-head">HSC Board Results</div>
                         <div class="ss-grid">
                             <div class="ss-item">
                                 <div class="ss-val">92%</div>

@@ -12,7 +12,7 @@ function avatarColor($name,$colors) { $h=0;foreach(str_split($name)as$c)$h=(($h<
 
 $committees = [
     'Academic Monitoring Committee' => [
-        ['name'=>'Dr. Halima Khatun',   'designation'=>'Principal',        'role'=>'Chairperson',           'phone'=>'+880-1700-000010','email'=>'principal@pmdc.edu.bd'],
+        ['name'=>'Rowshan Ara Begum',    'designation'=>'Principal',        'role'=>'Chairperson',           'phone'=>'01712-227983','email'=>'pmdc@edu.bd'],
         ['name'=>'Ms. Afroza Begum',    'designation'=>'Senior Lecturer',   'role'=>'Member Secretary',      'phone'=>'+880-1700-000011','email'=>'afroza@pmdc.edu.bd'],
         ['name'=>'Mrs. Rashida Akter',  'designation'=>'Lecturer',          'role'=>'Member',                'phone'=>'+880-1700-000012','email'=>'rashida@pmdc.edu.bd'],
         ['name'=>'Mrs. Fatema Begum',   'designation'=>'Senior Lecturer',   'role'=>'Member',                'phone'=>'+880-1700-000014','email'=>'fatema@pmdc.edu.bd'],
@@ -20,7 +20,7 @@ $committees = [
         ['name'=>'Mr. Rafiqul Islam',   'designation'=>'Office Supt.',      'role'=>'Member (Admin)',        'phone'=>'+880-1700-000030','email'=>'rafiq@pmdc.edu.bd'],
     ],
     'Examination Monitoring Committee' => [
-        ['name'=>'Dr. Halima Khatun',   'designation'=>'Principal',        'role'=>'Chief Examiner',        'phone'=>'+880-1700-000010','email'=>'principal@pmdc.edu.bd'],
+        ['name'=>'Rowshan Ara Begum',    'designation'=>'Principal',        'role'=>'Chief Examiner',        'phone'=>'01712-227983','email'=>'pmdc@edu.bd'],
         ['name'=>'Mrs. Shaila Parvin',  'designation'=>'Lecturer',          'role'=>'Controller of Exams',   'phone'=>'+880-1700-000016','email'=>'shaila@pmdc.edu.bd'],
         ['name'=>'Ms. Nasrin Sultana',  'designation'=>'Lecturer',          'role'=>'Deputy Controller',     'phone'=>'+880-1700-000013','email'=>'nasrin@pmdc.edu.bd'],
         ['name'=>'Ms. Tania Akter',     'designation'=>'Lecturer',          'role'=>'Member',                'phone'=>'+880-1700-000019','email'=>'tania@pmdc.edu.bd'],

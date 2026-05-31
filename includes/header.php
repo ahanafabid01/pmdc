@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo isset($page_title) ? $page_title : 'Phulpur Mohila Degree College | Excellence in Education'; ?></title>
-    <meta name="description" content="<?php echo isset($page_meta_description) ? htmlspecialchars($page_meta_description, ENT_QUOTES, 'UTF-8') : 'Phulpur Mohila Degree College - A leading women\'s degree college in Phulpur, Mymensingh offering HSC programs in Science, Commerce and Humanities under the Bangladesh Education Board.'; ?>">
+    <meta name="description" content="<?php echo isset($page_meta_description) ? htmlspecialchars($page_meta_description, ENT_QUOTES, 'UTF-8') : 'Phulpur Mohila Degree College is a women\'s degree college in Phulpur, Mymensingh, established in 1994, offering HSC and degree programmes for women students.'; ?>">
     <?php if(isset($page_meta_tags)) echo $page_meta_tags; ?>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,7 +21,7 @@
     <div class="top-bar">
         <div class="container">
             <div class="top-bar-left">
-                <span><i class="fas fa-phone-alt"></i> +880-1700-000000</span>
+                <span><i class="fas fa-phone-alt"></i> 01712-227983</span>
                 <span class="top-bar-sep">|</span>
                 <span><i class="fas fa-envelope"></i> pmdc@edu.bd</span>
                 <span class="top-bar-sep">|</span>

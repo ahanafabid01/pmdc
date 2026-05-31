@@ -9,7 +9,7 @@ include '../includes/header.php';
     <!-- ══════════════════ PAGE HEADER ══════════════════ -->
     <section class="page-hero">
         <div class="container ph-content">
-            <div class="ph-kicker reveal">HSC Programmes</div>
+            <div class="ph-kicker reveal">HSC &amp; Degree Programmes</div>
             <h1 class="reveal">Academic Groups &amp; Subjects</h1>
             <p class="reveal">উচ্চ মাধ্যমিক শিক্ষা (Higher Secondary Certificate) — বিজ্ঞান, ব্যবসায় শিক্ষা ও মানবিক বিভাগ</p>
         </div>
@@ -21,14 +21,14 @@ include '../includes/header.php';
             <div class="section-head reveal">
                 <div class="section-kicker">Programme Structure</div>
                 <h2>HSC Class Levels</h2>
-                <p>Phulpur Mohila Degree College offers the Higher Secondary Certificate under the Bangladesh Education Board across two class levels.</p>
+                <p>Phulpur Mohila Degree College offers the Higher Secondary Certificate across two class levels with a fixed exam structure for each year.</p>
             </div>
             <div class="levels-grid">
                 <div class="level-card reveal">
                     <div class="level-num">XI</div>
                     <div class="level-body">
                         <h3>HSC 1st Year <span class="level-bn">একাদশ শ্রেণি</span></h3>
-                        <p>First year of the HSC programme. Students study compulsory core subjects alongside their group-specific electives. Admission opens after SSC / Dakhil results.</p>
+                        <p>Examinations: Half-Yearly Exam (ষাণ্মাসিক / অর্ধ-বার্ষিক পরীক্ষা) and Year-Change Exam (বার্ষিক পরীক্ষা).</p>
                         <a href="#groups" class="read-more">View Subjects <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
@@ -36,10 +36,27 @@ include '../includes/header.php';
                     <div class="level-num">XII</div>
                     <div class="level-body">
                         <h3>HSC 2nd Year <span class="level-bn">দ্বাদশ শ্রেণি</span></h3>
-                        <p>Second and final year of the programme. Students sit the Bangladesh Education Board Annual HSC Examination upon completion of Class XII.</p>
+                        <p>Examinations: Pre-Test Exam (প্রি-টেস্ট পরীক্ষা) and Test Exam (টেস্ট পরীক্ষা). Admit cards must be collected 10 days before the exam.</p>
                         <a href="#groups" class="read-more">View Subjects <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════ DEGREE PROGRAMMES ══════════════════ -->
+    <section class="section-padding section-alt">
+        <div class="container">
+            <div class="section-head reveal">
+                <div class="section-kicker">Degree Programmes</div>
+                <h2>Available Degree Paths</h2>
+                <p>The college also offers degree-level study in four programmes.</p>
+            </div>
+            <div class="levels-grid">
+                <div class="level-card reveal"><div class="level-num">BA</div><div class="level-body"><h3>Bachelor of Arts</h3><p>Degree programme</p></div></div>
+                <div class="level-card reveal"><div class="level-num">BSS</div><div class="level-body"><h3>Bachelor of Social Science</h3><p>Degree programme</p></div></div>
+                <div class="level-card reveal"><div class="level-num">BSc</div><div class="level-body"><h3>Bachelor of Science</h3><p>Degree programme</p></div></div>
+                <div class="level-card reveal"><div class="level-num">BMT</div><div class="level-body"><h3>Business Management &amp; Technology</h3><p>Degree programme</p></div></div>
             </div>
         </div>
     </section>
@@ -185,47 +202,25 @@ include '../includes/header.php';
             <div class="section-head reveal">
                 <div class="section-kicker">Evaluation System</div>
                 <h2>HSC Grading Scale</h2>
-                <p>The Bangladesh Education Board uses the following GPA system for HSC examinations.</p>
+                <p>Each exam has an independent GPA. There is no combined total GPA across Half-Yearly, Year-Change, Pre-Test, and Test exams.</p>
             </div>
             <div class="grade-table-wrap reveal">
                 <table class="grade-table">
                     <thead>
                         <tr>
-                            <th>Grade</th>
-                            <th>GPA</th>
                             <th>Marks</th>
-                            <th>Remark</th>
+                            <th>Grade</th>
+                            <th>Grade Point</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="gt-aplus">
-                            <td><span class="grade-badge gb-aplus">A+</span></td>
-                            <td>5.00</td><td>80 – 100</td><td>Outstanding</td>
-                        </tr>
-                        <tr>
-                            <td><span class="grade-badge gb-a">A</span></td>
-                            <td>4.00</td><td>70 – 79</td><td>Excellent</td>
-                        </tr>
-                        <tr class="gt-alt">
-                            <td><span class="grade-badge gb-am">A–</span></td>
-                            <td>3.50</td><td>60 – 69</td><td>Very Good</td>
-                        </tr>
-                        <tr>
-                            <td><span class="grade-badge gb-b">B</span></td>
-                            <td>3.00</td><td>50 – 59</td><td>Good</td>
-                        </tr>
-                        <tr class="gt-alt">
-                            <td><span class="grade-badge gb-c">C</span></td>
-                            <td>2.00</td><td>40 – 49</td><td>Satisfactory</td>
-                        </tr>
-                        <tr>
-                            <td><span class="grade-badge gb-d">D</span></td>
-                            <td>1.00</td><td>33 – 39</td><td>Pass</td>
-                        </tr>
-                        <tr class="gt-alt">
-                            <td><span class="grade-badge gb-f">F</span></td>
-                            <td>0.00</td><td>Below 33</td><td>Fail</td>
-                        </tr>
+                        <tr class="gt-aplus"><td>80–100</td><td><span class="grade-badge gb-aplus">A+</span></td><td>5.00</td></tr>
+                        <tr><td>70–79</td><td><span class="grade-badge gb-a">A</span></td><td>4.00</td></tr>
+                        <tr class="gt-alt"><td>60–69</td><td><span class="grade-badge gb-am">A-</span></td><td>3.50</td></tr>
+                        <tr><td>50–59</td><td><span class="grade-badge gb-b">B</span></td><td>3.00</td></tr>
+                        <tr class="gt-alt"><td>40–49</td><td><span class="grade-badge gb-c">C</span></td><td>2.00</td></tr>
+                        <tr><td>33–39</td><td><span class="grade-badge gb-d">D</span></td><td>1.00</td></tr>
+                        <tr class="gt-alt"><td>0–32</td><td><span class="grade-badge gb-f">F</span></td><td>0.00</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -238,18 +233,18 @@ include '../includes/header.php';
             <div class="section-head reveal" style="margin-bottom:48px;">
                 <div class="section-kicker" style="color:rgba(255,255,255,.5);">Support</div>
                 <h2 style="color:#fff;">Academic Resources</h2>
-                <p style="color:rgba(255,255,255,.55);">Everything you need to plan and manage your HSC journey.</p>
+                <p style="color:rgba(255,255,255,.55);">Everything you need to plan and manage your HSC and degree journey.</p>
             </div>
             <div class="resources-grid">
                 <div class="resource-card reveal">
                     <div class="rc-icon"><i class="far fa-calendar-alt"></i></div>
                     <h4>Academic Calendar</h4>
-                    <p>Important dates — HSC classes, board exam schedule, and college holidays.</p>
+                    <p>Important dates — HSC classes, exam schedule, and college holidays.</p>
                 </div>
                 <div class="resource-card reveal">
                     <div class="rc-icon"><i class="fas fa-book"></i></div>
                     <h4>Syllabus (পাঠ্যসূচি)</h4>
-                    <p>Bangladesh Education Board approved HSC syllabi for all three groups.</p>
+                    <p>Bangladesh Education Board approved HSC syllabi and exam outlines.</p>
                 </div>
                 <div class="resource-card reveal">
                     <div class="rc-icon"><i class="fas fa-file-alt"></i></div>

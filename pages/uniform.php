@@ -4,7 +4,7 @@ $page_group = 'academic';
 $page_title = 'Uniform | Phulpur Mohila Degree College';
 $page_css   = 'academic.css';
 $base_path  = '../';
-$last_updated = 'May 31, 2025';
+$last_updated = 'May 31, 2026';
 
 include '../includes/header.php';
 ?>
@@ -33,21 +33,21 @@ include '../includes/header.php';
                 </div>
             </div>
 
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;" class="uniform-grid">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;" class="uniform-grid">
 
                 <!-- Girls Uniform -->
                 <div class="ai-card" style="padding:28px 28px 24px;">
                     <div class="ai-content-section" style="margin-bottom:0;">
-                        <h2><i class="fas fa-female"></i> Girls Uniform</h2>
+                        <h2><i class="fas fa-female"></i> For Students</h2>
                         <ul class="ai-bullet-list">
-                            <li class="ai-bullet-item">White salwar-kameez with the college monogram on the left chest pocket</li>
-                            <li class="ai-bullet-item">White dupatta (worn over the shoulders at all times on campus)</li>
-                            <li class="ai-bullet-item">White socks and white keds/canvas shoes</li>
-                            <li class="ai-bullet-item">Hair tied neatly in a bun or braid — no loose hair on campus</li>
-                            <li class="ai-bullet-item">No heavy jewellery — simple stud earrings only</li>
-                            <li class="ai-bullet-item">ID card must be worn on a lanyard and visible at all times</li>
-                            <li class="ai-bullet-item">No nail polish, mehendi, or heavy makeup during academic days</li>
-                            <li class="ai-bullet-item">Uniform must be clean, well-ironed, and properly fitted</li>
+                            <li class="ai-bullet-item">White shalwar</li>
+                            <li class="ai-bullet-item">White kamiz</li>
+                            <li class="ai-bullet-item">Navy blue orna</li>
+                            <li class="ai-bullet-item">Navy blue belt</li>
+                            <li class="ai-bullet-item">White socks</li>
+                            <li class="ai-bullet-item">White canvas shoes</li>
+                            <li class="ai-bullet-item">White apron</li>
+                            <li class="ai-bullet-item">White scarf</li>
                         </ul>
                     </div>
                 </div>
@@ -57,13 +57,11 @@ include '../includes/header.php';
                     <div class="ai-content-section" style="margin-bottom:0;">
                         <h2><i class="fas fa-exclamation-circle"></i> Important Notes</h2>
                         <ul class="ai-bullet-list">
-                            <li class="ai-bullet-item">Students not in proper uniform will not be allowed to enter the campus.</li>
-                            <li class="ai-bullet-item">Uniform must be purchased from the approved college supplier only. Contact the college office for details.</li>
-                            <li class="ai-bullet-item">Wearing torn, faded, or altered uniform is strictly prohibited.</li>
-                            <li class="ai-bullet-item">During cultural programs and events, students may wear alternative attire as permitted by the Principal.</li>
-                            <li class="ai-bullet-item">On examination days, the ID card is mandatory regardless of uniform.</li>
-                            <li class="ai-bullet-item">Any student found violating the dress code repeatedly will face disciplinary action as per college rules.</li>
-                            <li class="ai-bullet-item">For exemption due to medical reasons, a written application must be submitted to the Principal's office.</li>
+                            <li class="ai-bullet-item">Students are required to wear the prescribed uniform to college regularly.</li>
+                            <li class="ai-bullet-item">Every student must obtain an identity card and wear it around the neck.</li>
+                            <li class="ai-bullet-item">No improper or disorderly behavior outside the college is permitted while in college dress or uniform.</li>
+                            <li class="ai-bullet-item">Uniform should be kept clean and well-arranged at all times.</li>
+                            <li class="ai-bullet-item">The college may take disciplinary action for repeated uniform violations.</li>
                         </ul>
                     </div>
                 </div>
@@ -74,28 +72,28 @@ include '../includes/header.php';
             <div class="ai-info-card" style="margin-top:24px;">
                 <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
                     <i class="fas fa-store" style="color:var(--blue);font-size:1rem;"></i>
-                    <strong style="font-size:.95rem;color:var(--navy);font-family:'Inter',sans-serif;">Where to Get the Uniform</strong>
+                    <strong style="font-size:.95rem;color:var(--navy);font-family:'Inter',sans-serif;">Uniform Reminder</strong>
                 </div>
                 <div class="ai-info-grid">
                     <div class="ai-info-item">
-                        <span class="ai-info-label">Approved Supplier</span>
-                        <span class="ai-info-value">Phulpur Cloth House</span>
+                        <span class="ai-info-label">Dress Code</span>
+                        <span class="ai-info-value">White shalwar, white kamiz, navy blue orna, navy blue belt</span>
                     </div>
                     <div class="ai-info-item">
-                        <span class="ai-info-label">Location</span>
-                        <span class="ai-info-value">Near College Gate, Phulpur Bazar</span>
+                        <span class="ai-info-label">Footwear</span>
+                        <span class="ai-info-value">White socks and white canvas shoes</span>
                     </div>
                     <div class="ai-info-item">
-                        <span class="ai-info-label">Uniform Cost (Approx.)</span>
-                        <span class="ai-info-value">BDT 600–800 (full set)</span>
+                        <span class="ai-info-label">Additional Items</span>
+                        <span class="ai-info-value">White apron and white scarf</span>
                     </div>
                     <div class="ai-info-item">
-                        <span class="ai-info-label">Monogram Stitching</span>
-                        <span class="ai-info-value">Available at the supplier</span>
+                        <span class="ai-info-label">Requirement</span>
+                        <span class="ai-info-value">Uniform is mandatory for all students</span>
                     </div>
                 </div>
                 <p style="font-size:.82rem;color:var(--muted);font-family:'Inter',sans-serif;border-top:1px solid var(--border);padding-top:14px;margin-top:4px;">
-                    For any queries regarding the uniform, please contact the college office during working hours (9:00 AM – 3:00 PM, Saturday to Thursday).
+                    For any queries regarding the uniform, please contact the college office during working hours.
                 </p>
             </div>
 
