@@ -436,7 +436,242 @@ Grammar (Syllabus অনুযায়ী), Composition, Letter/Application, Pa
 
 ---
 
-## 10. GRADING SCALE
+## 10. DEGREE PROGRAM — FULL DETAILS
+
+> The prospectus covers Degree programs: BA, BSS, BSc, and BMT (ব্যবসায় ব্যবস্থাপনা এবং টেকনোলজি). Use this data for the Degree section of the website.
+
+---
+
+### 10A. Degree Programs & Subjects
+
+#### BA (Bachelor of Arts)
+
+| Subject Type | Subjects |
+|-------------|----------|
+| Compulsory | Bangla, History of Bangladesh's Liberation War, English |
+| Optional (choose from) | History, Philosophy, Political Science, Islamic Studies |
+
+#### BSS (Bachelor of Social Science)
+
+| Subject Type | Subjects |
+|-------------|----------|
+| Compulsory | Bangla, History of Bangladesh's Liberation War, English |
+| Optional (choose from) | History, Philosophy, Political Science, Islamic Studies, Economics, Social Welfare |
+
+#### BSc (Bachelor of Science)
+
+| Subject Type | Subjects |
+|-------------|----------|
+| Compulsory | Bangla, History of Bangladesh's Liberation War, English |
+| Optional (choose from) | Botany, Zoology, Chemistry |
+
+#### BMT — Business Management & Technology (ব্যবসায় ব্যবস্থাপনা এবং টেকনোলজি)
+
+| Subject Type | Subjects |
+|-------------|----------|
+| Compulsory | Bangla, English, Business Mathematics & Statistics, Marketing, Business Organization, Accounting, Economics, Computer Office Application, Digital Technology & Business-1 |
+
+---
+
+### 10B. Degree Exam Structure
+
+Degree programs run over **3 years** (1st Year, 2nd Year, 3rd Year).
+
+Each year has internal exams. The final public exam is conducted by the National University of Bangladesh.
+
+---
+
+### 10C. Degree Class Routine — Degree (Full)
+
+> Source: Page 30 of the prospectus (ডিগ্রি — Degree routine)
+
+**Time slots:**
+- 10:30–11:20
+- 11:20–12:00
+- 12:00–12:80
+- 12:80–1:20
+- 1:20–1:55
+
+#### Saturday (শনিবার)
+
+| Year | 10:30–11:20 | 11:20–12:00 | 12:00–12:80 | 12:80–1:20 | 1:20–1:55 |
+|------|-------------|-------------|-------------|------------|-----------|
+| 1st Year | History, Chemistry | Political Science, Botany | Social Welfare, Zoology | Islamic Studies | Development History, History |
+| 2nd Year | Social Welfare, Botany | Economics, Zoology | Political Science, Bangla | Islamic Studies | — |
+| 3rd Year | Philosophy, Zoology | Islamic Studies, Chemistry | Economics, Botany | History | — |
+
+#### Sunday (রবিবার)
+
+| Year | 10:30–11:20 | 11:20–12:00 | 12:00–12:80 | 12:80–1:20 | 1:20–1:55 |
+|------|-------------|-------------|-------------|------------|-----------|
+| 1st Year | Political Science | History of Bangladesh's Liberation | Islamic Studies, Zoology | Economics, Botany | History |
+| 2nd Year | History | Economics, Zoology | Political Science | Islamic Studies | — |
+| 3rd Year | Islamic Studies | Economics, Zoology | — | — | — |
+
+#### Monday (সোমবার)
+
+| Year | 10:30–11:20 | 11:20–12:00 | 12:00–12:80 | 12:80–1:20 | 1:20–1:55 |
+|------|-------------|-------------|-------------|------------|-----------|
+| 1st Year | Political Science | History of Bangladesh | Islamic Studies, Zoology | Economics, Botany | History |
+| 2nd Year | History | Economics, Zoology | Political Science | Islamic Studies | — |
+| 3rd Year | Islamic Studies | Economics, Zoology | History | — | — |
+
+#### Tuesday (মঙ্গলবার)
+
+| Year | 10:30–11:20 | 11:20–12:00 | 12:00–12:80 | 12:80–1:20 | 1:20–1:55 |
+|------|-------------|-------------|-------------|------------|-----------|
+| 1st Year | Social Welfare | Philosophy, Botany | Development History, History | Political Science | Economics |
+| 2nd Year | Economics, Botany | History | Philosophy | Social Welfare | — |
+| 3rd Year | History, Chemistry | Political Science, Chemistry | English | Philosophy, Botany | — |
+
+#### Wednesday (বুধবার)
+
+| Year | 10:30–11:20 | 11:20–12:00 | 12:00–12:80 | 12:80–1:20 | 1:20–1:55 |
+|------|-------------|-------------|-------------|------------|-----------|
+| 1st Year | Social Welfare | Philosophy, Botany | Development History, History | Political Science | Economics |
+| 2nd Year | Economics, Botany | — | History | Social Welfare | — |
+| 3rd Year | History, Chemistry | Political Science, Chemistry | English | Philosophy, Botany | — |
+
+#### Thursday (বৃহস্পতিবার)
+
+| Year | 10:30–11:20 | 11:20–12:00 | 12:00–12:80 | 12:80–1:20 | 1:20–1:55 |
+|------|-------------|-------------|-------------|------------|-----------|
+| 1st Year | History, Chemistry | Philosophy, Botany | Social Welfare, History | Political Science | Economics |
+| 2nd Year | Political Science, Botany | History | Islamic Studies, Botany | Social Welfare | — |
+| 3rd Year | Social Welfare, Botany | Political Science, Chemistry | Economics | English | — |
+
+---
+
+### 10D. BMT (কারিগরি শাখা) Class Routine — Full
+
+> Source: Page 31 of the prospectus
+
+**Time slots:**
+- 10:00–10:80
+- 10:80–11:20
+- 11:20–12:00
+- 12:00–12:80
+- 12:80–1:20
+
+#### Sunday (রবিবার)
+
+| Year | 10:00–10:80 | 10:80–11:20 | 11:20–12:00 | 12:00–12:80 | 12:80–1:20 |
+|------|-------------|-------------|-------------|-------------|------------|
+| 1st Year | Business Organization | Bangla | Accounting | Mathematics & Statistics | Computer Application |
+| 2nd Year | Office Management | Marketing | Computer Application | English | Business Organization |
+
+#### Monday (সোমবার)
+
+| Year | 10:00–10:80 | 10:80–11:20 | 11:20–12:00 | 12:00–12:80 | 12:80–1:20 |
+|------|-------------|-------------|-------------|-------------|------------|
+| 1st Year | Computer Application | Marketing | Economics & Business Geography | Digital Technology & Business | Mathematics & Statistics |
+| 2nd Year | Business Organization | Bangla | Database | Office Management | Business English |
+
+#### Tuesday (মঙ্গলবার)
+
+| Year | 10:00–10:80 | 10:80–11:20 | 11:20–12:00 | 12:00–12:80 | 12:80–1:20 |
+|------|-------------|-------------|-------------|-------------|------------|
+| 1st Year | Marketing | Accounting | Computer Application | Bangla | English |
+| 2nd Year | Computer Application | Marketing | Bangla | Accounting | Business English |
+
+#### Wednesday (বুধবার)
+
+| Year | 10:00–10:80 | 10:80–11:20 | 11:20–12:00 | 12:00–12:80 | 12:80–1:20 |
+|------|-------------|-------------|-------------|-------------|------------|
+| 1st Year | Accounting | English | Digital Technology & Business | Business Organization | Economics & Business Geography |
+| 2nd Year | Business Organization | Computer Application | Office Management | Accounting | Database |
+
+#### Thursday (বৃহস্পতিবার)
+
+| Year | 10:00–10:80 | 10:80–11:20 | 11:20–12:00 | 12:00–12:80 | 12:80–1:20 |
+|------|-------------|-------------|-------------|-------------|------------|
+| 1st Year | Economics & Business Geography | Digital Technology & Business | Marketing | English | Business Organization |
+| 2nd Year | Business English | Marketing | English | Bangla | Accounting |
+
+---
+
+### 10E. Degree Internal Exam Schedule
+
+> Source: Page 5 of the prospectus (অভ্যন্তরীণ পরীক্ষার সময় সূচি — Internal Exam Timetable)
+
+**This is the exam timeline structure used internally at PMDC for Degree students. Actual dates are filled in each academic session.**
+
+#### Class XI (একাদশ শ্রেণি — HSC 1st Year)
+
+| Exam | Date | Result Publication |
+|------|------|--------------------|
+| 1. Half-Yearly / Bi-Annual Exam (ষাণ্মাসিক/অর্ধ-বার্ষিক পরীক্ষা) | *(to be filled per session)* | *(to be filled per session)* |
+| 2. Year-Change Exam (বার্ষিক পরীক্ষা) | *(to be filled per session)* | *(to be filled per session)* |
+
+#### Class XII (দ্বাদশ শ্রেণি — HSC 2nd Year)
+
+| Exam | Date | Result Publication |
+|------|------|--------------------|
+| 3. Pre-Test Exam (প্রি-টেস্ট পরীক্ষা) | *(to be filled per session)* | *(to be filled per session)* |
+| 4. Test Exam (টেস্ট পরীক্ষা) | *(to be filled per session)* | *(to be filled per session)* |
+
+> **Important notice from prospectus:** "Admit card must be collected 10 days before the exam. If not collected, the student's exam seat will be cancelled (ফেলা হবে)."
+
+---
+
+### 10F. Degree Subjects — Full Subject List Per Program
+
+> From page 4 of the prospectus (শাখা ও বিষয় সমূহ — Branches and Subjects)
+
+#### Science Branch (বিজ্ঞান শাখা) — HSC
+
+| Category | Subjects |
+|----------|----------|
+| Compulsory (আবশিক বিষয়) | Bangla, English, ICT |
+| Optional — any 3 (ঐচ্ছিক বিষয়) | Physics (পদার্থ), Chemistry (রসায়ন), Biology (জীব বিজ্ঞান) |
+| 4th Subject — any 1 (চতুর্থ বিষয়) | Higher Mathematics (উচ্চতর গণিত), Biology (জীব বিজ্ঞান) |
+
+#### Humanities Branch (মানবিক শাখা) — HSC
+
+| Category | Subjects |
+|----------|----------|
+| Compulsory | Bangla, English, ICT |
+| Optional — any 3 | Civics (পৌরনীতি), Economics (অর্থনীতি), Logic (যুক্তিবিদ্যা), Social Work (সমাজকর্ম), History (ইতিহাস), Geography (ভূগোল) |
+| 4th Subject — any 1 | Civics, Economics, Logic, Social Work, History, Geography, Islamic Studies (ইসলাম শিক্ষা) |
+
+#### Business Studies Branch (ব্যবসায় শিক্ষা শাখা) — HSC
+
+| Category | Subjects |
+|----------|----------|
+| Compulsory | Bangla, English, ICT |
+| Optional — any 3 | Accounting (হিসাব বিজ্ঞান), Business Policy & Practice (ব্যবসায়নীতি ও প্রয়োগ), Marketing (মার্কেটিং) |
+| 4th Subject — any 1 | Economics (অর্থনীতি), Geography (ভূগোল) |
+
+#### BMT Branch (ব্যবসায় ব্যবস্থাপনা এবং টেকনোলজি) — Degree
+
+| Category | Subjects |
+|----------|----------|
+| Compulsory | Bangla, English, Business Mathematics & Statistics (ব্যবসায়িক গণিত ও পরিসংখ্যান), Marketing (মার্কেটিং), Business Organization (ব্যবসায় সংগঠন), Accounting (হিসাব বিজ্ঞান), Economics (অর্থনীতি), Computer Office Application (কম্পিউটার অফিস অ্যাপ্লিকেশন), Digital Technology & Business-1 (ডিজিটাল টেকনোলজি এন্ড বিজনেস-১) |
+
+#### BA (Bachelor of Arts) — Degree
+
+| Category | Subjects |
+|----------|----------|
+| Compulsory | Bangla, History of Bangladesh's Liberation (বাংলাদেশের অভ্যুদয়ের ইতিহাস), English |
+| Optional | History (ইতিহাস), Philosophy (দর্শন), Political Science (রাষ্ট্রবিজ্ঞান), Islamic Studies (ইসলাম শিক্ষা) |
+
+#### BSS (Bachelor of Social Science) — Degree
+
+| Category | Subjects |
+|----------|----------|
+| Compulsory | Bangla, History of Bangladesh's Liberation, English |
+| Optional | History, Philosophy, Political Science, Islamic Studies, Economics, Social Welfare |
+
+#### BSc (Bachelor of Science) — Degree
+
+| Category | Subjects |
+|----------|----------|
+| Compulsory | Bangla, History of Bangladesh's Liberation, English |
+| Optional | Botany (উদ্ভিদ বিজ্ঞান), Zoology (প্রাণি বিজ্ঞান), Chemistry (রসায়ন) |
+
+---
+
+## 11. GRADING SCALE
 
 > For the Results system and any academic info pages.
 
@@ -450,14 +685,56 @@ Grammar (Syllabus অনুযায়ী), Composition, Letter/Application, Pa
 | 33–39 | D | 1.00 |
 | 0–32 | F | 0.00 |
 
-**GPA Calculation:**
-GPA = Sum of all subject Grade Points ÷ Number of subjects
+### GPA Calculation — Official Bangladesh HSC Formula
 
-Each exam (Half-Yearly, Year-Change, Pre-Test, Test) has its own **independent GPA**. There is NO combined total GPA across exams.
+#### Step 1: Convert each subject's marks to Grade Points using the scale above.
+
+#### Step 2: Calculate the 4th Subject (Optional) Bonus
+If a student takes a 4th optional subject, any GP **above 2.00** is added as a bonus to the total.
+
+> **Bonus Formula:** `Bonus Points = Optional Subject GP − 2.00`
+>
+> Example: If the student gets A (4.00) in the optional subject → Bonus = 4.00 − 2.00 = **2.00**
+>
+> If the student gets F (0.00) or below 2.00 → Bonus = 0 (no negative bonus applied)
+
+#### Step 3: Apply the Formula
+
+```
+GPA = (Sum of GP of all MAIN subjects + 4th Subject Bonus) ÷ Total number of MAIN subjects
+```
+
+> **Note:** Final GPA can never exceed **5.00**. If the result exceeds 5.00, cap it at 5.00.
+
+#### Full Example:
+
+| Subject | Type | Marks | Grade | GP |
+|---------|------|-------|-------|----|
+| Bangla | Main | 85 | A+ | 5.00 |
+| English | Main | 72 | A | 4.00 |
+| ICT | Main | 88 | A+ | 5.00 |
+| Physics | Main | 71 | A | 4.00 |
+| Chemistry | Main | 82 | A+ | 5.00 |
+| Biology | Main | 74 | A | 4.00 |
+| Higher Math | 4th (Optional) | 83 | A+ | 5.00 |
+
+1. **Sum of main subjects:** 5.00 + 4.00 + 5.00 + 4.00 + 5.00 + 4.00 = **27.00**
+2. **4th subject bonus:** 5.00 − 2.00 = **3.00**
+3. **Total points:** 27.00 + 3.00 = **30.00**
+4. **Final GPA:** 30.00 ÷ 6 = **5.00**
+
+#### Rules to implement in the Results system:
+- Main subjects = all compulsory + chosen optional subjects (NOT the 4th subject)
+- 4th subject is bonus only — it is NOT counted in the denominator
+- Bonus is always: `4th subject GP − 2.00` (minimum 0, never negative)
+- GPA is always capped at **5.00**
+- If no 4th subject taken → no bonus, GPA = sum of main GPs ÷ number of main subjects
+- Each exam (Half-Yearly, Year-Change, Pre-Test, Test Exam) has its own **independent GPA**
+- There is **NO combined total GPA** across different exams
 
 ---
 
-## 11. WEBSITE PAGES TO UPDATE — CHECKLIST
+## 12. WEBSITE PAGES TO UPDATE — CHECKLIST
 
 Use this checklist when updating the website:
 
@@ -491,13 +768,23 @@ Use this checklist when updating the website:
   - Class XI: Half-Yearly & Year-Change
   - Class XII: Pre-Test & Test Exam
 
+### Degree Programs Page
+- [ ] Add BA, BSS, BSc, BMT programs from Section 10A
+- [ ] List all compulsory and optional subjects per program
+- [ ] Add "started from 2003–2004 session" note for BA/BSS/BSc
+- [ ] Add "started from 2004–2005 session" note for BMT/HSC
+
+### Degree Class Routine Page
+- [ ] Enter full Degree (BA/BSS/BSc) class routine from Section 10C
+- [ ] Enter full BMT class routine from Section 10D
+
 ### Results System
-- [ ] Confirm grading scale from Section 10 is implemented
+- [ ] Confirm grading scale from Section 11 is implemented
 - [ ] Confirm each exam has independent GPA (no combined totals)
 
 ---
 
-## 12. NOTES & REMINDERS
+## 13. NOTES & REMINDERS
 
 - This college is a **women's college** — all students are female. Keep this in mind for any auto-generated text (e.g. "she" not "he/she").
 - The prospectus uses **Bengali numerals** (০১, ০২...) — the website should use **English numerals** (01, 02...) for cleaner display.
