@@ -243,6 +243,103 @@ img { max-width: 100%; display: block; }
 }
 .hamburger:hover { background: var(--surface); }
 
+/* ── Nav Dropdown ────────────────────────────────────────── */
+.nav-has-dropdown { position: relative; }
+.nav-dropdown-toggle {
+    display: flex !important; align-items: center; gap: 5px;
+    cursor: pointer;
+}
+.nav-dropdown-arrow {
+    font-size: .6rem; transition: transform var(--transition);
+    flex-shrink: 0;
+}
+.nav-has-dropdown.open .nav-dropdown-arrow { transform: rotate(180deg); }
+
+/* Invisible 10px padding bridge keeps hover alive while
+   moving mouse from toggle down to the menu */
+.nav-dropdown-menu {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 100%;          /* flush to toggle bottom */
+    left: 50%;
+    transform: translateX(-50%) translateY(-6px);
+    padding-top: 10px;  /* transparent hover bridge */
+    min-width: 236px;
+    z-index: 1001;
+    transition: opacity .2s ease, transform .2s ease, visibility 0s linear .2s;
+}
+
+/* Actual visible dropdown box via pseudo-element (below the bridge) */
+.nav-dropdown-menu::before {
+    content: '';
+    position: absolute;
+    top: 10px; left: 0; right: 0; bottom: 0;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: 0 16px 48px rgba(15,39,68,.13);
+    pointer-events: none;
+}
+
+/* Open state — triggered by JS .open class */
+.nav-has-dropdown.open .nav-dropdown-menu {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: all;
+    transform: translateX(-50%) translateY(0);
+    transition: opacity .2s ease, transform .2s ease, visibility 0s linear 0s;
+}
+
+/* Items need to be above the ::before pseudo-element */
+.nav-dropdown-menu > li { position: relative; z-index: 1; }
+.nav-dropdown-menu > li.dropdown-divider { z-index: 1; }
+
+.dropdown-item {
+    display: flex; align-items: center; gap: 9px;
+    padding: 8px 12px; border-radius: 9px;
+    font-size: .84rem; font-weight: 600;
+    color: var(--muted); font-family: 'Inter', sans-serif;
+    transition: all var(--transition); white-space: nowrap;
+}
+.dropdown-item i { width: 16px; text-align: center; color: #94a3b8; font-size: .78rem; flex-shrink: 0; }
+.dropdown-item:hover { background: var(--surface); color: var(--navy); }
+.dropdown-item:hover i { color: var(--blue); }
+.dropdown-item.active { color: var(--blue); background: var(--blue-light); }
+.dropdown-item.active i { color: var(--blue); }
+.dropdown-divider { height: 1px; background: var(--border); margin: 4px 0; position: relative; }
+
+/* Mobile dropdown — slide expand */
+@media (max-width: 900px) {
+    .nav-has-dropdown { position: static; }
+    .nav-dropdown-menu {
+        position: static;
+        transform: none !important;
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+        max-height: 0;
+        overflow: hidden;
+        padding: 0 0 0 16px;
+        min-width: 0;
+        transition: max-height .3s ease, opacity .2s ease, visibility 0s linear .3s;
+    }
+    .nav-dropdown-menu::before { display: none; }
+    .nav-has-dropdown.open .nav-dropdown-menu {
+        visibility: visible;
+        opacity: 1;
+        pointer-events: all;
+        max-height: 600px;
+        transition: max-height .3s ease, opacity .2s ease, visibility 0s linear 0s;
+    }
+    .dropdown-item {
+        padding: 10px 14px; border-radius: 10px;
+        font-size: .9rem; color: var(--muted);
+    }
+    .nav-dropdown-menu > li { position: static; }
+}
+
 /* ═══════════════════════════════════════════════════════════
    HERO
 ═══════════════════════════════════════════════════════════ */
@@ -697,9 +794,14 @@ footer {
     .news-grid    { grid-template-columns: 1fr; }
     .events-sidebar { position: static; max-width: 600px; }
     .footer-grid  { grid-template-columns: 1fr 1fr; }
+    /* Tighter nav at mid-range */
+    .nav-link     { padding: 7px 9px; font-size: .82rem; }
+    .nav-apply    { padding: 8px 14px !important; font-size: .82rem !important; }
+    .nav-menu     { gap: 2px; }
+    .logo-sub     { display: none; } /* hide long subtitle to save space */
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .top-bar      { display: none; }
     .hamburger    { display: flex; }
     .nav-menu {

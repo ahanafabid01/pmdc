@@ -27,12 +27,54 @@ document.addEventListener('DOMContentLoaded', () => {
         navMenu.classList.contains('active') ? closeMenu() : openMenu();
     });
 
-    // Close when a nav link is clicked
-    navMenu?.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', closeMenu);
+    /* ── Dropdown hover management (desktop) ──────────────── */
+    document.querySelectorAll('.nav-has-dropdown').forEach(dropdown => {
+        let hoverTimer = null;
+
+        // Desktop: hover with 200ms grace period on leave
+        dropdown.addEventListener('mouseenter', () => {
+            if (window.innerWidth > 900) {
+                clearTimeout(hoverTimer);
+                dropdown.classList.add('open');
+            }
+        });
+        dropdown.addEventListener('mouseleave', () => {
+            if (window.innerWidth > 900) {
+                hoverTimer = setTimeout(() => {
+                    dropdown.classList.remove('open');
+                }, 200); // 200ms so mouse can cross the gap
+            }
+        });
+
+        // Mobile: click toggle
+        dropdown.querySelector('.nav-dropdown-toggle')?.addEventListener('click', function(e) {
+            if (window.innerWidth <= 900) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropdown.classList.toggle('open');
+            }
+        });
     });
 
-    // Close on outside click
+    // Close dropdown when clicking outside
+    document.addEventListener('click', e => {
+        if (!e.target.closest('.nav-has-dropdown')) {
+            document.querySelectorAll('.nav-has-dropdown.open').forEach(d => {
+                if (window.innerWidth > 900) d.classList.remove('open');
+            });
+        }
+    });
+
+    // Close when a non-dropdown nav link is clicked
+    navMenu?.querySelectorAll('.nav-link:not(.nav-dropdown-toggle)').forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+    // Close mobile menu when a dropdown item is clicked
+    navMenu?.querySelectorAll('.dropdown-item').forEach(item => {
+        item.addEventListener('click', closeMenu);
+    });
+
+    // Close on outside click (mobile menu)
     document.addEventListener('click', e => {
         if (navMenu?.classList.contains('active') &&
             !navMenu.contains(e.target) &&
