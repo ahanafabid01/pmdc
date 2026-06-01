@@ -77,9 +77,6 @@
                         <li class="dropdown-divider"></li>
                         <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/admit-card.php"            class="dropdown-item <?php echo isset($page) && $page == 'admit-card' ? 'active' : ''; ?>"><i class="fas fa-id-card"></i> Admit Card</a></li>
                         <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/hsc-form-fillup.php"       class="dropdown-item <?php echo isset($page) && $page == 'hsc-form-fillup' ? 'active' : ''; ?>"><i class="fas fa-file-alt"></i> HSC Form Fillup</a></li>
-                        <li class="dropdown-divider"></li>
-                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/monitoring-committee.php"  class="dropdown-item <?php echo isset($page) && $page == 'monitoring-committee' ? 'active' : ''; ?>"><i class="fas fa-users-cog"></i> Monitoring Committee</a></li>
-                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/guide-teachers.php"        class="dropdown-item <?php echo isset($page) && $page == 'guide-teachers' ? 'active' : ''; ?>"><i class="fas fa-chalkboard-teacher"></i> Guide Teachers List</a></li>
                         </div>
                     </ul>
                 </li>
