@@ -61,6 +61,10 @@
                         Academic Info <i class="fas fa-chevron-down nav-dropdown-arrow"></i>
                     </a>
                     <ul class="nav-dropdown-menu">
+                        <div class="nav-dropdown-inner">
+                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/hsc-program.php"        class="dropdown-item <?php echo isset($page) && $page == 'hsc-program'    ? 'active' : ''; ?>"><i class="fas fa-scroll"></i> HSC Program</a></li>
+                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/degree-program.php"     class="dropdown-item <?php echo isset($page) && $page == 'degree-program' ? 'active' : ''; ?>"><i class="fas fa-user-graduate"></i> Degree Program</a></li>
+                        <li class="dropdown-divider"></li>
                         <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/holiday-list.php"           class="dropdown-item <?php echo isset($page) && $page == 'holiday-list' ? 'active' : ''; ?>"><i class="fas fa-umbrella-beach"></i> Holiday List</a></li>
                         <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/academic-calendar.php"      class="dropdown-item <?php echo isset($page) && $page == 'academic-calendar' ? 'active' : ''; ?>"><i class="fas fa-calendar-alt"></i> Academic Calendar</a></li>
                         <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/class-routine.php"          class="dropdown-item <?php echo isset($page) && $page == 'class-routine' ? 'active' : ''; ?>"><i class="fas fa-chalkboard"></i> Class Routine</a></li>
@@ -76,6 +80,7 @@
                         <li class="dropdown-divider"></li>
                         <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/monitoring-committee.php"  class="dropdown-item <?php echo isset($page) && $page == 'monitoring-committee' ? 'active' : ''; ?>"><i class="fas fa-users-cog"></i> Monitoring Committee</a></li>
                         <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/guide-teachers.php"        class="dropdown-item <?php echo isset($page) && $page == 'guide-teachers' ? 'active' : ''; ?>"><i class="fas fa-chalkboard-teacher"></i> Guide Teachers List</a></li>
+                        </div>
                     </ul>
                 </li>
 

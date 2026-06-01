@@ -4,27 +4,29 @@ $page_group = 'academic';
 $page_title = 'Monitoring Committee | Phulpur Mohila Degree College';
 $page_css   = 'academic.css';
 $base_path  = '../';
-$last_updated = 'May 31, 2025';
+$last_updated = 'June 1, 2026';
 
 $colors = ['#1a3a5c','#276749','#7b341e','#702459','#1a365d','#0f4c75','#4a1942','#2c3e7a'];
 function initials($name) { $w=explode(' ',$name); return implode('',array_map(fn($x)=>strtoupper($x[0]),array_slice($w,0,2))); }
 function avatarColor($name,$colors) { $h=0;foreach(str_split($name)as$c)$h=(($h<<5)-$h)+ord($c);return $colors[abs($h)%count($colors)]; }
 
+// Real staff from PMDC prospectus (pmdc.md §3A)
 $committees = [
     'Academic Monitoring Committee' => [
-        ['name'=>'Rowshan Ara Begum',    'designation'=>'Principal',        'role'=>'Chairperson',           'phone'=>'01712-227983','email'=>'pmdc@edu.bd'],
-        ['name'=>'Ms. Afroza Begum',    'designation'=>'Senior Lecturer',   'role'=>'Member Secretary',      'phone'=>'+880-1700-000011','email'=>'afroza@pmdc.edu.bd'],
-        ['name'=>'Mrs. Rashida Akter',  'designation'=>'Lecturer',          'role'=>'Member',                'phone'=>'+880-1700-000012','email'=>'rashida@pmdc.edu.bd'],
-        ['name'=>'Mrs. Fatema Begum',   'designation'=>'Senior Lecturer',   'role'=>'Member',                'phone'=>'+880-1700-000014','email'=>'fatema@pmdc.edu.bd'],
-        ['name'=>'Ms. Dilruba Islam',   'designation'=>'Lecturer',          'role'=>'Member',                'phone'=>'+880-1700-000015','email'=>'dilruba@pmdc.edu.bd'],
-        ['name'=>'Mr. Rafiqul Islam',   'designation'=>'Office Supt.',      'role'=>'Member (Admin)',        'phone'=>'+880-1700-000030','email'=>'rafiq@pmdc.edu.bd'],
+        ['name'=>'Rowshan Ara Begum',      'designation'=>'Principal',         'role'=>'Chairperson',          'phone'=>'01712-227983'],
+        ['name'=>'Md. Hafizur Rahman',     'designation'=>'Assistant Professor','role'=>'Member Secretary',     'phone'=>'01725-659229'],
+        ['name'=>'Shaheen Ara Begum',      'designation'=>'Assistant Professor','role'=>'Member',               'phone'=>'01552-881886'],
+        ['name'=>'Md. Aminul Haq',         'designation'=>'Assistant Professor','role'=>'Member',               'phone'=>'01995-489780'],
+        ['name'=>'Shah Humayun Kabir',     'designation'=>'Assistant Professor','role'=>'Member',               'phone'=>'01505-210622'],
+        ['name'=>'Lily Bilkis Rana',       'designation'=>'Assistant Professor','role'=>'Member',               'phone'=>'01918-988038'],
     ],
     'Examination Monitoring Committee' => [
-        ['name'=>'Rowshan Ara Begum',    'designation'=>'Principal',        'role'=>'Chief Examiner',        'phone'=>'01712-227983','email'=>'pmdc@edu.bd'],
-        ['name'=>'Mrs. Shaila Parvin',  'designation'=>'Lecturer',          'role'=>'Controller of Exams',   'phone'=>'+880-1700-000016','email'=>'shaila@pmdc.edu.bd'],
-        ['name'=>'Ms. Nasrin Sultana',  'designation'=>'Lecturer',          'role'=>'Deputy Controller',     'phone'=>'+880-1700-000013','email'=>'nasrin@pmdc.edu.bd'],
-        ['name'=>'Ms. Tania Akter',     'designation'=>'Lecturer',          'role'=>'Member',                'phone'=>'+880-1700-000019','email'=>'tania@pmdc.edu.bd'],
-        ['name'=>'Ms. Mitu Akter',      'designation'=>'Accounts Officer',  'role'=>'Member (Finance)',      'phone'=>'+880-1700-000031','email'=>'mitu@pmdc.edu.bd'],
+        ['name'=>'Rowshan Ara Begum',      'designation'=>'Principal',         'role'=>'Chief Examiner',        'phone'=>'01712-227983'],
+        ['name'=>'Md. Saiful Islam',       'designation'=>'Assistant Professor','role'=>'Controller of Exams',  'phone'=>'01912-182229'],
+        ['name'=>'Md. Shafayet Jamil',     'designation'=>'Assistant Professor','role'=>'Deputy Controller',    'phone'=>'01912-509919'],
+        ['name'=>'Md. Enamul Haq',         'designation'=>'Assistant Professor','role'=>'Member',               'phone'=>'01984-880389'],
+        ['name'=>'Nadira Sultana',         'designation'=>'Lecturer',          'role'=>'Member',               'phone'=>'01936-985311'],
+        ['name'=>'Jobeda Khanam',          'designation'=>'Accounts Assistant', 'role'=>'Member (Finance)',     'phone'=>'01918-820956'],
     ],
 ];
 
@@ -76,7 +78,6 @@ include '../includes/header.php';
                         <div class="ai-member-role"><?php echo htmlspecialchars($m['role']); ?></div>
                         <div class="ai-member-contact">
                             <div><i class="fas fa-phone" style="color:var(--blue);font-size:.65rem;margin-right:4px;"></i><?php echo htmlspecialchars($m['phone']); ?></div>
-                            <div style="margin-top:3px;"><i class="fas fa-envelope" style="color:var(--blue);font-size:.65rem;margin-right:4px;"></i><a href="mailto:<?php echo htmlspecialchars($m['email']); ?>"><?php echo htmlspecialchars($m['email']); ?></a></div>
                         </div>
                     </div>
                     <?php endforeach; ?>

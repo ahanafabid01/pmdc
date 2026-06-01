@@ -4,24 +4,26 @@ $page_group = 'academic';
 $page_title = 'Guide Teachers List | Phulpur Mohila Degree College';
 $page_css   = 'academic.css';
 $base_path  = '../';
-$last_updated = 'May 31, 2025';
+$last_updated = 'June 1, 2026';
 
+// Real staff from PMDC prospectus (pmdc.md §3A)
+// Guide teacher assignments are illustrative — update each session with actual assignments
 $guideTeachers = [
-    '1st Year' => [
-        ['teacher'=>'Ms. Afroza Begum',   'designation'=>'Senior Lecturer', 'section'=>'A', 'group'=>'Science',          'phone'=>'+880-1700-000011'],
-        ['teacher'=>'Mrs. Rashida Akter', 'designation'=>'Lecturer',        'section'=>'B', 'group'=>'Science',          'phone'=>'+880-1700-000012'],
-        ['teacher'=>'Ms. Nasrin Sultana', 'designation'=>'Lecturer',        'section'=>'A', 'group'=>'Humanities',       'phone'=>'+880-1700-000013'],
-        ['teacher'=>'Mrs. Shaila Parvin', 'designation'=>'Lecturer',        'section'=>'B', 'group'=>'Humanities',       'phone'=>'+880-1700-000016'],
-        ['teacher'=>'Ms. Dilruba Islam',  'designation'=>'Lecturer',        'section'=>'A', 'group'=>'Business Studies', 'phone'=>'+880-1700-000015'],
-        ['teacher'=>'Ms. Roksana Begum',  'designation'=>'Asst. Lecturer',  'section'=>'B', 'group'=>'Business Studies', 'phone'=>'+880-1700-000017'],
+    '1st Year (Class XI)' => [
+        ['teacher'=>'Md. Hafizur Rahman',      'designation'=>'Assistant Professor', 'section'=>'A', 'group'=>'Science',          'phone'=>'01725-659229'],
+        ['teacher'=>'Md. Khorshedul Rahman',   'designation'=>'Assistant Professor', 'section'=>'B', 'group'=>'Science',          'phone'=>'01716-490999'],
+        ['teacher'=>'Md. Ali Akbar',           'designation'=>'Assistant Professor', 'section'=>'A', 'group'=>'Humanities',       'phone'=>'01721-930034'],
+        ['teacher'=>'Shaheen Ara Begum',       'designation'=>'Assistant Professor', 'section'=>'B', 'group'=>'Humanities',       'phone'=>'01552-881886'],
+        ['teacher'=>'Md. Aminul Haq',          'designation'=>'Assistant Professor', 'section'=>'A', 'group'=>'Business Studies', 'phone'=>'01995-489780'],
+        ['teacher'=>'Md. Shafayet Jamil',      'designation'=>'Assistant Professor', 'section'=>'B', 'group'=>'Business Studies', 'phone'=>'01912-509919'],
     ],
-    '2nd Year' => [
-        ['teacher'=>'Mrs. Fatema Begum',  'designation'=>'Senior Lecturer', 'section'=>'A', 'group'=>'Science',          'phone'=>'+880-1700-000014'],
-        ['teacher'=>'Mrs. Sonia Islam',   'designation'=>'Asst. Lecturer',  'section'=>'B', 'group'=>'Science',          'phone'=>'+880-1700-000020'],
-        ['teacher'=>'Ms. Popy Begum',     'designation'=>'Lecturer',        'section'=>'A', 'group'=>'Humanities',       'phone'=>'+880-1700-000021'],
-        ['teacher'=>'Ms. Tania Akter',    'designation'=>'Lecturer',        'section'=>'B', 'group'=>'Humanities',       'phone'=>'+880-1700-000019'],
-        ['teacher'=>'Mrs. Morjina Khatun','designation'=>'Lecturer',        'section'=>'A', 'group'=>'Business Studies', 'phone'=>'+880-1700-000018'],
-        ['teacher'=>'Ms. Nasrin Sultana', 'designation'=>'Lecturer',        'section'=>'B', 'group'=>'Business Studies', 'phone'=>'+880-1700-000013'],
+    '2nd Year (Class XII)' => [
+        ['teacher'=>'Md. Makbul Hosen',        'designation'=>'Assistant Professor', 'section'=>'A', 'group'=>'Science',          'phone'=>'01916-980300'],
+        ['teacher'=>'Lily Bilkis Rana',        'designation'=>'Assistant Professor', 'section'=>'B', 'group'=>'Science',          'phone'=>'01918-988038'],
+        ['teacher'=>'Md. Hosen Ali',           'designation'=>'Assistant Professor', 'section'=>'A', 'group'=>'Humanities',       'phone'=>'01716-909681'],
+        ['teacher'=>'Md. Enamul Haq',          'designation'=>'Assistant Professor', 'section'=>'B', 'group'=>'Humanities',       'phone'=>'01984-880389'],
+        ['teacher'=>'Md. Saiful Islam',        'designation'=>'Assistant Professor', 'section'=>'A', 'group'=>'Business Studies', 'phone'=>'01912-182229'],
+        ['teacher'=>'Mohammad Alamgir',        'designation'=>'Assistant Professor', 'section'=>'B', 'group'=>'Business Studies', 'phone'=>'01914-603985'],
     ],
 ];
 
