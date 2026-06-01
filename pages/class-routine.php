@@ -41,11 +41,7 @@ include '../includes/header.php';
 
     <section class="page-hero">
         <div class="container ph-content">
-            <div class="ph-breadcrumb">
-                <a href="../index.php">Home</a>
-                <i class="fas fa-chevron-right"></i>
-                <span>Class Routine</span>
-            </div>
+
             <div class="ph-kicker reveal">Academic Info</div>
             <h1 class="reveal">Class Routine</h1>
             <p class="reveal">Prospectus sample routines for HSC and Degree sections</p>

@@ -68,11 +68,7 @@ include '../includes/header.php';
 
     <section class="page-hero">
         <div class="container ph-content">
-            <div class="ph-breadcrumb">
-                <a href="../index.php">Home</a>
-                <i class="fas fa-chevron-right"></i>
-                <span>HSC Program</span>
-            </div>
+
             <div class="ph-kicker reveal">Academic Info</div>
             <h1 class="reveal">HSC Program</h1>
             <p class="reveal">Higher Secondary Certificate — groups, subjects, and program structure</p>

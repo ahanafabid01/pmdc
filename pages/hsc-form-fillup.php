@@ -28,11 +28,7 @@ include '../includes/header.php';
 
     <section class="page-hero">
         <div class="container ph-content">
-            <div class="ph-breadcrumb">
-                <a href="../index.php">Home</a>
-                <i class="fas fa-chevron-right"></i>
-                <span>HSC Form Fillup</span>
-            </div>
+
             <div class="ph-kicker reveal">Academic Info</div>
             <h1 class="reveal">HSC Form Fillup</h1>
             <p class="reveal">Board examination form fillup schedule, fees, and required documents</p>

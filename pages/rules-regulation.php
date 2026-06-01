@@ -39,11 +39,7 @@ include '../includes/header.php';
 
     <section class="page-hero">
         <div class="container ph-content">
-            <div class="ph-breadcrumb">
-                <a href="../index.php">Home</a>
-                <i class="fas fa-chevron-right"></i>
-                <span>Rules &amp; Regulation</span>
-            </div>
+
             <div class="ph-kicker reveal">Academic Info</div>
             <h1 class="reveal">Rules &amp; Regulation</h1>
             <p class="reveal">College rules and regulations that every student must follow</p>

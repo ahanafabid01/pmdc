@@ -72,11 +72,7 @@ include '../includes/header.php';
 
     <section class="page-hero">
         <div class="container ph-content">
-            <div class="ph-breadcrumb">
-                <a href="../index.php">Home</a>
-                <i class="fas fa-chevron-right"></i>
-                <span>Academic Calendar</span>
-            </div>
+
             <div class="ph-kicker reveal">Academic Info</div>
             <h1 class="reveal">Academic Calendar</h1>
             <p class="reveal">Key academic dates, examinations, and events for each session</p>

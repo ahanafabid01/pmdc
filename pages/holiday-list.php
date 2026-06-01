@@ -34,11 +34,7 @@ include '../includes/header.php';
     <!-- Hero -->
     <section class="page-hero">
         <div class="container ph-content">
-            <div class="ph-breadcrumb">
-                <a href="../index.php">Home</a>
-                <i class="fas fa-chevron-right"></i>
-                <span>Holiday List</span>
-            </div>
+
             <div class="ph-kicker reveal">Academic Info</div>
             <h1 class="reveal">Holiday List</h1>
             <p class="reveal">Official public holidays and college holidays for the current academic session</p>
