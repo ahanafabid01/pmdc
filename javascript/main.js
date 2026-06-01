@@ -8,30 +8,59 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     /* ── Mobile Navigation ───────────────────────────────── */
-    const hamburger   = document.getElementById('hamburger');
-    const hamburgerIcon = document.getElementById('hamburgerIcon');
-    const navMenu     = document.getElementById('nav-menu');
+    const hamburger  = document.getElementById('hamburger');
+    const navMenu    = document.getElementById('nav-menu');
+    const backdrop   = document.getElementById('navBackdrop');
+
+    /* Inject a branded panel header into the nav menu (mobile only) */
+    function injectPanelHeader() {
+        if (document.getElementById('navPanelHeader')) return; // already injected
+        const header = document.createElement('div');
+        header.id = 'navPanelHeader';
+        header.innerHTML = `
+            <div class="npm-logo">
+                <div class="npm-logo-icon"><i class="fas fa-school"></i></div>
+                <div class="npm-logo-text">
+                    <span class="npm-abbr">PMDC</span>
+                    <span class="npm-sub">Phulpur Mohila Degree College</span>
+                </div>
+            </div>
+            <button class="npm-close" id="navPanelClose" aria-label="Close menu">
+                <i class="fas fa-times"></i>
+            </button>`;
+        navMenu.insertBefore(header, navMenu.firstChild);
+        document.getElementById('navPanelClose')?.addEventListener('click', closeMenu);
+    }
 
     function openMenu() {
+        injectPanelHeader();
         navMenu.classList.add('active');
-        if (hamburgerIcon) { hamburgerIcon.className = 'fas fa-times'; }
+        backdrop?.classList.add('active');
+        hamburger?.classList.add('is-open');
         hamburger?.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden'; // lock scroll
     }
     function closeMenu() {
         navMenu.classList.remove('active');
-        if (hamburgerIcon) { hamburgerIcon.className = 'fas fa-bars'; }
+        backdrop?.classList.remove('active');
+        hamburger?.classList.remove('is-open');
         hamburger?.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+        // also close any open dropdowns
+        document.querySelectorAll('.nav-has-dropdown.open').forEach(d => d.classList.remove('open'));
     }
 
     hamburger?.addEventListener('click', () => {
         navMenu.classList.contains('active') ? closeMenu() : openMenu();
     });
 
+    // Close on backdrop click
+    backdrop?.addEventListener('click', closeMenu);
+
     /* ── Dropdown hover management (desktop) ──────────────── */
     document.querySelectorAll('.nav-has-dropdown').forEach(dropdown => {
         let hoverTimer = null;
 
-        // Desktop: hover with 200ms grace period on leave
         dropdown.addEventListener('mouseenter', () => {
             if (window.innerWidth > 900) {
                 clearTimeout(hoverTimer);
@@ -42,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (window.innerWidth > 900) {
                 hoverTimer = setTimeout(() => {
                     dropdown.classList.remove('open');
-                }, 200); // 200ms so mouse can cross the gap
+                }, 200);
             }
         });
 
@@ -56,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Close dropdown when clicking outside
+    // Close desktop dropdown on outside click
     document.addEventListener('click', e => {
         if (!e.target.closest('.nav-has-dropdown')) {
             document.querySelectorAll('.nav-has-dropdown.open').forEach(d => {
@@ -65,22 +94,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Close when a non-dropdown nav link is clicked
-    navMenu?.querySelectorAll('.nav-link:not(.nav-dropdown-toggle)').forEach(link => {
+    // Close menu when any nav link or dropdown item is clicked
+    navMenu?.querySelectorAll('.nav-link:not(.nav-dropdown-toggle), .dropdown-item').forEach(link => {
         link.addEventListener('click', closeMenu);
-    });
-    // Close mobile menu when a dropdown item is clicked
-    navMenu?.querySelectorAll('.dropdown-item').forEach(item => {
-        item.addEventListener('click', closeMenu);
-    });
-
-    // Close on outside click (mobile menu)
-    document.addEventListener('click', e => {
-        if (navMenu?.classList.contains('active') &&
-            !navMenu.contains(e.target) &&
-            e.target !== hamburger) {
-            closeMenu();
-        }
     });
 
     /* ── Navbar scroll shadow ────────────────────────────── */

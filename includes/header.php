@@ -47,8 +47,10 @@
                     <span class="logo-sub">Phulpur Mohila Degree College</span>
                 </div>
             </a>
-            <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
-                <i class="fas fa-bars" id="hamburgerIcon"></i>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="hb-bar"></span>
+                <span class="hb-bar"></span>
+                <span class="hb-bar"></span>
             </button>
             <ul class="nav-menu" id="nav-menu" role="navigation">
                 <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>index.php"              class="nav-link <?php echo isset($page) && $page == 'home' ? 'active' : ''; ?>">Home</a></li>
@@ -86,6 +88,27 @@
                 <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/results.php"      class="nav-link <?php echo isset($page) && $page == 'results' ? 'active' : ''; ?>">Results</a></li>
                 <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/contact.php"      class="nav-link <?php echo isset($page) && $page == 'contact' ? 'active' : ''; ?>">Contact</a></li>
                 <li><a href="#" onclick="openModal('Apply Now')" class="nav-link nav-apply">Apply Now</a></li>
+                <!-- Mobile-only panel footer -->
+                <li class="nav-panel-footer">
+                    <div class="npf-inner">
+                        <div class="npf-contact">
+                            <a href="tel:01712227983" class="npf-item">
+                                <i class="fas fa-phone-alt"></i>
+                                <span>01712-227983</span>
+                            </a>
+                            <a href="mailto:pmdc@edu.bd" class="npf-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>pmdc@edu.bd</span>
+                            </a>
+                        </div>
+                        <a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/portal/portal-login.php" class="npf-portal-btn">
+                            <i class="fas fa-lock"></i> Staff Portal
+                        </a>
+                    </div>
+                </li>
             </ul>
         </div>
     </nav>
+
+    <!-- Mobile nav backdrop -->
+    <div class="nav-backdrop" id="navBackdrop"></div>
