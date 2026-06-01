@@ -12,19 +12,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const navMenu    = document.getElementById('nav-menu');
     const backdrop   = document.getElementById('navBackdrop');
 
-    /* Inject a branded panel header into the nav menu (mobile only) */
+    /* Inject a panel header into the nav menu (mobile only) */
     function injectPanelHeader() {
         if (document.getElementById('navPanelHeader')) return; // already injected
         const header = document.createElement('div');
         header.id = 'navPanelHeader';
         header.innerHTML = `
-            <div class="npm-logo">
-                <div class="npm-logo-icon"><i class="fas fa-school"></i></div>
-                <div class="npm-logo-text">
-                    <span class="npm-abbr">PMDC</span>
-                    <span class="npm-sub">Phulpur Mohila Degree College</span>
-                </div>
-            </div>
+            <div class="npm-title">Menu</div>
             <button class="npm-close" id="navPanelClose" aria-label="Close menu">
                 <i class="fas fa-times"></i>
             </button>`;
