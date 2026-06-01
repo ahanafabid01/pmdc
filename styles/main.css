@@ -655,6 +655,77 @@ img { max-width: 100%; display: block; }
 }
 
 /* ═══════════════════════════════════════════════════════════
+   DEGREE PROGRAMS (Homepage)
+═══════════════════════════════════════════════════════════ */
+.degree-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+}
+.degree-card {
+    display: flex; align-items: center; gap: 18px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 22px;
+    text-decoration: none;
+    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    position: relative; overflow: hidden;
+}
+.degree-card::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 3px; background: currentColor; opacity: 0;
+    transition: opacity var(--transition);
+}
+.degree-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(0,0,0,.1);
+    border-color: transparent;
+}
+.degree-card:hover::before { opacity: 1; }
+
+.dc-icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; flex-shrink: 0;
+    transition: transform var(--transition);
+}
+.degree-card:hover .dc-icon { transform: scale(1.08); }
+
+.dc-body { flex: 1; min-width: 0; }
+.dc-abbr {
+    font-size: 1.1rem; font-weight: 900;
+    color: var(--navy); font-family: 'Inter', sans-serif;
+    line-height: 1;
+}
+.dc-full {
+    font-size: .78rem; font-weight: 600; color: var(--muted);
+    font-family: 'Inter', sans-serif; margin-top: 2px; margin-bottom: 6px;
+}
+.dc-subjects {
+    font-size: .73rem; color: #94a3b8;
+    font-family: 'Inter', sans-serif; line-height: 1.5;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.dc-arrow {
+    font-size: .8rem; color: var(--muted);
+    flex-shrink: 0;
+    transition: transform var(--transition), color var(--transition);
+}
+.degree-card:hover .dc-arrow { transform: translateX(4px); color: var(--blue); }
+
+.degree-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: .82rem; color: var(--muted);
+    font-family: 'Inter', sans-serif;
+}
+.degree-footer i { color: var(--blue); margin-right: 6px; }
+
+/* ═══════════════════════════════════════════════════════════
    NEWS & EVENTS
 ═══════════════════════════════════════════════════════════ */
 .news-grid {
@@ -978,6 +1049,7 @@ footer {
     .stats-inner      { grid-template-columns: 1fr 1fr; }
     .stats-strip      { margin-top: -24px; }
     .programs-grid    { grid-template-columns: 1fr; }
+    .degree-grid      { grid-template-columns: 1fr; }
     .why-grid         { grid-template-columns: 1fr; }
     .section-head h2  { font-size: 1.9rem; }
 }

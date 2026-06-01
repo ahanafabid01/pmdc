@@ -207,8 +207,83 @@ include 'includes/header.php';
         </div>
     </section>
 
+    <!-- ══════════════════ DEGREE PROGRAMS ══════════════════ -->
+    <section class="section-padding section-alt" id="degree">
+        <div class="container">
+            <div class="section-head reveal">
+                <div class="section-kicker">Degree Programmes</div>
+                <h2>Bachelor's Degree (ডিগ্রি কোর্স)</h2>
+                <p>Under the National University of Bangladesh — 3-year degree programmes offered since 2003–2004.</p>
+            </div>
+            <div class="programs-grid">
+
+                <!-- BA -->
+                <article class="program-card reveal">
+                    <div class="program-img">
+                        <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=600&q=80" alt="Bachelor of Arts">
+                        <div class="program-img-overlay"></div>
+                        <span class="program-img-tag" style="background:rgba(124,58,237,.85);"><i class="fas fa-book"></i> BA — কলা বিভাগ</span>
+                    </div>
+                    <div class="program-content">
+                        <h3>Bachelor of Arts</h3>
+                        <p>History, Philosophy, Political Science &amp; Islamic Studies — a 3-year liberal arts programme shaping thoughtful, informed graduates.</p>
+                        <a href="pages/degree-program.php" class="read-more">View Programme <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- BSS -->
+                <article class="program-card reveal">
+                    <div class="program-img">
+                        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80" alt="Bachelor of Social Science">
+                        <div class="program-img-overlay"></div>
+                        <span class="program-img-tag" style="background:rgba(37,99,235,.85);"><i class="fas fa-users"></i> BSS — সমাজবিজ্ঞান বিভাগ</span>
+                    </div>
+                    <div class="program-content">
+                        <h3>Bachelor of Social Science</h3>
+                        <p>Economics, Social Welfare, Political Science &amp; Islamic Studies — building socially conscious leaders for tomorrow's communities.</p>
+                        <a href="pages/degree-program.php" class="read-more">View Programme <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- BSc -->
+                <article class="program-card reveal">
+                    <div class="program-img">
+                        <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600&q=80" alt="Bachelor of Science">
+                        <div class="program-img-overlay"></div>
+                        <span class="program-img-tag" style="background:rgba(5,150,105,.85);"><i class="fas fa-flask"></i> BSc — বিজ্ঞান বিভাগ</span>
+                    </div>
+                    <div class="program-content">
+                        <h3>Bachelor of Science</h3>
+                        <p>Botany, Zoology &amp; Chemistry — a rigorous science programme nurturing the next generation of researchers and scientists.</p>
+                        <a href="pages/degree-program.php" class="read-more">View Programme <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- BMT -->
+                <article class="program-card reveal">
+                    <div class="program-img">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80" alt="Business Management & Technology">
+                        <div class="program-img-overlay"></div>
+                        <span class="program-img-tag" style="background:rgba(217,119,6,.85);"><i class="fas fa-briefcase"></i> BMT — ব্যবসায় ব্যবস্থাপনা</span>
+                    </div>
+                    <div class="program-content">
+                        <h3>Business Management &amp; Technology</h3>
+                        <p>Accounting, Marketing, Economics &amp; Digital Technology — a modern programme blending business fundamentals with technology skills.</p>
+                        <a href="pages/degree-program.php" class="read-more">View Programme <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+            </div>
+            <div class="degree-footer reveal">
+                <span><i class="fas fa-university"></i> Conducted by National University of Bangladesh</span>
+                <a href="pages/degree-program.php" class="btn btn-outline">View Full Details <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
     <!-- ══════════════════ NEWS & EVENTS ══════════════════ -->
-    <section id="news" class="section-padding section-alt">
+
+    <section id="news" class="section-padding">
         <div class="container">
             <div class="section-head reveal">
                 <div class="section-kicker">Latest Updates</div>
