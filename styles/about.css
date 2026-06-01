@@ -302,7 +302,6 @@
 }
 
 @media (max-width: 768px) {
-    .ph-content       { padding: 0; }
     .facts-inner      { gap: 0; }
     .fact-sep         { display: none; }
     .fact-item        { padding: 5px 14px; }
