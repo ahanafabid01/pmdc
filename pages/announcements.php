@@ -18,9 +18,9 @@ include '../includes/header.php';
 
     <section class="page-hero">
         <div class="container ph-content">
-            <div class="ph-kicker reveal">PMDC Updates</div>
-            <h1 class="reveal">Announcements &amp; Notices</h1>
-            <p class="reveal">Stay updated with the latest news, exam schedules, and important notices from Phulpur Mohila Degree College.</p>
+            <div class="ph-kicker reveal" data-i18n="ann.kicker">পিএমডিসি আপডেট</div>
+            <h1 class="reveal" data-i18n="ann.h1">বিজ্ঞপ্তি ও নোটিশ</h1>
+            <p class="reveal" data-i18n="ann.desc">ফুলপুর মহিলা ডিগ্রি কলেজের সর্বশেষ সংবাদ, পরীক্ষার সময়সূচি এবং গুরুত্বপূর্ণ নোটিশ সম্পর্কে আপডেট থাকুন।</p>
         </div>
     </section>
 
@@ -31,19 +31,19 @@ include '../includes/header.php';
                 <div class="ann-main">
                     <div class="filter-bar reveal">
                         <button class="filter-btn active" data-category="all">
-                            <i class="fas fa-list"></i> All
+                            <i class="fas fa-list"></i> <span data-i18n="ann.filter.all">সব</span>
                         </button>
                         <button class="filter-btn" data-category="academic">
-                            <i class="fas fa-graduation-cap"></i> Academic
+                            <i class="fas fa-graduation-cap"></i> <span data-i18n="ann.filter.academic">একাডেমিক</span>
                         </button>
                         <button class="filter-btn" data-category="admission">
-                            <i class="fas fa-user-plus"></i> Admission
+                            <i class="fas fa-user-plus"></i> <span data-i18n="ann.filter.admission">ভর্তি</span>
                         </button>
                         <button class="filter-btn" data-category="event">
-                            <i class="fas fa-calendar-alt"></i> Events
+                            <i class="fas fa-calendar-alt"></i> <span data-i18n="ann.filter.events">অনুষ্ঠান</span>
                         </button>
                         <button class="filter-btn" data-category="notice">
-                            <i class="fas fa-bell"></i> Notices
+                            <i class="fas fa-bell"></i> <span data-i18n="ann.filter.notices">নোটিশ</span>
                         </button>
                     </div>
 
@@ -76,7 +76,7 @@ include '../includes/header.php';
                                     </h3>
                                     <p><?php echo htmlspecialchars(pmdc_excerpt($item['body']), ENT_QUOTES, 'UTF-8'); ?></p>
                                     <a href="<?php echo htmlspecialchars($detailUrl, ENT_QUOTES, 'UTF-8'); ?>" class="read-more">
-                                        Read More &rarr;
+                                        <span data-i18n="home.news.readmore">আরও পড়ুন</span> &rarr;
                                     </a>
                                 </div>
                             </div>
@@ -85,43 +85,43 @@ include '../includes/header.php';
 
                     <div class="no-results" id="noResults" style="display:none;">
                         <i class="fas fa-search"></i>
-                        <p>No announcements in this category.</p>
+                        <p data-i18n="ann.noResults">এই বিভাগে কোনো বিজ্ঞপ্তি নেই।</p>
                     </div>
                 </div>
 
                 <aside class="ann-sidebar">
                     <div class="sidebar-card reveal">
-                        <h4 class="sc-title"><i class="fas fa-link"></i> Quick Access</h4>
+                        <h4 class="sc-title"><i class="fas fa-link"></i> <span data-i18n="ann.sidebar.quickaccess">দ্রুত অ্যাক্সেস</span></h4>
                         <div class="quick-links">
                             <a href="results.php" class="ql-item">
                                 <i class="fas fa-trophy"></i>
                                 <div>
-                                    <strong>Exam Results</strong>
-                                    <span>View HSC board results</span>
+                                    <strong data-i18n="ann.sidebar.examresults">পরীক্ষার ফলাফল</strong>
+                                    <span data-i18n="ann.sidebar.hscresults">এইচএসসি বোর্ড ফলাফল দেখুন</span>
                                 </div>
                                 <i class="fas fa-chevron-right ql-arrow"></i>
                             </a>
                             <a href="academics.php" class="ql-item">
                                 <i class="fas fa-graduation-cap"></i>
                                 <div>
-                                    <strong>Academics</strong>
-                                    <span>Groups &amp; subjects</span>
+                                    <strong data-i18n="ann.sidebar.academics">একাডেমিক</strong>
+                                    <span data-i18n="ann.sidebar.groups">বিভাগ ও বিষয়</span>
                                 </div>
                                 <i class="fas fa-chevron-right ql-arrow"></i>
                             </a>
                             <a href="contact.php" class="ql-item">
                                 <i class="fas fa-envelope"></i>
                                 <div>
-                                    <strong>Contact Office</strong>
-                                    <span>Get in touch</span>
+                                    <strong data-i18n="ann.sidebar.contact">অফিসে যোগাযোগ</strong>
+                                    <span data-i18n="ann.sidebar.touch">যোগাযোগ করুন</span>
                                 </div>
                                 <i class="fas fa-chevron-right ql-arrow"></i>
                             </a>
                             <a href="../pages/portal/portal-login.php" class="ql-item">
                                 <i class="fas fa-lock"></i>
                                 <div>
-                                    <strong>Staff Portal</strong>
-                                    <span>Teacher / Admin login</span>
+                                    <strong data-i18n="ann.sidebar.portal">স্টাফ পোর্টাল</strong>
+                                    <span data-i18n="ann.sidebar.login">শিক্ষক / প্রশাসন লগইন</span>
                                 </div>
                                 <i class="fas fa-chevron-right ql-arrow"></i>
                             </a>
@@ -129,33 +129,33 @@ include '../includes/header.php';
                     </div>
 
                     <div class="sidebar-card reveal">
-                        <h4 class="sc-title"><i class="fas fa-calendar-alt"></i> Upcoming Events</h4>
+                        <h4 class="sc-title"><i class="fas fa-calendar-alt"></i> <span data-i18n="ann.sidebar.events">আসন্ন অনুষ্ঠান</span></h4>
                         <div class="upcoming-list">
                             <div class="up-item">
                                 <div class="up-dot dot-blue"></div>
                                 <div>
-                                    <div class="up-title">Parents' Meeting</div>
+                                    <div class="up-title" data-i18n="ann.sidebar.parents">অভিভাবক সমাবেশ</div>
                                     <div class="up-date">10:00 AM - 1:00 PM</div>
                                 </div>
                             </div>
                             <div class="up-item">
                                 <div class="up-dot dot-gold"></div>
                                 <div>
-                                    <div class="up-title">Annual Cultural Programme</div>
+                                    <div class="up-title" data-i18n="ann.sidebar.cultural">বার্ষিক সাংস্কৃতিক অনুষ্ঠান</div>
                                     <div class="up-date">4:00 PM onwards</div>
                                 </div>
                             </div>
                             <div class="up-item">
                                 <div class="up-dot dot-red"></div>
                                 <div>
-                                    <div class="up-title">HSC Board Exam</div>
+                                    <div class="up-title" data-i18n="ann.sidebar.hscboard">এইচএসসি বোর্ড পরীক্ষা</div>
                                     <div class="up-date">Nov 15 - Dec 15</div>
                                 </div>
                             </div>
                             <div class="up-item">
                                 <div class="up-dot dot-green"></div>
                                 <div>
-                                    <div class="up-title">Class XI Admission Last Date</div>
+                                    <div class="up-title" data-i18n="ann.sidebar.admission">একাদশ শ্রেণি ভর্তির শেষ তারিখ</div>
                                     <div class="up-date">Feb 28, 2026</div>
                                 </div>
                             </div>

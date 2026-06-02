@@ -9,7 +9,7 @@
                         <div class="footer-logo-icon"><i class="fas fa-school"></i></div>
                         <span class="footer-logo-abbr">PMDC</span>
                     </div>
-                    <p>Phulpur Mohila Degree College — empowering women through quality education since 1994. Offering HSC and degree programmes for women in Phulpur, Mymensingh.</p>
+                    <p data-i18n="footer.desc">ফুলপুর মহিলা ডিগ্রি কলেজ — ১৯৯৪ সাল থেকে মানসম্পন্ন শিক্ষার মাধ্যমে নারীর ক্ষমতায়নে নিবেদিত।</p>
                     <div class="social-icons">
                         <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
@@ -20,39 +20,39 @@
 
                 <!-- Col 2: Quick Links -->
                 <div class="footer-col">
-                    <h3>Quick Links</h3>
+                    <h3 data-i18n="footer.quicklinks">দ্রুত সংযোগ</h3>
                     <ul class="footer-links">
-                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>index.php">Home</a></li>
-                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/about.php">About Us</a></li>
-                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/academics.php">Academics</a></li>
-                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/announcements.php">Announcements</a></li>
-                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/results.php">Results</a></li>
-                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/contact.php">Contact</a></li>
+                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>index.php" data-i18n="footer.home">হোম</a></li>
+                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/about.php" data-i18n="footer.about">আমাদের সম্পর্কে</a></li>
+                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/academics.php" data-i18n="footer.academicslink">একাডেমিক</a></li>
+                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/announcements.php" data-i18n="footer.announcementslink">বিজ্ঞপ্তি</a></li>
+                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/results.php" data-i18n="footer.results">ফলাফল</a></li>
+                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/contact.php" data-i18n="footer.contactlink">যোগাযোগ</a></li>
                     </ul>
                 </div>
 
                 <!-- Col 3: Academics -->
                 <div class="footer-col">
-                    <h3>Academics</h3>
+                    <h3 data-i18n="footer.academics">একাডেমিক</h3>
                     <ul class="footer-links">
-                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/academics.php#groups">Science Group</a></li>
-                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/academics.php#groups">Commerce Group</a></li>
-                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/academics.php#groups">Humanities Group</a></li>
-                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/academics.php#groups">Compulsory Subjects</a></li>
-                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/results.php">Exam Results</a></li>
+                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/academics.php#groups" data-i18n="footer.science">বিজ্ঞান বিভাগ</a></li>
+                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/academics.php#groups" data-i18n="footer.commerce">ব্যবসায় শিক্ষা</a></li>
+                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/academics.php#groups" data-i18n="footer.humanities">মানবিক বিভাগ</a></li>
+                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/academics.php#groups" data-i18n="footer.compulsory">বাধ্যতামূলক বিষয়</a></li>
+                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/results.php" data-i18n="footer.examresults">পরীক্ষার ফলাফল</a></li>
                     </ul>
                 </div>
 
                 <!-- Col 4: Contact -->
                 <div class="footer-col">
-                    <h3>Contact Us</h3>
+                    <h3 data-i18n="footer.contact">যোগাযোগ করুন</h3>
                     <div class="footer-contact-item">
                         <i class="fas fa-map-marker-alt"></i>
                         <span>Phulpur, Mymensingh, Bangladesh</span>
                     </div>
                     <div class="footer-contact-item">
                         <i class="fas fa-phone"></i>
-                        <span>+880-1700-000000</span>
+                        <span>+880-1712-227983</span>
                     </div>
                     <div class="footer-contact-item">
                         <i class="fas fa-envelope"></i>
@@ -60,17 +60,17 @@
                     </div>
                     <div class="footer-contact-item">
                         <i class="fas fa-clock"></i>
-                        <span>Sun–Thu: 8:00 AM – 4:00 PM</span>
+                        <span data-i18n="footer.hours">রবি–বৃহ: সকাল ৮:০০ – বিকাল ৪:০০</span>
                     </div>
                 </div>
 
             </div>
             <div class="footer-bottom">
-                <p>&copy; <?php echo date('Y'); ?> Phulpur Mohila Degree College. All Rights Reserved.</p>
+                <p>&copy; <?php echo date('Y'); ?> <span data-i18n="footer.copyright">ফুলপুর মহিলা ডিগ্রি কলেজ। সর্বস্বত্ব সংরক্ষিত।</span></p>
                 <p>
-                    <a href="#">Privacy Policy</a> &nbsp;·&nbsp;
-                    <a href="#">Terms of Use</a> &nbsp;·&nbsp;
-                    <a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/portal/portal-login.php">Staff Portal</a>
+                    <a href="#" data-i18n="footer.privacy">গোপনীয়তা নীতি</a> &nbsp;·&nbsp;
+                    <a href="#" data-i18n="footer.terms">ব্যবহারের শর্ত</a> &nbsp;·&nbsp;
+                    <a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/portal/portal-login.php" data-i18n="footer.staffportal">স্টাফ পোর্টাল</a>
                 </p>
             </div>
         </div>
@@ -80,8 +80,8 @@
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal">
             <h3 id="modalTitle">Coming Soon</h3>
-            <p>This feature is currently under development. Please contact the college office for assistance.</p>
-            <button class="modal-close" onclick="closeModal()">Close</button>
+            <p data-i18n="modal.desc">এই ফিচারটি বর্তমানে উন্নয়নাধীন। সহায়তার জন্য কলেজ অফিসে যোগাযোগ করুন।</p>
+            <button class="modal-close" onclick="closeModal()" data-i18n="modal.close">বন্ধ করুন</button>
         </div>
     </div>
 

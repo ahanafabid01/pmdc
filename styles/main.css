@@ -1067,3 +1067,101 @@ footer {
     .news-item    { flex-direction: column; gap: 12px; }
     .news-date-box { width: 100%; flex-direction: row; gap: 8px; border-radius: 8px; padding: 8px 14px; }
 }
+
+/* ── Language Toggle ─────────────────────────────────────── */
+
+/* Desktop pill in topbar */
+.top-lang-toggle {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 12px;
+}
+
+.lang-btn {
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.8);
+    transition: all var(--transition);
+    line-height: 1.2;
+    letter-spacing: .02em;
+}
+
+.lang-btn:hover {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+.lang-btn.lang-active {
+    background: var(--blue);
+    border-color: var(--blue);
+    color: #fff;
+    box-shadow: 0 2px 6px rgba(37,99,235,0.4);
+}
+
+.lang-btn:first-child {
+    border-radius: 20px 0 0 20px;
+    border-right: none;
+}
+.lang-btn:last-child {
+    border-radius: 0 20px 20px 0;
+}
+
+/* Scrolled navbar – invert colors (no longer applicable as toggle is in topbar) */
+
+/* Mobile floating pill: shown only on small screens */
+.lang-float {
+    display: none;
+    position: fixed;
+    bottom: 76px;
+    right: 16px;
+    z-index: 500;
+    border-radius: 20px;
+    box-shadow: 0 4px 18px rgba(15,39,68,.25);
+    overflow: hidden;
+}
+
+.lang-float .lang-btn {
+    border-radius: 0;
+    border: 1.5px solid var(--navy);
+    font-size: 0.73rem;
+}
+.lang-float .lang-btn:first-child {
+    border-radius: 20px 0 0 20px;
+    border-right: none;
+}
+.lang-float .lang-btn:last-child {
+    border-radius: 0 20px 20px 0;
+}
+
+@media (max-width: 900px) {
+    /* Hide desktop toggle inside mobile panel — use floating instead */
+    #topLangToggle { display: none !important; }
+    .lang-float { display: flex; }
+}
+
+/* ── Bengali specific UI Optimisations ───────────────────── */
+html[lang="bn"] .nav-link {
+    font-size: 0.8rem;
+    padding: 8px 10px;
+    white-space: nowrap;
+}
+
+html[lang="bn"] .nav-apply {
+    padding: 8px 16px !important;
+    font-size: 0.8rem !important;
+}
+
+html[lang="bn"] .logo-sub {
+    font-size: 0.52rem;
+}
+
+html[lang="bn"] .top-links a {
+    font-size: 0.7rem;
+    padding: 4px 8px;
+}

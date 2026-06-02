@@ -9,9 +9,9 @@ include '../includes/header.php';
     <!-- ══════════════════ PAGE HEADER ══════════════════ -->
     <section class="page-hero">
         <div class="container ph-content">
-            <div class="ph-kicker reveal">PMDC</div>
-            <h1 class="reveal">HSC Examination Results</h1>
-            <p class="reveal">Check and download published HSC results — Half-Yearly, Year-Change, Pre-Test, and Test examinations for Class XI &amp; XII.</p>
+            <div class="ph-kicker reveal" data-i18n="results.kicker">পিএমডিসি</div>
+            <h1 class="reveal" data-i18n="results.h1">এইচএসসি পরীক্ষার ফলাফল</h1>
+            <p class="reveal" data-i18n="results.desc">একাদশ এবং দ্বাদশ শ্রেণির প্রকাশিত এইচএসসি ফলাফল পরীক্ষা করুন এবং ডাউনলোড করুন — ষাণ্মাসিক, বার্ষিক, প্রি-টেস্ট এবং টেস্ট পরীক্ষা।</p>
         </div>
     </section>
 
@@ -27,8 +27,8 @@ include '../includes/header.php';
                         <div class="lc-header">
                             <div class="lc-icon"><i class="fas fa-search"></i></div>
                             <div>
-                                <h2>Find Your Result</h2>
-                                <p>Enter your details to look up your result</p>
+                                <h2 data-i18n="results.find.h2">আপনার ফলাফল খুঁজুন</h2>
+                                <p data-i18n="results.find.sub">আপনার ফলাফল খুঁজতে আপনার বিবরণ দিন</p>
                             </div>
                         </div>
 
@@ -101,12 +101,12 @@ include '../includes/header.php';
                     <!-- Published Results -->
                     <div class="published-section reveal">
                         <div class="pub-head">
-                            <h3>Published Results</h3>
+                            <h3 data-i18n="results.pub.h3">প্রকাশিত ফলাফল</h3>
                             <div class="pub-filters">
-                                <button class="pf-btn active" data-filter="all">All</button>
-                                <button class="pf-btn" data-filter="science"><i class="fas fa-flask"></i> Science</button>
-                                <button class="pf-btn" data-filter="commerce"><i class="fas fa-briefcase"></i> Commerce</button>
-                                <button class="pf-btn" data-filter="humanities"><i class="fas fa-book"></i> Humanities</button>
+                                <button class="pf-btn active" data-filter="all" data-i18n="results.pub.all">সব</button>
+                                <button class="pf-btn" data-filter="science"><i class="fas fa-flask"></i> <span data-i18n="results.pub.sci">বিজ্ঞান</span></button>
+                                <button class="pf-btn" data-filter="commerce"><i class="fas fa-briefcase"></i> <span data-i18n="results.pub.com">বাণিজ্য</span></button>
+                                <button class="pf-btn" data-filter="humanities"><i class="fas fa-book"></i> <span data-i18n="results.pub.hum">মানবিক</span></button>
                             </div>
                         </div>
 

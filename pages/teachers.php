@@ -9,24 +9,24 @@ include '../includes/header.php';
     <!-- ══════════════════ PAGE HERO ══════════════════ -->
     <section class="page-hero ts-hero">
         <div class="container ph-content">
-            <div class="ph-kicker reveal">Our Team</div>
-            <h1 class="reveal">Teachers &amp; Staff</h1>
-            <p class="reveal">Meet the dedicated team behind Phulpur Mohila Degree College</p>
+            <div class="ph-kicker reveal" data-i18n="ts.hero.kicker">আমাদের দল</div>
+            <h1 class="reveal" data-i18n="ts.hero.h1">শিক্ষক ও কর্মচারী</h1>
+            <p class="reveal" data-i18n="ts.hero.desc">ফুলপুর মহিলা ডিগ্রি কলেজের নিবেদিতপ্রাণ দলের সাথে পরিচিত হোন</p>
             <div class="ts-hero-stats reveal">
                 <div class="ths-badge" id="heroTeacherCount">
                     <i class="fas fa-chalkboard-teacher"></i>
                     <span class="ths-val">—</span>
-                    <span class="ths-lbl">Teachers</span>
+                    <span class="ths-lbl" data-i18n="ts.hero.teachers">শিক্ষকবৃন্দ</span>
                 </div>
                 <div class="ths-badge" id="heroAdminCount">
                     <i class="fas fa-briefcase"></i>
                     <span class="ths-val">—</span>
-                    <span class="ths-lbl">Admin Staff</span>
+                    <span class="ths-lbl" data-i18n="ts.hero.admin">প্রশাসনিক কর্মী</span>
                 </div>
                 <div class="ths-badge" id="heroSupportCount">
                     <i class="fas fa-users"></i>
                     <span class="ths-val">—</span>
-                    <span class="ths-lbl">Support Staff</span>
+                    <span class="ths-lbl" data-i18n="ts.hero.support">সহায়ক কর্মী</span>
                 </div>
             </div>
         </div>
@@ -36,14 +36,14 @@ include '../includes/header.php';
     <div class="ts-filter-bar" id="tsFilterBar">
         <div class="container ts-filter-inner">
             <div class="ts-filter-btns">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="teacher"><i class="fas fa-chalkboard-teacher"></i> Teachers</button>
-                <button class="filter-btn" data-filter="admin"><i class="fas fa-briefcase"></i> Admin</button>
-                <button class="filter-btn" data-filter="support"><i class="fas fa-users"></i> Support</button>
+                <button class="filter-btn active" data-filter="all" data-i18n="ts.filter.all">সব</button>
+                <button class="filter-btn" data-filter="teacher"><i class="fas fa-chalkboard-teacher"></i> <span data-i18n="ts.filter.teachers">শিক্ষকবৃন্দ</span></button>
+                <button class="filter-btn" data-filter="admin"><i class="fas fa-briefcase"></i> <span data-i18n="ts.filter.admin">প্রশাসন</span></button>
+                <button class="filter-btn" data-filter="support"><i class="fas fa-users"></i> <span data-i18n="ts.filter.support">সহায়ক</span></button>
             </div>
             <div class="ts-search-wrap">
                 <i class="fas fa-search"></i>
-                <input type="text" id="tsSearch" placeholder="Search by name or designation..." autocomplete="off">
+                <input type="text" id="tsSearch" data-i18n="ts.search" data-i18n-attr="placeholder" placeholder="নাম বা পদবী দিয়ে খুঁজুন..." autocomplete="off">
             </div>
         </div>
     </div>
@@ -57,7 +57,7 @@ include '../includes/header.php';
                 <div class="staff-section-head reveal">
                     <div class="ssh-left">
                         <i class="fas fa-chalkboard-teacher"></i>
-                        <span>Teaching Staff</span>
+                        <span data-i18n="ts.section.teaching">শিক্ষকমণ্ডলী</span>
                     </div>
                     <span class="ssh-count" id="countTeacher">—</span>
                 </div>
@@ -69,7 +69,7 @@ include '../includes/header.php';
                 <div class="staff-grid" id="gridTeacher"></div>
                 <div class="staff-empty" id="emptyTeacher" style="display:none;">
                     <i class="fas fa-chalkboard-teacher"></i>
-                    <p>No teaching staff added yet.</p>
+                    <p data-i18n="ts.empty.teacher">এখনও কোনো শিক্ষক যোগ করা হয়নি।</p>
                 </div>
             </div>
 
@@ -78,14 +78,14 @@ include '../includes/header.php';
                 <div class="staff-section-head reveal">
                     <div class="ssh-left">
                         <i class="fas fa-briefcase"></i>
-                        <span>Administrative Staff</span>
+                        <span data-i18n="ts.section.admin">প্রশাসনিক কর্মী</span>
                     </div>
                     <span class="ssh-count" id="countAdmin">—</span>
                 </div>
                 <div class="staff-grid" id="gridAdmin"></div>
                 <div class="staff-empty" id="emptyAdmin" style="display:none;">
                     <i class="fas fa-briefcase"></i>
-                    <p>No administrative staff added yet.</p>
+                    <p data-i18n="ts.empty.admin">এখনও কোনো প্রশাসনিক কর্মী যোগ করা হয়নি।</p>
                 </div>
             </div>
 
@@ -94,14 +94,14 @@ include '../includes/header.php';
                 <div class="staff-section-head reveal">
                     <div class="ssh-left">
                         <i class="fas fa-users"></i>
-                        <span>Support Staff</span>
+                        <span data-i18n="ts.section.support">সহায়ক কর্মী</span>
                     </div>
                     <span class="ssh-count" id="countSupport">—</span>
                 </div>
                 <div class="staff-grid" id="gridSupport"></div>
                 <div class="staff-empty" id="emptySupport" style="display:none;">
                     <i class="fas fa-users"></i>
-                    <p>No support staff added yet.</p>
+                    <p data-i18n="ts.empty.support">এখনও কোনো সহায়ক কর্মী যোগ করা হয়নি।</p>
                 </div>
             </div>
 
