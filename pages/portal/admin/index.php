@@ -45,6 +45,10 @@
                 <i class="fas fa-chalkboard-teacher"></i>
                 <span>Teachers &amp; Staff</span>
             </a>
+            <a href="gallery.php" class="nav-item">
+                <i class="fas fa-images"></i>
+                <span>Gallery</span>
+            </a>
             <a href="#" class="nav-item">
                 <i class="fas fa-book"></i>
                 <span>Courses</span>

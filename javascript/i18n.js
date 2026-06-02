@@ -13,9 +13,10 @@
 
         /* ━━━━━━━━━━━ NAVIGATION & SHARED CHROME ━━━━━━━━━━━ */
         'nav.home': { en: 'Home', bn: 'হোম' },
-        'nav.about': { en: 'About', bn: 'প্রতিষ্ঠান পরিচিতি' },
+        'nav.about': { en: 'About', bn: 'আমাদের সম্পর্কে' },
         'nav.academic': { en: 'Academic Info', bn: 'একাডেমিক তথ্য' },
         'nav.announcements': { en: 'Announcements', bn: 'বিজ্ঞপ্তি' },
+        'nav.gallery': { en: 'Gallery', bn: 'গ্যালারি' },
         'nav.teachers': { en: 'Teachers & Staff', bn: 'শিক্ষক ও কর্মচারী' },
         'nav.results': { en: 'Results', bn: 'ফলাফল' },
         'nav.contact': { en: 'Contact', bn: 'যোগাযোগ' },
@@ -414,6 +415,20 @@
             bn: 'এই ফিচারটি বর্তমানে উন্নয়নাধীন। সহায়তার জন্য কলেজ অফিসে যোগাযোগ করুন।'
         },
         'modal.close': { en: 'Close', bn: 'বন্ধ করুন' },
+
+        /* ━━━━━━━━━━━ GALLERY PAGE ━━━━━━━━━━━ */
+        'gallery.kicker':         { en: 'Our Gallery',        bn: 'আমাদের গ্যালারি' },
+        'gallery.h1':             { en: 'Gallery',            bn: 'গ্যালারি' },
+        'gallery.desc':           { en: 'Photos from events, campus life, and ceremonies',
+                                   bn: 'ইভেন্ট, ক্যাম্পাস জীবন ও অনুষ্ঠানের ছবিসমূহ' },
+        'gallery.stat.photos':    { en: 'Total Photos',       bn: 'মোট ছবি' },
+        'gallery.stat.years':     { en: 'Years',              bn: 'বছর' },
+        'gallery.stat.latest':    { en: 'Latest Year',        bn: 'সর্বশেষ' },
+        'gallery.filter.all':     { en: 'All',                bn: 'সব' },
+        'gallery.photos':         { en: 'Photos',             bn: 'ছবি' },
+        'gallery.loadmore':       { en: 'Load More Photos',   bn: 'আরও ছবি দেখুন' },
+        'gallery.empty.title':    { en: 'No photos available yet.', bn: 'এখনো কোনো ছবি নেই।' },
+        'gallery.empty.sub':      { en: 'Check back soon for updates.', bn: 'শীঘ্রই আপডেট করা হবে।' }
     };
 
     /* ── Core engine ──────────────────────────────────────── */
