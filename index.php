@@ -31,34 +31,6 @@ include 'includes/header.php';
         </div>
     </header>
 
-    <!-- ══════════════════ STATS STRIP ══════════════════ -->
-    <div class="stats-strip">
-        <div class="container">
-            <div class="stats-inner reveal">
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-users"></i></div>
-                    <div class="stat-value">800+</div>
-                    <div class="stat-label" data-i18n="home.stats.students">ভর্তি শিক্ষার্থী</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-chalkboard-teacher"></i></div>
-                    <div class="stat-value">50+</div>
-                    <div class="stat-label" data-i18n="home.stats.faculty">শিক্ষকমণ্ডলী</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-trophy"></i></div>
-                    <div class="stat-value">92%</div>
-                    <div class="stat-label" data-i18n="home.stats.pass">বোর্ড পাসের হার</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-calendar-alt"></i></div>
-                    <div class="stat-value">40+</div>
-                    <div class="stat-label" data-i18n="home.stats.years">বছরের উৎকর্ষতা</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- ══════════════════ ABOUT ══════════════════ -->
     <section id="about" class="section-padding">
         <div class="container">
