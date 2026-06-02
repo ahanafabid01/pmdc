@@ -7,6 +7,44 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    /* ── Hero background slider ──────────────────────────── */
+    const heroSlides = Array.from(document.querySelectorAll('.hero-slide'));
+    const heroPrev = document.querySelector('.hero-slider-prev');
+    const heroNext = document.querySelector('.hero-slider-next');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (heroSlides.length > 1) {
+        let currentSlide = 0;
+
+        const showHeroSlide = (nextIndex) => {
+            heroSlides[currentSlide].classList.remove('active');
+            currentSlide = (nextIndex + heroSlides.length) % heroSlides.length;
+            heroSlides[currentSlide].classList.add('active');
+        };
+
+        const nextHeroSlide = () => showHeroSlide(currentSlide + 1);
+        const prevHeroSlide = () => showHeroSlide(currentSlide - 1);
+        let heroTimer = null;
+
+        const restartHeroTimer = () => {
+            if (reduceMotion) return;
+            clearInterval(heroTimer);
+            heroTimer = setInterval(nextHeroSlide, 4500);
+        };
+
+        heroNext?.addEventListener('click', () => {
+            nextHeroSlide();
+            restartHeroTimer();
+        });
+
+        heroPrev?.addEventListener('click', () => {
+            prevHeroSlide();
+            restartHeroTimer();
+        });
+
+        restartHeroTimer();
+    }
+
     /* ── Mobile Navigation ───────────────────────────────── */
     const hamburger  = document.getElementById('hamburger');
     const navMenu    = document.getElementById('nav-menu');

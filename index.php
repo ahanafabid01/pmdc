@@ -6,6 +6,19 @@ include 'includes/header.php';
 
     <!-- ══════════════════ HERO ══════════════════ -->
     <header class="hero" id="home">
+        <div class="hero-slider" aria-hidden="true">
+            <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1920&q=80');"></div>
+            <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1920&q=80');"></div>
+            <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1920&q=80');"></div>
+            <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=1920&q=80');"></div>
+            <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1920&q=80');"></div>
+        </div>
+        <button class="hero-slider-btn hero-slider-prev" type="button" aria-label="Previous hero image">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="hero-slider-btn hero-slider-next" type="button" aria-label="Next hero image">
+            <i class="fas fa-chevron-right"></i>
+        </button>
         <div class="container">
             <div class="hero-content">
                 <div class="hero-kicker" data-i18n="home.hero.kicker">১৯৯৪ সালে প্রতিষ্ঠিত</div>
