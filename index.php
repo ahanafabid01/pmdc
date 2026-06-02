@@ -47,6 +47,10 @@ include 'includes/header.php';
     <!-- ══════════════════ ABOUT ══════════════════ -->
     <section id="about" class="section-padding">
         <div class="container">
+            <div class="section-head reveal">
+                <div class="section-kicker" data-i18n="home.about.kicker">আমাদের কলেজ সম্পর্কে</div>
+                <h2 data-i18n="home.about.h2" data-i18n-html="true">ফুলপুরে নারী শিক্ষার<br>একটি ঐতিহ্য</h2>
+            </div>
             <div class="about-grid reveal">
                 <div class="about-img-wrap">
                     <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&q=80" alt="PMDC College Library">
@@ -56,8 +60,6 @@ include 'includes/header.php';
                     </div>
                 </div>
                 <div class="about-text">
-                    <div class="section-kicker" data-i18n="home.about.kicker">আমাদের কলেজ সম্পর্কে</div>
-                    <h2 data-i18n="home.about.h2" data-i18n-html="true">ফুলপুরে নারী শিক্ষার<br>একটি ঐতিহ্য</h2>
                     <p class="lead" data-i18n="home.about.p1">
                         ফুলপুর মহিলা ডিগ্রি কলেজ ১৯৯৪ সালে সকল রাজনৈতিক দলের মানুষের সম্মিলিত প্রচেষ্টায় প্রতিষ্ঠিত হয়, যার লক্ষ্য ছিল ফুলপুরের নারীদের পুরুষের সমকক্ষে উচ্চশিক্ষার সুযোগ দেওয়া।
                     </p>
