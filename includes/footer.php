@@ -23,7 +23,7 @@
                     <h3 data-i18n="footer.quicklinks">দ্রুত সংযোগ</h3>
                     <ul class="footer-links">
                         <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>index.php" data-i18n="footer.home">হোম</a></li>
-                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/about.php" data-i18n="footer.about">আমাদের সম্পর্কে</a></li>
+                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/about.php" data-i18n="footer.about">প্রতিষ্ঠান পরিচিতি</a></li>
                         <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/academics.php" data-i18n="footer.academicslink">একাডেমিক</a></li>
                         <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/announcements.php" data-i18n="footer.announcementslink">বিজ্ঞপ্তি</a></li>
                         <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/results.php" data-i18n="footer.results">ফলাফল</a></li>

@@ -13,7 +13,7 @@
 
         /* ━━━━━━━━━━━ NAVIGATION & SHARED CHROME ━━━━━━━━━━━ */
         'nav.home': { en: 'Home', bn: 'হোম' },
-        'nav.about': { en: 'About', bn: 'আমাদের সম্পর্কে' },
+        'nav.about': { en: 'About', bn: 'প্রতিষ্ঠান পরিচিতি' },
         'nav.academic': { en: 'Academic Info', bn: 'একাডেমিক তথ্য' },
         'nav.announcements': { en: 'Announcements', bn: 'বিজ্ঞপ্তি' },
         'nav.gallery': { en: 'Gallery', bn: 'গ্যালারি' },

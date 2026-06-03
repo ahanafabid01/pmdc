@@ -56,7 +56,7 @@
             </button>
             <ul class="nav-menu" id="nav-menu" role="navigation">
                 <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>index.php"              class="nav-link <?php echo isset($page) && $page == 'home' ? 'active' : ''; ?>" data-i18n="nav.home">হোম</a></li>
-                <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/about.php"        class="nav-link <?php echo isset($page) && $page == 'about' ? 'active' : ''; ?>" data-i18n="nav.about">আমাদের সম্পর্কে</a></li>
+                <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/about.php"        class="nav-link <?php echo isset($page) && $page == 'about' ? 'active' : ''; ?>" data-i18n="nav.about">প্রতিষ্ঠান পরিচিতি</a></li>
 
                 <!-- Academic Info Dropdown -->
                 <?php $is_academic = isset($page_group) && $page_group === 'academic'; ?>
