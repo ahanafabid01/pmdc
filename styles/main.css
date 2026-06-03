@@ -1186,35 +1186,62 @@ footer {
 
 /* Scrolled navbar – invert colors (no longer applicable as toggle is in topbar) */
 
-/* Mobile floating pill: shown only on small screens */
-.lang-float {
-    display: none;
-    position: fixed;
-    bottom: 76px;
-    right: 16px;
-    z-index: 500;
-    border-radius: 20px;
-    box-shadow: 0 4px 18px rgba(15,39,68,.25);
-    overflow: hidden;
+/* Mobile toggle: lives inside the hamburger nav panel footer */
+.npf-lang-toggle {
+    display: flex;
+    margin-top: 14px;
+    border-top: 1px solid rgba(0,0,0,.1);
+    padding-top: 16px;
+    width: 100%;
+    justify-content: center;
 }
 
-.lang-float .lang-btn {
-    border-radius: 0;
-    border: 1.5px solid var(--navy);
-    font-size: 0.73rem;
+/* Unified pill container track */
+.npf-lang-toggle {
+    gap: 0;
 }
-.lang-float .lang-btn:first-child {
-    border-radius: 20px 0 0 20px;
-    border-right: none;
+.npf-lang-toggle .lang-btn {
+    flex: 1;
+    max-width: 110px;
+    border: 1.5px solid #d1d5db !important;
+    border-right-width: 0.75px !important;
+    border-left-width: 0.75px !important;
+    border-radius: 0 !important;
+    background: #f3f4f6;
+    color: #374151;
+    font-size: .82rem;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    padding: 9px 14px;
+    cursor: pointer;
+    transition: all .18s ease;
+    text-align: center;
+    line-height: 1.2;
 }
-.lang-float .lang-btn:last-child {
-    border-radius: 0 20px 20px 0;
+.npf-lang-toggle .lang-btn:first-child {
+    border-radius: 30px 0 0 30px !important;
+    border-right: none !important;
+}
+.npf-lang-toggle .lang-btn:last-child {
+    border-radius: 0 30px 30px 0 !important;
+    border-left: none !important;
+}
+.npf-lang-toggle .lang-btn:hover:not(.lang-active) {
+    background: #e5e7eb;
+    color: #111827;
+}
+.npf-lang-toggle .lang-btn.lang-active {
+    background: var(--blue) !important;
+    border-color: var(--blue) !important;
+    color: #fff !important;
+    box-shadow: 0 2px 8px rgba(37,99,235,.35);
+    z-index: 1;
+    position: relative;
 }
 
 @media (max-width: 900px) {
-    /* Hide desktop toggle inside mobile panel — use floating instead */
+    /* Hide desktop toggle in topbar on mobile */
     #topLangToggle { display: none !important; }
-    .lang-float { display: flex; }
 }
 
 /* ── Bengali specific UI Optimisations ───────────────────── */

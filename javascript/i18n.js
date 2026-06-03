@@ -517,15 +517,16 @@
             document.getElementById('langEn').addEventListener('click', () => toggleLang('en'));
         }
 
-        // Mobile: floating pill button at bottom-right
-        if (!document.getElementById('mobileLangFloat')) {
-            const floater = document.createElement('div');
-            floater.id = 'mobileLangFloat';
-            floater.className = 'lang-float';
-            floater.innerHTML = `
+        // Mobile: inject inside the hamburger nav panel footer
+        const npfInner = document.querySelector('.npf-inner');
+        if (npfInner && !document.getElementById('mobileLangToggle')) {
+            const wrap = document.createElement('div');
+            wrap.id = 'mobileLangToggle';
+            wrap.className = 'npf-lang-toggle';
+            wrap.innerHTML = `
                 <button class="lang-btn lang-active" id="mobileLangBn" aria-label="বাংলা">বাংলা</button>
                 <button class="lang-btn" id="mobileLangEn" aria-label="English">EN</button>`;
-            document.body.appendChild(floater);
+            npfInner.appendChild(wrap);
             document.getElementById('mobileLangBn').addEventListener('click', () => toggleLang('bn'));
             document.getElementById('mobileLangEn').addEventListener('click', () => toggleLang('en'));
         }
