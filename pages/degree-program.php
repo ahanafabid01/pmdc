@@ -139,22 +139,6 @@ include '../includes/header.php';
                         <div class="poi-val">National University of Bangladesh</div>
                     </div>
                 </div>
-                <div class="prog-overview-sep"></div>
-                <div class="prog-overview-item">
-                    <i class="fas fa-calendar-check"></i>
-                    <div>
-                        <div class="poi-label">BA / BSS / BSc From</div>
-                        <div class="poi-val">2003–2004 Session</div>
-                    </div>
-                </div>
-                <div class="prog-overview-sep"></div>
-                <div class="prog-overview-item">
-                    <i class="fas fa-calendar-check"></i>
-                    <div>
-                        <div class="poi-label">BMT From</div>
-                        <div class="poi-val">2004–2005 Session</div>
-                    </div>
-                </div>
             </div>
 
             <!-- Tab nav for programs -->
