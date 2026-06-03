@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $page       = 'hsc-form-fillup';
 $page_group = 'academic';
 $page_title = 'HSC Form Fillup | Phulpur Mohila Degree College';
@@ -42,7 +42,6 @@ include '../includes/header.php';
                 <span class="ai-session-label"><i class="fas fa-file-alt"></i> HSC Board Examination 2025 — 2nd Year</span>
                 <div class="ai-meta-row">
                     <span class="ai-last-updated">Last Updated: <?php echo $last_updated; ?></span>
-                    <button class="ai-print-btn" onclick="window.print()"><i class="fas fa-print"></i> Print</button>
                 </div>
             </div>
 

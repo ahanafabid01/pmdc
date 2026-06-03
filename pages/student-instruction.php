@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $page       = 'student-instruction';
 $page_group = 'academic';
 $page_title = 'Student Instruction | Phulpur Mohila Degree College';
@@ -38,7 +38,6 @@ include '../includes/header.php';
                 <span class="ai-session-label"><i class="fas fa-info-circle"></i> Please read all instructions carefully</span>
                 <div class="ai-meta-row">
                     <span class="ai-last-updated">Last Updated: <?php echo $last_updated; ?></span>
-                    <button class="ai-print-btn" onclick="window.print()"><i class="fas fa-print"></i> Print</button>
                 </div>
             </div>
 

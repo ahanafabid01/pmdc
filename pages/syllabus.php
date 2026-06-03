@@ -128,7 +128,6 @@ include '../includes/header.php';
                 <span class="ai-session-label"><i class="fas fa-book-open"></i> Session: 2024–2025 — As per NCTB & Dhaka Board</span>
                 <div class="ai-meta-row">
                     <span class="ai-last-updated">Last Updated: <?php echo $last_updated; ?></span>
-                    <button class="ai-print-btn" onclick="window.print()"><i class="fas fa-print"></i> Print</button>
                 </div>
             </div>
 
@@ -175,9 +174,6 @@ include '../includes/header.php';
                         <span class="ai-badge badge-college" style="margin-bottom:8px;display:inline-flex;"><?php echo htmlspecialchars($s['exam']); ?></span>
                         <div style="font-size:.78rem;color:var(--muted);font-family:'Inter',sans-serif;line-height:1.5;"><?php echo htmlspecialchars($s['note']); ?></div>
                     </div>
-                    <a href="#" class="syl-download" onclick="alert('Syllabus PDF will be available once uploaded.');return false;">
-                        <i class="fas fa-download"></i> Download Syllabus
-                    </a>
                 </div>
                 <?php endforeach; ?>
             </div>

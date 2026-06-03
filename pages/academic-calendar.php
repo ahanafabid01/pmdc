@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $page       = 'academic-calendar';
 $page_group = 'academic';
 $page_title = 'Academic Calendar | Phulpur Mohila Degree College';
@@ -93,7 +93,6 @@ include '../includes/header.php';
                 </form>
                 <div class="ai-meta-row">
                     <span class="ai-last-updated">Last Updated: <?php echo $last_updated; ?></span>
-                    <button class="ai-print-btn" onclick="window.print()"><i class="fas fa-print"></i> Print</button>
                 </div>
             </div>
 

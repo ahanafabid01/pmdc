@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $page       = 'admit-card';
 $page_group = 'academic';
 $page_title = 'Admit Card | Phulpur Mohila Degree College';
@@ -146,7 +146,6 @@ include '../includes/header.php';
                             <i class="fas fa-info-circle" style="color:var(--blue);"></i>
                             Bring this admit card + college ID card to every exam. Loss of admit card is not grounds for exemption.
                         </div>
-                        <button class="ai-print-btn" onclick="window.print()"><i class="fas fa-print"></i> Print Admit Card</button>
                     </div>
                 </div>
                 <?php else: ?>

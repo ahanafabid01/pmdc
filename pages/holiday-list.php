@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $page       = 'holiday-list';
 $page_group = 'academic';
 $page_title = 'Holiday List | Phulpur Mohila Degree College';
@@ -48,7 +48,6 @@ include '../includes/header.php';
                 <span class="ai-session-label"><i class="fas fa-calendar"></i> Academic Session: <?php echo $session; ?></span>
                 <div class="ai-meta-row">
                     <span class="ai-last-updated">Last Updated: <?php echo $last_updated; ?></span>
-                    <button class="ai-print-btn" onclick="window.print()"><i class="fas fa-print"></i> Print</button>
                 </div>
             </div>
 
