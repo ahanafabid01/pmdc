@@ -40,6 +40,10 @@
         'topbar.alumni': { en: 'Alumni', bn: 'প্রাক্তন শিক্ষার্থী' },
         'topbar.portal': { en: 'Portal', bn: 'পোর্টাল' },
 
+        /* ━━━━━━━━━━━ NOTICE TICKER ━━━━━━━━━━━ */
+        'ticker.label': { en: 'Notice', bn: 'নোটিশ' },
+        'ticker.all':   { en: 'View All', bn: 'সব দেখুন' },
+
         /* ━━━━━━━━━━━ FOOTER ━━━━━━━━━━━ */
         'footer.desc': {
             en: 'Phulpur Mohila Degree College — empowering women through quality education since 1994. Offering HSC and degree programmes for women in Phulpur, Mymensingh.',

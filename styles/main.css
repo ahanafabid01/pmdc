@@ -1237,3 +1237,111 @@ html[lang="bn"] .top-links a {
     font-size: 0.7rem;
     padding: 4px 8px;
 }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   NOTICE TICKER  — homepage, below hero
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.notice-ticker {
+    background: var(--navy);
+    border-bottom: 2px solid rgba(255,255,255,.06);
+    display: flex; align-items: stretch;
+    height: 46px; overflow: hidden;
+    position: relative; z-index: 10;
+    box-shadow: 0 4px 18px rgba(10,20,48,.22);
+}
+
+/* "নোটিশ" label pill on the left */
+.nt-label {
+    flex-shrink: 0;
+    display: flex; align-items: center; gap: 7px;
+    background: var(--gold);
+    color: #fff;
+    padding: 0 22px 0 18px;
+    font-size: .72rem; font-weight: 800;
+    text-transform: uppercase; letter-spacing: .1em;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%);
+    padding-right: 28px;
+}
+.nt-label i { font-size: .78rem; animation: ntBell .9s ease-in-out infinite alternate; }
+@keyframes ntBell {
+    0%   { transform: rotate(-12deg); }
+    100% { transform: rotate(12deg); }
+}
+
+/* scrolling track container */
+.nt-track-wrap {
+    flex: 1;
+    overflow: hidden;
+    display: flex; align-items: center;
+    mask-image: linear-gradient(to right, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
+}
+.nt-track {
+    display: flex; align-items: center;
+    white-space: nowrap;
+    animation: ntScroll 38s linear infinite;
+    will-change: transform;
+}
+.nt-track:hover { animation-play-state: paused; }
+
+@keyframes ntScroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* individual notice items */
+.nt-item {
+    display: inline-flex; align-items: center; gap: 10px;
+    color: rgba(255,255,255,.78);
+    text-decoration: none;
+    font-size: .8rem; font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    padding: 0 8px;
+    transition: color .2s;
+    flex-shrink: 0;
+}
+.nt-item:hover { color: var(--gold); }
+
+.nt-dot {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--gold); flex-shrink: 0;
+    opacity: .75;
+}
+.nt-sep {
+    color: rgba(255,255,255,.2);
+    padding: 0 6px;
+}
+
+/* "সব দেখুন" link on right */
+.nt-all {
+    flex-shrink: 0;
+    display: flex; align-items: center; gap: 5px;
+    padding: 0 16px;
+    color: rgba(255,255,255,.55);
+    font-size: .72rem; font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    text-decoration: none;
+    border-left: 1px solid rgba(255,255,255,.08);
+    letter-spacing: .04em;
+    transition: color .2s;
+    white-space: nowrap;
+}
+.nt-all:hover { color: var(--gold); }
+.nt-all i { font-size: .62rem; }
+
+/* Bangla font override */
+html[lang="bn"] .nt-item,
+html[lang="bn"] .nt-label span,
+html[lang="bn"] .nt-all {
+    font-family: 'Hind Siliguri', 'Inter', sans-serif;
+}
+
+@media (max-width: 600px) {
+    .nt-label span { display: none; }
+    .nt-label { padding: 0 18px 0 14px; padding-right: 24px; }
+    .nt-all { padding: 0 12px; }
+    .nt-item { font-size: .76rem; }
+    .nt-track { animation-duration: 28s; }
+}

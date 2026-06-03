@@ -1,6 +1,8 @@
 <?php
 $page       = 'home';
 $page_title = 'Phulpur Mohila Degree College | Excellence in Education';
+require_once 'includes/announcements-data.php';
+$ticker_notices = array_slice(pmdc_get_published_announcements(), 0, 8);
 include 'includes/header.php';
 ?>
 
@@ -43,6 +45,36 @@ include 'includes/header.php';
             </div>
         </div>
     </header>
+
+    <!-- ══════════════════ NOTICE TICKER ══════════════════ -->
+    <?php if (!empty($ticker_notices)): ?>
+    <div class="notice-ticker" id="noticeTicker">
+        <div class="nt-label">
+            <i class="fas fa-bell"></i>
+            <span data-i18n="ticker.label">নোটিশ</span>
+        </div>
+        <div class="nt-track-wrap">
+            <div class="nt-track" id="ntTrack">
+                <?php foreach ($ticker_notices as $n): ?>
+                <a href="pages/announcement-detail.php?id=<?php echo urlencode((string)$n['id']); ?>" class="nt-item">
+                    <span class="nt-dot"></span>
+                    <?php echo htmlspecialchars($n['title'], ENT_QUOTES, 'UTF-8'); ?>
+                    <span class="nt-sep">|</span>
+                </a>
+                <?php endforeach; ?>
+                <?php /* Duplicate for seamless loop */ ?>
+                <?php foreach ($ticker_notices as $n): ?>
+                <a href="pages/announcement-detail.php?id=<?php echo urlencode((string)$n['id']); ?>" class="nt-item" aria-hidden="true">
+                    <span class="nt-dot"></span>
+                    <?php echo htmlspecialchars($n['title'], ENT_QUOTES, 'UTF-8'); ?>
+                    <span class="nt-sep">|</span>
+                </a>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <a href="pages/announcements.php" class="nt-all" data-i18n="ticker.all">সব দেখুন <i class="fas fa-chevron-right"></i></a>
+    </div>
+    <?php endif; ?>
 
     <!-- ══════════════════ ABOUT ══════════════════ -->
     <section id="about" class="section-padding">
