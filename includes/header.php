@@ -1,9 +1,42 @@
+<?php
+/* ── Central Bangla page-title map ───────────────────────────
+   Pages may override $page_title_bn individually.
+   If not set, this map provides the Bangla title automatically.
+────────────────────────────────────────────────────────────── */
+if (!isset($page_title_bn)) {
+    $bn_titles = [
+        'home'               => 'ফুলপুর মহিলা ডিগ্রি কলেজ | উৎকর্ষে শিক্ষা',
+        'about'              => 'প্রতিষ্ঠান পরিচিতি | ফুলপুর মহিলা ডিগ্রি কলেজ',
+        'academics'          => 'একাডেমিক তথ্য | ফুলপুর মহিলা ডিগ্রি কলেজ',
+        'hsc-program'        => 'এইচএসসি প্রোগ্রাম | ফুলপুর মহিলা ডিগ্রি কলেজ',
+        'degree-program'     => 'ডিগ্রি প্রোগ্রাম | ফুলপুর মহিলা ডিগ্রি কলেজ',
+        'announcements'      => 'বিজ্ঞপ্তি | ফুলপুর মহিলা ডিগ্রি কলেজ',
+        'gallery'            => 'গ্যালারি | ফুলপুর মহিলা ডিগ্রি কলেজ',
+        'teachers'           => 'শিক্ষক ও কর্মচারী | ফুলপুর মহিলা ডিগ্রি কলেজ',
+        'results'            => 'ফলাফল | ফুলপুর মহিলা ডিগ্রি কলেজ',
+        'contact'            => 'যোগাযোগ | ফুলপুর মহিলা ডিগ্রি কলেজ',
+        'holiday-list'       => 'ছুটির তালিকা | ফুলপুর মহিলা ডিগ্রি কলেজ',
+        'academic-calendar'  => 'একাডেমিক ক্যালেন্ডার | ফুলপুর মহিলা ডিগ্রি কলেজ',
+        'class-routine'      => 'ক্লাস রুটিন | ফুলপুর মহিলা ডিগ্রি কলেজ',
+        'exam-routine'       => 'পরীক্ষার রুটিন | ফুলপুর মহিলা ডিগ্রি কলেজ',
+        'syllabus'           => 'পাঠ্যক্রম | ফুলপুর মহিলা ডিগ্রি কলেজ',
+        'uniform'            => 'পোশাক বিধি | ফুলপুর মহিলা ডিগ্রি কলেজ',
+        'rules-regulation'   => 'নিয়ম ও বিধিমালা | ফুলপুর মহিলা ডিগ্রি কলেজ',
+        'student-instruction'=> 'শিক্ষার্থী নির্দেশিকা | ফুলপুর মহিলা ডিগ্রি কলেজ',
+        'admit-card'         => 'প্রবেশপত্র | ফুলপুর মহিলা ডিগ্রি কলেজ',
+        'hsc-form-fillup'    => 'এইচএসসি ফর্ম পূরণ | ফুলপুর মহিলা ডিগ্রি কলেজ',
+    ];
+    $page_title_bn = $bn_titles[$page ?? 'home'] ?? 'ফুলপুর মহিলা ডিগ্রি কলেজ';
+}
+?>
 <!DOCTYPE html>
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo isset($page_title) ? $page_title : 'Phulpur Mohila Degree College | Excellence in Education'; ?></title>
+    <meta name="title-en" content="<?php echo htmlspecialchars(isset($page_title) ? $page_title : 'Phulpur Mohila Degree College | Excellence in Education', ENT_QUOTES, 'UTF-8'); ?>">
+    <meta name="title-bn" content="<?php echo htmlspecialchars(isset($page_title_bn) ? $page_title_bn : 'ফুলপুর মহিলা ডিগ্রি কলেজ', ENT_QUOTES, 'UTF-8'); ?>">
     <meta name="description" content="<?php echo isset($page_meta_description) ? htmlspecialchars($page_meta_description, ENT_QUOTES, 'UTF-8') : 'Phulpur Mohila Degree College is a women\'s degree college in Phulpur, Mymensingh, established in 1994, offering HSC and degree programmes for women students.'; ?>">
     <?php if(isset($page_meta_tags)) echo $page_meta_tags; ?>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,7 +50,7 @@
     <!-- i18n: load early so translations apply before paint -->
     <script src="<?php echo isset($base_path) ? $base_path : ''; ?>javascript/i18n.js"></script>
 </head>
-<body>
+<body data-page="<?php echo isset($page) ? htmlspecialchars($page, ENT_QUOTES, 'UTF-8') : 'home'; ?>">
 
     <!-- Top Bar -->
     <div class="top-bar">

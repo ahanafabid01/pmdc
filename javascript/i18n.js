@@ -459,6 +459,12 @@
         // Set html lang attribute
         document.documentElement.lang = lang === 'bn' ? 'bn' : 'en';
 
+        // Update browser tab title from <meta name="title-bn"> / <meta name="title-en">
+        const titleMeta = document.querySelector('meta[name="title-' + lang + '"]');
+        if (titleMeta && titleMeta.content) {
+            document.title = titleMeta.content;
+        }
+
         // Apply translations
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');

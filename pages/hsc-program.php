@@ -97,22 +97,6 @@ include '../includes/header.php';
                 </div>
                 <div class="prog-overview-sep"></div>
                 <div class="prog-overview-item">
-                    <i class="fas fa-university"></i>
-                    <div>
-                        <div class="poi-label">Board</div>
-                        <div class="poi-val">Dhaka Education Board</div>
-                    </div>
-                </div>
-                <div class="prog-overview-sep"></div>
-                <div class="prog-overview-item">
-                    <i class="fas fa-calendar-check"></i>
-                    <div>
-                        <div class="poi-label">Session Started</div>
-                        <div class="poi-val">2004–2005</div>
-                    </div>
-                </div>
-                <div class="prog-overview-sep"></div>
-                <div class="prog-overview-item">
                     <i class="fas fa-layer-group"></i>
                     <div>
                         <div class="poi-label">Groups Offered</div>
