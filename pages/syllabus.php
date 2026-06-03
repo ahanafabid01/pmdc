@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $page       = 'syllabus';
 $page_group = 'academic';
 $page_title = 'Syllabus | Phulpur Mohila Degree College';
@@ -101,23 +101,30 @@ $allSyllabus = [
     ['subject'=>'Marketing / Production Management', 'year'=>'2nd Year', 'group'=>'Business Studies', 'exam'=>'Test Exam', 'note'=>'পূর্ণ সিলেবাস'],
 ];
 
-// Filter
-$filtered = array_filter($allSyllabus, function($s) use ($selYear, $selGroup, $selExam) {
-    $yearMatch  = $selYear  === 'All Years'  || $s['year']  === 'Both' || $s['year']  === $selYear;
-    $groupMatch = $selGroup === 'All Groups' || $s['group'] === 'All'  || $s['group'] === $selGroup;
-    $examMatch  = $selExam  === 'All Exams'  || $s['exam']  === 'All Exams' || $s['exam']  === $selExam;
-    return $yearMatch && $groupMatch && $examMatch;
+// Determine visible exam columns based on year selection
+$examCols = ($selYear === '1st Year')  ? ['Half-Yearly', 'Year-Change']
+          : (($selYear === '2nd Year') ? ['Pre-Test', 'Test Exam']
+          : ['Half-Yearly', 'Year-Change', 'Pre-Test', 'Test Exam']);
+
+// Build subject × exam matrix (no exam filter — exams are columns)
+$matrixFiltered = array_filter($allSyllabus, function($s) use ($selYear, $selGroup) {
+    $yearMatch  = $selYear  === 'All Years' || $s['year'] === $selYear;
+    $groupMatch = $selGroup === 'All Groups' || $s['group'] === 'All' || $s['group'] === $selGroup;
+    return $yearMatch && $groupMatch;
 });
+$matrix = [];
+foreach ($matrixFiltered as $s) {
+    $matrix[$s['subject']][$s['exam']] = $s['note'];
+}
 
 include '../includes/header.php';
 ?>
 
     <section class="page-hero">
         <div class="container ph-content">
-
             <div class="ph-kicker reveal">Academic Info</div>
             <h1 class="reveal">Syllabus</h1>
-            <p class="reveal">Subject-wise syllabus for each year, group, and examination</p>
+            <p class="reveal">Subject-wise syllabus coverage for each examination type</p>
         </div>
     </section>
 
@@ -125,17 +132,15 @@ include '../includes/header.php';
         <div class="container">
 
             <div class="ai-top-row">
-                <span class="ai-session-label"><i class="fas fa-book-open"></i> Session: 2024–2025 — As per NCTB & Dhaka Board</span>
-                <div class="ai-meta-row">
-                    <span class="ai-last-updated">Last Updated: <?php echo $last_updated; ?></span>
-                </div>
+                <span class="ai-session-label"><i class="fas fa-book-open"></i> Session: 2024-2025 - As per NCTB &amp; Dhaka Board</span>
+                <span class="ai-last-updated">Last Updated: <?php echo $last_updated; ?></span>
             </div>
 
-            <!-- Filters -->
+            <!-- Filters: Year + Group only (Exam type shown as columns) -->
             <form method="GET" class="ai-filter-bar" style="margin-bottom:24px;">
                 <label>Year</label>
                 <select name="year" class="ai-filter-select" onchange="this.form.submit()">
-                    <option value="All Years"  <?php echo $selYear==='All Years'?'selected':''; ?>>All Years</option>
+                    <option value="All Years" <?php echo $selYear==='All Years'?'selected':''; ?>>All Years</option>
                     <?php foreach($years as $y): ?>
                     <option value="<?php echo $y; ?>" <?php echo $selYear===$y?'selected':''; ?>><?php echo $y; ?></option>
                     <?php endforeach; ?>
@@ -147,45 +152,146 @@ include '../includes/header.php';
                     <option value="<?php echo $g; ?>" <?php echo $selGroup===$g?'selected':''; ?>><?php echo $g; ?></option>
                     <?php endforeach; ?>
                 </select>
-                <div class="ai-filter-sep"></div>
-                <label>Exam</label>
-                <select name="exam" class="ai-filter-select" onchange="this.form.submit()">
-                    <?php foreach($examTypes as $e): ?>
-                    <option value="<?php echo $e; ?>" <?php echo $selExam===$e?'selected':''; ?>><?php echo $e; ?></option>
-                    <?php endforeach; ?>
-                </select>
             </form>
 
-            <?php if (!empty($filtered)): ?>
-            <div class="ai-syllabus-grid">
-                <?php foreach($filtered as $s): ?>
-                <div class="ai-syllabus-card reveal">
-                    <div>
-                        <div class="syl-subject"><?php echo htmlspecialchars($s['subject']); ?></div>
-                        <div class="syl-meta" style="margin-top:4px;">
+            <?php if (!empty($matrix)): ?>
+            <div class="syl-table-wrap reveal">
+                <table class="syl-table">
+                    <thead>
+                        <tr>
+                            <th class="syl-th-subject">Subject</th>
                             <?php
-                            $yr = $s['year'] === 'Both' ? '1st & 2nd Year' : $s['year'];
-                            $gr = $s['group'] === 'All'  ? 'All Groups'     : $s['group'];
-                            echo htmlspecialchars("$yr · $gr");
+                            $colClasses = ['Half-Yearly'=>'half','Year-Change'=>'yearchange','Pre-Test'=>'pretest','Test Exam'=>'testexam'];
+                            $colIcons   = ['Half-Yearly'=>'fa-clock','Year-Change'=>'fa-sync-alt','Pre-Test'=>'fa-pen-nib','Test Exam'=>'fa-graduation-cap'];
+                            foreach($examCols as $col):
+                                $cls = $colClasses[$col] ?? 'other';
                             ?>
-                        </div>
-                    </div>
-                    <div>
-                        <span class="ai-badge badge-college" style="margin-bottom:8px;display:inline-flex;"><?php echo htmlspecialchars($s['exam']); ?></span>
-                        <div style="font-size:.78rem;color:var(--muted);font-family:'Inter',sans-serif;line-height:1.5;"><?php echo htmlspecialchars($s['note']); ?></div>
-                    </div>
-                </div>
-                <?php endforeach; ?>
+                            <th class="syl-th-exam syl-col-<?php echo $cls; ?>">
+                                <i class="fas <?php echo $colIcons[$col] ?? 'fa-file-alt'; ?>"></i>
+                                <?php echo htmlspecialchars($col); ?>
+                            </th>
+                            <?php endforeach; ?>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($matrix as $subject => $exams): ?>
+                        <tr class="syl-row">
+                            <td class="syl-td-subject">
+                                <div class="syl-subject-name"><?php echo htmlspecialchars($subject); ?></div>
+                            </td>
+                            <?php foreach($examCols as $col): ?>
+                            <td class="syl-td-content<?php echo isset($exams[$col]) ? '' : ' syl-empty'; ?>">
+                                <?php if (isset($exams[$col])): ?>
+                                    <div class="syl-content-text"><?php echo htmlspecialchars($exams[$col]); ?></div>
+                                <?php else: ?>
+                                    <span class="syl-na">-</span>
+                                <?php endif; ?>
+                            </td>
+                            <?php endforeach; ?>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
             </div>
             <?php else: ?>
             <div class="ai-not-published">
                 <i class="fas fa-book-open"></i>
                 <h3>No Syllabus Found</h3>
-                <p>No syllabus matches your current filter selection. Try adjusting the Year, Group, or Exam type.</p>
+                <p>No syllabus matches your filter. Try selecting a different Year or Group.</p>
             </div>
             <?php endif; ?>
 
         </div>
     </div>
+
+<style>
+.syl-table-wrap {
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 16px rgba(15,39,68,.07);
+    overflow-x: auto;
+}
+.syl-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Inter', sans-serif;
+    font-size: .82rem;
+    min-width: 600px;
+}
+.syl-table thead tr { background: var(--navy); }
+.syl-th-subject {
+    text-align: left;
+    padding: 15px 20px;
+    font-size: .7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .09em;
+    color: rgba(255,255,255,.7);
+    width: 190px;
+    min-width: 150px;
+    position: sticky;
+    left: 0;
+    background: var(--navy);
+    z-index: 3;
+    border-right: 1px solid rgba(255,255,255,.12);
+}
+.syl-th-exam {
+    text-align: left;
+    padding: 15px 18px;
+    font-size: .72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .07em;
+    color: #fff;
+    min-width: 200px;
+    border-left: 1px solid rgba(255,255,255,.08);
+}
+.syl-th-exam i { margin-right: 6px; opacity: .8; }
+.syl-col-half       { background: #1d4ed8; }
+.syl-col-yearchange { background: #6d28d9; }
+.syl-col-pretest    { background: #b45309; }
+.syl-col-testexam   { background: #047857; }
+.syl-row:nth-child(even) td { background: #f8fafc; }
+.syl-row:nth-child(odd)  td { background: #fff; }
+.syl-row:hover td            { background: #eff6ff !important; }
+.syl-td-subject {
+    padding: 14px 20px;
+    vertical-align: top;
+    position: sticky;
+    left: 0;
+    border-right: 2px solid var(--border);
+    z-index: 1;
+}
+.syl-row:nth-child(even) .syl-td-subject { background: #f8fafc; }
+.syl-row:nth-child(odd)  .syl-td-subject { background: #fff; }
+.syl-row:hover .syl-td-subject            { background: #eff6ff !important; }
+.syl-subject-name {
+    font-weight: 700;
+    color: var(--navy);
+    font-size: .84rem;
+    line-height: 1.4;
+}
+.syl-td-content {
+    padding: 13px 18px;
+    vertical-align: top;
+    border-left: 1px solid #f0f4f8;
+    border-bottom: 1px solid var(--border);
+}
+.syl-content-text {
+    color: #374151;
+    line-height: 1.65;
+    font-size: .77rem;
+}
+.syl-empty .syl-na { color: #d1d5db; font-size: 1rem; }
+.syl-row td { border-bottom: 1px solid var(--border); }
+.syl-row:last-child td { border-bottom: none; }
+@media (max-width: 768px) {
+    .syl-th-subject, .syl-td-subject { min-width: 120px; width: 120px; padding: 10px 12px; }
+    .syl-th-exam, .syl-td-content    { min-width: 170px; padding: 10px 12px; }
+    .syl-subject-name { font-size: .78rem; }
+    .syl-content-text { font-size: .72rem; }
+}
+</style>
 
 <?php include '../includes/footer.php'; ?>
