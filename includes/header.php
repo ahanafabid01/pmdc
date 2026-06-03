@@ -91,9 +91,11 @@
                 <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/results.php"      class="nav-link <?php echo isset($page) && $page == 'results' ? 'active' : ''; ?>" data-i18n="nav.results">ফলাফল</a></li>
                 <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/contact.php"      class="nav-link <?php echo isset($page) && $page == 'contact' ? 'active' : ''; ?>" data-i18n="nav.contact">যোগাযোগ</a></li>
                 <li><a href="#" onclick="openModal('Apply Now')" class="nav-link nav-apply" data-i18n="nav.apply">ভর্তি হন</a></li>
-                <!-- Mobile-only panel footer -->
+
+                <!-- ── Mobile-only info panel — sits directly below Apply ── -->
                 <li class="nav-panel-footer">
                     <div class="npf-inner">
+                        <!-- Contact info -->
                         <div class="npf-contact">
                             <a href="tel:01712227983" class="npf-item">
                                 <i class="fas fa-phone-alt"></i>
@@ -104,9 +106,18 @@
                                 <span>pmdc@edu.bd</span>
                             </a>
                         </div>
+                        <!-- Staff Portal -->
                         <a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/portal/portal-login.php" class="npf-portal-btn">
                             <i class="fas fa-lock"></i> <span data-i18n="footer.staffportal">স্টাফ পোর্টাল</span>
                         </a>
+                        <!-- Language Toggle -->
+                        <div class="npf-lang-row">
+                            <span class="nlr-label" data-i18n="nav.language">ভাষা</span>
+                            <div class="nlr-toggle">
+                                <button class="lang-btn lang-active" id="mobileLangBn" aria-label="বাংলা">বাংলা</button>
+                                <button class="lang-btn" id="mobileLangEn" aria-label="English">EN</button>
+                            </div>
+                        </div>
                     </div>
                 </li>
             </ul>

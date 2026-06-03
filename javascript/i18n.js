@@ -34,6 +34,7 @@
         'nav.admit': { en: 'Admit Card', bn: 'প্রবেশপত্র' },
         'nav.form-fillup': { en: 'HSC Form Fillup', bn: 'এইচএসসি ফর্ম পূরণ' },
         'nav.menu': { en: 'Menu', bn: 'মেনু' },
+        'nav.language': { en: 'Language', bn: 'ভাষা' },
 
         /* ━━━━━━━━━━━ TOPBAR ━━━━━━━━━━━ */
         'topbar.library': { en: 'Library', bn: 'পাঠাগার' },
@@ -517,18 +518,12 @@
             document.getElementById('langEn').addEventListener('click', () => toggleLang('en'));
         }
 
-        // Mobile: inject inside the hamburger nav panel footer
-        const npfInner = document.querySelector('.npf-inner');
-        if (npfInner && !document.getElementById('mobileLangToggle')) {
-            const wrap = document.createElement('div');
-            wrap.id = 'mobileLangToggle';
-            wrap.className = 'npf-lang-toggle';
-            wrap.innerHTML = `
-                <button class="lang-btn lang-active" id="mobileLangBn" aria-label="বাংলা">বাংলা</button>
-                <button class="lang-btn" id="mobileLangEn" aria-label="English">EN</button>`;
-            npfInner.appendChild(wrap);
-            document.getElementById('mobileLangBn').addEventListener('click', () => toggleLang('bn'));
-            document.getElementById('mobileLangEn').addEventListener('click', () => toggleLang('en'));
+        // Mobile: buttons are hardcoded in header.php — just wire up events
+        const mbBnBtn = document.getElementById('mobileLangBn');
+        const mbEnBtn = document.getElementById('mobileLangEn');
+        if (mbBnBtn && mbEnBtn) {
+            mbBnBtn.addEventListener('click', () => toggleLang('bn'));
+            mbEnBtn.addEventListener('click', () => toggleLang('en'));
         }
     }
 

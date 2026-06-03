@@ -1075,9 +1075,8 @@ footer {
         display: flex;
     }
 
-    /* Mobile panel footer (contact + portal) */
+    /* Mobile panel footer (contact + portal + lang) — flows right after Apply */
     .nav-panel-footer {
-        margin-top: auto; /* push to bottom */
         padding: 16px;
         border-top: 1px solid var(--border);
         background: var(--surface);
@@ -1100,7 +1099,14 @@ footer {
     }
     .npf-portal-btn:hover { background: var(--blue); color: var(--white); }
 
-    /* Hide desktop footer element outside mobile */
+    /* Language toggle row inside panel footer */
+    .npf-lang-row {
+        display: flex; align-items: center; justify-content: space-between; gap: 12px;
+        padding-top: 14px;
+        border-top: 1px solid var(--border);
+    }
+
+    /* Show the panel footer on mobile (already exists, keep) */
     .nav-panel-footer { display: block; }
 
     .hero             { min-height: 470px; height: auto; padding: 64px 0 44px; background-attachment: scroll; }
@@ -1186,63 +1192,50 @@ footer {
 
 /* Scrolled navbar – invert colors (no longer applicable as toggle is in topbar) */
 
-/* Mobile toggle: lives inside the hamburger nav panel footer */
-.npf-lang-toggle {
-    display: flex;
-    margin-top: 14px;
-    border-top: 1px solid rgba(0,0,0,.1);
-    padding-top: 16px;
-    width: 100%;
-    justify-content: center;
+/* nlr-label & nlr-toggle — used inside .npf-lang-row in the mobile panel footer */
+.nlr-label {
+    font-size: .78rem;
+    font-weight: 600;
+    color: var(--muted);
+    font-family: 'Inter', sans-serif;
+    letter-spacing: .04em;
 }
-
-/* Unified pill container track */
-.npf-lang-toggle {
-    gap: 0;
-}
-.npf-lang-toggle .lang-btn {
-    flex: 1;
-    max-width: 110px;
-    border: 1.5px solid #d1d5db !important;
-    border-right-width: 0.75px !important;
-    border-left-width: 0.75px !important;
-    border-radius: 0 !important;
+.nlr-toggle {
+    display: inline-flex;
+    border-radius: 30px;
+    overflow: hidden;
+    border: 1.5px solid #d1d5db;
     background: #f3f4f6;
+}
+.nlr-toggle .lang-btn {
+    border: none !important;
+    border-radius: 0 !important;
+    background: transparent;
     color: #374151;
-    font-size: .82rem;
+    font-size: .8rem;
     font-weight: 700;
     font-family: 'Inter', sans-serif;
-    padding: 9px 14px;
+    padding: 7px 20px;
     cursor: pointer;
     transition: all .18s ease;
-    text-align: center;
     line-height: 1.2;
 }
-.npf-lang-toggle .lang-btn:first-child {
-    border-radius: 30px 0 0 30px !important;
-    border-right: none !important;
-}
-.npf-lang-toggle .lang-btn:last-child {
-    border-radius: 0 30px 30px 0 !important;
-    border-left: none !important;
-}
-.npf-lang-toggle .lang-btn:hover:not(.lang-active) {
+.nlr-toggle .lang-btn:hover:not(.lang-active) {
     background: #e5e7eb;
     color: #111827;
 }
-.npf-lang-toggle .lang-btn.lang-active {
+.nlr-toggle .lang-btn.lang-active {
     background: var(--blue) !important;
-    border-color: var(--blue) !important;
     color: #fff !important;
-    box-shadow: 0 2px 8px rgba(37,99,235,.35);
-    z-index: 1;
-    position: relative;
+    border-radius: 28px !important;
+    box-shadow: 0 2px 8px rgba(37,99,235,.3);
 }
 
 @media (max-width: 900px) {
     /* Hide desktop toggle in topbar on mobile */
     #topLangToggle { display: none !important; }
 }
+
 
 /* ── Bengali specific UI Optimisations ───────────────────── */
 html[lang="bn"] .nav-link {
