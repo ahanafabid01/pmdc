@@ -86,7 +86,7 @@
                 </li>
 
                 <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/announcements.php" class="nav-link <?php echo isset($page) && $page == 'announcements' ? 'active' : ''; ?>" data-i18n="nav.announcements">বিজ্ঞপ্তি</a></li>
-                <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>gallery.php"              class="nav-link <?php echo isset($page) && $page == 'gallery' ? 'active' : ''; ?>" data-i18n="nav.gallery">গ্যালারি</a></li>
+                <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/gallery.php"        class="nav-link <?php echo isset($page) && $page == 'gallery' ? 'active' : ''; ?>" data-i18n="nav.gallery">গ্যালারি</a></li>
                 <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/teachers.php"      class="nav-link <?php echo isset($page) && $page == 'teachers' ? 'active' : ''; ?>" data-i18n="nav.teachers">শিক্ষক ও কর্মচারী</a></li>
                 <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/results.php"      class="nav-link <?php echo isset($page) && $page == 'results' ? 'active' : ''; ?>" data-i18n="nav.results">ফলাফল</a></li>
                 <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/contact.php"      class="nav-link <?php echo isset($page) && $page == 'contact' ? 'active' : ''; ?>" data-i18n="nav.contact">যোগাযোগ</a></li>

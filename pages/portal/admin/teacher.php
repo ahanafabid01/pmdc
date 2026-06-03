@@ -88,7 +88,7 @@
                     <p>Manage staff records displayed on the public website</p>
                 </div>
                 <div class="tm-header-actions">
-                    <a href="../../../teachers.php" target="_blank" class="btn-preview">
+                    <a href="../../../pages/teachers.php" target="_blank" class="btn-preview">
                         <i class="fas fa-external-link-alt"></i> Preview Public Page
                     </a>
                     <button class="btn-export" id="btnExport">
