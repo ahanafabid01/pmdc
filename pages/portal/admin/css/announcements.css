@@ -1,0 +1,130 @@
+/* ═══════════════════════════════════════════════════════════
+   ADMIN PORTAL — announcements.css
+   Announcement-specific styles only.
+   Relies on styles.css + teacher.css for shared classes.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Toolbar (inside tm-card, above tm-table-wrap) ──────── */
+.ann-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+}
+
+/* ── Table: title / date / attachment cells ─────────────── */
+.ann-title-cell {
+    max-width: 280px;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    font-weight: 700; color: var(--text);
+}
+.ann-date-cell { white-space: nowrap; color: var(--muted); font-size: .82rem; }
+.att-icon { color: var(--blue); font-size: .9rem; }
+.att-none { color: #cbd5e1; font-size: .9rem; }
+
+/* Status badges */
+.sb-published { display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:700;background:#dcfce7;color:#15803d; }
+.sb-draft     { display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:700;background:#f1f5f9;color:#64748b; }
+
+/* Action buttons (complement btn-edit / btn-del from teacher.css) */
+.act-toggle-pub   { width:32px;height:32px;border-radius:8px;border:1.5px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:#16a34a;cursor:pointer;transition:all var(--transition); }
+.act-toggle-pub:hover   { background:#f0fdf4; border-color:#86efac; }
+.act-toggle-draft { width:32px;height:32px;border-radius:8px;border:1.5px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:var(--muted);cursor:pointer;transition:all var(--transition); }
+.act-toggle-draft:hover { background:var(--bg); border-color:#94a3b8; }
+
+/* ── Empty state ─────────────────────────────────────────── */
+.ann-empty {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 72px 24px; gap: 10px; text-align: center;
+}
+.ann-empty i { font-size: 3rem; color: var(--text-light); margin-bottom: 8px; }
+.ann-empty p { font-size: 1rem; font-weight: 700; color: var(--text); }
+.ann-empty span { font-size: .85rem; color: var(--muted); margin-bottom: 8px; }
+
+/* ── Inline field errors ─────────────────────────────────── */
+.ann-field-err {
+    display: block; font-size: .76rem;
+    color: var(--red); margin-top: 4px; min-height: 16px;
+}
+
+/* ── Optional label ──────────────────────────────────────── */
+.ann-opt { font-weight: 400; color: var(--text-light); font-size: .74rem; }
+
+/* ── File drop zone ──────────────────────────────────────── */
+.ann-file-drop {
+    border: 2px dashed var(--border);
+    border-radius: var(--radius-sm);
+    padding: 22px 20px;
+    text-align: center; cursor: pointer;
+    transition: border-color var(--transition), background var(--transition);
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+}
+.ann-file-drop:hover, .ann-file-drop.dragover {
+    border-color: var(--blue); background: var(--blue-light);
+}
+.ann-file-drop i { font-size: 1.4rem; color: var(--text-light); }
+.ann-file-drop span { font-size: .84rem; color: var(--muted); }
+.ann-file-drop small { font-size: .74rem; color: var(--text-light); }
+.ann-file-browse { color: var(--blue); font-weight: 700; cursor: pointer; }
+.ann-file-browse:hover { text-decoration: underline; }
+
+/* ── File preview ────────────────────────────────────────── */
+.ann-file-preview {
+    margin-top: 10px; padding: 11px 14px;
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    display: flex; align-items: center; gap: 12px;
+    font-size: .84rem; color: var(--text);
+}
+.fp-thumb { width:44px;height:44px;border-radius:6px;object-fit:cover;flex-shrink:0; }
+.fp-icon  { width:44px;height:44px;border-radius:8px;background:var(--blue-light);color:var(--blue);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0; }
+.fp-info  { flex:1;min-width:0; }
+.fp-name  { font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+.fp-size  { font-size:.72rem;color:var(--muted);margin-top:2px; }
+.fp-remove {
+    width:28px;height:28px;border-radius:7px;
+    background:#fef2f2;color:var(--red);border:none;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;font-size:.78rem;flex-shrink:0;
+    transition:background var(--transition);
+}
+.fp-remove:hover { background:#fee2e2; }
+
+/* ── Status radios ───────────────────────────────────────── */
+.ann-status-radios { display: flex; gap: 10px; flex-wrap: wrap; }
+.ann-radio-opt { display: flex; align-items: center; cursor: pointer; }
+.ann-radio-opt input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+.ann-radio-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 16px; border: 1.5px solid var(--border);
+    border-radius: 9px; font-size: .83rem; font-weight: 600;
+    color: var(--muted); transition: all var(--transition); cursor: pointer;
+}
+.ann-radio-opt input:checked + .ann-radio-pill {
+    border-color: var(--blue); background: var(--blue-light); color: var(--blue);
+}
+.ann-radio-pill i { font-size: .8rem; }
+
+/* ── Save-as-Draft button (alongside btn-save from teacher.css) */
+.ann-btn-draft {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 9px 18px; border: 1.5px solid var(--blue);
+    border-radius: 9px; background: var(--surface);
+    color: var(--blue); font-size: .875rem; font-weight: 700;
+    cursor: pointer; font-family: 'Inter', sans-serif;
+    transition: all var(--transition);
+}
+.ann-btn-draft:hover { background: var(--blue-light); }
+.ann-btn-draft:disabled { opacity: .6; cursor: not-allowed; }
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .ann-toolbar { flex-direction: column; align-items: stretch; }
+    .tm-search-box { max-width: none; }
+}
+@media (max-width: 480px) {
+    .ann-status-radios { flex-direction: column; }
+}

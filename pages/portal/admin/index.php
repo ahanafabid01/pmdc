@@ -64,7 +64,7 @@
                 <i class="fas fa-file-invoice-dollar"></i>
                 <span>Finance</span>
             </a>
-            <a href="#" class="nav-item">
+            <a href="announcements.php" class="nav-item">
                 <i class="fas fa-bell"></i>
                 <span>Announcements</span>
                 <span class="badge warn">3</span>

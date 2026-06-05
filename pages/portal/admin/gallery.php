@@ -39,7 +39,7 @@
             <span class="nav-section-label">Management</span>
             <a href="academic-calendar.php" class="nav-item"><i class="fas fa-calendar-alt"></i><span>Academic Calendar</span></a>
             <a href="#" class="nav-item"><i class="fas fa-file-invoice-dollar"></i><span>Finance</span></a>
-            <a href="#" class="nav-item"><i class="fas fa-bell"></i><span>Announcements</span><span class="badge warn">3</span></a>
+            <a href="announcements.php" class="nav-item"><i class="fas fa-bell"></i><span>Announcements</span><span class="badge warn">3</span></a>
             <a href="#" class="nav-item"><i class="fas fa-chart-line"></i><span>Reports</span></a>
             <div class="nav-divider"></div>
             <span class="nav-section-label">System</span>
