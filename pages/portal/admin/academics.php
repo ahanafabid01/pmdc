@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -90,24 +90,7 @@
                 </div>
             </div>
 
-            <!-- Stats -->
-            <div class="tm-stats-row" id="statsRow">
-                <div class="tm-stat-pill">
-                    <i class="fas fa-school" style="color:var(--blue);font-size:1rem;flex-shrink:0;"></i>
-                    <span class="ts-val" id="statHsc">0</span>
-                    <span class="ts-lbl">HSC Groups</span>
-                </div>
-                <div class="tm-stat-pill">
-                    <i class="fas fa-university" style="color:#7c3aed;font-size:1rem;flex-shrink:0;"></i>
-                    <span class="ts-val" id="statDeg">0</span>
-                    <span class="ts-lbl">Degree Programs</span>
-                </div>
-                <div class="tm-stat-pill">
-                    <i class="fas fa-book" style="color:var(--green);font-size:1rem;flex-shrink:0;"></i>
-                    <span class="ts-val" id="statSubjects">0</span>
-                    <span class="ts-lbl">Total Subjects</span>
-                </div>
-            </div>
+
 
             <!-- ── HSC Programs Table ── -->
             <div class="ac-section-label">

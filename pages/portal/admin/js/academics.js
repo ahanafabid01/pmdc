@@ -178,20 +178,6 @@ function countBadge(count, cls) {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   RENDER — STATS
-   ═══════════════════════════════════════════════════════════ */
-
-function renderStats() {
-    document.getElementById('statHsc').textContent = hscData.length;
-    document.getElementById('statDeg').textContent = degData.length;
-
-    const totalSubj = [...hscData, ...degData].reduce((sum, p) => {
-        return sum + (p.compulsory?.length || 0) + (p.optional?.length || 0) + (p.fourth?.length || 0);
-    }, 0);
-    document.getElementById('statSubjects').textContent = totalSubj;
-}
-
-/* ═══════════════════════════════════════════════════════════
    RENDER — HSC TABLE
    ═══════════════════════════════════════════════════════════ */
 
@@ -280,7 +266,6 @@ function renderDegTable() {
 }
 
 function renderAll() {
-    renderStats();
     renderHscTable();
     renderDegTable();
 }
