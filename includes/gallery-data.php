@@ -9,8 +9,15 @@
 function pmdc_gallery_db() {
     static $pdo = null;
     if ($pdo) return $pdo;
+    
+    // Include config if not already included
+    if (!defined('DB_NAME')) {
+        require_once dirname(__DIR__) . '/includes/config.php';
+    }
+    
     try {
-        $pdo = new PDO('mysql:host=localhost;dbname=pmdc_db;charset=utf8mb4', 'root', '', [
+        $dsn = 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8mb4';
+        $pdo = new PDO($dsn, DB_USER, DB_PASS, [
             PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         ]);
@@ -36,49 +43,7 @@ function pmdc_gallery_init() {
     return true;
 }
 
-/* ── Sample data (used when DB is absent or table empty) ────────────── */
-function pmdc_gallery_sample() {
-    $base = [
-        ['title' => 'Annual Prize Giving Ceremony', 'year' => 2026, 'date_uploaded' => '2026-03-15'],
-        ['title' => 'Science Fair 2026',             'year' => 2026, 'date_uploaded' => '2026-02-20'],
-        ['title' => 'National Day Celebration',      'year' => 2026, 'date_uploaded' => '2026-03-26'],
-        ['title' => 'Campus Life 2026',              'year' => 2026, 'date_uploaded' => '2026-04-10'],
-        ['title' => 'HSC Farewell 2025',             'year' => 2025, 'date_uploaded' => '2025-11-30'],
-        ['title' => 'Cultural Programme 2025',       'year' => 2025, 'date_uploaded' => '2025-10-15'],
-        ['title' => 'Independence Day 2025',         'year' => 2025, 'date_uploaded' => '2025-03-26'],
-        ['title' => 'Result Distribution 2025',      'year' => 2025, 'date_uploaded' => '2025-08-05'],
-        ['title' => 'Freshers Welcome 2025',         'year' => 2025, 'date_uploaded' => '2025-01-20'],
-        ['title' => 'Sports Day 2025',               'year' => 2025, 'date_uploaded' => '2025-02-14'],
-        ['title' => 'Annual Function 2024',          'year' => 2024, 'date_uploaded' => '2024-12-05'],
-        ['title' => 'Tree Plantation Drive',         'year' => 2024, 'date_uploaded' => '2024-06-05'],
-        ['title' => 'Teacher\'s Day 2024',           'year' => 2024, 'date_uploaded' => '2024-10-05'],
-        ['title' => 'Victory Day 2024',              'year' => 2024, 'date_uploaded' => '2024-12-16'],
-        ['title' => 'Orientation Day 2023',          'year' => 2023, 'date_uploaded' => '2023-01-10'],
-        ['title' => 'HSC Exam 2023',                 'year' => 2023, 'date_uploaded' => '2023-04-02'],
-    ];
 
-    // Assign Unsplash placeholders (school/event themed)
-    $imgs = [
-        'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=800&fit=crop&q=80',
-        'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&h=800&fit=crop&q=80',
-        'https://images.unsplash.com/photo-1567168544646-208fa5d408fb?w=800&h=800&fit=crop&q=80',
-        'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&h=800&fit=crop&q=80',
-        'https://images.unsplash.com/photo-1577896851231-70ef18881754?w=800&h=800&fit=crop&q=80',
-        'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=800&h=800&fit=crop&q=80',
-        'https://images.unsplash.com/photo-1544717305-2782549b5136?w=800&h=800&fit=crop&q=80',
-        'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&h=800&fit=crop&q=80',
-    ];
-
-    $out = [];
-    foreach ($base as $i => $row) {
-        $out[] = array_merge($row, [
-            'id'       => $i + 1,
-            'filename' => $imgs[$i % count($imgs)],
-            'is_external' => true,
-        ]);
-    }
-    return $out;
-}
 
 /* ── Public: get all photos ─────────────────────────────────────────── */
 function pmdc_gallery_get_all() {
@@ -86,10 +51,9 @@ function pmdc_gallery_get_all() {
     $db = pmdc_gallery_db();
     if ($db) {
         $stmt = $db->query("SELECT * FROM gallery_photos ORDER BY year DESC, date_uploaded DESC");
-        $rows = $stmt->fetchAll();
-        if ($rows) return $rows;
+        return $stmt->fetchAll();
     }
-    return pmdc_gallery_sample();
+    return [];
 }
 
 /* ── Public: get distinct years ─────────────────────────────────────── */

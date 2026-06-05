@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -99,24 +99,7 @@
                 </div>
             </div>
 
-            <!-- Quick Stats -->
-            <div class="tm-stats-row">
-                <div class="tm-stat-pill" id="statGalleryTotal">
-                    <i class="fas fa-images"></i>
-                    <span class="ts-val" id="statTotal">—</span>
-                    <span class="ts-lbl">Total Photos</span>
-                </div>
-                <div class="tm-stat-pill" id="statGalleryAlbums">
-                    <i class="fas fa-layer-group"></i>
-                    <span class="ts-val" id="statYears">—</span>
-                    <span class="ts-lbl">Year Albums</span>
-                </div>
-                <div class="tm-stat-pill" id="statGalleryLatest">
-                    <i class="fas fa-clock"></i>
-                    <span class="ts-val" id="statLatest">—</span>
-                    <span class="ts-lbl">Latest Upload</span>
-                </div>
-            </div>
+
 
             <!-- Toolbar -->
             <div class="gm-toolbar">

@@ -39,29 +39,21 @@
     function loadPhotos() {
         fetch(API + '?action=list')
             .then(r => r.json())
-            .then(data => { allPhotos = data.photos || SAMPLE; renderAll(); })
-            .catch(() => { allPhotos = SAMPLE; renderAll(); });
+            .then(data => { 
+                allPhotos = data.photos || []; 
+                renderAll(); 
+            })
+            .catch(() => { 
+                allPhotos = []; 
+                renderAll(); 
+                toast('Failed to load gallery from server', 'error');
+            });
     }
 
-    /* ── Sample data ──────────────────────────────────── */
-    const SAMPLE = [
-        { id: 1, title: 'Annual Prize Giving Ceremony', filename: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=500&h=500&fit=crop', year: 2026, date_uploaded: '2026-03-15', is_external: 1 },
-        { id: 2, title: 'Science Fair 2026', filename: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=500&h=500&fit=crop', year: 2026, date_uploaded: '2026-02-20', is_external: 1 },
-        { id: 3, title: 'National Day Celebration', filename: 'https://images.unsplash.com/photo-1567168544646-208fa5d408fb?w=500&h=500&fit=crop', year: 2026, date_uploaded: '2026-03-26', is_external: 1 },
-        { id: 4, title: 'Campus Life 2026', filename: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=500&h=500&fit=crop', year: 2026, date_uploaded: '2026-04-10', is_external: 1 },
-        { id: 5, title: 'HSC Farewell 2025', filename: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?w=500&h=500&fit=crop', year: 2025, date_uploaded: '2025-11-30', is_external: 1 },
-        { id: 6, title: 'Cultural Programme 2025', filename: 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=500&h=500&fit=crop', year: 2025, date_uploaded: '2025-10-15', is_external: 1 },
-        { id: 7, title: 'Sports Day 2025', filename: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=500&h=500&fit=crop', year: 2025, date_uploaded: '2025-09-05', is_external: 1 },
-        { id: 8, title: 'Orientation 2024', filename: 'https://images.unsplash.com/photo-1606761568499-6d2451b23c66?w=500&h=500&fit=crop', year: 2024, date_uploaded: '2024-01-12', is_external: 1 },
-    ];
 
-    /* ── Stats ────────────────────────────────────────── */
+
     function renderStats() {
-        $('statTotal').textContent = allPhotos.length;
         const years = [...new Set(allPhotos.map(p => p.year))];
-        $('statYears').textContent = years.length;
-        const sorted = [...allPhotos].sort((a, b) => new Date(b.date_uploaded) - new Date(a.date_uploaded));
-        $('statLatest').textContent = sorted[0] ? fmtDate(sorted[0].date_uploaded) : '—';
         // Year filter
         const sel = $('filterYear');
         sel.innerHTML = '<option value="all">All Years</option>';

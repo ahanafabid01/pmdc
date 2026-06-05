@@ -9,6 +9,24 @@ require_once dirname(__DIR__) . '/includes/gallery-data.php';
 
 $action = $_POST['action'] ?? $_GET['action'] ?? '';
 
+/* ── LIST ───────────────────────────────────────────────────── */
+if ($action === 'list') {
+    $photos = pmdc_gallery_get_all();
+    // Reformat for frontend
+    $formatted = array_map(function($p) {
+        return [
+            'id'            => (string)$p['id'],
+            'title'         => $p['title'],
+            'filename'      => $p['filename'],
+            'year'          => (string)$p['year'],
+            'date_uploaded' => $p['date_uploaded'],
+            'is_external'   => !empty($p['is_external'])
+        ];
+    }, $photos);
+    echo json_encode(['ok' => true, 'photos' => $formatted]);
+    exit;
+}
+
 /* ── DELETE ─────────────────────────────────────────────────── */
 if ($action === 'delete') {
     $id = (int)($_POST['id'] ?? 0);
@@ -48,7 +66,7 @@ if ($action === 'upload') {
     $title = trim($_POST['title'] ?? '');
 
     $uploadDir = dirname(__DIR__) . '/uploads/gallery/' . $year . '/';
-    $thumbDir  = dirname(__DIR__) . '/uploads/gallery/' . $year . '/thumbs/';
+    $thumbDir  = dirname(__DIR__) . '/uploads/gallery/thumbs/' . $year . '/';
 
     if (!is_dir($uploadDir)) mkdir($uploadDir, 0755, true);
     if (!is_dir($thumbDir))  mkdir($thumbDir,  0755, true);
