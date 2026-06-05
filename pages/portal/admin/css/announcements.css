@@ -25,15 +25,41 @@
 .att-icon { color: var(--blue); font-size: .9rem; }
 .att-none { color: #cbd5e1; font-size: .9rem; }
 
-/* Status badges */
-.sb-published { display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:700;background:#dcfce7;color:#15803d; }
-.sb-draft     { display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:700;background:#f1f5f9;color:#64748b; }
+/* ── Status badges ───────────────────────────────────────── */
+.status-badge { display:inline-flex; align-items:center; gap:4px; padding:3px 10px; border-radius:20px; font-size:.72rem; font-weight:700; white-space:nowrap; }
+.sb-published { background:#dcfce7; color:#15803d; }
+.sb-draft     { background:#f1f5f9; color:#64748b; }
 
-/* Action buttons (complement btn-edit / btn-del from teacher.css) */
-.act-toggle-pub   { width:32px;height:32px;border-radius:8px;border:1.5px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:#16a34a;cursor:pointer;transition:all var(--transition); }
+/* ── Action buttons (row-level) ─────────────────────────── */
+.action-btns { display:flex; align-items:center; gap:5px; }
+.act-btn {
+    width:32px; height:32px; border-radius:8px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:.82rem; cursor:pointer; border:1.5px solid var(--border);
+    background:var(--surface); transition:all var(--transition);
+}
+.act-edit          { color:var(--blue); }
+.act-edit:hover    { background:var(--blue-light); border-color:var(--blue); }
+.act-delete        { color:var(--red); }
+.act-delete:hover  { background:#fee2e2; border-color:#fca5a5; }
+.act-toggle-pub    { color:#16a34a; }
 .act-toggle-pub:hover   { background:#f0fdf4; border-color:#86efac; }
-.act-toggle-draft { width:32px;height:32px;border-radius:8px;border:1.5px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:var(--muted);cursor:pointer;transition:all var(--transition); }
+.act-toggle-draft  { color:var(--muted); }
 .act-toggle-draft:hover { background:var(--bg); border-color:#94a3b8; }
+
+/* ── Pagination ──────────────────────────────────────────── */
+.ap-btn {
+    min-width:32px; height:32px; padding:0 8px;
+    border-radius:7px; border:1.5px solid var(--border);
+    background:var(--surface); font-size:.78rem; font-weight:600;
+    color:var(--muted); cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    transition:all var(--transition);
+}
+.ap-btn:hover   { border-color:var(--blue); color:var(--blue); }
+.ap-btn.active  { background:var(--blue); border-color:var(--blue); color:#fff; }
+.ap-btn:disabled { opacity:.4; cursor:not-allowed; pointer-events:none; }
+
 
 /* ── Empty state ─────────────────────────────────────────── */
 .ann-empty {
