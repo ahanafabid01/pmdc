@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -64,7 +64,6 @@
             <div class="user-menu">
                 <img src="https://ui-avatars.com/api/?name=Admin+Nasrin&background=1a3a5c&color=fff&bold=true" alt="Admin">
                 <span class="um-name">Admin Nasrin</span>
-                <i class="fas fa-chevron-down"></i>
             </div>
             <a href="../portal-login.php" class="logout-btn"><i class="fas fa-sign-out-alt"></i></a>
         </div>
@@ -375,3 +374,4 @@
 <script src="js/registration-admin.js"></script>
 </body>
 </html>
+

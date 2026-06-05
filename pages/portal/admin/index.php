@@ -124,7 +124,6 @@
                 <div class="user-menu">
                     <img src="https://ui-avatars.com/api/?name=Admin+Nasrin&background=1a3a5c&color=fff&bold=true" alt="Admin Nasrin">
                     <span class="um-name">Admin Nasrin</span>
-                    <i class="fas fa-chevron-down"></i>
                 </div>
                 <a href="../portal-login.php" class="logout-btn" title="Logout">
                     <i class="fas fa-sign-out-alt"></i>
@@ -497,3 +496,4 @@
     </script>
 </body>
 </html>
+
