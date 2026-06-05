@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -68,6 +68,14 @@
                 <i class="fas fa-bell"></i>
                 <span>Announcements</span>
                 <span class="badge warn">3</span>
+            </a>
+            <a href="registration-hsc.php" class="nav-item">
+                <i class="fas fa-file-alt"></i>
+                <span>HSC Registration</span>
+            </a>
+            <a href="registration-degree.php" class="nav-item">
+                <i class="fas fa-university"></i>
+                <span>Degree Registration</span>
             </a>
             <a href="#" class="nav-item">
                 <i class="fas fa-chart-line"></i>

@@ -114,6 +114,7 @@ if (!isset($page_title_bn)) {
                         <li class="dropdown-divider"></li>
                         <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/admit-card.php"            class="dropdown-item <?php echo isset($page) && $page == 'admit-card' ? 'active' : ''; ?>"><i class="fas fa-id-card"></i> <span data-i18n="nav.admit">প্রবেশপত্র</span></a></li>
                         <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/hsc-form-fillup.php"       class="dropdown-item <?php echo isset($page) && $page == 'hsc-form-fillup' ? 'active' : ''; ?>"><i class="fas fa-file-alt"></i> <span data-i18n="nav.form-fillup">এইচএসসি ফর্ম পূরণ</span></a></li>
+                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/degree-form-fillup.php"    class="dropdown-item <?php echo isset($page) && $page == 'degree-form-fillup' ? 'active' : ''; ?>"><i class="fas fa-university"></i> <span data-i18n="nav.degree_form_fillup">ডিগ্রি ফর্ম পূরণ</span></a></li>
                         </div>
                     </ul>
                 </li>

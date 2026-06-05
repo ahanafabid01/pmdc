@@ -33,6 +33,7 @@
         'nav.instruction': { en: 'Student Instruction', bn: 'শিক্ষার্থী নির্দেশিকা' },
         'nav.admit': { en: 'Admit Card', bn: 'প্রবেশপত্র' },
         'nav.form-fillup': { en: 'HSC Form Fillup', bn: 'এইচএসসি ফর্ম পূরণ' },
+        'nav.degree_form_fillup': { en: 'Degree Form Fillup', bn: 'ডিগ্রি ফর্ম পূরণ' },
         'nav.menu': { en: 'Menu', bn: 'মেনু' },
         'nav.language': { en: 'Language', bn: 'ভাষা' },
 
@@ -43,7 +44,35 @@
 
         /* ━━━━━━━━━━━ NOTICE TICKER ━━━━━━━━━━━ */
         'ticker.label': { en: 'Notice', bn: 'নোটিশ' },
-        'ticker.all':   { en: 'View All', bn: 'সব দেখুন' },
+        'ticker.all':   { en: 'All Notices', bn: 'সকল নোটিশ' },
+
+        /* ━━━━━━━━━━━ FORM FILLUP PAGES ━━━━━━━━━━━ */
+        'hero.academic_info': { en: 'Academic Info', bn: 'একাডেমিক তথ্য' },
+        'hero.degree_fillup': { en: 'Degree Form Fillup', bn: 'ডিগ্রি ফর্ম পূরণ' },
+        'hero.degree_fillup_desc': { en: 'National University examination form fillup schedule, fees, and required documents', bn: 'জাতীয় বিশ্ববিদ্যালয়ের পরীক্ষার ফর্ম পূরণ সময়সূচী, ফি এবং প্রয়োজনীয় কাগজপত্র' },
+        'hero.hsc_fillup': { en: 'HSC Form Fillup', bn: 'এইচএসসি ফর্ম পূরণ' },
+        'hero.hsc_fillup_desc': { en: 'Board examination form fillup schedule, fees, and required documents', bn: 'বোর্ড পরীক্ষার ফর্ম পূরণ সময়সূচী, ফি এবং প্রয়োজনীয় কাগজপত্র' },
+        
+        'fillup.degree_title': { en: 'Degree (Pass) Examination — National University', bn: 'ডিগ্রি (পাস) পরীক্ষা — জাতীয় বিশ্ববিদ্যালয়' },
+        'fillup.hsc_title': { en: 'HSC Board Examination — 2nd Year', bn: 'এইচএসসি বোর্ড পরীক্ষা — ২য় বর্ষ' },
+        'fillup.last_updated': { en: 'Last Updated:', bn: 'সর্বশেষ আপডেট:' },
+        'fillup.schedule': { en: 'Form Fillup Schedule', bn: 'ফর্ম পূরণের সময়সূচী' },
+        'fillup.degree_sub': { en: 'Degree (Pass) — National University', bn: 'ডিগ্রি (পাস) — জাতীয় বিশ্ববিদ্যালয়' },
+        'fillup.hsc_sub': { en: 'HSC Board Examination', bn: 'এইচএসসি বোর্ড পরীক্ষা' },
+        'fillup.start_date': { en: 'Start Date', bn: 'শুরুর তারিখ' },
+        'fillup.end_date': { en: 'End Date', bn: 'শেষ তারিখ' },
+        'fillup.form_fee': { en: 'Form Fee', bn: 'ফর্ম ফি' },
+        'fillup.where_submit': { en: 'Where to Submit', bn: 'কোথায় জমা দেবেন' },
+        'fillup.required_docs': { en: 'Required Documents', bn: 'প্রয়োজনীয় কাগজপত্র' },
+        'fillup.not_announced': { en: 'Not Announced Yet', bn: 'এখনও ঘোষণা করা হয়নি' },
+        
+        'fillup.online_admission': { en: 'ONLINE ADMISSION', bn: 'অনলাইন ভর্তি' },
+        'fillup.reg_open': { en: 'Registration is Open!', bn: 'নিবন্ধন চলছে!' },
+        'fillup.reg_opening_soon': { en: 'Registration Opening Soon', bn: 'নিবন্ধন শীঘ্রই শুরু হবে' },
+        'fillup.reg_closed': { en: 'Registration Closed', bn: 'নিবন্ধন বন্ধ' },
+        'fillup.apply_now': { en: 'Apply Now', bn: 'আবেদন করুন' },
+        'fillup.not_open_btn': { en: 'Not Open Yet', bn: 'এখনও শুরু হয়নি' },
+        'fillup.view_announcements': { en: 'View Announcements', bn: 'বিজ্ঞপ্তি দেখুন' },
 
         /* ━━━━━━━━━━━ FOOTER ━━━━━━━━━━━ */
         'footer.desc': {
