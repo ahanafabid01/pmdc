@@ -39,6 +39,8 @@
             <a href="academic-calendar.php" class="nav-item"><i class="fas fa-calendar-alt"></i><span>Academic Calendar</span></a>
             <a href="#" class="nav-item"><i class="fas fa-file-invoice-dollar"></i><span>Finance</span></a>
             <a href="announcements.php" class="nav-item"><i class="fas fa-bell"></i><span>Announcements</span><span class="badge warn">3</span></a>
+            <a href="registration-hsc.php" class="nav-item"><i class="fas fa-file-alt"></i><span>HSC Registration</span></a>
+            <a href="registration-degree.php" class="nav-item"><i class="fas fa-university"></i><span>Degree Registration</span></a>
             <a href="#" class="nav-item"><i class="fas fa-chart-line"></i><span>Reports</span></a>
             <div class="nav-divider"></div>
             <span class="nav-section-label">System</span>
@@ -291,4 +293,5 @@
     </script>
 </body>
 </html>
+
 

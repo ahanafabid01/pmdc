@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -150,8 +150,8 @@
                     <label>Rocket Number</label>
                     <input type="text" id="settingsRocket" placeholder="01XXXXXXXXX" class="tm-input">
                 </div>
-                <div class="tm-form-group" style="display:flex;align-items:flex-end;">
-                    <button class="btn-add-staff" id="btnSaveSettings" style="white-space:nowrap;">
+                <div style="grid-column: 1 / -1; display: flex; justify-content: flex-end; margin-top: 6px; padding-top: 16px; border-top: 1px dashed var(--border);">
+                    <button class="btn-add-staff" id="btnSaveSettings" style="padding: 10px 24px;">
                         <i class="fas fa-save"></i> Save Settings
                     </button>
                 </div>
