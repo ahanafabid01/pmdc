@@ -73,21 +73,21 @@ function defaultStaff() {
     ];
 }
 
-/* ── LocalStorage helpers ─────────────────────────────────── */
-function loadStaff() {
+/* ── API helpers ─────────────────────────────────── */
+async function loadStaff() {
     try {
-        const raw = localStorage.getItem(STORE_KEY);
-        if (raw) return JSON.parse(raw);
-    } catch (_) {}
-    const d = defaultStaff();
-    saveStaff(d);
-    return d;
-}
-function saveStaff(list) {
-    localStorage.setItem(STORE_KEY, JSON.stringify(list));
-}
-function genId() {
-    return 's-' + Date.now() + '-' + Math.floor(Math.random() * 999);
+        const res = await fetch('api/staff.php?action=list');
+        const data = await res.json();
+        if (data.ok) {
+            allStaff = data.staff;
+            renderStats();
+            applyFilter();
+        } else {
+            showToast('Failed to load staff', 'error');
+        }
+    } catch (e) {
+        showToast('Network error loading staff', 'error');
+    }
 }
 
 /* ── Helpers ─────────────────────────────────────────────── */
@@ -206,7 +206,7 @@ function renderTable() {
     tbody.innerHTML = slice.map((s, i) => {
         const idx    = start + i + 1;
         const avatar = s.photo
-            ? `<img src="${s.photo}" alt="${s.name}" class="tm-staff-avatar">`
+            ? `<img src="../../../${s.photo}" alt="${s.name}" class="tm-staff-avatar">`
             : `<div class="tm-staff-avatar-initials" style="background:${avatarColor(s.name)}">${initials(s.name)}</div>`;
 
         const prinTag = s.isPrincipal
@@ -296,7 +296,7 @@ function openEdit(id) {
     fIsPrincipal.checked= !!s.isPrincipal;
 
     photoPreview.innerHTML = s.photo
-        ? `<img src="${s.photo}" alt="Photo" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">`
+        ? `<img src="../../../${s.photo}" alt="Photo" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">`
         : `<i class="fas fa-user"></i>`;
 
     modalTitle.innerHTML = '<i class="fas fa-pencil-alt"></i> Edit Staff Member';
@@ -319,7 +319,7 @@ function closeModal() {
 }
 
 /* ── Save ─────────────────────────────────────────────────── */
-function saveStaffMember() {
+async function saveStaffMember() {
     // Validate
     let valid = true;
     [fName, fDesignation, fCategory].forEach(el => {
@@ -328,37 +328,47 @@ function saveStaffMember() {
     });
     if (!valid) { showToast('Please fill in all required fields.', 'error'); return; }
 
-    const record = {
-        id:            editingId || genId(),
-        name:          fName.value.trim(),
-        designation:   fDesignation.value.trim(),
-        category:      fCategory.value,
-        isPrincipal:   fIsPrincipal.checked,
-        subject:       fSubject.value.trim() || '—',
-        qualification: fQualification.value.trim() || 'N/A',
-        email:         fEmail.value.trim() || 'N/A',
-        phone:         fPhone.value.trim() || 'N/A',
-        photo:         photoData || null,
-    };
-
-    // If marked Principal, unmark others
-    if (record.isPrincipal) {
-        allStaff.forEach(s => { if (s.id !== record.id) s.isPrincipal = false; });
+    const formData = new FormData();
+    if (editingId) formData.append('id', editingId);
+    formData.append('name', fName.value.trim());
+    formData.append('designation', fDesignation.value.trim());
+    formData.append('category', fCategory.value);
+    formData.append('isPrincipal', fIsPrincipal.checked);
+    formData.append('subject', fSubject.value.trim());
+    formData.append('qualification', fQualification.value.trim());
+    formData.append('email', fEmail.value.trim());
+    formData.append('phone', fPhone.value.trim());
+    
+    if (fPhoto.files[0]) {
+        formData.append('photo', fPhoto.files[0]);
     }
 
-    if (editingId) {
-        const idx = allStaff.findIndex(s => s.id === editingId);
-        if (idx > -1) allStaff[idx] = record;
-        showToast(`${record.name} updated successfully.`);
-    } else {
-        allStaff.push(record);
-        showToast(`${record.name} added successfully.`);
-    }
+    try {
+        const btn = document.getElementById('btnSave');
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+        btn.disabled = true;
 
-    saveStaff(allStaff);
-    renderStats();
-    applyFilter();
-    closeModal();
+        const res = await fetch('api/staff.php?action=save', {
+            method: 'POST',
+            body: formData
+        });
+        const data = await res.json();
+        
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+
+        if (data.ok) {
+            showToast(editingId ? 'Staff member updated successfully.' : 'Staff member added successfully.');
+            closeModal();
+            loadStaff();
+        } else {
+            showToast(data.msg || 'Failed to save staff member', 'error');
+        }
+    } catch (e) {
+        showToast('Network error', 'error');
+        document.getElementById('btnSave').disabled = false;
+    }
 }
 
 /* ── Delete ───────────────────────────────────────────────── */
@@ -375,14 +385,25 @@ function closeDelete() {
     document.body.style.overflow = '';
     deleteId = null;
 }
-function confirmDelete() {
+async function confirmDelete() {
     const s = allStaff.find(x => x.id === deleteId);
-    allStaff = allStaff.filter(x => x.id !== deleteId);
-    saveStaff(allStaff);
-    renderStats();
-    applyFilter();
-    closeDelete();
-    showToast(`${s?.name || 'Staff member'} deleted.`, 'error');
+    try {
+        const res = await fetch('api/staff.php?action=delete', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: `id=${deleteId}`
+        });
+        const data = await res.json();
+        if (data.ok) {
+            showToast(`${s?.name || 'Staff member'} deleted.`, 'error');
+            closeDelete();
+            loadStaff();
+        } else {
+            showToast(data.msg || 'Failed to delete staff member', 'error');
+        }
+    } catch(e) {
+        showToast('Network error', 'error');
+    }
 }
 
 /* ── Export CSV ───────────────────────────────────────────── */
@@ -460,7 +481,5 @@ document.querySelectorAll('.tm-tab').forEach(btn => {
 
 /* ── Init ─────────────────────────────────────────────────── */
 (function init() {
-    allStaff = loadStaff();
-    renderStats();
-    applyFilter();
+    loadStaff();
 })();

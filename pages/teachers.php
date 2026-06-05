@@ -117,69 +117,15 @@ include '../includes/header.php';
         '#0f4c75','#b5451b','#1b4332','#4a1942','#2c3e7a'
     ];
 
-    function loadStaff() {
+    async function loadStaff() {
         try {
-            const raw = localStorage.getItem(STORE_KEY);
-            if (raw) return JSON.parse(raw);
-        } catch (_) {}
-        return defaultStaff();
-    }
-
-    function defaultStaff() {
-        return [
-                        { id:'s-1', name:'Rowshan Ara Begum', designation:'Principal', category:'teacher', isPrincipal:true, subject:'Administration', qualification:'N/A', email:'N/A', phone:'01712-227783', photo:null },
-                        { id:'s-2', name:'Md. Hafizur Rahman', designation:'Assistant Professor', category:'teacher', isPrincipal:false, subject:'Bangla', qualification:'N/A', email:'N/A', phone:'01725-657227', photo:null },
-                        { id:'s-3', name:'Md. Khorshedul Rahman', designation:'Assistant Professor', category:'teacher', isPrincipal:false, subject:'Physics', qualification:'N/A', email:'N/A', phone:'01716-490777', photo:null },
-                        { id:'s-4', name:'Md. Ali Akbar', designation:'Assistant Professor', category:'teacher', isPrincipal:false, subject:'History', qualification:'N/A', email:'N/A', phone:'01721-730034', photo:null },
-                        { id:'s-5', name:'Md. Hosen Ali', designation:'Assistant Professor', category:'teacher', isPrincipal:false, subject:'Mathematics', qualification:'N/A', email:'N/A', phone:'01716-909681', photo:null },
-                        { id:'s-6', name:'Md. Aminul Haq', designation:'Assistant Professor', category:'teacher', isPrincipal:false, subject:'Accounting', qualification:'N/A', email:'N/A', phone:'01915-487540', photo:null },
-                        { id:'s-7', name:'Lily Bilkis Rana', designation:'Assistant Professor', category:'teacher', isPrincipal:false, subject:'Botany', qualification:'N/A', email:'N/A', phone:'01918-744038', photo:null },
-                        { id:'s-8', name:'Shaheen Ara Begum', designation:'Assistant Professor', category:'teacher', isPrincipal:false, subject:'Economics', qualification:'N/A', email:'N/A', phone:'01552-441446', photo:null },
-                        { id:'s-9', name:'Md. Makbul Hosen', designation:'Assistant Professor', category:'teacher', isPrincipal:false, subject:'Chemistry', qualification:'N/A', email:'N/A', phone:'01716-750100', photo:null },
-                        { id:'s-10', name:'Md. Shafayet Jamil', designation:'Assistant Professor', category:'teacher', isPrincipal:false, subject:'Social Work', qualification:'N/A', email:'N/A', phone:'01712-505717', photo:null },
-                        { id:'s-11', name:'Md. Enamul Haq', designation:'Assistant Professor', category:'teacher', isPrincipal:false, subject:'Islamic Studies', qualification:'N/A', email:'N/A', phone:'01984-880389', photo:null },
-                        { id:'s-12', name:'Shah Humayun Kabir', designation:'Assistant Professor', category:'teacher', isPrincipal:false, subject:'ICT', qualification:'N/A', email:'N/A', phone:'01505-210622', photo:null },
-                        { id:'s-13', name:'Mostak Ahmed', designation:'Assistant Professor', category:'teacher', isPrincipal:false, subject:'Bangla', qualification:'N/A', email:'N/A', phone:'01918-156038', photo:null },
-                        { id:'s-14', name:'Mohammad Alamgir', designation:'Assistant Professor', category:'teacher', isPrincipal:false, subject:'Philosophy', qualification:'N/A', email:'N/A', phone:'01914-603985', photo:null },
-                        { id:'s-15', name:'Md. Saiful Islam', designation:'Assistant Professor', category:'teacher', isPrincipal:false, subject:'English', qualification:'N/A', email:'N/A', phone:'01912-182229', photo:null },
-                        { id:'s-16', name:'Nadira Sultana', designation:'Lecturer', category:'teacher', isPrincipal:false, subject:'Political Science', qualification:'N/A', email:'N/A', phone:'01936-985311', photo:null },
-                        { id:'s-17', name:'Kamrun Nahar', designation:'Lecturer', category:'teacher', isPrincipal:false, subject:'History', qualification:'N/A', email:'N/A', phone:'01919-635600', photo:null },
-                        { id:'s-18', name:'Shipra Sarkar', designation:'Lecturer', category:'teacher', isPrincipal:false, subject:'Economics', qualification:'N/A', email:'N/A', phone:'01932-000682', photo:null },
-                        { id:'s-19', name:'Mostafija Rusti', designation:'Lecturer', category:'teacher', isPrincipal:false, subject:'Political Science', qualification:'N/A', email:'N/A', phone:'01916-816189', photo:null },
-                        { id:'s-20', name:'Mohammad Golam Kibriya', designation:'Lecturer', category:'teacher', isPrincipal:false, subject:'Islamic Studies', qualification:'N/A', email:'N/A', phone:'01920-098539', photo:null },
-                        { id:'s-21', name:'Akhtari Jahan', designation:'Lecturer', category:'teacher', isPrincipal:false, subject:'Philosophy', qualification:'N/A', email:'N/A', phone:'01932-868958', photo:null },
-                        { id:'s-22', name:'Mahmuda Sultana', designation:'Lecturer', category:'teacher', isPrincipal:false, subject:'Social Work', qualification:'N/A', email:'N/A', phone:'01911-699130', photo:null },
-                        { id:'s-23', name:'Mohammad Habibur Rahman', designation:'Lecturer', category:'teacher', isPrincipal:false, subject:'Botany', qualification:'N/A', email:'N/A', phone:'01952-353819', photo:null },
-                        { id:'s-24', name:'Al Amin Ahmed', designation:'Lecturer', category:'teacher', isPrincipal:false, subject:'Botany', qualification:'N/A', email:'N/A', phone:'01916-898525', photo:null },
-                        { id:'s-25', name:'Md. Aminul Islam', designation:'Lecturer', category:'teacher', isPrincipal:false, subject:'Chemistry', qualification:'N/A', email:'N/A', phone:'01923-560909', photo:null },
-                        { id:'s-26', name:'Majedul Islam Akand', designation:'Lecturer', category:'teacher', isPrincipal:false, subject:'Zoology', qualification:'N/A', email:'N/A', phone:'01990-318920', photo:null },
-                        { id:'s-27', name:'Abu Saeed', designation:'Lecturer', category:'teacher', isPrincipal:false, subject:'Zoology', qualification:'N/A', email:'N/A', phone:'01959-369992', photo:null },
-                        { id:'s-28', name:'Md. Mahabbat Hosen', designation:'Lecturer', category:'teacher', isPrincipal:false, subject:'Chemistry', qualification:'N/A', email:'N/A', phone:'01951-028509', photo:null },
-                        { id:'s-29', name:'Md. Mostafizur Rahman', designation:'Lecturer', category:'teacher', isPrincipal:false, subject:'Management', qualification:'N/A', email:'N/A', phone:'01989-222110', photo:null },
-                        { id:'s-30', name:'Md. Anowar Hosen', designation:'Lecturer', category:'teacher', isPrincipal:false, subject:'Marketing', qualification:'N/A', email:'N/A', phone:'01984-262101', photo:null },
-                        { id:'s-31', name:'Mirja Ahad Hosen', designation:'Demonstrator', category:'teacher', isPrincipal:false, subject:'Biology', qualification:'N/A', email:'N/A', phone:'01918-262898', photo:null },
-                        { id:'s-32', name:'Md. Abul Hosen', designation:'Demonstrator', category:'teacher', isPrincipal:false, subject:'Physics', qualification:'N/A', email:'N/A', phone:'01916-889388', photo:null },
-                        { id:'s-33', name:'Afsana Khanam', designation:'Co-Librarian', category:'teacher', isPrincipal:false, subject:'—', qualification:'N/A', email:'N/A', phone:'01626-010160', photo:null },
-                        { id:'s-34', name:'Md. Abdul Aziz', designation:'Computer Operator Demonstrator', category:'teacher', isPrincipal:false, subject:'—', qualification:'N/A', email:'N/A', phone:'01919-336600', photo:null },
-                        { id:'s-35', name:'Jobeda Khanam', designation:'Accounts Assistant', category:'admin', isPrincipal:false, subject:'Accounts', qualification:'N/A', email:'N/A', phone:'01918-820956', photo:null },
-                        { id:'s-36', name:'Md. Suraj Ali', designation:'Accounts Assistant', category:'admin', isPrincipal:false, subject:'Accounts', qualification:'N/A', email:'N/A', phone:'01918-980986', photo:null },
-                        { id:'s-37', name:'Md. Shafiqul Islam', designation:'Computer Operator', category:'admin', isPrincipal:false, subject:'Computer Operations', qualification:'N/A', email:'N/A', phone:'01988-986561', photo:null },
-                        { id:'s-38', name:'Md. Shariyar Hosen', designation:'Lab Assistant', category:'admin', isPrincipal:false, subject:'Laboratory', qualification:'N/A', email:'N/A', phone:'01686-802261', photo:null },
-                        { id:'s-39', name:'Mahfuja Aktar', designation:'Lab Assistant', category:'admin', isPrincipal:false, subject:'Laboratory', qualification:'N/A', email:'N/A', phone:'01983-606018', photo:null },
-                        { id:'s-40', name:'Rakib-ul-Hasan', designation:'Lab Assistant', category:'admin', isPrincipal:false, subject:'Laboratory', qualification:'N/A', email:'N/A', phone:'01926-921292', photo:null },
-                        { id:'s-41', name:'Shirifa Akhtar', designation:'Lab Assistant', category:'admin', isPrincipal:false, subject:'Laboratory', qualification:'N/A', email:'N/A', phone:'01926-921292', photo:null },
-                        { id:'s-42', name:'Md. Emdadul Haq', designation:'Lab Assistant', category:'admin', isPrincipal:false, subject:'Laboratory', qualification:'N/A', email:'N/A', phone:'N/A', photo:null },
-                        { id:'s-43', name:'Md. Abdul Hai', designation:'Peon', category:'support', isPrincipal:false, subject:'—', qualification:'N/A', email:'N/A', phone:'01981-508632', photo:null },
-                        { id:'s-44', name:'Aferoj Aktar', designation:'Ayah', category:'support', isPrincipal:false, subject:'—', qualification:'N/A', email:'N/A', phone:'01933-886190', photo:null },
-                        { id:'s-45', name:'Mocha. Rokeya Khatun', designation:'Office Assistant', category:'admin', isPrincipal:false, subject:'Office Work', qualification:'N/A', email:'N/A', phone:'N/A', photo:null },
-                        { id:'s-46', name:'Md. Abu Hanif', designation:'Peon', category:'support', isPrincipal:false, subject:'—', qualification:'N/A', email:'N/A', phone:'01912-820880', photo:null },
-                        { id:'s-47', name:'Md. Abdul Jabbar', designation:'Night Guard', category:'support', isPrincipal:false, subject:'—', qualification:'N/A', email:'N/A', phone:'N/A', photo:null },
-                        { id:'s-48', name:'Rokeya Khatun', designation:'Cleaner', category:'support', isPrincipal:false, subject:'—', qualification:'N/A', email:'N/A', phone:'01988-589853', photo:null },
-                        { id:'s-49', name:'Josna Begum', designation:'Peon', category:'support', isPrincipal:false, subject:'—', qualification:'N/A', email:'N/A', phone:'01968-909892', photo:null },
-                        { id:'s-50', name:'Rejwana Yasmin', designation:'Peon', category:'support', isPrincipal:false, subject:'—', qualification:'N/A', email:'N/A', phone:'01938-628090', photo:null },
-                        { id:'s-51', name:'Shalma Aktar', designation:'Peon', category:'support', isPrincipal:false, subject:'—', qualification:'N/A', email:'N/A', phone:'01866-295568', photo:null },
-                        { id:'s-52', name:'Md. Khilulur Rahman', designation:'Peon', category:'support', isPrincipal:false, subject:'—', qualification:'N/A', email:'N/A', phone:'01939-251619', photo:null },
-        ];
+            const res = await fetch('portal/admin/api/staff.php?action=list');
+            const data = await res.json();
+            if (data.ok) return data.staff;
+        } catch (e) {
+            console.error('Error fetching staff data', e);
+        }
+        return [];
     }
 
     function getInitials(name) {
@@ -194,7 +140,7 @@ include '../includes/header.php';
 
     function avatarHtml(member, size = 90) {
         if (member.photo) {
-            return `<img src="${member.photo}" alt="${esc(member.name)}" class="staff-photo" style="width:${size}px;height:${size}px;">`;
+            return `<img src="../${member.photo}" alt="${esc(member.name)}" class="staff-photo" style="width:${size}px;height:${size}px;">`;
         }
         const initials = getInitials(member.name);
         const bg = avatarColor(member.name);
@@ -330,9 +276,13 @@ include '../includes/header.php';
     /* ─── Init ─── */
     let currentFilter = 'all';
     let searchQuery   = '';
+    let staff = [];
 
-    const staff = loadStaff();
-    render(staff, searchQuery, currentFilter);
+    async function init() {
+        staff = await loadStaff();
+        render(staff, searchQuery, currentFilter);
+    }
+    init();
 
     /* Filter buttons */
     document.querySelectorAll('.filter-btn').forEach(btn => {
