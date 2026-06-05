@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -82,12 +82,12 @@
         <div class="content-area">
 
             <!-- Page Header -->
-            <div class="gm-page-header">
-                <div class="gm-page-title">
+            <div class="tm-page-header">
+                <div class="tm-page-title">
                     <h1>Gallery Management</h1>
                     <p>Upload, organise and manage photos displayed on the public gallery</p>
                 </div>
-                <div class="gm-header-actions">
+                <div class="tm-header-actions">
                     <a href="../../../pages/gallery.php" target="_blank" class="btn-preview">
                         <i class="fas fa-external-link-alt"></i> Preview Public Page
                     </a>
@@ -99,26 +99,20 @@
 
             <!-- Quick Stats -->
             <div class="tm-stats-row">
-                <div class="tm-stat-pill">
-                    <div class="ts-icon ts-icon-blue"><i class="fas fa-images"></i></div>
-                    <div>
-                        <div class="ts-val" id="statTotal">—</div>
-                        <div class="ts-lbl">Total Photos</div>
-                    </div>
+                <div class="tm-stat-pill" id="statGalleryTotal">
+                    <i class="fas fa-images"></i>
+                    <span class="ts-val" id="statTotal">—</span>
+                    <span class="ts-lbl">Total Photos</span>
                 </div>
-                <div class="tm-stat-pill">
-                    <div class="ts-icon ts-icon-green"><i class="fas fa-layer-group"></i></div>
-                    <div>
-                        <div class="ts-val" id="statYears">—</div>
-                        <div class="ts-lbl">Year Albums</div>
-                    </div>
+                <div class="tm-stat-pill" id="statGalleryAlbums">
+                    <i class="fas fa-layer-group"></i>
+                    <span class="ts-val" id="statYears">—</span>
+                    <span class="ts-lbl">Year Albums</span>
                 </div>
-                <div class="tm-stat-pill">
-                    <div class="ts-icon ts-icon-amber"><i class="fas fa-clock"></i></div>
-                    <div>
-                        <div class="ts-val" id="statLatest">—</div>
-                        <div class="ts-lbl">Latest Upload</div>
-                    </div>
+                <div class="tm-stat-pill" id="statGalleryLatest">
+                    <i class="fas fa-clock"></i>
+                    <span class="ts-val" id="statLatest">—</span>
+                    <span class="ts-lbl">Latest Upload</span>
                 </div>
             </div>
 

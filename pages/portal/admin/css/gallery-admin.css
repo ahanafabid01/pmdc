@@ -3,36 +3,22 @@
    Relies on styles.css variables. Follows teacher.css patterns.
    ═══════════════════════════════════════════════════════════ */
 
-/* ── Page header (mirrors tm-page-header) ────────────────── */
-.gm-page-header {
-    display: flex; align-items: flex-start;
-    justify-content: space-between; gap: 16px; flex-wrap: wrap;
-}
-.gm-page-title h1 { font-size: 1.5rem; font-weight: 800; color: var(--text); margin-bottom: 4px; }
-.gm-page-title p  { font-size: .84rem; color: var(--muted); font-family: 'Inter', sans-serif; }
-.gm-header-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-
-/* ── Stats (reuses tm-stat-pill, adds colour tints) ──────── */
-.tm-stat-pill .ts-icon {
-    width: 34px; height: 34px; border-radius: 9px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: .9rem; flex-shrink: 0;
-}
-.ts-icon-blue   { background: var(--blue-light); color: var(--blue); }
-.ts-icon-green  { background: #f0fdf4;            color: var(--green); }
-.ts-icon-amber  { background: #fffbeb;            color: var(--yellow); }
+/* ── Stats Pill Colors (Matched to dashboard theme) ──────── */
+#statGalleryTotal i  { background: #3b82f6; } /* Blue */
+#statGalleryAlbums i { background: #10b981; } /* Green */
+#statGalleryLatest i { background: #f59e0b; } /* Orange */
 
 /* ── Toolbar ─────────────────────────────────────────────── */
 .gm-toolbar {
     display: flex; align-items: center;
-    justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    justify-content: space-between; gap: 16px; flex-wrap: wrap;
     background: var(--surface); border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 10px 14px;
+    padding: 12px 16px;
     box-shadow: var(--shadow);
 }
-.gm-toolbar-left  { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-.gm-toolbar-right { display: flex; gap: 6px; }
+.gm-toolbar-left  { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; flex: 1; }
+.gm-toolbar-right { display: flex; gap: 8px; }
 
 .gm-year-select {
     border: 1.5px solid var(--border); border-radius: 9px;
@@ -259,10 +245,11 @@
 }
 @media (max-width: 640px)  {
     .gm-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-    .gm-page-header { flex-direction: column; }
-    .gm-toolbar { flex-direction: column; align-items: stretch; }
-    .gm-toolbar-left, .gm-toolbar-right { width: 100%; }
-    .gm-search-box { flex: 1; }
+    .gm-toolbar { flex-direction: column; align-items: stretch; gap: 12px; }
+    .gm-toolbar-left { width: 100%; flex-direction: column; align-items: stretch; }
+    .gm-toolbar-right { width: 100%; justify-content: center; }
+    .gm-search-box { width: 100%; max-width: none; }
     .gm-search-box input { width: 100%; }
+    .gm-year-select { width: 100%; }
     .gm-meta-row { grid-template-columns: 1fr; }
 }
