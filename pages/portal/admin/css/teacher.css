@@ -3,6 +3,9 @@
    teacher.css  (loaded after styles.css)
 ═══════════════════════════════════════════════════════════ */
 
+/* Fix flexbox overflow on mobile without touching global styles.css */
+.main-content, .content-area { min-width: 0; }
+
 /* Breadcrumb in header */
 .th-breadcrumb {
     display: flex; align-items: center; gap: 8px;
@@ -129,8 +132,10 @@
     border-radius: var(--radius);
     overflow: hidden;
     box-shadow: var(--shadow);
+    min-width: 0;
+    width: 100%;
 }
-.tm-table-wrap { overflow-x: auto; }
+.tm-table-wrap { overflow-x: auto; width: 100%; }
 
 .tm-table {
     width: 100%; border-collapse: collapse;
@@ -432,12 +437,28 @@
 @media (max-width: 900px) {
     .tm-form-grid { grid-template-columns: 1fr; }
     .tm-span2 { grid-column: auto; }
-    .tm-stats-row .tm-stat-pill { min-width: 130px; }
+    .tm-stats-row .tm-stat-pill { min-width: calc(50% - 10px); }
 }
 @media (max-width: 640px) {
-    .tm-page-header { flex-direction: column; }
-    .tm-controls { flex-direction: column; align-items: stretch; }
+    .tm-page-header { flex-direction: column; align-items: stretch; gap: 12px; }
+    .tm-header-actions { flex-direction: column; align-items: stretch; width: 100%; gap: 8px; }
+    .btn-preview, .btn-export, .btn-add-staff { width: 100%; justify-content: center; }
+    
+    .tm-controls { flex-direction: column; align-items: stretch; gap: 10px; }
     .tm-search-box { max-width: none; }
-    .tm-filter-tabs { justify-content: stretch; }
-    .tm-tab { flex: 1; text-align: center; }
+    .tm-filter-tabs { flex-wrap: wrap; justify-content: center; }
+    .tm-tab { flex: 1; min-width: calc(50% - 8px); text-align: center; }
+
+    .tm-stats-row .tm-stat-pill { min-width: 100%; }
+
+    .tm-table-footer { flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 12px; }
+    
+    .tm-modal { margin: 10px; max-height: 95vh; }
+    .tm-modal-header { padding: 16px; }
+    .tm-modal-body { padding: 16px; }
+    .tm-modal-footer { padding: 16px; flex-direction: column; align-items: stretch; gap: 8px; }
+    .btn-save, .btn-cancel, .btn-delete-confirm { width: 100%; justify-content: center; }
+
+    .tm-photo-row { flex-direction: column; text-align: center; gap: 12px; padding-bottom: 16px; }
+    .tm-photo-preview { margin: 0 auto; }
 }
