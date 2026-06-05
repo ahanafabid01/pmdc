@@ -34,7 +34,7 @@
             <a href="#" class="nav-item"><i class="fas fa-users"></i><span>Students</span><span class="badge">450</span></a>
             <a href="teacher.php" class="nav-item"><i class="fas fa-chalkboard-teacher"></i><span>Teachers &amp; Staff</span></a>
             <a href="gallery.php" class="nav-item"><i class="fas fa-images"></i><span>Gallery</span></a>
-            <a href="#" class="nav-item"><i class="fas fa-book"></i><span>Courses</span></a>
+            <a href="academics.php" class="nav-item"><i class="fas fa-book-open"></i><span>Academics</span></a>
             <div class="nav-divider"></div>
             <span class="nav-section-label">Management</span>
             <a href="academic-calendar.php" class="nav-item"><i class="fas fa-calendar-alt"></i><span>Academic Calendar</span></a>

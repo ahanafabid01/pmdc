@@ -49,9 +49,9 @@
                 <i class="fas fa-images"></i>
                 <span>Gallery</span>
             </a>
-            <a href="#" class="nav-item">
-                <i class="fas fa-book"></i>
-                <span>Courses</span>
+            <a href="academics.php" class="nav-item">
+                <i class="fas fa-book-open"></i>
+                <span>Academics</span>
             </a>
 
             <div class="nav-divider"></div>
