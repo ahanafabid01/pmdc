@@ -111,8 +111,24 @@ function pmdc_staff_update($id, $data) {
         $db->exec("UPDATE staff SET is_principal = 0 WHERE id != " . (int)$id);
     }
 
-    // If no new photo is provided, don't update the photo column
+    // If no new photo is provided and we don't want to clear it, $data['photo'] is null.
+    // If we want to clear it, $data['photo'] is ''.
+    // If we want to set a new one, $data['photo'] is the path.
     if (array_key_exists('photo', $data) && $data['photo'] !== null) {
+        $photoVal = $data['photo'] === '' ? null : $data['photo'];
+        
+        // Fetch old photo to delete it from disk if changed/removed
+        $stmt = $db->prepare("SELECT photo FROM staff WHERE id=?");
+        $stmt->execute([$id]);
+        $oldPhoto = $stmt->fetchColumn();
+        
+        if ($oldPhoto && $oldPhoto !== $photoVal) {
+            $filePath = dirname(__DIR__, 4) . '/' . $oldPhoto;
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
+        }
+        
         $stmt = $db->prepare("UPDATE staff SET name=?, designation=?, category=?, is_principal=?, subject=?, qualification=?, email=?, phone=?, photo=? WHERE id=?");
         return $stmt->execute([
             $data['name'],
@@ -123,7 +139,7 @@ function pmdc_staff_update($id, $data) {
             $data['qualification'] ?: 'N/A',
             $data['email'] ?: 'N/A',
             $data['phone'] ?: 'N/A',
-            $data['photo'],
+            $photoVal,
             $id
         ]);
     } else {

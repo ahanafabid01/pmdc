@@ -120,10 +120,14 @@ if ($action === 'save') {
         }
     }
 
+    $removePhoto = filter_var($_POST['removePhoto'] ?? false, FILTER_VALIDATE_BOOLEAN);
+
     if ($photoPath) {
         $data['photo'] = $photoPath;
+    } elseif ($removePhoto) {
+        $data['photo'] = ''; // Empty string indicates clear
     } else {
-        $data['photo'] = null;
+        $data['photo'] = null; // null indicates no change
     }
 
     // JS generates UUID-like strings 's-1234...' when not saved. 

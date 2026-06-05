@@ -115,6 +115,7 @@ let currentSearch = '';
 let editingId     = null;
 let deleteId      = null;
 let photoData     = null;   // base64
+let removePhoto   = false;
 
 /* ── DOM refs ────────────────────────────────────────────── */
 const tbody         = document.getElementById('staffTableBody');
@@ -271,6 +272,7 @@ function escHtml(str) {
 function openAdd() {
     editingId = null;
     photoData = null;
+    removePhoto = false;
     clearForm();
     modalTitle.innerHTML = '<i class="fas fa-user-plus"></i> Add Staff Member';
     modalOverlay.classList.add('active');
@@ -284,6 +286,7 @@ function openEdit(id) {
     if (!s) return;
     editingId = id;
     photoData = s.photo || null;
+    removePhoto = false;
 
     fId.value           = s.id;
     fName.value         = s.name;
@@ -338,6 +341,7 @@ async function saveStaffMember() {
     formData.append('qualification', fQualification.value.trim());
     formData.append('email', fEmail.value.trim());
     formData.append('phone', fPhone.value.trim());
+    formData.append('removePhoto', removePhoto);
     
     if (fPhoto.files[0]) {
         formData.append('photo', fPhoto.files[0]);
@@ -442,6 +446,7 @@ document.getElementById('btnClearPhoto').addEventListener('click', () => {
     photoData = null;
     fPhoto.value = '';
     photoPreview.innerHTML = '<i class="fas fa-user"></i>';
+    removePhoto = true;
 });
 
 /* ── Event bindings ───────────────────────────────────────── */
