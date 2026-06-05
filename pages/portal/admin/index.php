@@ -56,7 +56,7 @@
 
             <div class="nav-divider"></div>
             <span class="nav-section-label">Management</span>
-            <a href="#" class="nav-item">
+            <a href="academic-calendar.php" class="nav-item">
                 <i class="fas fa-calendar-alt"></i>
                 <span>Academic Calendar</span>
             </a>
