@@ -26,134 +26,36 @@ const YEAR_LABELS = {
     xii: { label:'HSC 2nd Year', labelBn:'দ্বাদশ শ্রেণি', cls:'xii' },
 };
 
-const STUDENTS_STORAGE_KEY = 'pmdc_teacher_students_v1';
 
-const OPTIONAL_SUBJECTS = {
-    science: [
-        { value: 'higher_math', label: 'Higher Math' },
-    ],
-    commerce: [
-        { value: 'production_management', label: 'Production Management' },
-    ],
-    humanities: [
-        { value: 'history', label: 'History' },
-    ],
-};
+const API_URL = 'api-students.php';
 
-function rnd(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
-
-/** Generate realistic mock student data */
-function generateStudents() {
-    const firstNames = [
-        'Fatema','Rashida','Nusrat','Morjina','Shirin','Taslima','Sultana','Afroza',
-        'Monika','Roksana','Dilruba','Nasrin','Mithila','Shaila','Farida','Rina',
-        'Tania','Jannat','Sonia','Rima','Popy','Mitu','Sharmin','Sadia','Lima',
-        'Rahela','Rumana','Sumi','Asha','Mukti','Eti','Borna','Ritu','Meghla','Ovi',
-        'Shimu','Mim','Boishakhi','Puja','Chanda',
-    ];
-    const lastNames = [
-        'Begum','Akter','Khanam','Islam','Khatun','Parvin','Siddiqua','Rashid',
-        'Sultana','Banu','Hossain','Rahman','Molla','Sarker','Sheikh','Mondol',
-        'Biswas','Paul','Roy','Das',
-    ];
-    const fatherFirstNames = [
-        'Abdul','Mohammad','Md.','Karim','Rahim','Hossain','Islam','Mia',
-        'Alam','Uddin','Akbar','Anwar','Faruk','Jamal','Kabir',
-    ];
-    const fatherLastNames = ['Hossain','Rahman','Islam','Sarker','Molla','Sheikh','Mondol','Biswas'];
-    const occupations     = ['Farmer','Business','Govt. Employee','Teacher','Day Labourer','Rickshaw Puller','Service Holder'];
-    const religions       = ['Islam','Hinduism','Christianity','Buddhism'];
-    const bloodGroups     = ['A+','A-','B+','B-','AB+','AB-','O+','O-'];
-    const sections        = ['A','B','C'];
-    const groups          = ['science','commerce','humanities'];
-    const years           = ['xi','xii'];
-
-    return Array.from({ length: 120 }, (_, i) => {
-        const fn     = firstNames[i % firstNames.length];
-        const ln     = lastNames[i % lastNames.length];
-        const year   = years[i % 2];
-        const group  = groups[i % 3];
-        const yrTag  = year === 'xii' ? 'XII' : 'XI';
-        const roll   = `PMDC-${yrTag}-${String(i + 1).padStart(3, '0')}`;
-        const fName  = fatherFirstNames[i % fatherFirstNames.length];
-        const fLast  = fatherLastNames[i % fatherLastNames.length];
-
-        const sessions = ['2022–2023','2023–2024','2024–2025','2025–2026'];
-
-        return {
-            id:           `stu-${i + 1}`,
-            name:         `${fn} ${ln}`,
-            initials:     `${fn[0]}${ln[0]}`,
-            roll,
-            regno:        `${2024}${String(i + 1).padStart(8, '0')}`,
-            year,
-            group,
-            optionalSubject: OPTIONAL_SUBJECTS[group]?.[0]?.value || '',
-            section:      sections[i % 3],
-            session:      sessions[i % sessions.length],
-            institution:  'Phulpur Mohila Degree College',
-
-            // Personal
-            dob:          `${2005 + (i % 3)}-${String((i % 12) + 1).padStart(2,'0')}-${String((i % 28) + 1).padStart(2,'0')}`,
-            gender:       'female',
-            religion:     religions[i % religions.length],
-            bloodGroup:   bloodGroups[i % bloodGroups.length],
-            nid:          i % 3 === 0 ? `${rnd(1000000000, 9999999999)}` : '',
-            birthCert:    i % 3 !== 0 ? `${rnd(10000000000000000, 99999999999999999)}` : '',
-
-            // Contact
-            phone:        `01${rnd(3,9)}${rnd(10000000, 99999999)}`,
-            email:        `${fn.toLowerCase()}${i + 1}@example.com`,
-            presentAddr:  `Village: Phulpur, Upazila: Phulpur, Dist: Mymensingh`,
-            permanentAddr:`Village: Phulpur, Upazila: Phulpur, Dist: Mymensingh`,
-
-            // Guardian
-            fatherName:   `${fName} ${fLast}`,
-            fatherNid:    `${rnd(1000000000, 9999999999)}`,
-            fatherPhone:  `01${rnd(3,9)}${rnd(10000000, 99999999)}`,
-            fatherOcc:    occupations[i % occupations.length],
-            motherName:   `${firstNames[(i + 5) % firstNames.length]} Begum`,
-            motherNid:    `${rnd(1000000000, 9999999999)}`,
-            motherPhone:  `01${rnd(3,9)}${rnd(10000000, 99999999)}`,
-            motherOcc:    i % 2 === 0 ? 'Housewife' : 'Teacher',
-            guardianName: '',
-            guardianPhone:'',
-            guardianRel:  '',
-
-            photoUrl:     null,
-            color:        AVATAR_COLORS[i % AVATAR_COLORS.length],
-            addedDate:    new Date(Date.now() - rnd(0, 90) * 86400000).toISOString().split('T')[0],
-        };
-    });
-}
-
-/* ═══════════════════════════════════════════════════
-   STATE
-═══════════════════════════════════════════════════ */
-
-function loadStudentsFromStorage() {
-    try {
-        const raw = localStorage.getItem(STUDENTS_STORAGE_KEY);
-        const parsed = raw ? JSON.parse(raw) : null;
-        if (Array.isArray(parsed) && parsed.length) return parsed;
-    } catch (_err) {
-        // fallback below
-    }
-    const generated = generateStudents();
-    localStorage.setItem(STUDENTS_STORAGE_KEY, JSON.stringify(generated));
-    return generated;
-}
-
-function persistStudentsToStorage() {
-    localStorage.setItem(STUDENTS_STORAGE_KEY, JSON.stringify(allStudents));
-}
-
-let allStudents     = loadStudentsFromStorage();
-let filtered        = [...allStudents];
+let allStudents     = [];
+let filtered        = [];
 let currentPage     = 1;
 const PAGE_SIZE     = 15;
 let viewMode        = 'table';
 let deleteTargetId  = null;
+
+async function fetchStudents() {
+    $('tableInfo').innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading students from database...';
+    try {
+        const res = await fetch(API_URL);
+        const json = await res.json();
+        if (json.success) {
+            allStudents = json.data;
+            applyFilters();
+        } else {
+            console.error(json.error);
+            $('tableInfo').textContent = 'Failed to load students.';
+        }
+    } catch (e) {
+        console.error(e);
+        $('tableInfo').textContent = 'Error connecting to database.';
+    }
+}
+
+// Initial fetch
+fetchStudents();
 
 /* ═══════════════════════════════════════════════════
    DOM HELPERS
@@ -667,10 +569,9 @@ function validateForm() {
    SAVE STUDENT
 ═══════════════════════════════════════════════════ */
 
-$('studentForm').addEventListener('submit', function(e) {
+$('studentForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     if (!validateForm()) {
-        // Switch to the first section with an error
         const firstErr = document.querySelector('.err:not(:empty)');
         if (firstErr) {
             const section = firstErr.closest('.form-section');
@@ -724,27 +625,43 @@ $('studentForm').addEventListener('submit', function(e) {
         guardianPhone:$('guardianPhone').value.trim(),
         guardianRel:  $('guardianRel').value.trim(),
         photoUrl:     null,
-        addedDate:    new Date().toISOString().split('T')[0],
     };
 
+    const method = editId ? 'PUT' : 'POST';
     if (editId) {
-        const idx = allStudents.findIndex(s => s.id === editId);
-        if (idx >= 0) {
-            studentData.id    = editId;
-            studentData.color = allStudents[idx].color;
-            allStudents[idx]  = studentData;
-        }
-        showToast(`Student "${studentData.name}" updated successfully!`);
+        studentData.id = editId;
     } else {
-        studentData.id    = `stu-${Date.now()}`;
+        studentData.id = `stu-${Date.now()}`;
         studentData.color = AVATAR_COLORS[allStudents.length % AVATAR_COLORS.length];
-        allStudents.unshift(studentData);
-        showToast(`Student "${studentData.name}" added successfully!`);
+        studentData.addedDate = new Date().toISOString().split('T')[0];
     }
 
-    persistStudentsToStorage();
-    $('addEditModal').classList.remove('open');
-    applyFilters();
+    const submitBtn = this.querySelector('.btn-save');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+    submitBtn.disabled = true;
+
+    try {
+        const res = await fetch(API_URL, {
+            method: method,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(studentData)
+        });
+        const json = await res.json();
+        
+        if (json.success) {
+            showToast(`Student "${studentData.name}" saved to database!`);
+            $('addEditModal').classList.remove('open');
+            fetchStudents(); // Reload from DB
+        } else {
+            alert('Database Error: ' + json.error);
+        }
+    } catch (err) {
+        alert('Network error connecting to database.');
+    } finally {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+    }
 });
 
 /* ═══════════════════════════════════════════════════
@@ -759,15 +676,37 @@ window.confirmDelete = function(id) {
     $('deleteModal').classList.add('open');
 };
 
-$('confirmDelete').addEventListener('click', () => {
+$('confirmDelete').addEventListener('click', async () => {
     if (!deleteTargetId) return;
-    const s   = allStudents.find(x => x.id === deleteTargetId);
-    allStudents = allStudents.filter(x => x.id !== deleteTargetId);
-    persistStudentsToStorage();
-    deleteTargetId = null;
-    $('deleteModal').classList.remove('open');
-    applyFilters();
-    showToast(`Student "${s?.name || ''}" deleted.`);
+    
+    const delBtn = $('confirmDelete');
+    const originalText = delBtn.innerHTML;
+    delBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Deleting...';
+    delBtn.disabled = true;
+
+    try {
+        const res = await fetch(API_URL, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: deleteTargetId })
+        });
+        const json = await res.json();
+        
+        if (json.success) {
+            showToast('Student deleted from database.');
+            $('deleteModal').classList.remove('open');
+            deleteTargetId = null;
+            fetchStudents(); // Reload from DB
+        } else {
+            alert('Database Error: ' + json.error);
+        }
+    } catch (err) {
+        alert('Network error while deleting.');
+    } finally {
+        delBtn.innerHTML = originalText;
+        delBtn.disabled = false;
+    }
+
 });
 
 [$('closeDeleteModal'), $('cancelDelete')].forEach(el => {

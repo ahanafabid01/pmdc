@@ -29,7 +29,7 @@
         <nav class="sidebar-nav">
             <span class="nav-section-label">Main</span>
             <a href="index.php" class="nav-item"><i class="fas fa-th-large"></i><span>Dashboard</span></a>
-            <a href="#" class="nav-item"><i class="fas fa-users"></i><span>Students</span><span class="badge">450</span></a>
+            <a href="students.php" class="nav-item"><i class="fas fa-users"></i><span>Students</span><span class="badge">450</span></a>
             <a href="teacher.php" class="nav-item"><i class="fas fa-chalkboard-teacher"></i><span>Teachers &amp; Staff</span></a>
             <a href="gallery.php" class="nav-item"><i class="fas fa-images"></i><span>Gallery</span></a>
             <a href="academics.php" class="nav-item"><i class="fas fa-book-open"></i><span>Academics</span></a>
