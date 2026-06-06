@@ -71,7 +71,8 @@ include '../includes/header.php';
                 <?php foreach ($photos as $idx => $photo):
                     $isExternal = !empty($photo['is_external']);
                     $src   = $isExternal ? $photo['filename'] : '../uploads/gallery/' . $photo['filename'];
-                    $thumb = $isExternal ? $photo['filename'] : '../uploads/gallery/thumbs/' . $photo['filename'];
+                    $thumbPath = '../uploads/gallery/thumbs/' . $photo['filename'];
+                    $thumb = ($isExternal || !file_exists($thumbPath)) ? $src : $thumbPath;
                     $title = htmlspecialchars($photo['title'] ?: 'Photo', ENT_QUOTES, 'UTF-8');
                     $date  = date('d M Y', strtotime($photo['date_uploaded']));
                     $extra = $idx >= 24 ? 'style="display:none;" data-extra="1"' : '';
