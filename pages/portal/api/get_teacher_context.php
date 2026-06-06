@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json');
-require_once '../includes/session_check.php';
-require_once '../includes/config.php';
+require_once '../../../includes/session_check.php';
+require_once '../../../includes/config.php';
 
 if ($_SESSION['role'] !== 'teacher') {
     echo json_encode(['ok' => false, 'msg' => 'Unauthorized']);
