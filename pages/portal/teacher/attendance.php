@@ -23,7 +23,6 @@
     </div>
     <nav class="sidebar-nav">
         <a href="index.php" class="nav-item"><i class="fas fa-th-large"></i><span>Dashboard</span></a>
-        <a href="students.php" class="nav-item"><i class="fas fa-users"></i><span>Students</span></a>
         <a href="announcements.php" class="nav-item"><i class="fas fa-bullhorn"></i><span>Announcements</span></a>
         <a href="attendance.php" class="nav-item active"><i class="fas fa-clipboard-check"></i><span>Attendance</span></a>
         <a href="grades.php" class="nav-item"><i class="fas fa-graduation-cap"></i><span>Results</span></a>

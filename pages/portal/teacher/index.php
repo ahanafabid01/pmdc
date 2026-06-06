@@ -25,7 +25,6 @@
     </div>
     <nav class="sidebar-nav">
         <a href="index.php"    class="nav-item active"><i class="fas fa-th-large"></i><span>Dashboard</span></a>
-        <a href="students.php" class="nav-item"><i class="fas fa-users"></i><span>Students</span></a>
         <a href="announcements.php" class="nav-item"><i class="fas fa-bullhorn"></i><span>Announcements</span></a>
         <a href="staff.php"    class="nav-item"><i class="fas fa-id-badge"></i><span>Staff</span></a>
         <a href="attendance.php" class="nav-item"><i class="fas fa-clipboard-check"></i><span>Attendance</span></a>
@@ -174,7 +173,7 @@
             <div class="card">
                 <div class="card-header">
                     <h3><i class="fas fa-users"></i> Recent Students</h3>
-                    <a href="students.php" class="view-all-link">View All <i class="fas fa-arrow-right"></i></a>
+                    
                 </div>
                 <div class="card-body">
                     <table class="dash-table" id="recentStudentsTable">

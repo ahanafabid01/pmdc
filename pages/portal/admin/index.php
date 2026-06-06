@@ -36,7 +36,7 @@
                 <i class="fas fa-th-large"></i>
                 <span>Dashboard</span>
             </a>
-            <a href="#" class="nav-item">
+            <a href="students.php" class="nav-item">
                 <i class="fas fa-users"></i>
                 <span>Students</span>
                 <span class="badge">450</span>

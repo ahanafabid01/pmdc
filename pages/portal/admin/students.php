@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Students | Teacher Portal | PMDC</title>
+    <title>Students | Admin Portal | PMDC</title>
     <meta name="description" content="Manage all HSC students at Phulpur Mohila Degree College — view, add, edit and search student profiles.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,142 +14,199 @@
 </head>
 <body>
 
-<!-- Sidebar Overlay (mobile) -->
-<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-<!-- ════════════════════ SIDEBAR ════════════════════ -->
-<aside class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-        <div class="logo"><i class="fas fa-school"></i><span>PMDC</span></div>
-        <div class="close-sidebar" id="closeSidebar"><i class="fas fa-times"></i></div>
-    </div>
-    <nav class="sidebar-nav">
-        <a href="index.php"         class="nav-item"><i class="fas fa-th-large"></i><span>Dashboard</span></a>
-        <a href="students.php"      class="nav-item active"><i class="fas fa-users"></i><span>Students</span></a>
-        <a href="announcements.php" class="nav-item"><i class="fas fa-bullhorn"></i><span>Announcements</span></a>
-        <a href="staff.php"         class="nav-item"><i class="fas fa-id-badge"></i><span>Staff</span></a>
-        <a href="grades.php"        class="nav-item"><i class="fas fa-graduation-cap"></i><span>Results</span></a>
-    </nav>
-    <div class="sidebar-footer">
-        <div class="user-avatar">AB</div>
-        <div class="user-info">
-            <div class="user-name">Ms. Afroza Begum</div>
-            <div class="user-role">Science Department</div>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <div class="logo-icon"><i class="fas fa-university"></i></div>
+                <div class="logo-text">
+                    <span class="logo-name">PMDC</span>
+                    <span class="logo-role">Admin Portal</span>
+                </div>
+            </div>
+            <button class="close-sidebar" id="closeSidebar">
+                <i class="fas fa-times"></i>
+            </button>
         </div>
-    </div>
-</aside>
+
+        <nav class="sidebar-nav">
+            <span class="nav-section-label">Main</span>
+            <a href="index.php" class="nav-item">
+                <i class="fas fa-th-large"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="students.php" class="nav-item active">
+                <i class="fas fa-users"></i>
+                <span>Students</span>
+                <span class="badge">450</span>
+            </a>
+            <a href="teacher.php" class="nav-item">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <span>Teachers &amp; Staff</span>
+            </a>
+            <a href="gallery.php" class="nav-item">
+                <i class="fas fa-images"></i>
+                <span>Gallery</span>
+            </a>
+            <a href="academics.php" class="nav-item">
+                <i class="fas fa-book-open"></i>
+                <span>Academics</span>
+            </a>
+
+            <div class="nav-divider"></div>
+            <span class="nav-section-label">Management</span>
+            <a href="academic-calendar.php" class="nav-item">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Academic Calendar</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-file-invoice-dollar"></i>
+                <span>Finance</span>
+            </a>
+            <a href="announcements.php" class="nav-item">
+                <i class="fas fa-bell"></i>
+                <span>Announcements</span>
+                <span class="badge warn">3</span>
+            </a>
+            <a href="registration-hsc.php" class="nav-item">
+                <i class="fas fa-file-alt"></i>
+                <span>HSC Registration</span>
+            </a>
+            <a href="registration-degree.php" class="nav-item">
+                <i class="fas fa-university"></i>
+                <span>Degree Registration</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-chart-line"></i>
+                <span>Reports</span>
+            </a>
+
+            <div class="nav-divider"></div>
+            <span class="nav-section-label">System</span>
+            <a href="#" class="nav-item">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="avatar">AN</div>
+                <div class="user-info">
+                    <div class="user-name">Admin Nasrin</div>
+                    <div class="user-role">System Administrator</div>
+                </div>
+            </div>
+        </div>
+    </aside>
 
 <!-- ════════════════════ MAIN ════════════════════ -->
 <main class="main-content">
     <header class="top-header">
-        <div class="header-left">
-            <button class="menu-toggle" id="menuToggle" aria-label="Open menu"><i class="fas fa-bars"></i></button>
-            <nav class="page-breadcrumb" aria-label="Breadcrumb">
-                <i class="fas fa-home"></i>
-                <i class="fas fa-chevron-right sep"></i>
-                <strong>Students</strong>
-            </nav>
-        </div>
-        <div class="header-right">
-            <button class="icon-btn" title="Notifications"><i class="far fa-bell"></i><span class="notification-dot"></span></button>
-            <button class="icon-btn" title="Messages"><i class="far fa-envelope"></i></button>
-            <img class="user-avatar-sm"
-                 src="https://ui-avatars.com/api/?name=Afroza+Begum&background=2563eb&color=fff"
-                 alt="Afroza Begum">
-            <a href="../portal-login.php" class="logout-btn" title="Logout">
-                <i class="fas fa-sign-out-alt"></i>
-                <span class="logout-text">Log Out</span>
-            </a>
-        </div>
-    </header>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search students, courses, records...">
+            </div>
+            <div class="header-right">
+                <button class="icon-btn" title="Notifications">
+                    <i class="far fa-bell"></i>
+                    <span class="notification-dot"></span>
+                </button>
+                <button class="icon-btn" title="Messages">
+                    <i class="far fa-envelope"></i>
+                </button>
+                <div class="header-divider"></div>
+                <div class="user-menu">
+                    <img src="https://ui-avatars.com/api/?name=Admin+Nasrin&background=1a3a5c&color=fff&bold=true" alt="Admin Nasrin">
+                    <span class="um-name">Admin Nasrin</span>
+                </div>
+                <a href="../portal-login.php" class="logout-btn" title="Logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            </div>
+        </header>
 
     <div class="content-area">
 
         <!-- ── Page Header ── -->
-        <div class="page-header">
-            <div class="page-header-left">
-                <h1 class="page-title"><i class="fas fa-users"></i> Students (শিক্ষার্থীবৃন্দ)</h1>
-                <p class="page-subtitle">Full student profiles — HSC 1st Year &amp; 2nd Year across all groups</p>
+        <div class="tm-page-header">
+            <div class="tm-page-title">
+                <h1><i class="fas fa-users"></i> Students (শিক্ষার্থীবৃন্দ)</h1>
+                <p>Full student profiles — HSC 1st Year &amp; 2nd Year across all groups</p>
             </div>
-            <div class="page-header-actions">
+            <div class="tm-header-actions">
                 <button class="btn-export" id="exportBtn"><i class="fas fa-download"></i> Export CSV</button>
-                <button class="btn-primary-action" id="addStudentBtn">
+                <button class="btn-add-staff" id="addStudentBtn">
                     <i class="fas fa-user-plus"></i> Add Student
                 </button>
             </div>
         </div>
 
         <!-- ── Summary Stats ── -->
-        <div class="student-stats-row">
-            <div class="sstat-card">
-                <i class="fas fa-users sstat-icon" style="color:#3182ce;"></i>
-                <div><div class="sstat-val" id="statTotal">120</div><div class="sstat-lbl">Total Students</div></div>
+        <div class="tm-stats-row">
+            <div class="tm-stat-pill">
+                <i class="fas fa-users" style="color:var(--blue);font-size:1rem;flex-shrink:0;"></i>
+                <span class="ts-val" id="statTotal">120</span>
+                <span class="ts-lbl">Total Students</span>
             </div>
-            <div class="sstat-card">
-                <i class="fas fa-flask sstat-icon" style="color:#38a169;"></i>
-                <div><div class="sstat-val" id="statSci">40</div><div class="sstat-lbl">Science</div></div>
+            <div class="tm-stat-pill">
+                <i class="fas fa-flask" style="color:#16a34a;font-size:1rem;flex-shrink:0;"></i>
+                <span class="ts-val" id="statSci">40</span>
+                <span class="ts-lbl">Science</span>
             </div>
-            <div class="sstat-card">
-                <i class="fas fa-briefcase sstat-icon" style="color:#d69e2e;"></i>
-                <div><div class="sstat-val" id="statCom">40</div><div class="sstat-lbl">Business Studies</div></div>
+            <div class="tm-stat-pill">
+                <i class="fas fa-briefcase" style="color:#ca8a04;font-size:1rem;flex-shrink:0;"></i>
+                <span class="ts-val" id="statCom">40</span>
+                <span class="ts-lbl">Business Studies</span>
             </div>
-            <div class="sstat-card">
-                <i class="fas fa-book sstat-icon" style="color:#805ad5;"></i>
-                <div><div class="sstat-val" id="statHum">40</div><div class="sstat-lbl">Humanities</div></div>
+            <div class="tm-stat-pill">
+                <i class="fas fa-book" style="color:#7c3aed;font-size:1rem;flex-shrink:0;"></i>
+                <span class="ts-val" id="statHum">40</span>
+                <span class="ts-lbl">Humanities</span>
             </div>
         </div>
 
-        <div class="card filter-bar-card">
-            <div class="filter-bar">
-                <div class="filter-search">
+        <div class="tm-card" style="padding:0; margin-bottom: 20px;">
+            <div class="ra-filter-bar" style="flex-wrap: wrap;">
+                <div class="tm-search-box" style="flex:1; min-width: 250px;">
                     <i class="fas fa-search"></i>
                     <input type="text" id="studentSearch" placeholder="Search by name, roll, or registration number...">
                 </div>
-                <div class="filter-group">
-                    <label>Session (শিক্ষাবর্ষ)</label>
-                    <select id="sessionFilter" class="filter-select">
+                <select id="sessionFilter" class="ra-select">
                         <option value="">All Sessions</option>
                         <option value="2022–2023">2022–2023</option>
                         <option value="2023–2024">2023–2024</option>
                         <option value="2024–2025">2024–2025</option>
                         <option value="2025–2026">2025–2026</option>
                     </select>
-                </div>
-                <div class="filter-group">
-                    <label>Year</label>
-                    <select id="yearFilter" class="filter-select">
+                <select id="yearFilter" class="ra-select">
                         <option value="">All Years</option>
                         <option value="xi">HSC 1st Year (একাদশ)</option>
                         <option value="xii">HSC 2nd Year (দ্বাদশ)</option>
                     </select>
-                </div>
-                <div class="filter-group">
-                    <label>Group (বিভাগ)</label>
-                    <select id="groupFilter" class="filter-select">
+                <select id="groupFilter" class="ra-select">
                         <option value="">All Groups</option>
                         <option value="science">বিজ্ঞান (Science)</option>
                         <option value="commerce">ব্যবসায় শিক্ষা (Business Studies)</option>
                         <option value="humanities">মানবিক (Humanities)</option>
                     </select>
-                </div>
-                <div class="filter-group">
-                    <label>Section</label>
-                    <select id="sectionFilter" class="filter-select">
+                <select id="sectionFilter" class="ra-select">
                         <option value="">All Sections</option>
                         <option value="A">Section A</option>
                         <option value="B">Section B</option>
                         <option value="C">Section C</option>
                     </select>
-                </div>
-                <div class="filter-group">
-                    <label>Sort</label>
-                    <select id="sortFilter" class="filter-select">
+                <select id="sortFilter" class="ra-select">
                         <option value="name">Name (A–Z)</option>
                         <option value="roll">Roll Number</option>
                         <option value="recent">Recently Added</option>
                     </select>
-                </div>
-            </div>
         </div>
 
 
@@ -173,9 +230,9 @@
         </div>
 
         <!-- ── Table View ── -->
-        <div class="card" id="tableView">
-            <div class="table-responsive">
-                <table class="students-table" id="studentsTable">
+        <div class="tm-card" id="tableView" style="padding:0;">
+            <div class="tm-table-wrap">
+                <table class="tm-table" id="studentsTable">
                     <thead>
                         <tr>
                             <th><input type="checkbox" id="selectAll"></th>
@@ -195,9 +252,9 @@
                     </tbody>
                 </table>
             </div>
-            <div class="table-footer">
-                <div class="table-info" id="tableInfo">Loading…</div>
-                <div class="pagination" id="pagination"></div>
+            <div class="tm-table-footer">
+                <div id="tableInfo">Loading…</div>
+                <div class="tm-pagination" id="pagination"></div>
             </div>
         </div>
 
@@ -292,7 +349,6 @@
                             <select id="optionalSubject">
                                 <option value="">Select academic group first</option>
                             </select>
-                        </div>
                         <div class="form-group">
                             <label for="section">Section</label>
                             <select id="section">
@@ -301,7 +357,6 @@
                                 <option value="B">Section B</option>
                                 <option value="C">Section C</option>
                             </select>
-                        </div>
                         <div class="form-group">
                             <label for="session">Session (শিক্ষাবর্ষ)</label>
                             <input type="text" id="session" placeholder="e.g. 2024–2025">
@@ -329,7 +384,6 @@
                                 <option value="male">Male (পুরুষ)</option>
                                 <option value="other">Other</option>
                             </select>
-                        </div>
                         <div class="form-group">
                             <label for="religion">Religion (ধর্ম)</label>
                             <select id="religion">
@@ -340,7 +394,6 @@
                                 <option value="buddhism">Buddhism (বৌদ্ধ)</option>
                                 <option value="other">Other</option>
                             </select>
-                        </div>
                         <div class="form-group">
                             <label for="bloodGroup">Blood Group (রক্তের গ্রুপ)</label>
                             <select id="bloodGroup">
@@ -350,7 +403,6 @@
                                 <option>AB+</option><option>AB-</option>
                                 <option>O+</option><option>O-</option>
                             </select>
-                        </div>
                         <div class="form-group">
                             <label for="nid">National ID (NID) <small>10 or 17 digits</small></label>
                             <input type="text" id="nid" placeholder="For students 18+" maxlength="17">
@@ -526,5 +578,18 @@
 
 <script src="js/portal.js"></script>
 <script src="js/students.js"></script>
+<script>
+(function() {
+    const sidebar  = document.getElementById('sidebar');
+    const overlay  = document.getElementById('sidebarOverlay');
+    const menuBtn  = document.getElementById('menuToggle');
+    const closeBtn = document.getElementById('closeSidebar');
+    function open()  { sidebar.classList.add('open'); overlay.classList.add('active'); document.body.style.overflow='hidden'; }
+    function close() { sidebar.classList.remove('open'); overlay.classList.remove('active'); document.body.style.overflow=''; }
+    menuBtn?.addEventListener('click', open);
+    closeBtn?.addEventListener('click', close);
+    overlay?.addEventListener('click', close);
+})();
+</script>
 </body>
 </html>
