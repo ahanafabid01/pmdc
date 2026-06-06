@@ -1,22 +1,22 @@
-﻿{
-    "degree":  {
-                   "rocket":  "01XXXXXXXXX",
-                   "close_date":  "2026-09-30",
-                   "fee":  200,
-                   "open_date":  "2026-06-05",
-                   "status":  "open",
-                   "bkash":  "01XXXXXXXXX",
-                   "nagad":  "01XXXXXXXXX",
-                   "session":  "2026-2027"
-               },
-    "hsc":  {
-                "rocket":  "01XXXXXXXXX",
-                "close_date":  "2026-09-30",
-                "fee":  200,
-                "open_date":  "2026-06-05",
-                "status":  "open",
-                "bkash":  "01XXXXXXXXX",
-                "nagad":  "01XXXXXXXXX",
-                "session":  "2026-2027"
-            }
+{
+    "hsc": {
+        "status": "open",
+        "session": "2026-2027",
+        "fee": 200,
+        "open_date": "2026-06-06",
+        "close_date": "2026-06-07",
+        "bkash": "01706941756",
+        "nagad": "01706941756",
+        "rocket": "01706941756"
+    },
+    "degree": {
+        "status": "closed",
+        "session": "2026-2027",
+        "fee": 200,
+        "open_date": "",
+        "close_date": "",
+        "bkash": "01XXXXXXXXX",
+        "nagad": "01XXXXXXXXX",
+        "rocket": "01XXXXXXXXX"
+    }
 }

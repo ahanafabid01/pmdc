@@ -61,6 +61,12 @@ function reg_init() {
         reviewed_at      TIMESTAMP    NULL,
         reviewed_by      VARCHAR(100) DEFAULT NULL
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
+
+    $db->exec("CREATE TABLE IF NOT EXISTS registration_settings (
+        setting_key VARCHAR(50) PRIMARY KEY,
+        setting_value JSON NOT NULL
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
+
     return true;
 }
 
@@ -211,11 +217,10 @@ function reg_save_note(string $ref, string $note): bool {
    SETTINGS
    ════════════════════════════════════════════════════════════ */
 function reg_settings_get(): array {
-    if (file_exists(REG_SETTINGS_FILE)) {
-        $raw = json_decode(file_get_contents(REG_SETTINGS_FILE), true);
-        if ($raw) return $raw;
-    }
-    // Default — session 2026-2027
+    reg_init();
+    $db = reg_db();
+    
+    // Default fallback
     $defaults = [
         'status'     => 'closed',
         'session'    => '2026-2027',
@@ -226,10 +231,41 @@ function reg_settings_get(): array {
         'nagad'      => '01XXXXXXXXX',
         'rocket'     => '01XXXXXXXXX',
     ];
-    return ['hsc' => $defaults, 'degree' => $defaults];
+    $settings = ['hsc' => $defaults, 'degree' => $defaults];
+
+    if ($db) {
+        $stmt = $db->query("SELECT setting_key, setting_value FROM registration_settings");
+        while ($row = $stmt->fetch()) {
+            $key = $row['setting_key'];
+            if (isset($settings[$key])) {
+                $settings[$key] = array_merge($settings[$key], json_decode($row['setting_value'], true) ?: []);
+            }
+        }
+        return $settings;
+    }
+
+    if (file_exists(REG_SETTINGS_FILE)) {
+        $raw = json_decode(file_get_contents(REG_SETTINGS_FILE), true);
+        if ($raw) return array_merge($settings, $raw);
+    }
+    
+    return $settings;
 }
 
 function reg_settings_save(array $data): bool {
+    reg_init();
+    $db = reg_db();
+    
+    if ($db) {
+        $stmt = $db->prepare("INSERT INTO registration_settings (setting_key, setting_value) VALUES (?, ?) ON DUPLICATE KEY UPDATE setting_value = VALUES(setting_value)");
+        foreach (['hsc', 'degree'] as $key) {
+            if (isset($data[$key])) {
+                $stmt->execute([$key, json_encode($data[$key], JSON_UNESCAPED_UNICODE)]);
+            }
+        }
+        return true;
+    }
+
     reg_ensure_dirs();
     return (bool) file_put_contents(REG_SETTINGS_FILE, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 }
