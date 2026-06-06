@@ -5,63 +5,9 @@ $page_title = 'HSC Program | Phulpur Mohila Degree College';
 $page_css   = 'academic.css';
 $base_path  = '../';
 
-// Data from pmdc.md §2 and §10F
-$groups = [
-    [
-        'key'        => 'science',
-        'name'       => 'Science',
-        'bengali'    => 'বিজ্ঞান শাখা',
-        'accent'     => '#2563eb',
-        'bg'         => '#eff6ff',
-        'icon'       => 'fas fa-flask',
-        'compulsory' => ['Bangla (বাংলা)', 'English', 'ICT (তথ্য ও যোগাযোগ প্রযুক্তি)'],
-        'optional'   => ['Physics (পদার্থ বিজ্ঞান)', 'Chemistry (রসায়ন)', 'Biology (জীব বিজ্ঞান)'],
-        'optional_note' => 'Choose any 3',
-        'fourth'     => ['Higher Mathematics (উচ্চতর গণিত)', 'Biology (জীব বিজ্ঞান)'],
-        'fourth_note'=> 'Choose any 1 (optional)',
-    ],
-    [
-        'key'        => 'humanities',
-        'name'       => 'Humanities',
-        'bengali'    => 'মানবিক শাখা',
-        'accent'     => '#7c3aed',
-        'bg'         => '#f5f3ff',
-        'icon'       => 'fas fa-landmark',
-        'compulsory' => ['Bangla (বাংলা)', 'English', 'ICT (তথ্য ও যোগাযোগ প্রযুক্তি)'],
-        'optional'   => [
-            'Civics & Good Governance (পৌরনীতি ও সুশাসন)',
-            'Economics (অর্থনীতি)',
-            'Logic (যুক্তিবিদ্যা)',
-            'Social Work (সমাজকর্ম)',
-            'History (ইতিহাস)',
-            'Geography (ভূগোল)',
-        ],
-        'optional_note' => 'Choose any 3',
-        'fourth'     => [
-            'Civics (পৌরনীতি)', 'Economics (অর্থনীতি)', 'Logic (যুক্তিবিদ্যা)',
-            'Social Work (সমাজকর্ম)', 'History (ইতিহাস)', 'Geography (ভূগোল)',
-            'Islamic Studies (ইসলাম শিক্ষা)',
-        ],
-        'fourth_note'=> 'Choose any 1 (optional)',
-    ],
-    [
-        'key'        => 'business',
-        'name'       => 'Business Studies',
-        'bengali'    => 'ব্যবসায় শিক্ষা শাখা',
-        'accent'     => '#059669',
-        'bg'         => '#ecfdf5',
-        'icon'       => 'fas fa-chart-line',
-        'compulsory' => ['Bangla (বাংলা)', 'English', 'ICT (তথ্য ও যোগাযোগ প্রযুক্তি)'],
-        'optional'   => [
-            'Accounting (হিসাব বিজ্ঞান)',
-            'Business Policy & Practice (ব্যবসায়নীতি ও প্রয়োগ)',
-            'Marketing (মার্কেটিং)',
-        ],
-        'optional_note' => 'Choose any 3',
-        'fourth'     => ['Economics (অর্থনীতি)', 'Geography (ভূগোল)'],
-        'fourth_note'=> 'Choose any 1 (optional)',
-    ],
-];
+// Load dynamic data from DB
+require_once '../includes/academics-data.php';
+$groups = pmdc_academics_get_all('hsc');
 
 include '../includes/header.php';
 ?>
@@ -133,7 +79,7 @@ include '../includes/header.php';
 
             <!-- Group Cards -->
             <?php foreach ($groups as $g): ?>
-            <div class="prog-group-card reveal" style="--prog-accent:<?php echo $g['accent']; ?>;--prog-bg:<?php echo $g['bg']; ?>;">
+            <div class="prog-group-card reveal" style="--prog-accent:<?php echo $g['accent']; ?>;--prog-bg:<?php echo $g['accent']; ?>10;">
                 <div class="pgc-header">
                     <div class="pgc-icon-wrap" style="background:<?php echo $g['accent']; ?>20;color:<?php echo $g['accent']; ?>;">
                         <i class="<?php echo $g['icon']; ?>"></i>

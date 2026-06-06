@@ -7,136 +7,28 @@
 'use strict';
 
 /* ═══════════════════════════════════════════════════════════
-   STORE (localStorage-backed)
+   API FETCHING
    ═══════════════════════════════════════════════════════════ */
 
-const HSC_KEY = 'pmdc_hsc_groups';
-const DEG_KEY = 'pmdc_deg_programs';
+const API = '../../../api/academics.php';
 
-function loadStore(key, defaults) {
-    try {
-        const raw = localStorage.getItem(key);
-        return raw ? JSON.parse(raw) : defaults;
-    } catch (_) { return defaults; }
+let hscData = [];
+let degData = [];
+
+function loadData() {
+    fetch(API + '?action=list')
+        .then(r => r.json())
+        .then(data => {
+            if (data.ok) {
+                hscData = data.hsc || [];
+                degData = data.degree || [];
+                renderAll();
+            } else {
+                showToast(data.error || 'Failed to load data', 'error');
+            }
+        })
+        .catch(() => showToast('Network error loading data', 'error'));
 }
-
-function saveStore(key, data) {
-    localStorage.setItem(key, JSON.stringify(data));
-}
-
-/* ─── Default data (from hsc-program.php + degree-program.php) ─── */
-
-const defaultHsc = [
-    {
-        id: 'hsc-science',
-        name: 'Science', bengali: 'বিজ্ঞান শাখা',
-        icon: 'fas fa-flask', accent: '#2563eb',
-        compulsory: ['Bangla (বাংলা)', 'English', 'ICT (তথ্য ও যোগাযোগ প্রযুক্তি)'],
-        optional: ['Physics (পদার্থ বিজ্ঞান)', 'Chemistry (রসায়ন)', 'Biology (জীব বিজ্ঞান)'],
-        optional_note: 'Choose any 3',
-        fourth: ['Higher Mathematics (উচ্চতর গণিত)', 'Biology (জীব বিজ্ঞান)'],
-        fourth_note: 'Choose any 1 (optional)',
-    },
-    {
-        id: 'hsc-humanities',
-        name: 'Humanities', bengali: 'মানবিক শাখা',
-        icon: 'fas fa-landmark', accent: '#7c3aed',
-        compulsory: ['Bangla (বাংলা)', 'English', 'ICT (তথ্য ও যোগাযোগ প্রযুক্তি)'],
-        optional: [
-            'Civics & Good Governance (পৌরনীতি ও সুশাসন)', 'Economics (অর্থনীতি)',
-            'Logic (যুক্তিবিদ্যা)', 'Social Work (সমাজকর্ম)',
-            'History (ইতিহাস)', 'Geography (ভূগোল)',
-        ],
-        optional_note: 'Choose any 3',
-        fourth: [
-            'Civics (পৌরনীতি)', 'Economics (অর্থনীতি)', 'Logic (যুক্তিবিদ্যা)',
-            'Social Work (সমাজকর্ম)', 'History (ইতিহাস)', 'Islamic Studies (ইসলাম শিক্ষা)',
-        ],
-        fourth_note: 'Choose any 1 (optional)',
-    },
-    {
-        id: 'hsc-business',
-        name: 'Business Studies', bengali: 'ব্যবসায় শিক্ষা শাখা',
-        icon: 'fas fa-chart-line', accent: '#059669',
-        compulsory: ['Bangla (বাংলা)', 'English', 'ICT (তথ্য ও যোগাযোগ প্রযুক্তি)'],
-        optional: [
-            'Accounting (হিসাব বিজ্ঞান)',
-            'Business Policy & Practice (ব্যবসায়নীতি ও প্রয়োগ)',
-            'Marketing (মার্কেটিং)',
-        ],
-        optional_note: 'Choose any 3',
-        fourth: ['Economics (অর্থনীতি)', 'Geography (ভূগোল)'],
-        fourth_note: 'Choose any 1 (optional)',
-    },
-];
-
-const defaultDeg = [
-    {
-        id: 'deg-ba',
-        name: 'BA', full: 'Bachelor of Arts', bengali: 'কলা বিভাগ',
-        icon: 'fas fa-book', accent: '#7c3aed',
-        conductor: 'National University of Bangladesh',
-        compulsory: [
-            'Bangla (বাংলা)',
-            "History of Bangladesh's Liberation (বাংলাদেশের অভ্যুদয়ের ইতিহাস)",
-            'English',
-        ],
-        optional: ['History (ইতিহাস)', 'Philosophy (দর্শন)', 'Political Science (রাষ্ট্রবিজ্ঞান)', 'Islamic Studies (ইসলাম শিক্ষা)'],
-        optional_note: 'Choose optional subjects as per curriculum',
-    },
-    {
-        id: 'deg-bss',
-        name: 'BSS', full: 'Bachelor of Social Science', bengali: 'সমাজবিজ্ঞান বিভাগ',
-        icon: 'fas fa-users', accent: '#2563eb',
-        conductor: 'National University of Bangladesh',
-        compulsory: [
-            'Bangla (বাংলা)',
-            "History of Bangladesh's Liberation (বাংলাদেশের অভ্যুদয়ের ইতিহাস)",
-            'English',
-        ],
-        optional: [
-            'History (ইতিহাস)', 'Philosophy (দর্শন)', 'Political Science (রাষ্ট্রবিজ্ঞান)',
-            'Islamic Studies (ইসলাম শিক্ষা)', 'Economics (অর্থনীতি)', 'Social Welfare (সমাজকল্যাণ)',
-        ],
-        optional_note: 'Choose optional subjects as per curriculum',
-    },
-    {
-        id: 'deg-bsc',
-        name: 'BSc', full: 'Bachelor of Science', bengali: 'বিজ্ঞান বিভাগ',
-        icon: 'fas fa-flask', accent: '#059669',
-        conductor: 'National University of Bangladesh',
-        compulsory: [
-            'Bangla (বাংলা)',
-            "History of Bangladesh's Liberation (বাংলাদেশের অভ্যুদয়ের ইতিহাস)",
-            'English',
-        ],
-        optional: ['Botany (উদ্ভিদ বিজ্ঞান)', 'Zoology (প্রাণি বিজ্ঞান)', 'Chemistry (রসায়ন)'],
-        optional_note: 'Choose optional subjects as per curriculum',
-    },
-    {
-        id: 'deg-bmt',
-        name: 'BMT', full: 'Business Management & Technology', bengali: 'ব্যবসায় ব্যবস্থাপনা এবং টেকনোলজি',
-        icon: 'fas fa-briefcase', accent: '#d97706',
-        conductor: 'National University of Bangladesh',
-        compulsory: [
-            'Bangla (বাংলা)', 'English',
-            'Business Mathematics & Statistics (ব্যবসায়িক গণিত ও পরিসংখ্যান)',
-            'Marketing (মার্কেটিং)', 'Business Organization (ব্যবসায় সংগঠন)',
-            'Accounting (হিসাব বিজ্ঞান)', 'Economics (অর্থনীতি)',
-            'Computer Office Application (কম্পিউটার অফিস অ্যাপ্লিকেশন)',
-            'Digital Technology & Business-1 (ডিজিটাল টেকনোলজি এন্ড বিজনেস-১)',
-        ],
-        optional: [],
-        optional_note: 'All subjects are compulsory in this program',
-    },
-];
-
-/* ═══════════════════════════════════════════════════════════
-   STATE
-   ═══════════════════════════════════════════════════════════ */
-
-let hscData = loadStore(HSC_KEY, defaultHsc);
-let degData = loadStore(DEG_KEY, defaultDeg);
 
 let currentModalType = 'hsc'; // 'hsc' | 'degree'
 let editingId        = null;
@@ -408,27 +300,33 @@ function saveProgram() {
         record.conductor = document.getElementById('fConductor').value.trim() || 'National University of Bangladesh';
     }
 
-    if (isHsc) {
-        if (editingId) {
-            const idx = hscData.findIndex(r => r.id === editingId);
-            if (idx !== -1) hscData[idx] = record;
-        } else {
-            hscData.push(record);
-        }
-        saveStore(HSC_KEY, hscData);
-    } else {
-        if (editingId) {
-            const idx = degData.findIndex(r => r.id === editingId);
-            if (idx !== -1) degData[idx] = record;
-        } else {
-            degData.push(record);
-        }
-        saveStore(DEG_KEY, degData);
-    }
+    const btn = document.getElementById('acModalSave');
+    const oldText = btn.innerHTML;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+    btn.disabled = true;
 
-    renderAll();
-    closeModal();
-    showToast(editingId ? `"${record.name}" updated successfully.` : `"${record.name}" added successfully.`);
+    fetch(API + '?action=save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...record, type: isHsc ? 'hsc' : 'degree' })
+    })
+    .then(r => r.json())
+    .then(res => {
+        btn.innerHTML = oldText;
+        btn.disabled = false;
+        if (res.ok) {
+            closeModal();
+            showToast(editingId ? `"${record.name}" updated successfully.` : `"${record.name}" added successfully.`);
+            loadData();
+        } else {
+            showToast(res.error || 'Failed to save', 'error');
+        }
+    })
+    .catch(() => {
+        btn.innerHTML = oldText;
+        btn.disabled = false;
+        showToast('Network error', 'error');
+    });
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -453,21 +351,33 @@ function closeDeleteModal() {
 
 function confirmDelete() {
     if (!pendingDeleteId) return;
+    const btn = document.getElementById('acDeleteConfirm');
+    const oldText = btn.innerHTML;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Deleting...';
+    btn.disabled = true;
 
-    if (pendingDeleteType === 'hsc') {
-        const name = hscData.find(r => r.id === pendingDeleteId)?.name;
-        hscData = hscData.filter(r => r.id !== pendingDeleteId);
-        saveStore(HSC_KEY, hscData);
-        showToast(`HSC group "${name}" deleted.`, 'error');
-    } else {
-        const name = degData.find(r => r.id === pendingDeleteId)?.name;
-        degData = degData.filter(r => r.id !== pendingDeleteId);
-        saveStore(DEG_KEY, degData);
-        showToast(`Degree program "${name}" deleted.`, 'error');
-    }
-
-    renderAll();
-    closeDeleteModal();
+    fetch(API + '?action=delete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: pendingDeleteId, type: pendingDeleteType })
+    })
+    .then(r => r.json())
+    .then(res => {
+        btn.innerHTML = oldText;
+        btn.disabled = false;
+        if (res.ok) {
+            closeDeleteModal();
+            showToast('Program deleted successfully.', 'error');
+            loadData();
+        } else {
+            showToast(res.error || 'Failed to delete', 'error');
+        }
+    })
+    .catch(() => {
+        btn.innerHTML = oldText;
+        btn.disabled = false;
+        showToast('Network error', 'error');
+    });
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -475,7 +385,7 @@ function confirmDelete() {
    ═══════════════════════════════════════════════════════════ */
 
 document.addEventListener('DOMContentLoaded', () => {
-    renderAll();
+    loadData();
 
     // ── Add buttons ──
     document.getElementById('btnAddHsc').addEventListener('click', () => openModal('hsc'));

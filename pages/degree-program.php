@@ -5,99 +5,9 @@ $page_title = 'Degree Program | Phulpur Mohila Degree College';
 $page_css   = 'academic.css';
 $base_path  = '../';
 
-// Data from pmdc.md §10A and §10F
-$programs = [
-    [
-        'key'         => 'ba',
-        'name'        => 'BA',
-        'full'        => 'Bachelor of Arts',
-        'bengali'     => 'কলা বিভাগ',
-        'accent'      => '#7c3aed',
-        'icon'        => 'fas fa-book',
-        'session_note'=> 'Offered since the 2003–2004 academic session',
-        'compulsory'  => [
-            'Bangla (বাংলা)',
-            'History of Bangladesh\'s Liberation (বাংলাদেশের অভ্যুদয়ের ইতিহাস)',
-            'English',
-        ],
-        'optional'    => [
-            'History (ইতিহাস)',
-            'Philosophy (দর্শন)',
-            'Political Science (রাষ্ট্রবিজ্ঞান)',
-            'Islamic Studies (ইসলাম শিক্ষা)',
-        ],
-        'optional_note'=> 'Choose optional subjects as per curriculum',
-        'conductor'   => 'National University of Bangladesh',
-    ],
-    [
-        'key'         => 'bss',
-        'name'        => 'BSS',
-        'full'        => 'Bachelor of Social Science',
-        'bengali'     => 'সমাজবিজ্ঞান বিভাগ',
-        'accent'      => '#2563eb',
-        'icon'        => 'fas fa-users',
-        'session_note'=> 'Offered since the 2003–2004 academic session',
-        'compulsory'  => [
-            'Bangla (বাংলা)',
-            'History of Bangladesh\'s Liberation (বাংলাদেশের অভ্যুদয়ের ইতিহাস)',
-            'English',
-        ],
-        'optional'    => [
-            'History (ইতিহাস)',
-            'Philosophy (দর্শন)',
-            'Political Science (রাষ্ট্রবিজ্ঞান)',
-            'Islamic Studies (ইসলাম শিক্ষা)',
-            'Economics (অর্থনীতি)',
-            'Social Welfare (সমাজকল্যাণ)',
-        ],
-        'optional_note'=> 'Choose optional subjects as per curriculum',
-        'conductor'   => 'National University of Bangladesh',
-    ],
-    [
-        'key'         => 'bsc',
-        'name'        => 'BSc',
-        'full'        => 'Bachelor of Science',
-        'bengali'     => 'বিজ্ঞান বিভাগ',
-        'accent'      => '#059669',
-        'icon'        => 'fas fa-flask',
-        'session_note'=> 'Offered since the 2003–2004 academic session',
-        'compulsory'  => [
-            'Bangla (বাংলা)',
-            'History of Bangladesh\'s Liberation (বাংলাদেশের অভ্যুদয়ের ইতিহাস)',
-            'English',
-        ],
-        'optional'    => [
-            'Botany (উদ্ভিদ বিজ্ঞান)',
-            'Zoology (প্রাণি বিজ্ঞান)',
-            'Chemistry (রসায়ন)',
-        ],
-        'optional_note'=> 'Choose optional subjects as per curriculum',
-        'conductor'   => 'National University of Bangladesh',
-    ],
-    [
-        'key'         => 'bmt',
-        'name'        => 'BMT',
-        'full'        => 'Business Management & Technology',
-        'bengali'     => 'ব্যবসায় ব্যবস্থাপনা এবং টেকনোলজি',
-        'accent'      => '#d97706',
-        'icon'        => 'fas fa-briefcase',
-        'session_note'=> 'Offered since the 2004–2005 academic session',
-        'compulsory'  => [
-            'Bangla (বাংলা)',
-            'English',
-            'Business Mathematics & Statistics (ব্যবসায়িক গণিত ও পরিসংখ্যান)',
-            'Marketing (মার্কেটিং)',
-            'Business Organization (ব্যবসায় সংগঠন)',
-            'Accounting (হিসাব বিজ্ঞান)',
-            'Economics (অর্থনীতি)',
-            'Computer Office Application (কম্পিউটার অফিস অ্যাপ্লিকেশন)',
-            'Digital Technology & Business-1 (ডিজিটাল টেকনোলজি এন্ড বিজনেস-১)',
-        ],
-        'optional'    => [],
-        'optional_note'=> 'All subjects are compulsory in this program',
-        'conductor'   => 'National University of Bangladesh',
-    ],
-];
+// Load dynamic data from DB
+require_once '../includes/academics-data.php';
+$programs = pmdc_academics_get_all('degree');
 
 include '../includes/header.php';
 ?>
@@ -144,7 +54,7 @@ include '../includes/header.php';
             <!-- Tab nav for programs -->
             <div class="dp-tab-nav reveal">
                 <?php foreach ($programs as $p): ?>
-                <button class="dp-tab-btn" data-target="dp-<?php echo $p['key']; ?>"
+                <button class="dp-tab-btn" data-target="dp-<?php echo $p['id']; ?>"
                         style="--tab-accent:<?php echo $p['accent']; ?>;">
                     <i class="<?php echo $p['icon']; ?>"></i>
                     <span><?php echo $p['name']; ?></span>
@@ -155,7 +65,7 @@ include '../includes/header.php';
 
             <!-- Program Cards -->
             <?php foreach ($programs as $idx => $p): ?>
-            <div class="dp-program-block reveal <?php echo $idx===0?'dp-active':''; ?>" id="dp-<?php echo $p['key']; ?>">
+            <div class="dp-program-block reveal <?php echo $idx===0?'dp-active':''; ?>" id="dp-<?php echo $p['id']; ?>">
                 <div class="prog-group-card" style="--prog-accent:<?php echo $p['accent']; ?>;--prog-bg:<?php echo $p['accent']; ?>15;">
                     <div class="pgc-header">
                         <div class="pgc-icon-wrap" style="background:<?php echo $p['accent']; ?>20;color:<?php echo $p['accent']; ?>;">
@@ -166,7 +76,7 @@ include '../includes/header.php';
                             <div class="pgc-bengali"><?php echo htmlspecialchars($p['bengali']); ?></div>
                         </div>
                         <span class="pgc-badge" style="background:<?php echo $p['accent']; ?>15;color:<?php echo $p['accent']; ?>;">
-                            <i class="fas fa-calendar-alt" style="font-size:.65rem;"></i> <?php echo htmlspecialchars($p['session_note']); ?>
+                            <i class="fas fa-university" style="font-size:.65rem;"></i> Degree Program
                         </span>
                     </div>
 
