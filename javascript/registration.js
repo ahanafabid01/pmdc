@@ -1,0 +1,208 @@
+/**
+ * javascript/registration.js
+ * Multi-step form handler for HSC/Degree public registration.
+ */
+document.addEventListener('DOMContentLoaded', () => {
+    const formType = document.body.dataset.formType || 'hsc';
+    const steps = document.querySelectorAll('.reg-step');
+    const nodes = document.querySelectorAll('.reg-step-node');
+    let currentStep = 0;
+
+    // Navigation
+    document.querySelectorAll('[data-action="next"]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (currentStep < steps.length - 1) {
+                // Optionally validate inputs here
+                showStep(currentStep + 1);
+            }
+        });
+    });
+
+    document.querySelectorAll('[data-action="back"]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (currentStep > 0) showStep(currentStep - 1);
+        });
+    });
+
+    document.querySelectorAll('.reg-summary-edit').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const targetStep = parseInt(e.target.dataset.gotoStep) - 1;
+            if (!isNaN(targetStep) && targetStep >= 0) showStep(targetStep);
+        });
+    });
+
+    function showStep(index) {
+        steps[currentStep].classList.remove('active');
+        nodes[currentStep].classList.remove('active');
+        currentStep = index;
+        steps[currentStep].classList.add('active');
+        nodes[currentStep].classList.add('active');
+        
+        // Update summary on final step
+        if (currentStep === steps.length - 1) {
+            updateSummary();
+        }
+    }
+
+    // Image previews
+    function setupUpload(inputId, previewId, nameId) {
+        const input = document.getElementById(inputId);
+        if (!input) return;
+        input.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                document.getElementById(nameId).textContent = file.name;
+                const reader = new FileReader();
+                reader.onload = e => {
+                    const img = document.getElementById(previewId);
+                    img.src = e.target.result;
+                    img.style.display = 'block';
+                    img.previousElementSibling.style.display = 'none'; // hide placeholder
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
+    setupUpload('upload_photo', 'photo_preview', 'photo_filename');
+    setupUpload('upload_cert', 'cert_preview', 'cert_filename');
+    setupUpload('upload_birth', 'birth_preview', 'birth_filename');
+
+    // Remove buttons
+    document.querySelectorAll('.reg-upload-remove').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const zone = this.closest('.reg-upload-zone');
+            const input = zone.querySelector('input[type="file"]');
+            const img = zone.querySelector('img');
+            const name = zone.querySelector('.reg-upload-filename');
+            const placeholder = zone.querySelector('.reg-photo-placeholder, .reg-doc-placeholder');
+            
+            input.value = '';
+            img.src = '';
+            img.style.display = 'none';
+            name.textContent = '';
+            if (placeholder) placeholder.style.display = 'flex';
+        });
+    });
+
+    function updateSummary() {
+        const tbody = document.getElementById('summaryBody');
+        if (!tbody) return;
+        
+        let summaryHtml = '<table style="width:100%; border-collapse:collapse; font-size: 0.85rem;">';
+        const addRow = (label, val) => {
+            summaryHtml += `<tr><td style="padding:4px 0; color:#64748b;">${label}</td><td style="padding:4px 0; font-weight:600; text-align:right;">${val || '—'}</td></tr>`;
+        };
+
+        addRow('Name (EN)', document.getElementById('full_name_en')?.value);
+        addRow('Date of Birth', document.getElementById('dob')?.value);
+        addRow('Phone', document.getElementById('guardian_phone')?.value);
+        
+        if (formType === 'hsc') {
+            addRow('SSC Roll', document.getElementById('ssc_roll')?.value);
+            addRow('Desired Group', document.getElementById('desired_group')?.value);
+        } else {
+            addRow('HSC Roll', document.getElementById('hsc_roll')?.value);
+            addRow('Desired Program', document.getElementById('desired_program')?.value);
+        }
+
+        const pm = document.querySelector('input[name="payment_method"]:checked')?.value || '—';
+        addRow('Payment Method', pm);
+        addRow('Txn ID', document.getElementById('transaction_id')?.value);
+        
+        summaryHtml += '</table>';
+        tbody.innerHTML = summaryHtml;
+    }
+
+    // Form Submission
+    const submitBtn = document.getElementById('btnSubmit');
+    if (submitBtn) {
+        submitBtn.addEventListener('click', () => {
+            const overlay = document.getElementById('regConfirmOverlay');
+            if (overlay) overlay.style.display = 'flex';
+        });
+    }
+
+    const cancelBtn = document.getElementById('confirmCancel');
+    if (cancelBtn) {
+        cancelBtn.addEventListener('click', () => {
+            document.getElementById('regConfirmOverlay').style.display = 'none';
+        });
+    }
+
+    const confirmSubmitBtn = document.getElementById('confirmSubmit');
+    if (confirmSubmitBtn) {
+        confirmSubmitBtn.addEventListener('click', async () => {
+            document.getElementById('regConfirmOverlay').style.display = 'none';
+            
+            const btn = document.getElementById('btnSubmit');
+            const spinner = document.getElementById('submitSpinner');
+            btn.disabled = true;
+            spinner.style.display = 'inline-block';
+
+            const formData = new FormData();
+            formData.append('type', formType);
+            
+            // Personal Data
+            const personal = {};
+            ['full_name_en', 'full_name_bn', 'dob', 'religion', 'blood_group', 'nid_number', 'birth_cert_num', 'father_name', 'father_nid', 'father_occupation', 'mother_name', 'mother_nid', 'mother_occupation', 'guardian_phone', 'student_phone', 'present_address', 'permanent_address'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) personal[id] = el.value;
+            });
+            formData.append('personal_data', JSON.stringify(personal));
+
+            // Academic Data
+            const academic = {};
+            if (formType === 'hsc') {
+                ['ssc_roll', 'ssc_reg', 'ssc_board', 'ssc_year', 'ssc_gpa', 'ssc_group', 'desired_group', 'desired_section', 'prev_institution'].forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) academic[id] = el.value;
+                });
+            } else {
+                ['hsc_roll', 'hsc_reg', 'hsc_board', 'hsc_year', 'hsc_gpa', 'hsc_group', 'desired_program', 'prev_institution'].forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) academic[id] = el.value;
+                });
+            }
+            formData.append('academic_data', JSON.stringify(academic));
+
+            // Payment Data
+            formData.append('payment_method', document.querySelector('input[name="payment_method"]:checked')?.value || '');
+            formData.append('transaction_id', document.getElementById('transaction_id')?.value || '');
+            formData.append('amount_paid', document.getElementById('amount_paid')?.value || '0');
+            formData.append('payment_date', document.getElementById('payment_date')?.value || '');
+
+            // Files
+            const photoInput = document.getElementById('upload_photo');
+            if (photoInput && photoInput.files[0]) formData.append('photo', photoInput.files[0]);
+            
+            const certInput = document.getElementById('upload_cert');
+            if (certInput && certInput.files[0]) formData.append('certificate', certInput.files[0]);
+            
+            const birthInput = document.getElementById('upload_birth');
+            if (birthInput && birthInput.files[0]) formData.append('birth_cert', birthInput.files[0]);
+
+            try {
+                const res = await fetch('../api/registration-submit.php', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await res.json();
+                
+                if (data.success) {
+                    document.getElementById('regFormWrap').style.display = 'none';
+                    document.getElementById('regSuccess').style.display = 'block';
+                    document.getElementById('successRefNumber').textContent = data.ref_number;
+                } else {
+                    alert('Submission failed: ' + (data.message || 'Unknown error'));
+                }
+            } catch (err) {
+                alert('Submission failed due to a network error.');
+            } finally {
+                btn.disabled = false;
+                spinner.style.display = 'none';
+            }
+        });
+    }
+});

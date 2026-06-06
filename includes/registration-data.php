@@ -5,6 +5,10 @@
  * PDO MySQL with JSON file fallback.
  */
 
+if (!defined('DB_NAME')) {
+    require_once __DIR__ . '/config.php';
+}
+
 define('REG_UPLOAD_BASE',   __DIR__ . '/../uploads/registrations/');
 define('REG_DATA_DIR',      REG_UPLOAD_BASE . 'data/');
 define('REG_SETTINGS_FILE', REG_UPLOAD_BASE . 'settings.json');
@@ -21,7 +25,8 @@ function reg_db() {
     static $pdo = null;
     if ($pdo) return $pdo;
     try {
-        $pdo = new PDO('mysql:host=localhost;dbname=pmdc_db;charset=utf8mb4', 'root', '', [
+        $dsn = 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8mb4';
+        $pdo = new PDO($dsn, DB_USER, DB_PASS, [
             PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         ]);
