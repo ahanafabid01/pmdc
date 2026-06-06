@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 $page       = 'holiday-list';
 $page_group = 'academic';
 $page_title = 'Holiday List | Phulpur Mohila Degree College';
@@ -65,8 +65,6 @@ include '../includes/header.php';
                             <tr>
                                 <th>#</th>
                                 <th>Holiday Name</th>
-                                <th>Date</th>
-                                <th>Day</th>
                                 <th>Type</th>
                             </tr>
                         </thead>
@@ -89,8 +87,6 @@ include '../includes/header.php';
                                 <?php if($isTdy): ?><span class="ai-badge badge-today" style="margin-right:6px;">Today</span><?php endif; ?>
                                 <?php echo htmlspecialchars($h['name']); ?>
                             </td>
-                            <td class="ai-date-cell"><?php echo date('d M Y', $ts); ?></td>
-                            <td><?php echo date('l', $ts); ?></td>
                             <td><?php echo $badge; ?></td>
                         </tr>
                         <?php endforeach; ?>
