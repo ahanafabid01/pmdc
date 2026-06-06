@@ -43,15 +43,21 @@
     <header class="top-header">
         <div class="header-left">
             <button class="menu-toggle" id="menuToggle" aria-label="Open menu"><i class="fas fa-bars"></i></button>
-            <nav class="breadcrumb" aria-label="Breadcrumb">
+            <nav class="page-breadcrumb" aria-label="Breadcrumb">
                 <i class="fas fa-home"></i>
                 <i class="fas fa-chevron-right sep"></i>
                 <strong>Dashboard</strong>
             </nav>
         </div>
         <div class="header-right">
+            <button class="icon-btn" title="Notifications"><i class="far fa-bell"></i><span class="notification-dot"></span></button>
+            <button class="icon-btn" title="Messages"><i class="far fa-envelope"></i></button>
+            <img class="user-avatar-sm" id="headerAvatar"
+                 src="https://ui-avatars.com/api/?name=Teacher&background=2563eb&color=fff"
+                 alt="Teacher">
             <a href="../portal-login.php" class="logout-btn" title="Logout">
-                <i class="fas fa-sign-out-alt"></i><span class="logout-text">Log Out</span>
+                <i class="fas fa-sign-out-alt"></i>
+                <span class="logout-text">Log Out</span>
             </a>
         </div>
     </header>

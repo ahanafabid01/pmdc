@@ -203,10 +203,18 @@ function populateSidebar(ctx) {
             : 'No programs assigned';
     });
 
-    // Update avatar with real initials
+    // Update sidebar avatar initials
     const avatarEl = document.getElementById('sidebarAvatar');
     if (avatarEl && ctx.teacher_name) {
         avatarEl.textContent = ctx.teacher_name.trim().split(/\s+/).map(w => w[0].toUpperCase()).slice(0,2).join('');
+    }
+
+    // Update header avatar image with real name
+    const headerAvatar = document.getElementById('headerAvatar');
+    if (headerAvatar && ctx.teacher_name) {
+        const encoded = encodeURIComponent(ctx.teacher_name);
+        headerAvatar.src = `https://ui-avatars.com/api/?name=${encoded}&background=2563eb&color=fff`;
+        headerAvatar.alt = ctx.teacher_name;
     }
 }
 
