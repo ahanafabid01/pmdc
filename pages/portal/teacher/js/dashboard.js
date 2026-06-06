@@ -4,6 +4,14 @@
  */
 'use strict';
 
+/* ── Set today's date immediately (no API wait) ──────────── */
+(function() {
+    const now = new Date();
+    const dateStr = now.toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+    const el = document.getElementById('todayDateBanner');
+    if (el) el.textContent = dateStr;
+})();
+
 /* ── Sidebar ─────────────────────────────────────────────── */
 const sidebar  = document.getElementById('sidebar');
 const menuBtn  = document.getElementById('menuToggle');
@@ -45,10 +53,10 @@ function initials(name) {
 
 /* ── Empty state helper ──────────────────────────────────── */
 function emptyState(icon, title, sub) {
-    return `<div style="text-align:center;padding:40px 20px;color:#94a3b8;">
-        <i class="fas ${icon}" style="font-size:2rem;margin-bottom:12px;display:block;"></i>
-        <div style="font-weight:700;font-size:.95rem;color:#64748b;margin-bottom:4px;">${title}</div>
-        <div style="font-size:.8rem;">${sub}</div>
+    return `<div class="empty-state">
+        <i class="fas ${icon}"></i>
+        <div class="es-title">${title}</div>
+        ${sub ? `<div class="es-sub">${sub}</div>` : ''}
     </div>`;
 }
 
@@ -64,143 +72,142 @@ function animateCount(el, target) {
     })();
 }
 
-/* ── Render programs ─────────────────────────────────────── */
-function renderPrograms(programs, subjects) {
+/* ── Render programs ───────────────────────────────────── */
+function renderPrograms(programs) {
     const el = document.getElementById('programsList');
     if (!el) return;
-
     if (!programs.length) {
         el.innerHTML = emptyState('fa-folder-open', 'No Programs Assigned', 'Contact admin to assign classes.');
         return;
     }
-
     el.innerHTML = programs.map(p => {
-        const color = p.accent_color || '#2563eb';
-        const typeBadge = p.type === 'hsc'
-            ? '<span style="background:#dbeafe;color:#1e40af;padding:2px 8px;border-radius:20px;font-size:.7rem;font-weight:700;">HSC</span>'
-            : '<span style="background:#f3e8ff;color:#6b21a8;padding:2px 8px;border-radius:20px;font-size:.7rem;font-weight:700;">DEGREE</span>';
-        return `<div class="program-item" style="display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--border);">
-            <div style="width:42px;height:42px;border-radius:10px;background:${color}20;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                <i class="fas fa-book-open" style="color:${color};font-size:1rem;"></i>
+        const color = p.accent_color || (p.type==='hsc' ? '#2563eb' : '#7c3aed');
+        return `<div class="program-item">
+            <div class="pi-icon" style="background:${color}18;">
+                <i class="fas fa-book-open" style="color:${color};"></i>
             </div>
             <div style="flex:1;min-width:0;">
-                <div style="font-weight:700;font-size:.88rem;color:var(--text);margin-bottom:3px;">${p.name}</div>
-                <div style="display:flex;gap:6px;align-items:center;">${typeBadge}</div>
+                <div class="pi-name">${p.name}</div>
+                <span class="pi-badge ${p.type}">${p.type.toUpperCase()}</span>
             </div>
         </div>`;
     }).join('');
 }
 
-/* ── Render subjects ─────────────────────────────────────── */
+/* ── Render subjects ───────────────────────────────────── */
+const SI_COLORS = [
+    {bg:'#dbeafe',color:'#1e40af'},{bg:'#ede9fe',color:'#5b21b6'},
+    {bg:'#dcfce7',color:'#166534'},{bg:'#fef3c7',color:'#92400e'},
+    {bg:'#fee2e2',color:'#991b1b'},{bg:'#fce7f3',color:'#9d174d'},
+];
 function renderSubjects(subjects) {
     const el = document.getElementById('subjectsList');
     if (!el) return;
-
     if (!subjects.length) {
         el.innerHTML = emptyState('fa-book', 'No Subjects Assigned', '');
         return;
     }
-
     el.innerHTML = subjects.map((s, i) => {
-        const colors = ['#dbeafe','#f3e8ff','#dcfce7','#fef3c7','#fee2e2'];
-        const textColors = ['#1e40af','#6b21a8','#166534','#92400e','#991b1b'];
-        return `<div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);">
-            <div style="width:32px;height:32px;border-radius:8px;background:${colors[i%5]};display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.75rem;color:${textColors[i%5]};flex-shrink:0;">${i+1}</div>
-            <div style="font-size:.875rem;color:var(--text);font-weight:600;">${s}</div>
+        const c = SI_COLORS[i % SI_COLORS.length];
+        return `<div class="subject-item">
+            <div class="si-num" style="background:${c.bg};color:${c.color};">${i+1}</div>
+            <div class="si-name">${s}</div>
         </div>`;
     }).join('');
 }
 
-/* ── Render student group distribution ───────────────────── */
+/* ── Render group distribution ──────────────────────────── */
+const GROUP_COLORS = {
+    science:'#3b82f6', humanities:'#8b5cf6', commerce:'#10b981',
+    business:'#f59e0b', ba:'#ec4899', bmt:'#f97316', bsc:'#0ea5e9', bss:'#14b8a6'
+};
 function renderGroupDistribution(students) {
     const el = document.getElementById('groupDistChart');
     if (!el) return;
-
     const groups = {};
-    students.forEach(s => {
-        const g = s.group || 'unknown';
-        groups[g] = (groups[g] || 0) + 1;
-    });
-
+    students.forEach(s => { const g = (s.group||'unknown').toLowerCase(); groups[g]=(groups[g]||0)+1; });
     const total = students.length;
     if (!total) {
         el.innerHTML = emptyState('fa-users', 'No Students Enrolled', 'Students will appear once registered.');
         return;
     }
-
-    const colors = { science:'#3b82f6', humanities:'#8b5cf6', commerce:'#10b981', business:'#f59e0b', ba:'#ec4899', bmt:'#f97316', bsc:'#0ea5e9', bss:'#14b8a6' };
     el.innerHTML = Object.entries(groups).map(([g, count]) => {
         const pct = Math.round((count/total)*100);
-        const color = colors[g.toLowerCase()] || '#64748b';
-        return `<div style="margin-bottom:14px;">
-            <div style="display:flex;justify-content:space-between;font-size:.8rem;margin-bottom:5px;">
-                <span style="font-weight:700;text-transform:capitalize;">${g}</span>
-                <span style="color:var(--muted);">${count} students (${pct}%)</span>
+        const color = GROUP_COLORS[g] || '#64748b';
+        return `<div class="dist-item">
+            <div class="dist-label-row">
+                <span class="dl-name">${g}</span>
+                <span class="dl-count">${count} (${pct}%)</span>
             </div>
-            <div style="height:7px;background:#f1f5f9;border-radius:10px;overflow:hidden;">
-                <div style="height:100%;width:${pct}%;background:${color};border-radius:10px;transition:width .6s ease;"></div>
+            <div class="dist-bar-bg">
+                <div class="dist-bar-fill" style="width:${pct}%;background:${color};"></div>
             </div>
         </div>`;
     }).join('');
 }
 
-/* ── Render sections breakdown ───────────────────────────── */
+/* ── Render sections ─────────────────────────────────────── */
 function renderSections(students) {
     const el = document.getElementById('sectionsBreakdown');
     if (!el) return;
-
     const map = {};
     students.forEach(s => {
-        const key = `${s.group} | ${s.year === 'xii' ? '2nd Year' : '1st Year'} | Sec ${s.section}`;
-        map[key] = (map[key] || 0) + 1;
+        const yr = s.year === 'xii' ? '2nd Year' : s.year === 'xi' ? '1st Year' : `Year ${s.year}`;
+        const key = `${s.group} · ${yr} · Sec ${s.section}`;
+        map[key] = (map[key]||0)+1;
     });
-
     if (!Object.keys(map).length) {
         el.innerHTML = emptyState('fa-layer-group', 'No Sections Yet', '');
         return;
     }
-
     el.innerHTML = Object.entries(map).map(([label, count]) =>
-        `<div style="display:flex;justify-content:space-between;align-items:center;padding:9px 14px;background:var(--bg);border-radius:8px;margin-bottom:8px;font-size:.835rem;">
-            <span style="font-weight:600;color:var(--text);text-transform:capitalize;">${label}</span>
-            <span style="font-weight:800;color:var(--blue);">${count}</span>
+        `<div class="section-row">
+            <span class="sr-label">${label}</span>
+            <span class="sr-count">${count}</span>
         </div>`
     ).join('');
 }
 
-/* ── Render recent students ──────────────────────────────── */
+/* ── Render recent students ─────────────────────────────── */
 function renderRecentStudents(students) {
     const el = document.getElementById('recentStudentsList');
     if (!el) return;
-
     if (!students.length) {
         el.innerHTML = emptyState('fa-user-graduate', 'No Students Yet', 'Students will appear once enrolled.');
         return;
     }
-
-    const shown = students.slice(0, 8);
-    el.innerHTML = shown.map(s => {
+    el.innerHTML = students.slice(0, 10).map(s => {
         const color = avatarColor(s.name);
         const ini   = initials(s.name);
-        return `<div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);">
-            <div style="width:38px;height:38px;border-radius:50%;background:${color};display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.8rem;color:#fff;flex-shrink:0;">${ini}</div>
-            <div style="flex:1;min-width:0;">
-                <div style="font-weight:700;font-size:.855rem;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${s.name}</div>
-                <div style="font-size:.74rem;color:var(--muted);">Roll: ${s.roll} · ${s.group} · ${s.year === 'xii' ? '2nd Year' : '1st Year'}</div>
+        const yr = s.year === 'xii' ? '2nd Yr' : s.year === 'xi' ? '1st Yr' : `Yr ${s.year}`;
+        return `<div class="student-row">
+            <div class="stu-avatar" style="background:${color};">${ini}</div>
+            <div class="stu-info">
+                <div class="stu-name">${s.name}</div>
+                <div class="stu-meta">${s.group} · ${yr} · Sec ${s.section||'A'}</div>
             </div>
+            <code class="stu-roll">${s.roll}</code>
         </div>`;
     }).join('');
 }
 
 /* ── Sidebar: show teacher info ──────────────────────────── */
 function populateSidebar(ctx) {
-    const nameEl = document.querySelector('.t-name');
-    if (nameEl) nameEl.textContent = ctx.teacher_name;
+    // Update all teacher name placeholders
+    document.querySelectorAll('.t-name').forEach(el => el.textContent = ctx.teacher_name);
 
-    const roleEl = document.querySelector('.t-role');
-    if (roleEl) roleEl.textContent = ctx.programs.length
-        ? ctx.programs.map(p => p.name).join(', ')
-        : 'No programs assigned';
+    // Update role / programs
+    document.querySelectorAll('.t-role').forEach(el => {
+        el.textContent = ctx.programs.length
+            ? ctx.programs.map(p => p.name).join(', ')
+            : 'No programs assigned';
+    });
+
+    // Update avatar with real initials
+    const avatarEl = document.getElementById('sidebarAvatar');
+    if (avatarEl && ctx.teacher_name) {
+        avatarEl.textContent = ctx.teacher_name.trim().split(/\s+/).map(w => w[0].toUpperCase()).slice(0,2).join('');
+    }
 }
 
 /* ── Main init ────────────────────────────────────────────── */
@@ -223,16 +230,21 @@ async function loadTeacherContext() {
         animateCount(document.getElementById('statSubjects'),  subjects.length);
         animateCount(document.getElementById('statPrograms'),  programs.length);
 
-        // Unique sections
         const sections = new Set(students.map(s => `${s.group}|${s.year}|${s.section}`));
         animateCount(document.getElementById('statSections'), sections.size);
 
         /* Sidebar */
         populateSidebar(data);
 
-        /* Sections */
-        const el1 = document.getElementById('statStudentsEl');
-        if (el1) el1.textContent = students.length;
+        /* Banner chips */
+        const bannerCount = document.getElementById('bannerStudentCount');
+        if (bannerCount) bannerCount.textContent = `${students.length} Student${students.length !== 1 ? 's' : ''}`;
+
+        const sessEl = document.getElementById('currentSession');
+        if (sessEl) {
+            const sess = [...new Set(students.map(s => s.session).filter(Boolean))];
+            sessEl.textContent = sess.length ? sess[0] : new Date().getFullYear() + '–' + (new Date().getFullYear() + 1);
+        }
 
         /* Render panels */
         renderPrograms(programs, subjects);
@@ -241,19 +253,16 @@ async function loadTeacherContext() {
         renderSections(students);
         renderRecentStudents(students);
 
-        // Session label
-        const sessEl = document.getElementById('currentSession');
-        if (sessEl && students.length) {
-            const sessions = [...new Set(students.map(s => s.session).filter(Boolean))];
-            sessEl.textContent = sessions.join(', ') || '—';
-        }
-
     } catch(e) {
         console.error('Failed to load teacher context:', e);
-        // Show error state on main stats
         ['statStudents','statSubjects','statPrograms','statSections'].forEach(id => {
             const el = document.getElementById(id);
-            if (el) el.textContent = '—';
+            if (el) el.textContent = '0';
+        });
+        // Show empty states
+        ['programsList','subjectsList','groupDistChart','sectionsBreakdown','recentStudentsList'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.innerHTML = emptyState('fa-exclamation-circle', 'Could not load data', 'Please refresh the page.');
         });
     }
 }
