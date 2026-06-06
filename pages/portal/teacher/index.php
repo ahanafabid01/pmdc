@@ -165,6 +165,45 @@
             <div class="breakdown-card" id="bdSess4"><div class="breakdown-title"><i class="fas fa-calendar"></i> —</div><div class="breakdown-val">—</div><div class="breakdown-sub">students</div></div>
         </div>
 
+        <!-- ── Overview Cards (Chart + Top Performers + Attention) ── -->
+        <div class="grades-overview-grid">
+            <div class="card grades-chart-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-chart-bar"></i> GPA Distribution</h3>
+                    <div class="chart-class-label" id="chartClassLabel">All Groups</div>
+                </div>
+                <div class="card-body">
+                    <div class="grade-bar-chart" id="gradeBarChart"></div>
+                    <div class="grade-dist-legend">
+                        <span class="legend-item"><span class="legend-dot" style="background:#276749;"></span>A+</span>
+                        <span class="legend-item"><span class="legend-dot" style="background:#38a169;"></span>A</span>
+                        <span class="legend-item"><span class="legend-dot" style="background:#3182ce;"></span>A-</span>
+                        <span class="legend-item"><span class="legend-dot" style="background:#d69e2e;"></span>B</span>
+                        <span class="legend-item"><span class="legend-dot" style="background:#dd6b20;"></span>C/D</span>
+                        <span class="legend-item"><span class="legend-dot" style="background:#e53e3e;"></span>F</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card top-performers-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-trophy"></i> Top Performers</h3>
+                </div>
+                <div class="card-body">
+                    <div id="topPerformersList"></div>
+                </div>
+            </div>
+
+            <div class="card needs-attention-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-exclamation-circle"></i> Needs Attention</h3>
+                </div>
+                <div class="card-body">
+                    <div id="attentionList"></div>
+                </div>
+            </div>
+        </div>
+
         <!-- ── Two-column: Recent Students + Recent Results ── -->
         <div class="dash-grid">
 

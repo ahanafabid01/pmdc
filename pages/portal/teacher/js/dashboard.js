@@ -227,3 +227,113 @@ $('recentResultsTbody').innerHTML = displayResults.map(({ s, exam, gpa }) => {
         <td><span class="grade-badge" style="background:${g.bg};color:${g.color};">${g.letter}</span></td>
     </tr>`;
 }).join('');
+/* ═══════════════════════════════════════════
+   OVERVIEW GRID: CHARTS & TOP PERFORMERS
+═══════════════════════════════════════════ */
+
+const GRADE_BUCKETS = [
+    { letter:'A+', minGP:5.00,          color:'#276749' },
+    { letter:'A',  minGP:4.00, maxGP:4.99, color:'#38a169' },
+    { letter:'A-', minGP:3.50, maxGP:3.99, color:'#3182ce' },
+    { letter:'B',  minGP:3.00, maxGP:3.49, color:'#d69e2e' },
+    { letter:'C',  minGP:2.00, maxGP:2.99, color:'#dd6b20' },
+    { letter:'D',  minGP:1.00, maxGP:1.99, color:'#805ad5' },
+    { letter:'F',  minGP:0.00, maxGP:0.99, color:'#e53e3e' },
+];
+
+function renderDistributionChart() {
+    const allGPAs = [];
+    allStudents.forEach(s => {
+        EXAMS[s.year].forEach(exam => {
+            if (s.examResults[exam]) {
+                const gpa = calcGPA(s.examResults[exam].subjects);
+                if (gpa !== null) allGPAs.push(gpa);
+            }
+        });
+    });
+
+    const counts = GRADE_BUCKETS.map(b => {
+        if (b.letter === 'A+') return allGPAs.filter(g => g >= 5.00).length;
+        return allGPAs.filter(g => g >= b.minGP && g <= b.maxGP).length;
+    });
+    const maxCount = Math.max(...counts, 1);
+
+    const chartEl = document.getElementById('gradeBarChart');
+    if (chartEl) {
+        chartEl.innerHTML = GRADE_BUCKETS.map((b, i) => \
+            <div class="gbc-group">
+                <div class="gbc-bar-wrap">
+                    <div class="gbc-bar" style="height:\%;background:\;"
+                         title="\: \ results"></div>
+                </div>
+                <div class="gbc-label">\</div>
+                <div class="gbc-count">\</div>
+            </div>\).join('');
+    }
+}
+
+function getBestGPA(student) {
+    let best = null;
+    EXAMS[student.year].forEach(exam => {
+        if (student.examResults[exam]) {
+            const gpa = calcGPA(student.examResults[exam].subjects);
+            if (best === null || gpa > best) best = gpa;
+        }
+    });
+    return best;
+}
+
+function renderTopPerformers() {
+    const top = [...allStudents]
+        .map(s => ({ ...s, bestGPA: getBestGPA(s) }))
+        .filter(s => s.bestGPA !== null)
+        .sort((a, b) => b.bestGPA - a.bestGPA)
+        .slice(0, 5);
+
+    const symbols = ['🥇','🥈','🥉','4','5'];
+    const classes  = ['gold','silver','bronze','other','other'];
+
+    const tpEl = document.getElementById('topPerformersList');
+    if (tpEl) {
+        tpEl.innerHTML = top.length ? top.map((s, i) => \
+            <div class="tp-item">
+                <div class="tp-rank \">\</div>
+                <div class="tp-avatar" style="background:\;">\</div>
+                <div class="tp-info">
+                    <div class="tp-name">\</div>
+                    <div class="tp-class">\ — \</div>
+                </div>
+                <div class="tp-score">GPA \</div>
+            </div>\).join('')
+            : '<p class="empty-note">No data available.</p>';
+    }
+}
+
+function renderNeedsAttention() {
+    const atRisk = [...allStudents]
+        .map(s => ({ ...s, bestGPA: getBestGPA(s) }))
+        .filter(s => s.bestGPA !== null && s.bestGPA < 2.00)
+        .sort((a, b) => a.bestGPA - b.bestGPA)
+        .slice(0, 5);
+
+    const attEl = document.getElementById('attentionList');
+    if (attEl) {
+        attEl.innerHTML = atRisk.length ? atRisk.map(s => {
+            const g = gpaToLetter(s.bestGPA);
+            return \
+                <div class="att-item">
+                    <div class="att-avatar" style="background:\;">\</div>
+                    <div class="att-info">
+                        <div class="att-name">\</div>
+                        <div class="att-reason">\ — \</div>
+                    </div>
+                    <div class="att-grade" style="color:\;">GPA \</div>
+                </div>\;
+        }).join('')
+            : '<p class="empty-note">All students are on track! 🎉</p>';
+    }
+}
+
+renderDistributionChart();
+renderTopPerformers();
+renderNeedsAttention();
