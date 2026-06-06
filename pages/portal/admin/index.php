@@ -59,6 +59,10 @@
                 <i class="fas fa-calendar-alt"></i>
                 <span>Academic Calendar</span>
             </a>
+            <a href="assign_teachers.php" class="nav-item">
+                <i class="fas fa-tasks"></i>
+                <span>Assign Teachers</span>
+            </a>
             <a href="#" class="nav-item">
                 <i class="fas fa-file-invoice-dollar"></i>
                 <span>Finance</span>
