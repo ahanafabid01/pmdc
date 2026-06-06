@@ -10,7 +10,7 @@
    API FETCHING
    ═══════════════════════════════════════════════════════════ */
 
-const API = '../../../api/academics.php';
+const API = 'api/academics.php';
 
 let hscData = [];
 let degData = [];

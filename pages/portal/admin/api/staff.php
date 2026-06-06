@@ -5,7 +5,7 @@
  */
 header('Content-Type: application/json');
 
-require_once dirname(__DIR__) . '/includes/staff-data.php';
+require_once dirname(__DIR__, 4) . '/includes/staff-data.php';
 
 $action = $_POST['action'] ?? $_GET['action'] ?? '';
 

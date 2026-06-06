@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -228,7 +228,7 @@
     (function () {
         'use strict';
 
-        const API  = '../../../api/academic-calendar.php';
+        const API  = 'api/academic-calendar.php';
         const BASE = '../../../uploads/academic-calendar/';
         const $    = id => document.getElementById(id);
 

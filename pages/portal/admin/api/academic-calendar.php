@@ -5,7 +5,7 @@
  * One image or PDF per academic year.
  */
 header('Content-Type: application/json');
-require_once dirname(__DIR__) . '/includes/academic-calendar-data.php';
+require_once dirname(__DIR__, 4) . '/includes/academic-calendar-data.php';
 
 acal_init();
 

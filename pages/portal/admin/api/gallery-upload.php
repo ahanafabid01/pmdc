@@ -5,7 +5,7 @@
  */
 header('Content-Type: application/json');
 
-require_once dirname(__DIR__) . '/includes/gallery-data.php';
+require_once dirname(__DIR__, 4) . '/includes/gallery-data.php';
 
 $action = $_POST['action'] ?? $_GET['action'] ?? '';
 
@@ -65,8 +65,8 @@ if ($action === 'upload') {
     $date  = $_POST['date'] ?? date('Y-m-d');
     $title = trim($_POST['title'] ?? '');
 
-    $uploadDir = dirname(__DIR__) . '/uploads/gallery/' . $year . '/';
-    $thumbDir  = dirname(__DIR__) . '/uploads/gallery/thumbs/' . $year . '/';
+    $uploadDir = dirname(__DIR__, 4) . '/uploads/gallery/' . $year . '/';
+    $thumbDir  = dirname(__DIR__, 4) . '/uploads/gallery/thumbs/' . $year . '/';
 
     if (!is_dir($uploadDir)) mkdir($uploadDir, 0755, true);
     if (!is_dir($thumbDir))  mkdir($thumbDir,  0755, true);

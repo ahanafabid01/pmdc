@@ -8,8 +8,8 @@
 
 const REG_TYPE = document.body.dataset.regType || 'hsc';
 
-const API_SETTINGS = '../../../api/registration-settings.php';
-const API_SUBMIT   = '../../../api/registration-submit.php';
+const API_SETTINGS = 'api/registration-settings.php';
+const API_SUBMIT   = 'api/registration-submit.php';
 
 const ITEMS_PER_PAGE = 10;
 
@@ -142,7 +142,7 @@ async function saveSettings() {
 async function loadApplications() {
     try {
         const session = settings.session || '';
-        const res     = await fetch(`../../../api/registration-admin.php?type=${REG_TYPE}&session=${encodeURIComponent(session)}`);
+        const res     = await fetch(`api/registration-admin.php?type=${REG_TYPE}&session=${encodeURIComponent(session)}`);
         if (!res.ok) throw new Error('API unavailable');
         const data    = await res.json();
         allApplications = data.applications || [];
@@ -389,7 +389,7 @@ function closeDetail() {
    ════════════════════════════════════════════════════════════ */
 async function changeStatus(refNum, status, reason = '') {
     try {
-        const res  = await fetch('../../../api/registration-admin.php', {
+        const res  = await fetch('api/registration-admin.php', {
             method:  'POST',
             headers: { 'Content-Type': 'application/json' },
             body:    JSON.stringify({ ref_number: refNum, status, rejection_reason: reason }),
@@ -473,7 +473,7 @@ async function saveNote() {
     if (!viewingApp) return;
     const note = document.getElementById('adminNoteTA')?.value || '';
     try {
-        await fetch('../../../api/registration-admin.php', {
+        await fetch('api/registration-admin.php', {
             method:  'POST',
             headers: { 'Content-Type': 'application/json' },
             body:    JSON.stringify({ ref_number: viewingApp.ref_number, admin_note: note }),

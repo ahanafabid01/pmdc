@@ -7,144 +7,30 @@
 'use strict';
 
 /* ═══════════════════════════════════════════════════════════
-   STORE (localStorage-backed)
+   API FETCHING
 ═══════════════════════════════════════════════════════════ */
 
-const STORE_KEY = 'pmdc_announcements';
+const API = 'api/announcements.php';
 
-function loadStore() {
-    try {
-        const raw = localStorage.getItem(STORE_KEY);
-        return raw ? JSON.parse(raw) : defaultData();
-    } catch (_) { return defaultData(); }
-}
-
-function saveStore(data) {
-    localStorage.setItem(STORE_KEY, JSON.stringify(data));
-}
-
-function defaultData() {
-    const today = new Date();
-    const fmt   = d => d.toISOString().split('T')[0];
-    const ago   = (days) => { const d = new Date(today); d.setDate(d.getDate() - days); return fmt(d); };
-
-    return [
-        {
-            id:         'ann-1',
-            title:      'Admission Open for Session 2026–27',
-            message:    'Applications are now being accepted for HSC 1st Year (একাদশ শ্রেণি) across Science, Commerce, and Humanities groups. Eligible SSC/Dakhil pass students may apply before the deadline.',
-            date:       ago(1),
-            status:     'published',
-            attachment: null,
-            createdAt:  ago(1),
-        },
-        {
-            id:         'ann-2',
-            title:      'HSC Test Examination 2026 — Schedule Released',
-            message:    'The pre-board test examination (টেস্ট পরীক্ষা) timetable for HSC 2nd Year (দ্বাদশ শ্রেণি) students has been published. Students must collect their admit cards from the college office.',
-            date:       ago(3),
-            status:     'published',
-            attachment: null,
-            createdAt:  ago(3),
-        },
-        {
-            id:         'ann-3',
-            title:      'সাংস্কৃতিক অনুষ্ঠান — Annual Cultural Programme 2026',
-            message:    'The annual cultural programme will take place in the college auditorium. All students are encouraged to participate and showcase their talent.',
-            date:       ago(4),
-            status:     'published',
-            attachment: null,
-            createdAt:  ago(4),
-        },
-        {
-            id:         'ann-4',
-            title:      'Parents Meeting — Draft Notice',
-            message:    'A parents meeting is being planned for Class XI and XII guardians. Date and time to be confirmed. This is currently a draft.',
-            date:       ago(5),
-            status:     'draft',
-            attachment: null,
-            createdAt:  ago(5),
-        },
-        {
-            id:         'ann-5',
-            title:      'Scholarship Applications 2026 — Now Open',
-            message:    'Merit-based and need-based scholarships are available for eligible students. Application deadline: 28th February 2026. Submit applications through the college office.',
-            date:       ago(7),
-            status:     'published',
-            attachment: null,
-            createdAt:  ago(7),
-        },
-        {
-            id:         'ann-6',
-            title:      'Guest Lecture — Women Empowerment & Leadership',
-            message:    'A special guest lecture on women\'s empowerment and educational leadership will be held at the college premises. All HSC students are welcome to attend.',
-            date:       ago(13),
-            status:     'published',
-            attachment: null,
-            createdAt:  ago(13),
-        },
-        {
-            id:         'ann-7',
-            title:      'HSC Board Exam Results 2025 — Draft Summary',
-            message:    'Draft summary of HSC Annual Exam 2025 results. Awaiting final verification before publishing.',
-            date:       ago(18),
-            status:     'draft',
-            attachment: null,
-            createdAt:  ago(18),
-        },
-        {
-            id:         'ann-8',
-            title:      'College Closed — National Holiday Notice',
-            message:    'The college will remain closed on the upcoming national holiday. Regular classes will resume the following working day.',
-            date:       ago(20),
-            status:     'published',
-            attachment: null,
-            createdAt:  ago(20),
-        },
-        {
-            id:         'ann-9',
-            title:      'New ICT Lab Equipment Installed',
-            message:    'The college has installed new computers and projectors in the ICT lab. Students can now use the upgraded facility during scheduled lab hours.',
-            date:       ago(25),
-            status:     'published',
-            attachment: null,
-            createdAt:  ago(25),
-        },
-        {
-            id:         'ann-10',
-            title:      'Year-Change Exam Results — Draft',
-            message:    'Results for the Year-Change exam (বার্ষান্তর পরীক্ষা) for Class XI students are being compiled. Will be published once verified.',
-            date:       ago(28),
-            status:     'draft',
-            attachment: null,
-            createdAt:  ago(28),
-        },
-        {
-            id:         'ann-11',
-            title:      'Sports Day 2026 — Registration Open',
-            message:    'Annual Sports Day (বার্ষিক ক্রীড়া দিবস) is scheduled for March 2026. Students wishing to participate should register at the office.',
-            date:       ago(32),
-            status:     'published',
-            attachment: null,
-            createdAt:  ago(32),
-        },
-        {
-            id:         'ann-12',
-            title:      'Anti-Drug Awareness Campaign',
-            message:    'A special awareness programme on the dangers of drug abuse will be held in collaboration with local health authorities. Attendance is compulsory for all students.',
-            date:       ago(40),
-            status:     'published',
-            attachment: null,
-            createdAt:  ago(40),
-        },
-    ];
+function loadData() {
+    fetch(API + '?action=list')
+        .then(r => r.json())
+        .then(res => {
+            if (res.ok) {
+                announcements = res.announcements || [];
+                renderTable();
+            } else {
+                showToast(res.error || 'Failed to load data', 'error');
+            }
+        })
+        .catch(() => showToast('Network error loading data', 'error'));
 }
 
 /* ═══════════════════════════════════════════════════════════
    STATE
 ═══════════════════════════════════════════════════════════ */
 
-let announcements = loadStore();
+let announcements = [];
 let editingId     = null;
 let currentPage   = 1;
 let pendingDeleteId = null;
@@ -303,9 +189,12 @@ function openModal(id = null) {
     document.getElementById('fFile').value               = '';
 
     if (id) {
-        const a = announcements.find(x => x.id === id);
+        const a = announcements.find(x => x.id === id || String(x.id) === String(id));
         title.textContent              = 'Edit Announcement';
         document.getElementById('fTitle').value   = a.title;
+        document.getElementById('fCategory').value = a.category || 'notice';
+        document.getElementById('fBadgeLabel').value = a.badge_label || '';
+        document.getElementById('fBadgeClass').value = a.badge_class || '';
         document.getElementById('fMessage').value = a.message;
         document.getElementById('fDate').value    = a.date;
         document.querySelector(`input[name="fStatus"][value="${a.status}"]`).checked = true;
@@ -316,6 +205,9 @@ function openModal(id = null) {
     } else {
         title.textContent              = 'New Announcement';
         document.getElementById('fTitle').value   = '';
+        document.getElementById('fCategory').value = 'notice';
+        document.getElementById('fBadgeLabel').value = '';
+        document.getElementById('fBadgeClass').value = '';
         document.getElementById('fMessage').value = '';
         document.getElementById('fDate').value    = todayISO();
         document.querySelector('input[name="fStatus"][value="published"]').checked = true;
@@ -357,41 +249,43 @@ function saveAnnouncement(forcedStatus = null) {
     publish.disabled = true; draft.disabled = true;
     publish.classList.add('loading');
 
-    setTimeout(() => {
-        const status = forcedStatus || document.querySelector('input[name="fStatus"]:checked').value;
-        const ann = {
-            id:         editingId || uid(),
-            title:      document.getElementById('fTitle').value.trim(),
-            message:    document.getElementById('fMessage').value.trim(),
-            date:       document.getElementById('fDate').value,
-            status,
-            attachment: currentFile,
-            createdAt:  editingId
-                ? (announcements.find(x => x.id === editingId)?.createdAt || todayISO())
-                : todayISO(),
-        };
+    const status = forcedStatus || document.querySelector('input[name="fStatus"]:checked').value;
+    const catSelect = document.getElementById('fCategory');
+    const ann = {
+        id:         editingId,
+        title:      document.getElementById('fTitle').value.trim(),
+        category:   catSelect.value,
+        category_label: catSelect.options[catSelect.selectedIndex].text,
+        badge_label: document.getElementById('fBadgeLabel').value.trim(),
+        badge_class: document.getElementById('fBadgeClass').value,
+        message:    document.getElementById('fMessage').value.trim(),
+        date:       document.getElementById('fDate').value,
+        status:     status,
+        attachment: currentFile,
+    };
 
-        if (editingId) {
-            const idx = announcements.findIndex(x => x.id === editingId);
-            if (idx !== -1) announcements[idx] = ann;
-        } else {
-            announcements.unshift(ann);
-        }
-
-        saveStore(announcements);
-        renderTable();
-        closeModal();
-
+    fetch(API + '?action=save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(ann)
+    })
+    .then(r => r.json())
+    .then(res => {
         publish.disabled = false; draft.disabled = false;
         publish.classList.remove('loading');
-
-        showToast(
-            editingId
-                ? `Announcement ${status === 'published' ? 'updated & published' : 'saved as draft'}.`
-                : `Announcement ${status === 'published' ? 'published' : 'saved as draft'} successfully.`
-            , 'success'
-        );
-    }, 700);
+        if (res.ok) {
+            closeModal();
+            showToast(`Announcement saved successfully.`, 'success');
+            loadData();
+        } else {
+            showToast(res.error || 'Failed to save', 'error');
+        }
+    })
+    .catch(() => {
+        publish.disabled = false; draft.disabled = false;
+        publish.classList.remove('loading');
+        showToast('Network error', 'error');
+    });
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -475,11 +369,30 @@ function closeDeleteModal() {
 
 function confirmDelete() {
     if (!pendingDeleteId) return;
-    announcements = announcements.filter(a => a.id !== pendingDeleteId);
-    saveStore(announcements);
-    renderTable();
-    closeDeleteModal();
-    showToast('Announcement deleted.', 'error');
+    const btn = document.getElementById('deleteConfirmBtn');
+    const oldHtml = btn.innerHTML;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Deleting...';
+    btn.disabled = true;
+
+    fetch(API + '?action=delete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: pendingDeleteId })
+    }).then(r => r.json()).then(res => {
+        btn.innerHTML = oldHtml;
+        btn.disabled = false;
+        if (res.ok) {
+            closeDeleteModal();
+            showToast('Announcement deleted.', 'error');
+            loadData();
+        } else {
+            showToast(res.error || 'Failed to delete', 'error');
+        }
+    }).catch(() => {
+        btn.innerHTML = oldHtml;
+        btn.disabled = false;
+        showToast('Network error', 'error');
+    });
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -487,15 +400,22 @@ function confirmDelete() {
 ═══════════════════════════════════════════════════════════ */
 
 function toggleStatus(id) {
-    const ann = announcements.find(a => a.id === id);
+    const ann = announcements.find(a => String(a.id) === String(id));
     if (!ann) return;
-    ann.status = ann.status === 'published' ? 'draft' : 'published';
-    saveStore(announcements);
-    renderTable();
-    showToast(
-        ann.status === 'published' ? 'Announcement published.' : 'Announcement set to draft.',
-        ann.status === 'published' ? 'fas fa-globe' : 'fas fa-file-alt'
-    );
+    const newStatus = ann.status === 'published' ? 'draft' : 'published';
+    
+    fetch(API + '?action=toggle', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: id, status: newStatus })
+    }).then(r => r.json()).then(res => {
+        if (res.ok) {
+            showToast(newStatus === 'published' ? 'Announcement published.' : 'Announcement set to draft.', 'success');
+            loadData();
+        } else {
+            showToast(res.error || 'Failed to toggle status', 'error');
+        }
+    }).catch(() => showToast('Network error', 'error'));
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -522,7 +442,7 @@ function initSidebar() {
 
 document.addEventListener('DOMContentLoaded', () => {
     initSidebar();
-    renderTable();
+    loadData();
 
     // ── New Announcement button ──
     document.getElementById('btnNewAnn').addEventListener('click', () => openModal());

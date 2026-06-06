@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -193,6 +193,34 @@
                         <label for="fTitle">Title <span class="req">*</span></label>
                         <input type="text" id="fTitle" placeholder="Enter announcement title…">
                         <span class="ann-field-err" id="errTitle"></span>
+                    </div>
+
+                    <!-- Category -->
+                    <div class="tm-form-group">
+                        <label for="fCategory">Category <span class="req">*</span></label>
+                        <select id="fCategory" style="width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;font-family:'Inter',sans-serif;">
+                            <option value="notice">Notice</option>
+                            <option value="academic">Academic</option>
+                            <option value="admission">Admission</option>
+                            <option value="event">Event</option>
+                        </select>
+                    </div>
+
+                    <!-- Badge -->
+                    <div style="display:flex;gap:15px;">
+                        <div class="tm-form-group" style="flex:1;">
+                            <label for="fBadgeLabel">Badge Text <span class="ann-opt">(optional)</span></label>
+                            <input type="text" id="fBadgeLabel" placeholder="e.g. Urgent">
+                        </div>
+                        <div class="tm-form-group" style="flex:1;">
+                            <label for="fBadgeClass">Badge Style</label>
+                            <select id="fBadgeClass" style="width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;font-family:'Inter',sans-serif;">
+                                <option value="">None / Default</option>
+                                <option value="badge-urgent">Red (Urgent)</option>
+                                <option value="badge-important">Orange (Important)</option>
+                                <option value="badge-new">Green (New)</option>
+                            </select>
+                        </div>
                     </div>
 
                     <!-- Message -->

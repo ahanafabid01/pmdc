@@ -4,7 +4,7 @@
  * Handles academics CRUD requests from the admin portal
  */
 header('Content-Type: application/json');
-require_once dirname(__DIR__) . '/includes/academics-data.php';
+require_once dirname(__DIR__, 4) . '/includes/academics-data.php';
 
 $action = $_GET['action'] ?? $_POST['action'] ?? '';
 
