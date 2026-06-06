@@ -83,78 +83,117 @@
         </header>
 
         <div class="content-area">
+            
+            <!-- Page Header -->
             <div class="tm-page-header">
                 <div class="tm-page-title">
                     <h1>Assign Teachers</h1>
-                    <p>Assign teachers to specific classes and subjects for Portal Access.</p>
+                    <p>Map teachers to specific academic programs and subjects.</p>
+                </div>
+                <div class="tm-header-actions">
+                    <button class="btn-add-staff" id="btnOpenModal">
+                        <i class="fas fa-plus"></i> New Assignment
+                    </button>
                 </div>
             </div>
 
-            <div class="assign-container">
-                <!-- Left: Form -->
-                <div class="assign-form-panel">
-                    <h3 class="panel-title"><i class="fas fa-plus-circle"></i> New Assignment</h3>
-                    
-                    <div class="form-group">
-                        <label>Select Teacher</label>
-                        <select id="assignStaffId" class="form-control">
-                            <option value="">Loading teachers...</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Select Class/Program</label>
-                        <select id="assignClassId" class="form-control">
-                            <option value="">Loading classes...</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Select Subject</label>
-                        <select id="assignSubjectId" class="form-control">
-                            <option value="">Loading subjects...</option>
-                        </select>
-                    </div>
-
-                    <button class="btn-primary" id="btnAddAssignment" style="width: 100%; margin-top: 1rem;">
-                        <i class="fas fa-save"></i> Save Assignment
-                    </button>
-                    
-                    <div id="assignLoginInfo" class="login-info-box" style="display:none; margin-top: 1.5rem;">
-                        <!-- Generated login info will appear here -->
-                    </div>
+            <!-- Summary Stats -->
+            <div class="tm-stats-row">
+                <div class="tm-stat-pill">
+                    <i class="fas fa-tasks" style="background:#3b82f6;"></i>
+                    <span class="ts-val" id="statTotalAssignments">0</span>
+                    <span class="ts-lbl">Total Assignments</span>
                 </div>
+                <div class="tm-stat-pill">
+                    <i class="fas fa-chalkboard-teacher" style="background:#10b981;"></i>
+                    <span class="ts-val" id="statTotalTeachers">0</span>
+                    <span class="ts-lbl">Teachers Assigned</span>
+                </div>
+                <div class="tm-stat-pill">
+                    <i class="fas fa-book" style="background:#8b5cf6;"></i>
+                    <span class="ts-val" id="statTotalSubjects">0</span>
+                    <span class="ts-lbl">Unique Subjects</span>
+                </div>
+                <div class="tm-stat-pill">
+                    <i class="fas fa-university" style="background:#f59e0b;"></i>
+                    <span class="ts-val" id="statTotalPrograms">0</span>
+                    <span class="ts-lbl">Active Programs</span>
+                </div>
+            </div>
 
-                <!-- Right: Assignments List -->
-                <div class="assign-list-panel">
-                    <div class="list-header">
-                        <h3 class="panel-title"><i class="fas fa-list"></i> Current Assignments</h3>
-                        <div class="search-box">
-                            <i class="fas fa-search"></i>
-                            <input type="text" id="searchAssignments" placeholder="Search...">
-                        </div>
-                    </div>
-                    
-                    <div class="table-wrap">
-                        <table class="assign-table">
-                            <thead>
-                                <tr>
-                                    <th>Teacher</th>
-                                    <th>Class / Program</th>
-                                    <th>Subject</th>
-                                    <th style="width: 60px; text-align: center;">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody id="assignTableBody">
-                                <tr><td colspan="4" class="text-center">Loading...</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
+            <!-- Controls -->
+            <div class="tm-controls">
+                <div class="tm-search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchAssignments" placeholder="Search by teacher, program, or subject...">
+                </div>
+            </div>
+
+            <!-- Table View -->
+            <div class="tm-card">
+                <div class="tm-table-wrap">
+                    <table class="tm-table" id="assignmentsTable">
+                        <thead>
+                            <tr>
+                                <th>Teacher</th>
+                                <th>Program</th>
+                                <th>Subject</th>
+                                <th style="text-align: center; width: 80px;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="assignTableBody">
+                            <tr class="tm-empty-row"><td colspan="4"><i class="fas fa-spinner fa-spin"></i> Loading assignments...</td></tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
         </div>
     </main>
+
+    <!-- ════════════════════ ADD ASSIGNMENT MODAL ════════════════════ -->
+    <div class="tm-modal-overlay" id="assignmentModal">
+        <div class="tm-modal tm-modal-sm">
+            <div class="tm-modal-header">
+                <h2><i class="fas fa-plus-circle"></i> Create New Assignment</h2>
+                <button class="tm-modal-close" id="closeModal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="tm-modal-body">
+                
+                <div class="tm-form-group" style="margin-bottom: 16px;">
+                    <label>Select Teacher <span class="req">*</span></label>
+                    <select id="assignStaffId">
+                        <option value="">Loading teachers...</option>
+                    </select>
+                </div>
+
+                <div class="tm-form-group" style="margin-bottom: 16px;">
+                    <label>Select Class/Program <span class="req">*</span></label>
+                    <select id="assignClassId">
+                        <option value="">Loading classes...</option>
+                    </select>
+                </div>
+
+                <div class="tm-form-group" style="margin-bottom: 24px;">
+                    <label>Select Subject <span class="req">*</span></label>
+                    <select id="assignSubjectId">
+                        <option value="">Loading subjects...</option>
+                    </select>
+                </div>
+
+                <div id="assignLoginInfo" class="login-info-box" style="display:none; margin-bottom: 16px;">
+                    <!-- Generated login info will appear here -->
+                </div>
+
+            </div>
+            <div class="tm-modal-footer">
+                <button type="button" class="btn-cancel" id="btnCancelModal">Cancel</button>
+                <button type="button" class="btn-save" id="btnAddAssignment">
+                    <i class="fas fa-save"></i> Save Assignment
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- Toast Notification -->
     <div class="tm-toast" id="tmToast"></div>
