@@ -261,11 +261,11 @@ function generateStudents() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   STATE
+   STATE — students populated from API in loadTeacherContext()
 ═══════════════════════════════════════════════════════════════ */
 
-let allStudents     = generateStudents();
-let filtered        = [...allStudents];
+let allStudents     = [];  // populated from get_teacher_context.php
+let filtered        = [];
 let activeClassKey  = 'all';
 let currentPage     = 1;
 const PAGE_SIZE     = 15;
@@ -1021,46 +1021,41 @@ async function loadTeacherContext() {
             return;
         }
 
-        const allowedClasses = data.classes || [];
-        const allowedGroups = new Set();
-        const allowedYears = new Set();
-        
-        allowedClasses.forEach(c => {
-            const name = c.name.toLowerCase();
-            if (name.includes('science')) allowedGroups.add('science');
-            if (name.includes('business') || name.includes('commerce')) allowedGroups.add('commerce');
-            if (name.includes('humanities')) allowedGroups.add('humanities');
-            
-            if (name.includes('1st') || name.includes('xi')) allowedYears.add('xi');
-            if (name.includes('2nd') || name.includes('xii')) allowedYears.add('xii');
-        });
+        // Update sidebar teacher name
+        const nameEl = document.querySelector('.t-name');
+        if (nameEl) nameEl.textContent = data.teacher_name;
+        const roleEl = document.querySelector('.t-role');
+        if (roleEl && data.programs?.length) roleEl.textContent = data.programs.map(p => p.name).join(', ');
 
-        if (allowedGroups.size > 0 || allowedYears.size > 0) {
-            const filteredStudents = allStudents.filter(s => 
-                (allowedGroups.size === 0 || allowedGroups.has(s.group)) && 
-                (allowedYears.size === 0 || allowedYears.has(s.year))
-            );
-            allStudents.length = 0;
-            filteredStudents.forEach(s => allStudents.push(s));
-        } else if (data.assignments && data.assignments.length === 0) {
-            allStudents.length = 0;
+        // Replace allStudents with real data
+        allStudents.length = 0;
+        (data.students || []).forEach(s => allStudents.push(s));
+
+        // Rebuild class dropdown based on assigned programs
+        const classSelect = $('classFilter');
+        if (classSelect) {
+            const programs = data.programs || [];
+            classSelect.innerHTML = '<option value="all">All Classes</option>';
+            programs.forEach(p => {
+                // Add year variants if HSC
+                if (p.type === 'hsc') {
+                    classSelect.innerHTML += `<option value="${p.id}_xi">${p.name} — 1st Year</option>`;
+                    classSelect.innerHTML += `<option value="${p.id}_xii">${p.name} — 2nd Year</option>`;
+                } else {
+                    classSelect.innerHTML += `<option value="${p.id}">${p.name}</option>`;
+                }
+            });
         }
 
         // Init views
         rebuildExamFilter('all');
         renderSparklines();
-        // Check if charts exist before rendering (since we moved them to dashboard earlier)
-        if (typeof renderDistributionChart === 'function' && document.getElementById('gradeBarChart')) renderDistributionChart(allStudents);
-        if (typeof renderTopPerformers === 'function' && document.getElementById('topPerformersList')) renderTopPerformers(allStudents);
-        if (typeof renderNeedsAttention === 'function' && document.getElementById('attentionList')) renderNeedsAttention(allStudents);
         renderTable();
+
     } catch (e) {
         console.error('Failed to load teacher context', e);
         rebuildExamFilter('all');
         renderSparklines();
-        if (typeof renderDistributionChart === 'function' && document.getElementById('gradeBarChart')) renderDistributionChart(allStudents);
-        if (typeof renderTopPerformers === 'function' && document.getElementById('topPerformersList')) renderTopPerformers(allStudents);
-        if (typeof renderNeedsAttention === 'function' && document.getElementById('attentionList')) renderNeedsAttention(allStudents);
         renderTable();
     }
 }
