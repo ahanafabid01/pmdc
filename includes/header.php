@@ -124,7 +124,17 @@ if (!isset($page_title_bn)) {
                 <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/teachers.php"      class="nav-link <?php echo isset($page) && $page == 'teachers' ? 'active' : ''; ?>" data-i18n="nav.teachers">শিক্ষক ও কর্মচারী</a></li>
                 <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/results.php"      class="nav-link <?php echo isset($page) && $page == 'results' ? 'active' : ''; ?>" data-i18n="nav.results">ফলাফল</a></li>
                 <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/contact.php"      class="nav-link <?php echo isset($page) && $page == 'contact' ? 'active' : ''; ?>" data-i18n="nav.contact">যোগাযোগ</a></li>
-                <li><a href="#" onclick="openModal('Apply Now')" class="nav-link nav-apply" data-i18n="nav.apply">ভর্তি হন</a></li>
+                <li class="nav-has-dropdown">
+                    <a href="javascript:void(0)" class="nav-link nav-apply nav-dropdown-toggle">
+                        <span data-i18n="nav.apply">ভর্তি হন</span> <i class="fas fa-chevron-down nav-dropdown-arrow"></i>
+                    </a>
+                    <ul class="nav-dropdown-menu">
+                        <div class="nav-dropdown-inner">
+                            <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/register-hsc.php" class="dropdown-item"><i class="fas fa-file-alt"></i> <span>HSC Admission</span></a></li>
+                            <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/register-degree.php" class="dropdown-item"><i class="fas fa-university"></i> <span>Degree Admission</span></a></li>
+                        </div>
+                    </ul>
+                </li>
 
                 <!-- ── Mobile-only info panel — sits directly below Apply ── -->
                 <li class="nav-panel-footer">
