@@ -26,6 +26,23 @@ const YEAR_LABELS = {
     xii: { label:'HSC 2nd Year', labelBn:'দ্বাদশ শ্রেণি', cls:'xii' },
 };
 
+const OPTIONAL_SUBJECTS = {
+    science: [
+        { value: 'higher_math', label: 'Higher Math' },
+        { value: 'biology', label: 'Biology' },
+        { value: 'agriculture', label: 'Agriculture' },
+    ],
+    commerce: [
+        { value: 'production_management', label: 'Production Management' },
+        { value: 'finance', label: 'Finance & Banking' },
+    ],
+    humanities: [
+        { value: 'history', label: 'History' },
+        { value: 'islamic_history', label: 'Islamic History' },
+        { value: 'geography', label: 'Geography' },
+    ],
+};
+
 
 const API_URL = 'api-students.php';
 
@@ -54,8 +71,7 @@ async function fetchStudents() {
     }
 }
 
-// Initial fetch
-fetchStudents();
+
 
 /* ═══════════════════════════════════════════════════
    DOM HELPERS
@@ -68,6 +84,16 @@ function fmt(val, fallback = '—') { return (val && val.trim && val.trim()) ? v
 function getOptionalSubjectLabel(group, value) {
     const subject = (OPTIONAL_SUBJECTS[group] || []).find(item => item.value === value);
     return subject ? subject.label : '—';
+}
+
+function showToast(msg) {
+    const tm = $('toastMsg');
+    const t = $('toast');
+    if (tm && t) {
+        tm.textContent = msg;
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 3000);
+    }
 }
 
 function populateOptionalSubject(group, selected = '') {
@@ -636,10 +662,12 @@ $('studentForm').addEventListener('submit', async function(e) {
         studentData.addedDate = new Date().toISOString().split('T')[0];
     }
 
-    const submitBtn = this.querySelector('.btn-save');
-    const originalText = submitBtn.innerHTML;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
-    submitBtn.disabled = true;
+    const submitBtn = this.querySelector('.btn-save-form');
+    const originalText = submitBtn ? submitBtn.innerHTML : '';
+    if (submitBtn) {
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+        submitBtn.disabled = true;
+    }
 
     try {
         const res = await fetch(API_URL, {
@@ -659,8 +687,10 @@ $('studentForm').addEventListener('submit', async function(e) {
     } catch (err) {
         alert('Network error connecting to database.');
     } finally {
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
+        if (submitBtn) {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }
     }
 });
 
@@ -752,5 +782,5 @@ function showToast(msg) {
    INIT
 ═══════════════════════════════════════════════════ */
 
-updateStats();
-renderTable();
+// Initial fetch from DB
+fetchStudents();

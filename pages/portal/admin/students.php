@@ -350,6 +350,7 @@
                             <select id="optionalSubject">
                                 <option value="">Select academic group first</option>
                             </select>
+                        </div>
                         <div class="form-group">
                             <label for="section">Section</label>
                             <select id="section">
@@ -358,6 +359,7 @@
                                 <option value="B">Section B</option>
                                 <option value="C">Section C</option>
                             </select>
+                        </div>
                         <div class="form-group">
                             <label for="session">Session (শিক্ষাবর্ষ)</label>
                             <input type="text" id="session" placeholder="e.g. 2024–2025">
@@ -385,6 +387,7 @@
                                 <option value="male">Male (পুরুষ)</option>
                                 <option value="other">Other</option>
                             </select>
+                        </div>
                         <div class="form-group">
                             <label for="religion">Religion (ধর্ম)</label>
                             <select id="religion">
@@ -395,6 +398,7 @@
                                 <option value="buddhism">Buddhism (বৌদ্ধ)</option>
                                 <option value="other">Other</option>
                             </select>
+                        </div>
                         <div class="form-group">
                             <label for="bloodGroup">Blood Group (রক্তের গ্রুপ)</label>
                             <select id="bloodGroup">
@@ -404,6 +408,7 @@
                                 <option>AB+</option><option>AB-</option>
                                 <option>O+</option><option>O-</option>
                             </select>
+                        </div>
                         <div class="form-group">
                             <label for="nid">National ID (NID) <small>10 or 17 digits</small></label>
                             <input type="text" id="nid" placeholder="For students 18+" maxlength="17">

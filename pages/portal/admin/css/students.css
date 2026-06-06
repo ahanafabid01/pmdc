@@ -1201,3 +1201,7 @@
 @media (max-width: 480px) {
     .fp-filters-grid { grid-template-columns: 1fr; }
 }
+
+/* ════════════════════ TOAST ════════════════════ */
+.toast { position: fixed; top: 20px; right: 20px; background: #10b981; color: white; padding: 12px 24px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 10px; font-weight: 600; z-index: 9999; transform: translateX(150%); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+.toast.show { transform: translateX(0); }
