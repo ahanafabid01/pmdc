@@ -3,7 +3,7 @@
  * staff-data.php
  * Data layer for PMDC Teachers & Staff
  */
-require_once dirname(__DIR__, 4) . '/includes/config.php';
+require_once __DIR__ . '/config.php';
 
 /* ── DB connection ──────────────────────────────────────────────────── */
 function pmdc_staff_db() {

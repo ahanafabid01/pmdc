@@ -3,16 +3,31 @@
  * Shared announcement data for public listing, detail pages, and admin portal.
  */
 
-// Include DB config
-require_once __DIR__ . '/db-config.php';
+if (!defined('DB_NAME')) {
+    require_once __DIR__ . '/config.php';
+}
+
+function pmdc_announcements_db() {
+    static $pdo = null;
+    if ($pdo) return $pdo;
+    try {
+        $dsn = 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8mb4';
+        $pdo = new PDO($dsn, DB_USER, DB_PASS, [
+            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        ]);
+    } catch (PDOException $e) {
+        return null;
+    }
+    return $pdo;
+}
 
 function pmdc_announcements_init() {
-    $conn = pmdc_db_connect();
-    if (!$conn) return false;
+    $db = pmdc_announcements_db();
+    if (!$db) return false;
 
-    $check = $conn->query("SHOW TABLES LIKE 'pmdc_announcements'");
-    if ($check && $check->num_rows > 0) {
-        $conn->close();
+    $check = $db->query("SHOW TABLES LIKE 'pmdc_announcements'");
+    if ($check && $check->rowCount() > 0) {
         return true;
     }
 
@@ -31,7 +46,7 @@ function pmdc_announcements_init() {
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;";
 
-    if ($conn->query($sql)) {
+    if ($db->exec($sql) !== false) {
         // Seed initial data
         $items = [
             [
@@ -106,87 +121,77 @@ function pmdc_announcements_init() {
             ],
         ];
 
-        $stmt = $conn->prepare("INSERT INTO pmdc_announcements (title, category, category_label, badge_label, badge_class, date, author, published, body, attachment) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt = $db->prepare("INSERT INTO pmdc_announcements (title, category, category_label, badge_label, badge_class, date, author, published, body, attachment) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         foreach ($items as $item) {
-            $stmt->bind_param("ssssssssss", $item['title'], $item['category'], $item['category_label'], $item['badge_label'], $item['badge_class'], $item['date'], $item['author'], $item['published'], $item['body'], $item['attachment']);
-            $stmt->execute();
+            $stmt->execute([$item['title'], $item['category'], $item['category_label'], $item['badge_label'], $item['badge_class'], $item['date'], $item['author'], $item['published'], $item['body'], $item['attachment']]);
         }
-        $stmt->close();
     }
-    $conn->close();
     return true;
 }
 
 function pmdc_get_announcements() {
     pmdc_announcements_init();
-    $conn = pmdc_db_connect();
-    if (!$conn) return [];
+    $db = pmdc_announcements_db();
+    if (!$db) return [];
 
-    $res = $conn->query("SELECT * FROM pmdc_announcements ORDER BY date DESC, created_at DESC");
-    $items = [];
-    if ($res) {
-        while ($row = $res->fetch_assoc()) {
-            if ($row['attachment']) {
-                $row['attachment'] = json_decode($row['attachment'], true);
-            } else {
-                $row['attachment'] = null;
-            }
-            $items[] = $row;
-        }
-    }
-    $conn->close();
-    return $items;
-}
-
-function pmdc_get_published_announcements() {
-    pmdc_announcements_init();
-    $conn = pmdc_db_connect();
-    if (!$conn) return [];
-
-    $res = $conn->query("SELECT * FROM pmdc_announcements WHERE published = 1 ORDER BY date DESC, created_at DESC");
-    $items = [];
-    if ($res) {
-        while ($row = $res->fetch_assoc()) {
-            if ($row['attachment']) {
-                $row['attachment'] = json_decode($row['attachment'], true);
-            } else {
-                $row['attachment'] = null;
-            }
-            $items[] = $row;
-        }
-    }
-    $conn->close();
-    return $items;
-}
-
-function pmdc_find_published_announcement_by_id($id) {
-    pmdc_announcements_init();
-    $conn = pmdc_db_connect();
-    if (!$conn) return null;
-
-    $id = (int)$id;
-    $res = $conn->query("SELECT * FROM pmdc_announcements WHERE id = $id AND published = 1 LIMIT 1");
-    if ($res && $res->num_rows > 0) {
-        $row = $res->fetch_assoc();
+    $stmt = $db->query("SELECT * FROM pmdc_announcements ORDER BY date DESC, created_at DESC");
+    $rows = $stmt->fetchAll();
+    
+    foreach ($rows as &$row) {
         if ($row['attachment']) {
             $row['attachment'] = json_decode($row['attachment'], true);
         } else {
             $row['attachment'] = null;
         }
-        $conn->close();
+    }
+    return $rows;
+}
+
+function pmdc_get_published_announcements() {
+    pmdc_announcements_init();
+    $db = pmdc_announcements_db();
+    if (!$db) return [];
+
+    $stmt = $db->query("SELECT * FROM pmdc_announcements WHERE published = 1 ORDER BY date DESC, created_at DESC");
+    $rows = $stmt->fetchAll();
+    
+    foreach ($rows as &$row) {
+        if ($row['attachment']) {
+            $row['attachment'] = json_decode($row['attachment'], true);
+        } else {
+            $row['attachment'] = null;
+        }
+    }
+    return $rows;
+}
+
+function pmdc_find_published_announcement_by_id($id) {
+    pmdc_announcements_init();
+    $db = pmdc_announcements_db();
+    if (!$db) return null;
+
+    $stmt = $db->prepare("SELECT * FROM pmdc_announcements WHERE id = ? AND published = 1 LIMIT 1");
+    $stmt->execute([(int)$id]);
+    $row = $stmt->fetch();
+    
+    if ($row) {
+        if ($row['attachment']) {
+            $row['attachment'] = json_decode($row['attachment'], true);
+        } else {
+            $row['attachment'] = null;
+        }
         return $row;
     }
-    $conn->close();
     return null;
 }
 
 // Admin API helper functions
 function pmdc_announcement_insert($data) {
     pmdc_announcements_init();
-    $conn = pmdc_db_connect();
-    if (!$conn) return false;
+    $db = pmdc_announcements_db();
+    if (!$db) return false;
 
-    $stmt = $conn->prepare("INSERT INTO pmdc_announcements (title, category, category_label, badge_label, badge_class, date, author, published, body, attachment) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $db->prepare("INSERT INTO pmdc_announcements (title, category, category_label, badge_label, badge_class, date, author, published, body, attachment) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $published = $data['published'] ? 1 : 0;
     
     $attachment = null;
@@ -194,41 +199,36 @@ function pmdc_announcement_insert($data) {
         $attachment = json_encode($data['attachment']);
     }
 
-    $stmt->bind_param("ssssssssss", $data['title'], $data['category'], $data['category_label'], $data['badge_label'], $data['badge_class'], $data['date'], $data['author'], $published, $data['body'], $attachment);
-    $res = $stmt->execute();
-    $stmt->close();
-    $conn->close();
-    return $res;
+    return $stmt->execute([
+        $data['title'], $data['category'], $data['category_label'], $data['badge_label'], $data['badge_class'], 
+        $data['date'], $data['author'], $published, $data['body'], $attachment
+    ]);
 }
 
 function pmdc_announcement_update($id, $data) {
     pmdc_announcements_init();
-    $conn = pmdc_db_connect();
-    if (!$conn) return false;
+    $db = pmdc_announcements_db();
+    if (!$db) return false;
 
-    $stmt = $conn->prepare("UPDATE pmdc_announcements SET title=?, category=?, category_label=?, badge_label=?, badge_class=?, date=?, author=?, published=?, body=?, attachment=? WHERE id=?");
+    $stmt = $db->prepare("UPDATE pmdc_announcements SET title=?, category=?, category_label=?, badge_label=?, badge_class=?, date=?, author=?, published=?, body=?, attachment=? WHERE id=?");
     $published = $data['published'] ? 1 : 0;
-    $id = (int)$id;
 
     $attachment = null;
     if (isset($data['attachment']) && is_array($data['attachment'])) {
         $attachment = json_encode($data['attachment']);
     }
 
-    $stmt->bind_param("ssssssssssi", $data['title'], $data['category'], $data['category_label'], $data['badge_label'], $data['badge_class'], $data['date'], $data['author'], $published, $data['body'], $attachment, $id);
-    $res = $stmt->execute();
-    $stmt->close();
-    $conn->close();
-    return $res;
+    return $stmt->execute([
+        $data['title'], $data['category'], $data['category_label'], $data['badge_label'], $data['badge_class'], 
+        $data['date'], $data['author'], $published, $data['body'], $attachment, (int)$id
+    ]);
 }
 
 function pmdc_announcement_delete($id) {
     pmdc_announcements_init();
-    $conn = pmdc_db_connect();
-    if (!$conn) return false;
+    $db = pmdc_announcements_db();
+    if (!$db) return false;
 
-    $id = (int)$id;
-    $res = $conn->query("DELETE FROM pmdc_announcements WHERE id = $id");
-    $conn->close();
-    return $res;
+    $stmt = $db->prepare("DELETE FROM pmdc_announcements WHERE id = ?");
+    return $stmt->execute([(int)$id]);
 }

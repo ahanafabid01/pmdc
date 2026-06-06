@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json');
-require_once '../../../../includes/announcements-data.php';
+require_once dirname(__DIR__, 4) . '/includes/announcements-data.php';
 
 $action = $_GET['action'] ?? '';
 
