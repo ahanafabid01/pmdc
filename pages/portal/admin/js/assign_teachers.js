@@ -75,7 +75,7 @@ async function loadMetadata() {
             assignClassId.innerHTML = '<option value="">-- Select Class --</option>' + 
                 data.classes.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
             assignSubjectId.innerHTML = '<option value="">-- Select Subject --</option>' + 
-                data.subjects.map(s => `<option value="${s.id}">${s.name} (${s.code})</option>`).join('');
+                data.subjects.map(s => `<option value="${s.id}">${s.name}</option>`).join('');
         }
     } catch(e) {
         console.error("Failed to load metadata", e);
