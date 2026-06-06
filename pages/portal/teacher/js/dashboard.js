@@ -334,6 +334,60 @@ function renderNeedsAttention() {
     }
 }
 
-renderDistributionChart();
-renderTopPerformers();
-renderNeedsAttention();
+/* ── Auth & Context Initialization ───────────────────────── */
+async function loadTeacherContext() {
+    try {
+        const res = await fetch('../api/get_teacher_context.php');
+        const data = await res.json();
+        
+        if (!data.ok) {
+            window.location.href = '../portal-login.php';
+            return;
+        }
+
+        const tNameEl = document.querySelector('.t-name');
+        if (tNameEl) tNameEl.textContent = data.teacher_name;
+
+        const allowedClasses = data.classes || [];
+        const allowedGroups = new Set();
+        const allowedYears = new Set();
+        
+        allowedClasses.forEach(c => {
+            const name = c.name.toLowerCase();
+            if (name.includes('science')) allowedGroups.add('science');
+            if (name.includes('business') || name.includes('commerce')) allowedGroups.add('commerce');
+            if (name.includes('humanities')) allowedGroups.add('humanities');
+            
+            if (name.includes('1st') || name.includes('xi')) allowedYears.add('xi');
+            if (name.includes('2nd') || name.includes('xii')) allowedYears.add('xii');
+        });
+
+        if (allowedGroups.size > 0 || allowedYears.size > 0) {
+            const filteredStudents = allStudents.filter(s => 
+                (allowedGroups.size === 0 || allowedGroups.has(s.group)) && 
+                (allowedYears.size === 0 || allowedYears.has(s.year))
+            );
+            allStudents.length = 0;
+            filteredStudents.forEach(s => allStudents.push(s));
+        } else if (data.assignments && data.assignments.length === 0) {
+            allStudents.length = 0;
+        }
+
+        renderDistributionChart();
+        renderTopPerformers();
+        renderNeedsAttention();
+        
+        // Also update stat counts
+        const statVal = document.querySelector('.stat-val');
+        if (statVal) {
+            statVal.textContent = allStudents.length;
+        }
+    } catch (e) {
+        console.error('Failed to load teacher context', e);
+        renderDistributionChart();
+        renderTopPerformers();
+        renderNeedsAttention();
+    }
+}
+
+loadTeacherContext();

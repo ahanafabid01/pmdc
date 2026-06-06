@@ -1,3 +1,4 @@
+<?php require_once '../../../includes/session_check.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -268,3 +269,4 @@
 <script src="js/dashboard.js"></script>
 </body>
 </html>
+

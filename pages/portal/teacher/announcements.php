@@ -1,3 +1,4 @@
+<?php require_once '../../../includes/session_check.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -265,3 +266,4 @@
 <script src="js/portal.js" onerror="void(0)"></script>
 </body>
 </html>
+

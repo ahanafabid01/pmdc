@@ -148,24 +148,35 @@ loginForm?.addEventListener('submit', e => {
     // Loading state
     btnSignIn.classList.add('loading');
 
-    // Simulate network delay — replace with real fetch/AJAX for PHP auth
-    setTimeout(() => {
+    // Real network fetch for PHP auth
+    fetch('api/auth.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            username: usernameInput.value.trim(),
+            password: passwordInput.value,
+            portal: selectedPortal
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
         btnSignIn.classList.remove('loading');
-
-        const creds = CREDENTIALS[selectedPortal];
-        const uOk   = usernameInput.value.trim() === creds?.username;
-        const pOk   = passwordInput.value         === creds?.password;
-
-        if (uOk && pOk) {
+        
+        if (data.success) {
             // ✅ Success — redirect to portal
             btnSignIn.classList.add('loading'); // keep loading during redirect
             window.location.href = selectedDest;
         } else {
-            // ❌ Wrong credentials
-            loginErrorMsg.textContent = 'Invalid username or password. Please try again.';
+            // ❌ Wrong credentials or error
+            loginErrorMsg.textContent = data.message || 'Invalid username or password. Please try again.';
             loginError.classList.add('visible');
             passwordInput.value = '';
             passwordInput.focus();
         }
-    }, 900);
+    })
+    .catch(err => {
+        btnSignIn.classList.remove('loading');
+        loginErrorMsg.textContent = 'A network error occurred. Please try again.';
+        loginError.classList.add('visible');
+    });
 });

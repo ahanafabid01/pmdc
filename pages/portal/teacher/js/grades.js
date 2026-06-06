@@ -1008,12 +1008,61 @@ function renderSparklines() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   INIT
+   INIT & CONTEXT
 ═══════════════════════════════════════════════════════════════ */
 
-rebuildExamFilter('all');
-renderSparklines();
-renderDistributionChart(allStudents);
-renderTopPerformers(allStudents);
-renderNeedsAttention(allStudents);
-renderTable();
+async function loadTeacherContext() {
+    try {
+        const res = await fetch('../api/get_teacher_context.php');
+        const data = await res.json();
+        
+        if (!data.ok) {
+            window.location.href = '../portal-login.php';
+            return;
+        }
+
+        const allowedClasses = data.classes || [];
+        const allowedGroups = new Set();
+        const allowedYears = new Set();
+        
+        allowedClasses.forEach(c => {
+            const name = c.name.toLowerCase();
+            if (name.includes('science')) allowedGroups.add('science');
+            if (name.includes('business') || name.includes('commerce')) allowedGroups.add('commerce');
+            if (name.includes('humanities')) allowedGroups.add('humanities');
+            
+            if (name.includes('1st') || name.includes('xi')) allowedYears.add('xi');
+            if (name.includes('2nd') || name.includes('xii')) allowedYears.add('xii');
+        });
+
+        if (allowedGroups.size > 0 || allowedYears.size > 0) {
+            const filteredStudents = allStudents.filter(s => 
+                (allowedGroups.size === 0 || allowedGroups.has(s.group)) && 
+                (allowedYears.size === 0 || allowedYears.has(s.year))
+            );
+            allStudents.length = 0;
+            filteredStudents.forEach(s => allStudents.push(s));
+        } else if (data.assignments && data.assignments.length === 0) {
+            allStudents.length = 0;
+        }
+
+        // Init views
+        rebuildExamFilter('all');
+        renderSparklines();
+        // Check if charts exist before rendering (since we moved them to dashboard earlier)
+        if (typeof renderDistributionChart === 'function' && document.getElementById('gradeBarChart')) renderDistributionChart(allStudents);
+        if (typeof renderTopPerformers === 'function' && document.getElementById('topPerformersList')) renderTopPerformers(allStudents);
+        if (typeof renderNeedsAttention === 'function' && document.getElementById('attentionList')) renderNeedsAttention(allStudents);
+        renderTable();
+    } catch (e) {
+        console.error('Failed to load teacher context', e);
+        rebuildExamFilter('all');
+        renderSparklines();
+        if (typeof renderDistributionChart === 'function' && document.getElementById('gradeBarChart')) renderDistributionChart(allStudents);
+        if (typeof renderTopPerformers === 'function' && document.getElementById('topPerformersList')) renderTopPerformers(allStudents);
+        if (typeof renderNeedsAttention === 'function' && document.getElementById('attentionList')) renderNeedsAttention(allStudents);
+        renderTable();
+    }
+}
+
+loadTeacherContext();

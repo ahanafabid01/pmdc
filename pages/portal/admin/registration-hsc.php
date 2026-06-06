@@ -1,3 +1,4 @@
+<?php require_once '../../../includes/session_check.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,6 +34,7 @@
         <div class="nav-divider"></div>
         <span class="nav-section-label">Management</span>
         <a href="academic-calendar.php" class="nav-item"><i class="fas fa-calendar-alt"></i><span>Academic Calendar</span></a>
+            <a href="assign_teachers.php" class="nav-item"><i class="fas fa-tasks"></i><span>Assign Teachers</span></a>
         <a href="#" class="nav-item"><i class="fas fa-file-invoice-dollar"></i><span>Finance</span></a>
         <a href="announcements.php" class="nav-item"><i class="fas fa-bell"></i><span>Announcements</span></a>
         <a href="registration-hsc.php" class="nav-item active"><i class="fas fa-file-alt"></i><span>HSC Registration</span></a>
@@ -374,4 +376,5 @@
 <script src="js/registration-admin.js"></script>
 </body>
 </html>
+
 

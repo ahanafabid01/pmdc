@@ -918,9 +918,58 @@ function showToast(msg) {
 }
 
 /* -----------------------------------------
+   Auth & Context Initialization
+----------------------------------------- */
+async function loadTeacherContext() {
+    try {
+        const res = await fetch('../api/get_teacher_context.php');
+        const data = await res.json();
+        
+        if (!data.ok) {
+            window.location.href = '../portal-login.php';
+            return;
+        }
+
+        // Update teacher name in current state
+        CURRENT_TEACHER.name = data.teacher_name;
+
+        const allowedClasses = data.classes || [];
+        const allowedGroups = new Set();
+        const allowedYears = new Set();
+        
+        allowedClasses.forEach(c => {
+            const name = c.name.toLowerCase();
+            if (name.includes('science')) allowedGroups.add('science');
+            if (name.includes('business') || name.includes('commerce')) allowedGroups.add('commerce');
+            if (name.includes('humanities')) allowedGroups.add('humanities');
+            
+            if (name.includes('1st') || name.includes('xi')) allowedYears.add('xi');
+            if (name.includes('2nd') || name.includes('xii')) allowedYears.add('xii');
+        });
+
+        if (allowedGroups.size > 0 || allowedYears.size > 0) {
+            const filteredStudents = state.students.filter(s => 
+                (allowedGroups.size === 0 || allowedGroups.has(s.group)) && 
+                (allowedYears.size === 0 || allowedYears.has(s.year))
+            );
+            state.students = filteredStudents;
+        } else if (data.assignments && data.assignments.length === 0) {
+            state.students = [];
+        }
+
+        setTodayUI();
+        initSectionDropdowns();
+        openTab('take');
+    } catch (e) {
+        console.error('Failed to load teacher context', e);
+        setTodayUI();
+        initSectionDropdowns();
+        openTab('take');
+    }
+}
+
+/* -----------------------------------------
    Init
 ----------------------------------------- */
-setTodayUI();
-initSectionDropdowns();
-openTab('take');
+loadTeacherContext();
 
