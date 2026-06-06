@@ -5,6 +5,10 @@
  * Uses JSON file storage as fallback if DB is unavailable.
  */
 
+if (!defined('DB_NAME')) {
+    require_once __DIR__ . '/config.php';
+}
+
 define('ACAL_UPLOAD_DIR', dirname(__DIR__) . '/uploads/academic-calendar/');
 define('ACAL_JSON',       dirname(__DIR__) . '/uploads/academic-calendar/index.json');
 
@@ -32,7 +36,8 @@ function acal_db() {
     static $pdo = null;
     if ($pdo) return $pdo;
     try {
-        $pdo = new PDO('mysql:host=localhost;dbname=pmdc_db;charset=utf8mb4', 'root', '', [
+        $dsn = 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8mb4';
+        $pdo = new PDO($dsn, DB_USER, DB_PASS, [
             PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         ]);
