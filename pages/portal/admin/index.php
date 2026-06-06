@@ -37,7 +37,7 @@
                 <span>Dashboard</span>
             </a>
             <a href="students.php" class="nav-item"><i class="fas fa-users"></i><span>Students</span>
-                <span class="badge">450</span>
+
             </a>
             <a href="teacher.php" class="nav-item">
                 <i class="fas fa-chalkboard-teacher"></i>
@@ -65,7 +65,7 @@
             <a href="announcements.php" class="nav-item">
                 <i class="fas fa-bell"></i>
                 <span>Announcements</span>
-                <span class="badge warn">3</span>
+
             </a>
             <a href="registration-hsc.php" class="nav-item">
                 <i class="fas fa-file-alt"></i>
