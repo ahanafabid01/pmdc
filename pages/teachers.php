@@ -12,23 +12,6 @@ include '../includes/header.php';
             <div class="ph-kicker reveal" data-i18n="ts.hero.kicker">আমাদের দল</div>
             <h1 class="reveal" data-i18n="ts.hero.h1">শিক্ষক ও কর্মচারী</h1>
             <p class="reveal" data-i18n="ts.hero.desc">ফুলপুর মহিলা ডিগ্রি কলেজের নিবেদিতপ্রাণ দলের সাথে পরিচিত হোন</p>
-            <div class="ts-hero-stats reveal">
-                <div class="ths-badge" id="heroTeacherCount">
-                    <i class="fas fa-chalkboard-teacher"></i>
-                    <span class="ths-val">—</span>
-                    <span class="ths-lbl" data-i18n="ts.hero.teachers">শিক্ষকবৃন্দ</span>
-                </div>
-                <div class="ths-badge" id="heroAdminCount">
-                    <i class="fas fa-briefcase"></i>
-                    <span class="ths-val">—</span>
-                    <span class="ths-lbl" data-i18n="ts.hero.admin">প্রশাসনিক কর্মী</span>
-                </div>
-                <div class="ths-badge" id="heroSupportCount">
-                    <i class="fas fa-users"></i>
-                    <span class="ths-val">—</span>
-                    <span class="ths-lbl" data-i18n="ts.hero.support">সহায়ক কর্মী</span>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -215,14 +198,6 @@ include '../includes/header.php';
         const principal = staff.find(s => s.isPrincipal && fn(s));
         const admins   = staff.filter(s => s.category === 'admin'   && fn(s));
         const supports = staff.filter(s => s.category === 'support' && fn(s));
-
-        /* Stats (always from full list, not filtered) */
-        const allTeachers = staff.filter(s => s.category === 'teacher');
-        const allAdmins   = staff.filter(s => s.category === 'admin');
-        const allSupports = staff.filter(s => s.category === 'support');
-        document.querySelector('#heroTeacherCount .ths-val').textContent = allTeachers.length;
-        document.querySelector('#heroAdminCount .ths-val').textContent   = allAdmins.length;
-        document.querySelector('#heroSupportCount .ths-val').textContent = allSupports.length;
 
         /* Counts (filtered) */
         const tCount = (principal ? 1 : 0) + teachers.length;
