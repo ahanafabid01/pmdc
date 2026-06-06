@@ -172,60 +172,63 @@
             </div>
         </div>
 
-        <div class="tm-card" style="padding:0; margin-bottom: 20px;">
-            <div class="ra-filter-bar" style="flex-wrap: wrap;">
-                <div class="tm-search-box" style="flex:1; min-width: 250px;">
+        <!-- ── Advanced Filter Panel ── -->
+        <div class="filter-panel">
+            <div class="fp-top">
+                <div class="tm-search-box">
                     <i class="fas fa-search"></i>
-                    <input type="text" id="studentSearch" placeholder="Search by name, roll, or registration number...">
+                    <input type="text" id="studentSearch" placeholder="Search students by name, roll, or registration number...">
                 </div>
-                <select id="sessionFilter" class="ra-select">
+                
+                <div class="fp-actions">
+                    <div class="bulk-actions" id="bulkActions" style="display:none;">
+                        <span id="selectedCount">0 selected</span>
+                        <button class="bulk-btn" id="bulkDelete"><i class="fas fa-trash"></i> Delete</button>
+                        <button class="bulk-btn" id="bulkExport"><i class="fas fa-download"></i> Export</button>
+                    </div>
+                    <div class="view-toggles">
+                        <button class="view-toggle-btn active" id="tableViewBtn" title="Table view">
+                            <i class="fas fa-list"></i>
+                        </button>
+                        <button class="view-toggle-btn" id="gridViewBtn" title="Grid view">
+                            <i class="fas fa-th-large"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="fp-bottom">
+                <div class="fp-filters-grid">
+                    <select id="sessionFilter" class="ra-select">
                         <option value="">All Sessions</option>
                         <option value="2022–2023">2022–2023</option>
                         <option value="2023–2024">2023–2024</option>
                         <option value="2024–2025">2024–2025</option>
                         <option value="2025–2026">2025–2026</option>
                     </select>
-                <select id="yearFilter" class="ra-select">
+                    <select id="yearFilter" class="ra-select">
                         <option value="">All Years</option>
                         <option value="xi">HSC 1st Year (একাদশ)</option>
                         <option value="xii">HSC 2nd Year (দ্বাদশ)</option>
                     </select>
-                <select id="groupFilter" class="ra-select">
+                    <select id="groupFilter" class="ra-select">
                         <option value="">All Groups</option>
                         <option value="science">বিজ্ঞান (Science)</option>
-                        <option value="commerce">ব্যবসায় শিক্ষা (Business Studies)</option>
+                        <option value="commerce">ব্যবসায় (Business)</option>
                         <option value="humanities">মানবিক (Humanities)</option>
                     </select>
-                <select id="sectionFilter" class="ra-select">
+                    <select id="sectionFilter" class="ra-select">
                         <option value="">All Sections</option>
                         <option value="A">Section A</option>
                         <option value="B">Section B</option>
                         <option value="C">Section C</option>
                     </select>
-                <select id="sortFilter" class="ra-select">
-                        <option value="name">Name (A–Z)</option>
-                        <option value="roll">Roll Number</option>
-                        <option value="recent">Recently Added</option>
+                    <select id="sortFilter" class="ra-select">
+                        <option value="name">Sort: Name (A–Z)</option>
+                        <option value="roll">Sort: Roll Number</option>
+                        <option value="recent">Sort: Recently Added</option>
                     </select>
-        </div>
-
-
-        <!-- ── View Toggle + Bulk Actions ── -->
-        <div class="table-toolbar">
-            <div class="toolbar-left">
-                <div class="bulk-actions" id="bulkActions" style="display:none;">
-                    <span id="selectedCount">0 selected</span>
-                    <button class="bulk-btn" id="bulkDelete"><i class="fas fa-trash"></i> Delete</button>
-                    <button class="bulk-btn" id="bulkExport"><i class="fas fa-download"></i> Export</button>
                 </div>
-            </div>
-            <div class="toolbar-right">
-                <button class="view-toggle-btn active" id="tableViewBtn" title="Table view">
-                    <i class="fas fa-list"></i>
-                </button>
-                <button class="view-toggle-btn" id="gridViewBtn" title="Card view">
-                    <i class="fas fa-th-large"></i>
-                </button>
             </div>
         </div>
 
