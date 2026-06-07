@@ -86,6 +86,13 @@ RewriteRule ^admin/monitoring-committee/?$ pages/portal/admin/academics.php [L]
 RewriteRule ^admin/guide-teachers/?$ pages/portal/admin/teacher.php [L]
 
 # =====================
+# TEACHER PAGES
+# =====================
+RewriteRule ^teacher/?$ pages/portal/teacher/index.php [L]
+RewriteRule ^teacher/attendance/?$ pages/portal/teacher/attendance.php [L]
+RewriteRule ^teacher/grades/?$ pages/portal/teacher/grades.php [L]
+
+# =====================
 # 404 FALLBACK
 # =====================
 RewriteRule ^(.*)$ pages/404.php [L]
