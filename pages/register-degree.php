@@ -5,7 +5,7 @@
  */
 $page       = 'register-degree';
 $page_group = 'academic';
-$page_title = 'Degree Registration Form | Phulpur Mohila Degree College';
+$page_title = 'Degree Admission Form | Phulpur Mohila Degree College';
 $base_path  = '../';
 
 require_once '../includes/registration-data.php';
@@ -30,14 +30,8 @@ include '../includes/header.php';
 
 <section class="page-hero">
     <div class="container ph-content">
-        <nav class="ph-breadcrumb reveal">
-            <a href="../index.php">Home</a> <i class="fas fa-chevron-right"></i>
-            <a href="degree-form-fillup.php">Degree Form Fillup</a> <i class="fas fa-chevron-right"></i>
-            <span>Apply Now</span>
-        </nav>
         <div class="ph-kicker reveal">ADMISSION <?php echo htmlspecialchars($session); ?></div>
-        <h1 class="reveal">Degree Registration Form</h1>
-        <p class="reveal">Fill in all required fields carefully. All fields marked * are mandatory.</p>
+        <h1 class="reveal">Degree Admission Form</h1>
         <?php if ($state === 'open'): ?>
         <div class="ph-badge-row reveal">
             <span class="ph-badge"><i class="fas fa-calendar-alt"></i> Session: <?php echo htmlspecialchars($session); ?></span>
@@ -62,9 +56,9 @@ include '../includes/header.php';
     <?php if ($state === 'not_open_yet'): ?>
     <div class="reg-closed-wrap">
         <div class="reg-closed-icon" style="background:#fffbeb;border-color:#fde68a;color:#d97706;"><i class="fas fa-hourglass-half"></i></div>
-        <div class="reg-closed-title">Registration Not Open Yet</div>
-        <div class="reg-closed-title-bn">নিবন্ধন এখনও শুরু হয়নি</div>
-        <p class="reg-closed-msg">Degree registration for session <strong><?php echo htmlspecialchars($session); ?></strong> has not started yet.<?php if ($open_date_fmt): ?> Registration will open on <strong><?php echo $open_date_fmt; ?></strong>.<?php endif; ?></p>
+        <div class="reg-closed-title">Admission Not Open Yet</div>
+        <div class="reg-closed-title-bn">ভর্তি আবেদন এখনও শুরু হয়নি</div>
+        <p class="reg-closed-msg">Degree admission for session <strong><?php echo htmlspecialchars($session); ?></strong> has not started yet.<?php if ($open_date_fmt): ?> Admission will open on <strong><?php echo $open_date_fmt; ?></strong>.<?php endif; ?></p>
         <p class="reg-closed-session">Please check the announcements page for updates.</p>
         <a href="announcements.php" class="reg-closed-btn"><i class="fas fa-bell"></i> View Announcements →</a>
     </div>
@@ -72,9 +66,9 @@ include '../includes/header.php';
     <?php elseif ($state === 'closed'): ?>
     <div class="reg-closed-wrap">
         <div class="reg-closed-icon"><i class="fas fa-lock"></i></div>
-        <div class="reg-closed-title">Registration Closed</div>
-        <div class="reg-closed-title-bn">নিবন্ধন বন্ধ</div>
-        <p class="reg-closed-msg">Degree registration for session <strong><?php echo htmlspecialchars($session); ?></strong> is currently closed.<?php if ($close_date_fmt): ?> The window closed on <strong><?php echo $close_date_fmt; ?></strong>.<?php endif; ?></p>
+        <div class="reg-closed-title">Admission Closed</div>
+        <div class="reg-closed-title-bn">ভর্তি আবেদন বন্ধ</div>
+        <p class="reg-closed-msg">Degree admission for session <strong><?php echo htmlspecialchars($session); ?></strong> is currently closed.<?php if ($close_date_fmt): ?> The application window closed on <strong><?php echo $close_date_fmt; ?></strong>.<?php endif; ?></p>
         <p class="reg-closed-session">Please check the announcements page for updates on the next session.</p>
         <a href="announcements.php" class="reg-closed-btn"><i class="fas fa-bell"></i> View Announcements →</a>
     </div>
@@ -181,7 +175,7 @@ include '../includes/header.php';
         <div class="reg-step" id="step4">
             <div class="reg-step-title"><i class="fas fa-money-bill-wave"></i> Payment</div>
             <div class="reg-step-sub">Send the registration fee and enter your transaction details below.</div>
-            <div class="reg-pay-info"><div class="reg-pay-info-title">Registration Fee</div><div class="reg-pay-amount" id="reg-fee-display" data-fee="<?php echo $fee; ?>"><sup>৳</sup><?php echo $fee; ?></div><div class="reg-pay-instruction">Send the fee to any number below using <strong>bKash</strong>, <strong>Nagad</strong>, or <strong>Rocket</strong> (Personal → Send Money). Then enter your transaction ID below.</div></div>
+            <div class="reg-pay-info"><div class="reg-pay-info-title">Application Fee</div><div class="reg-pay-amount" id="reg-fee-display" data-fee="<?php echo $fee; ?>"><sup>৳</sup><?php echo $fee; ?></div><div class="reg-pay-instruction">Send the fee to any number below using <strong>bKash</strong>, <strong>Nagad</strong>, or <strong>Rocket</strong> (Personal → Send Money). Then enter your transaction ID below.</div></div>
             <div class="reg-pay-methods">
                 <div class="reg-pay-card bkash"><div class="reg-pay-card-logo">🟣 bKash</div><div class="reg-pay-card-type">Personal · Send Money</div><div class="reg-pay-card-number"><?php echo htmlspecialchars($bkash); ?></div><button type="button" class="reg-pay-copy-btn" data-number="<?php echo htmlspecialchars($bkash); ?>"><i class="fas fa-copy"></i> Copy</button></div>
                 <div class="reg-pay-card nagad"><div class="reg-pay-card-logo">🟠 Nagad</div><div class="reg-pay-card-type">Personal · Send Money</div><div class="reg-pay-card-number"><?php echo htmlspecialchars($nagad); ?></div><button type="button" class="reg-pay-copy-btn" data-number="<?php echo htmlspecialchars($nagad); ?>"><i class="fas fa-copy"></i> Copy</button></div>
