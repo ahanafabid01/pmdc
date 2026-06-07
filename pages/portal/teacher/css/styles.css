@@ -602,3 +602,68 @@ img  { max-width: 100%; display: block; }
     .welcome-meta { display: none; }
     .content-area { padding: 12px; }
 }
+
+/* ── Utility States (Loading & Empty) ───────────────────── */
+.att-loading-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    border-radius: var(--radius);
+    padding: 36px 20px;
+    color: #475569;
+    font-size: .95rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.att-loading-banner i { font-size: 1.2rem; color: #3b82f6; }
+
+.att-no-programs {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    color: #92400e;
+    margin-bottom: 20px;
+}
+.att-no-programs i {
+    font-size: 1.6rem;
+    color: #f59e0b;
+    margin-top: 2px;
+}
+.att-no-programs strong { display: block; font-size: 1rem; margin-bottom: 4px; }
+.att-no-programs p { font-size: .85rem; color: #b45309; }
+
+.grades-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: #fff;
+    border: 1px dashed #cbd5e1;
+    border-radius: var(--radius);
+    padding: 48px 24px;
+    color: #64748b;
+    margin-top: 20px;
+}
+.grades-empty-state i {
+    font-size: 2.8rem;
+    color: #94a3b8;
+    margin-bottom: 16px;
+}
+.grades-empty-state h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #334155;
+    margin-bottom: 8px;
+}
+.grades-empty-state p {
+    font-size: .88rem;
+    max-width: 400px;
+}

@@ -111,7 +111,8 @@ window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
         if (window.innerWidth > 992) {
-            sidebar.classList.remove('active');
+            const sb = document.getElementById('sidebar');
+            if (sb) sb.classList.remove('active');
         }
     }, 250);
 });
