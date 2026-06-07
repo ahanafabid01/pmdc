@@ -440,25 +440,47 @@ async function changeStatus(refNum, status, reason = '') {
 }
 
 function approveApp(refNum) {
-    changeStatus(refNum, 'approved');
+    Swal.fire({
+        title: 'Approve Application?',
+        text: `Are you sure you want to approve application ${refNum}?`,
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#10b981',
+        cancelButtonColor: '#64748b',
+        confirmButtonText: '<i class="fas fa-check"></i> Yes, Approve',
+        showLoaderOnConfirm: true,
+        preConfirm: async () => {
+            await changeStatus(refNum, 'approved');
+        },
+        allowOutsideClick: () => !Swal.isLoading()
+    });
 }
 
 function openRejectModal(refNum) {
-    pendingRejectId = refNum;
-    document.getElementById('rejectReasonInput').value = '';
-    document.getElementById('rejectOverlay').classList.add('active');
+    Swal.fire({
+        title: 'Reject Application',
+        text: 'Please provide a reason for rejection (optional):',
+        input: 'textarea',
+        inputPlaceholder: 'e.g. Incomplete documents, unclear photo...',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#ef4444',
+        cancelButtonColor: '#64748b',
+        confirmButtonText: '<i class="fas fa-times"></i> Reject',
+        showLoaderOnConfirm: true,
+        preConfirm: async (reason) => {
+            await changeStatus(refNum, 'rejected', reason);
+        },
+        allowOutsideClick: () => !Swal.isLoading()
+    });
 }
 
 function closeRejectModal() {
-    pendingRejectId = null;
-    document.getElementById('rejectOverlay').classList.remove('active');
+    // No longer needed with SweetAlert2
 }
 
 function confirmReject() {
-    if (!pendingRejectId) return;
-    const reason = document.getElementById('rejectReasonInput').value.trim();
-    changeStatus(pendingRejectId, 'rejected', reason);
-    closeRejectModal();
+    // No longer needed with SweetAlert2
 }
 
 /* ════════════════════════════════════════════════════════════
