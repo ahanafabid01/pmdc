@@ -56,6 +56,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentStep === steps.length - 1) {
             updateSummary();
         }
+
+        // Auto scroll to top of form
+        const formWrap = document.getElementById('regFormWrap');
+        if (formWrap) {
+            // Add a small offset to account for any fixed headers if needed, but smooth scroll is usually fine
+            formWrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
     }
 
     // Image previews
