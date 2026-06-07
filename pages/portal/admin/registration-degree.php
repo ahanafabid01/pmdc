@@ -305,11 +305,14 @@
             <div class="ra-detail-section">
                 <div class="ra-detail-section-title"><i class="fas fa-graduation-cap"></i> Academic Information (HSC)</div>
                 <div class="ra-detail-grid">
-                    <div class="ra-detail-item"><span class="ra-detail-lbl">Roll / Reg. No.</span><span class="ra-detail-val" id="dAcad1">—</span></div>
-                    <div class="ra-detail-item"><span class="ra-detail-lbl">Board / Year</span><span class="ra-detail-val" id="dAcad2">—</span></div>
-                    <div class="ra-detail-item"><span class="ra-detail-lbl">GPA</span><span class="ra-detail-val" id="dAcad3">—</span></div>
-                    <div class="ra-detail-item"><span class="ra-detail-lbl">Group → Desired</span><span class="ra-detail-val" id="dAcad4">—</span></div>
-                    <div class="ra-detail-item full"><span class="ra-detail-lbl">Previous Institution</span><span class="ra-detail-val" id="dAcad5">—</span></div>
+                    <div class="ra-detail-item"><span class="ra-detail-lbl">Roll Number</span><span class="ra-detail-val" id="dAcadRoll">—</span></div>
+                    <div class="ra-detail-item"><span class="ra-detail-lbl">Registration No.</span><span class="ra-detail-val" id="dAcadReg">—</span></div>
+                    <div class="ra-detail-item"><span class="ra-detail-lbl">Board</span><span class="ra-detail-val" id="dAcadBoard">—</span></div>
+                    <div class="ra-detail-item"><span class="ra-detail-lbl">Passing Year</span><span class="ra-detail-val" id="dAcadYear">—</span></div>
+                    <div class="ra-detail-item"><span class="ra-detail-lbl">GPA</span><span class="ra-detail-val" id="dAcadGPA">—</span></div>
+                    <div class="ra-detail-item"><span class="ra-detail-lbl">Previous Group</span><span class="ra-detail-val" id="dAcadPrevGroup">—</span></div>
+                    <div class="ra-detail-item"><span class="ra-detail-lbl">Desired Program</span><span class="ra-detail-val" id="dAcadDesiredGroup">—</span></div>
+                    <div class="ra-detail-item full"><span class="ra-detail-lbl">Previous Institution</span><span class="ra-detail-val" id="dAcadInst">—</span></div>
                 </div>
             </div>
 

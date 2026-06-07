@@ -290,42 +290,68 @@
 
 .ra-detail-section {
     margin-top: 18px;
-    padding-top: 14px;
-    border-top: 1px dashed var(--border);
 }
-.ra-detail-section:first-of-type { border-top: none; padding-top: 0; }
+.ra-detail-section:first-of-type { margin-top: 10px; }
 .ra-detail-section-title {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: .9rem;
+    display: block;
+    font-size: .85rem;
     font-weight: 700;
-    color: var(--text);
-    margin-bottom: 10px;
+    color: #0f172a;
+    margin-bottom: 0;
+    padding: 8px 12px;
+    background: #e2e8f0;
+    border: 1px solid #94a3b8;
+    border-bottom: none;
+    text-transform: none;
+    letter-spacing: normal;
+}
+.ra-detail-section-title i {
+    margin-right: 6px;
+    color: #475569;
 }
 .ra-detail-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 10px 14px;
+    grid-template-columns: repeat(2, 1fr);
+    border: 1px solid #94a3b8;
+    background: #fff;
 }
 .ra-detail-item {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 10px 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #94a3b8;
+    border-right: 1px solid #94a3b8;
+    border-radius: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    align-items: stretch;
+}
+.ra-detail-item:nth-child(even), .ra-detail-item.full {
+    border-right: none;
 }
 .ra-detail-item.full { grid-column: 1 / -1; }
+.ra-detail-grid > .ra-detail-item:last-child { border-bottom: none; }
+.ra-detail-grid > .ra-detail-item:nth-last-child(2):nth-child(odd) { border-bottom: none; } 
+
 .ra-detail-lbl {
-    font-size: .65rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: .1em;
-    color: var(--text-light);
+    padding: 8px 12px;
+    font-size: .75rem;
+    font-weight: 600;
+    color: #333;
+    text-transform: none;
+    display: flex;
+    align-items: center;
 }
-.ra-detail-val { font-size: .85rem; font-weight: 600; color: var(--text); }
+.ra-detail-val { 
+    padding: 8px 12px;
+    font-size: .85rem; 
+    font-weight: 500; 
+    color: #000; 
+    word-break: break-word; 
+    border-left: 1px solid #94a3b8;
+    display: flex;
+    align-items: center;
+}
 
 /* Documents */
 .ra-doc-grid {

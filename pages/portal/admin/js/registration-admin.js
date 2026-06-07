@@ -313,17 +313,23 @@ function openDetail(refNum) {
 
     // Academic info
     if (REG_TYPE === 'hsc') {
-        setDetailField('dAcad1', ad.ssc_roll    + ' / ' + ad.ssc_reg);
-        setDetailField('dAcad2', ad.ssc_board   + ' · ' + ad.ssc_year);
-        setDetailField('dAcad3', ad.ssc_gpa     + ' GPA');
-        setDetailField('dAcad4', ad.ssc_group   + ' → ' + ad.desired_group);
-        setDetailField('dAcad5', ad.prev_institution);
+        setDetailField('dAcadRoll',  ad.ssc_roll);
+        setDetailField('dAcadReg',   ad.ssc_reg);
+        setDetailField('dAcadBoard', ad.ssc_board);
+        setDetailField('dAcadYear',  ad.ssc_year);
+        setDetailField('dAcadGPA',   ad.ssc_gpa);
+        setDetailField('dAcadPrevGroup', ad.ssc_group);
+        setDetailField('dAcadDesiredGroup', ad.desired_group);
+        setDetailField('dAcadInst',  ad.prev_institution);
     } else {
-        setDetailField('dAcad1', ad.hsc_roll    + ' / ' + ad.hsc_reg);
-        setDetailField('dAcad2', ad.hsc_board   + ' · ' + ad.hsc_year);
-        setDetailField('dAcad3', ad.hsc_gpa     + ' GPA');
-        setDetailField('dAcad4', ad.hsc_group   + ' → ' + ad.desired_program);
-        setDetailField('dAcad5', ad.prev_institution);
+        setDetailField('dAcadRoll',  ad.hsc_roll);
+        setDetailField('dAcadReg',   ad.hsc_reg);
+        setDetailField('dAcadBoard', ad.hsc_board);
+        setDetailField('dAcadYear',  ad.hsc_year);
+        setDetailField('dAcadGPA',   ad.hsc_gpa);
+        setDetailField('dAcadPrevGroup', ad.hsc_group);
+        setDetailField('dAcadDesiredGroup', ad.desired_program);
+        setDetailField('dAcadInst',  ad.prev_institution);
     }
 
     // Payment
@@ -371,11 +377,15 @@ function renderDocThumb(id, path, label) {
     if (!wrap) return;
     if (path) {
         const isImg = /\.(jpg|jpeg|png)$/i.test(path);
+        // Path is relative to pages/portal/admin, so 3 levels up: ../../../ + path (e.g. uploads/...)
         wrap.innerHTML = isImg
-            ? `<img class="ra-doc-img" src="../../../../${path}" alt="${label}" onclick="window.open(this.src,'_blank')">`
-            : `<div class="ra-doc-none" title="Click to download" style="cursor:pointer;" onclick="window.open('../../../../${path}','_blank')"><i class="fas fa-file-pdf"></i></div>`;
+            ? `<img class="ra-doc-img" src="../../../${path}" alt="${label}" onclick="window.open(this.src,'_blank')" style="object-fit:cover;width:100%;height:120px;border-radius:10px;border:1px solid #cbd5e1;cursor:pointer;">`
+            : `<div class="ra-doc-none" title="Click to view PDF" style="cursor:pointer;flex-direction:column;background:#fff1f2;border-color:#fecdd3;" onclick="window.open('../../../${path}','_blank')">
+                 <i class="fas fa-file-pdf" style="color:#e11d48;font-size:2.5rem;margin-bottom:8px;"></i>
+                 <div style="font-size:.75rem;font-weight:700;color:#e11d48;">VIEW PDF</div>
+               </div>`;
     } else {
-        wrap.innerHTML = `<div class="ra-doc-none"><i class="fas fa-image" style="color:#cbd5e1;"></i></div>`;
+        wrap.innerHTML = `<div class="ra-doc-none" style="flex-direction:column;"><i class="fas fa-image" style="color:#cbd5e1;font-size:2rem;margin-bottom:8px;"></i><div style="font-size:.7rem;color:#94a3b8;">Not uploaded</div></div>`;
     }
 }
 
