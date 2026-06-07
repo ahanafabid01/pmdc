@@ -86,6 +86,72 @@ function reg_generate_ref(string $type, string $session): string {
     return $base . str_pad(count($store) + 1, 5, '0', STR_PAD_LEFT);
 }
 
+/* ── Check for duplicates ───────────────────────────────── */
+function reg_check_duplicate(string $type, string $session, array $personal, array $academic, string $txn): string|false {
+    $email = $personal['email'] ?? '';
+    $nid   = $personal['nid_number'] ?? '';
+    $birth = $personal['birth_cert_num'] ?? '';
+    $roll  = $type === 'hsc' ? ($academic['ssc_roll'] ?? '') : ($academic['hsc_roll'] ?? '');
+    $reg   = $type === 'hsc' ? ($academic['ssc_reg'] ?? '') : ($academic['hsc_reg'] ?? '');
+
+    $db = reg_db();
+    if ($db) {
+        $where = ["(program_type = ? AND session = ?)"];
+        $params = [$type, $session];
+        $checks = [];
+        
+        if ($txn)   { $checks[] = "transaction_id = ?"; $params[] = $txn; }
+        if ($email) { $checks[] = "JSON_EXTRACT(personal_data, '$.email') = ?"; $params[] = $email; }
+        if ($nid)   { $checks[] = "JSON_EXTRACT(personal_data, '$.nid_number') = ?"; $params[] = $nid; }
+        if ($birth) { $checks[] = "JSON_EXTRACT(personal_data, '$.birth_cert_num') = ?"; $params[] = $birth; }
+        if ($roll)  { 
+            $key = $type === 'hsc' ? 'ssc_roll' : 'hsc_roll';
+            $checks[] = "JSON_EXTRACT(academic_data, '$.{$key}') = ?"; $params[] = $roll; 
+        }
+        if ($reg)   { 
+            $key = $type === 'hsc' ? 'ssc_reg' : 'hsc_reg';
+            $checks[] = "JSON_EXTRACT(academic_data, '$.{$key}') = ?"; $params[] = $reg; 
+        }
+
+        if (count($checks) > 0) {
+            $where[] = "(" . implode(" OR ", $checks) . ")";
+            $stmt = $db->prepare("SELECT * FROM registrations WHERE " . implode(" AND ", $where));
+            $stmt->execute($params);
+            $row = $stmt->fetch();
+            
+            if ($row) {
+                if ($txn && $row['transaction_id'] === $txn) return "This Transaction ID is already used.";
+                $p = json_decode($row['personal_data'], true) ?: [];
+                $a = json_decode($row['academic_data'], true) ?: [];
+                if ($email && ($p['email'] ?? '') === $email) return "An application with this Email Address already exists.";
+                if ($nid && ($p['nid_number'] ?? '') === $nid) return "An application with this NID Number already exists.";
+                if ($birth && ($p['birth_cert_num'] ?? '') === $birth) return "An application with this Birth Certificate Number already exists.";
+                $r_roll = $type === 'hsc' ? ($a['ssc_roll'] ?? '') : ($a['hsc_roll'] ?? '');
+                if ($roll && $roll === $r_roll) return "An application with this Roll Number already exists.";
+                return "An application with this Registration Number already exists.";
+            }
+        }
+        return false;
+    }
+
+    // JSON fallback check
+    $store = reg_json_load($type);
+    foreach ($store as $row) {
+        if (($row['session'] ?? '') !== $session) continue;
+        if ($txn && ($row['transaction_id'] ?? '') === $txn) return "This Transaction ID is already used.";
+        $p = $row['personal_data'] ?? [];
+        $a = $row['academic_data'] ?? [];
+        if ($email && ($p['email'] ?? '') === $email) return "An application with this Email Address already exists.";
+        if ($nid && ($p['nid_number'] ?? '') === $nid) return "An application with this NID Number already exists.";
+        if ($birth && ($p['birth_cert_num'] ?? '') === $birth) return "An application with this Birth Certificate Number already exists.";
+        $r_roll = $type === 'hsc' ? ($a['ssc_roll'] ?? '') : ($a['hsc_roll'] ?? '');
+        $r_reg = $type === 'hsc' ? ($a['ssc_reg'] ?? '') : ($a['hsc_reg'] ?? '');
+        if ($roll && $roll === $r_roll) return "An application with this Roll Number already exists.";
+        if ($reg && $reg === $r_reg) return "An application with this Registration Number already exists.";
+    }
+    return false;
+}
+
 /* ── Insert application ─────────────────────────────────── */
 function reg_insert(array $data): array {
     reg_ensure_dirs();

@@ -69,9 +69,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 const reader = new FileReader();
                 reader.onload = e => {
                     const img = document.getElementById(previewId);
-                    img.src = e.target.result;
-                    img.style.display = 'block';
-                    img.previousElementSibling.style.display = 'none'; // hide placeholder
+                    if (file.type.startsWith('image/')) {
+                        img.src = e.target.result;
+                        img.style.display = 'block';
+                        img.previousElementSibling.style.display = 'none'; // hide placeholder
+                    } else {
+                        // For PDFs, hide image tag and show PDF icon in placeholder
+                        img.style.display = 'none';
+                        const placeholder = img.previousElementSibling;
+                        placeholder.style.display = 'flex';
+                        const icon = placeholder.querySelector('i');
+                        if (icon) {
+                            icon.className = 'fas fa-file-pdf';
+                            icon.style.color = '#dc2626';
+                        }
+                    }
                 };
                 reader.readAsDataURL(file);
             }

@@ -39,6 +39,13 @@ $data = [
     'payment_date' => $_POST['payment_date'] ?? date('Y-m-d'),
 ];
 
+// Check for duplicates
+$duplicateErr = reg_check_duplicate($type, $session, $personalData, $academicData, $data['transaction_id']);
+if ($duplicateErr) {
+    echo json_encode(['success' => false, 'message' => $duplicateErr]);
+    exit;
+}
+
 // Handle file uploads (simplified, just moving them to uploads/registrations)
 $uploadDir = REG_UPLOAD_BASE . $session . '/' . $type . '/';
 if (!is_dir($uploadDir)) mkdir($uploadDir, 0755, true);
