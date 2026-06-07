@@ -267,16 +267,15 @@ async function loadStudentsForTake() {
     const progId  = $('takeProgram').value;
     const year    = $('takeYear').value;
     const section = $('takeSection').value;
-    const period  = $('takePeriod').value;
 
-    if (!progId || !year || !section || !period) {
-        showTakeAlert('att-alert-warning', 'Please select Program, Year, Section and Period.');
+    if (!progId || !year || !section) {
+        showTakeAlert('att-alert-warning', 'Please select Program, Year, and Section.');
         return;
     }
 
     const students = studentsForClass(progId, year, section);
     takeState.students  = students;
-    takeState.selection = { progId, year, section, period, date: TODAY };
+    takeState.selection = { progId, year, section, date: TODAY };
     takeState.statusMap = new Map();
     students.forEach(s => takeState.statusMap.set(String(s.id), 'present'));
 
@@ -285,11 +284,11 @@ async function loadStudentsForTake() {
         const r = await fetch(`api/attendance.php?action=list&date=${TODAY}&year=${year}&group=${progId}&section=${section}`);
         const d = await r.json();
         if (d.ok && d.records?.length) {
-            const rec = d.records.find(r => String(r.period) === String(period));
+            const rec = d.records[0];
             if (rec) {
                 rec.statuses.forEach(st => takeState.statusMap.set(String(st.student_id), st.status));
                 showTakeAlert('att-alert-warning',
-                    `<i class="fas fa-info-circle"></i> Attendance already recorded for Period ${period}. You can edit and resubmit.`);
+                    `<i class="fas fa-info-circle"></i> Attendance already recorded. You can edit and resubmit.`);
             }
         }
     } catch (_) { /* ignore */ }
@@ -297,7 +296,7 @@ async function loadStudentsForTake() {
     const prog = CTX.programs.find(p => p.id === progId);
     const yearLabel = year === 'xi' ? 'HSC 1st Year' : year === 'xii' ? 'HSC 2nd Year' : `Year ${year}`;
     $('takeListMeta').innerHTML =
-        `<strong>${prog?.name || progId}</strong> &nbsp;·&nbsp; ${yearLabel} &nbsp;·&nbsp; Section ${section} &nbsp;·&nbsp; Period ${period} &nbsp;·&nbsp; ${fmtDate(TODAY)}`;
+        `<strong>${prog?.name || progId}</strong> &nbsp;·&nbsp; ${yearLabel} &nbsp;·&nbsp; Section ${section} &nbsp;·&nbsp; ${fmtDate(TODAY)}`;
 
     renderTakeRows();
     $('markAllPresentBtn').disabled = !students.length;
@@ -340,7 +339,7 @@ $('submitAttendanceBtn').addEventListener('click', () => {
     if (!takeState.students.length) return;
     const sel = takeState.selection;
     $('confirmText').textContent =
-        `Submit attendance for Period ${sel.period} — ${fmtDate(sel.date)}? (${takeState.students.length} students)`;
+        `Submit attendance for ${fmtDate(sel.date)}? (${takeState.students.length} students)`;
     $('submitConfirmModal').classList.add('open');
 });
 
@@ -368,7 +367,7 @@ $('confirmSubmitBtn').addEventListener('click', async () => {
                 group:      sel.progId,
                 year:       sel.year,
                 section:    sel.section,
-                period:     parseInt(sel.period),
+                period:     1, // Defaulting to 1 as period field is removed
                 date:       sel.date,
                 statuses,
             }),
@@ -377,12 +376,11 @@ $('confirmSubmitBtn').addEventListener('click', async () => {
         if (data.ok) {
             showToast('Attendance saved successfully!');
             $('takeSuccess').textContent =
-                `✓ Attendance for Period ${sel.period} submitted on ${fmtDate(sel.date)}`;
+                `✓ Attendance submitted on ${fmtDate(sel.date)}`;
             $('takeSuccess').style.display = 'block';
             $('takeListCard').style.display = 'none';
             // Reset selects
             $('takeSection').value = '';
-            $('takePeriod').value  = '';
         } else {
             showToast(data.msg || 'Failed to save.', true);
         }
