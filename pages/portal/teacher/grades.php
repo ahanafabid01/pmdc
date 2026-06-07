@@ -8,7 +8,7 @@
     <meta name="description" content="Enter and manage student exam results — HSC and Degree programs.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css?v=<?= time() ?>">
     <link rel="stylesheet" href="<?= BASE_URL ?>/pages/portal/teacher/css/styles.css?v=2">
     <link rel="stylesheet" href="<?= BASE_URL ?>/pages/portal/teacher/css/dashboard.css?v=2">
     <link rel="stylesheet" href="<?= BASE_URL ?>/pages/portal/teacher/css/attendance.css?v=2">

@@ -7,9 +7,9 @@
     <title>Manage Teachers & Staff | PMDC Admin</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>/pages/portal/admin/css/styles.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>/pages/portal/admin/css/teacher.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css?v=<?= time() ?>">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/pages/portal/admin/css/styles.css?v=<?= time() ?>">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/pages/portal/admin/css/teacher.css?v=<?= time() ?>">
 </head>
 <body>
 
@@ -281,7 +281,7 @@
     <div class="tm-toast" id="tmToast"></div>
 
     <script>window.BASE_URL = "<?= BASE_URL ?>";</script>
-    <script src="<?= BASE_URL ?>/pages/portal/admin/js/teacher.js"></script>
+    <script src="<?= BASE_URL ?>/pages/portal/admin/js/teacher.js?v=<?= time() ?>"></script>
     <script>
     (function() {
         const sidebar  = document.getElementById('sidebar');

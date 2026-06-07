@@ -13,7 +13,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     <title>Results Dashboard | Admin Portal | PMDC</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css?v=<?= time() ?>">
     <link rel="stylesheet" href="<?= BASE_URL ?>/pages/portal/admin/css/styles.css?v=2">
     <link rel="stylesheet" href="<?= BASE_URL ?>/pages/portal/teacher/css/attendance.css?v=2">
     <link rel="stylesheet" href="<?= BASE_URL ?>/pages/portal/admin/css/results.css?v=2">
@@ -250,7 +250,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
 </div>
 
 <script>window.BASE_URL = "<?= BASE_URL ?>";</script>
-    <script src="<?= BASE_URL ?>/pages/portal/admin/js/portal.js"></script>
-<script src="<?= BASE_URL ?>/pages/portal/admin/js/results.js"></script>
+    <script src="<?= BASE_URL ?>/pages/portal/admin/js/portal.js?v=<?= time() ?>"></script>
+<script src="<?= BASE_URL ?>/pages/portal/admin/js/results.js?v=<?= time() ?>"></script>
 </body>
 </html>
