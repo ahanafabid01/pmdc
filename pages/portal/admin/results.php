@@ -154,7 +154,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
                 <h3><i class="fas fa-sliders-h"></i> Select Exam & Program</h3>
             </div>
             <div class="card-body att-pad">
-                <div class="att-filter-grid">
+                <div class="att-filter-grid" style="grid-template-columns: repeat(3, 1fr);">
                     <div class="att-field">
                         <label>Exam</label>
                         <select id="examSelect"><option value="">Loading...</option></select>
@@ -163,10 +163,12 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
                         <label>Program</label>
                         <select id="programSelect"><option value="">Loading...</option></select>
                     </div>
+                    <div class="att-field">
+                        <button class="btn-att-primary" id="loadProgressBtn" style="width: 100%; padding: 10px; margin-top: 22px;">
+                            <i class="fas fa-search"></i> Check Progress
+                        </button>
+                    </div>
                 </div>
-                <button class="btn-att-primary" id="loadProgressBtn" style="margin-top:16px; width:auto; padding:12px 24px;">
-                    <i class="fas fa-search"></i> Check Progress
-                </button>
             </div>
         </div>
 
