@@ -25,6 +25,18 @@ $rocket   = $s['rocket'] ?? '01XXXXXXXXX';
 $open_date_fmt  = $open_date  ? date('d M Y', strtotime($open_date))  : '';
 $close_date_fmt = $close_date ? date('d M Y', strtotime($close_date)) : '';
 
+// Fetch Optional Subjects Map
+$optional_subjects_map = [];
+$db = reg_db();
+if ($db) {
+    try {
+        $stmt = $db->query("SELECT name, fourth_subjects FROM academics_programs WHERE type = 'hsc'");
+        while ($row = $stmt->fetch()) {
+            $optional_subjects_map[$row['name']] = json_decode($row['fourth_subjects'], true) ?: [];
+        }
+    } catch (Exception $e) {}
+}
+
 include '../includes/header.php';
 ?>
 <link rel="stylesheet" href="<?php echo $base_path; ?>styles/registration.css">
@@ -182,6 +194,7 @@ include '../includes/header.php';
             <hr class="reg-section-sep"><div class="reg-section-head"><i class="fas fa-book-open"></i> Admission Preferences</div>
             <div class="reg-grid">
                 <div class="reg-group full"><label for="desired_group">Program Group Preference <span class="req">*</span></label><select id="desired_group"><option value="">— Select —</option><option>Science</option><option>Humanities</option><option>Business Studies</option></select><span class="reg-err" id="err_desired_group"></span></div>
+                <div class="reg-group full"><label for="optional_subject">Optional / 4th Subject <span class="req">*</span></label><select id="optional_subject" required><option value="">— Select Desired Group First —</option></select><span class="reg-err" id="err_optional_subject"></span></div>
             </div>
             <div class="reg-nav"><button class="reg-btn-back" data-action="back"><i class="fas fa-arrow-left"></i> Back</button><button class="reg-btn-next" data-action="next">Next <i class="fas fa-arrow-right"></i></button></div>
         </div>
@@ -248,6 +261,9 @@ include '../includes/header.php';
 </div><!-- /reg-page -->
 
 <div class="reg-toast" id="regToast"></div>
-<script>document.body.dataset.formType = 'hsc';</script>
+<script>
+    document.body.dataset.formType = 'hsc';
+    const optionalSubjectsMap = <?php echo json_encode($optional_subjects_map); ?>;
+</script>
 <script src="<?php echo $base_path; ?>javascript/registration.js?v=<?php echo time(); ?>"></script>
 <?php include '../includes/footer.php'; ?>

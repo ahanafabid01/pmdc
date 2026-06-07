@@ -143,6 +143,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Dynamic Optional Subjects for HSC
+    const desiredGroup = document.getElementById('desired_group');
+    const optionalSubject = document.getElementById('optional_subject');
+    if (desiredGroup && optionalSubject && typeof optionalSubjectsMap !== 'undefined') {
+        desiredGroup.addEventListener('change', () => {
+            const group = desiredGroup.value;
+            const subjects = optionalSubjectsMap[group] || [];
+            
+            optionalSubject.innerHTML = '<option value="">— Select Optional / 4th Subject —</option>';
+            if (subjects.length > 0) {
+                subjects.forEach(sub => {
+                    optionalSubject.innerHTML += `<option value="${sub}">${sub}</option>`;
+                });
+            } else {
+                optionalSubject.innerHTML = '<option value="">— No optional subjects available —</option>';
+            }
+        });
+    }
+
     function updateSummary() {
         const tbody = document.getElementById('summaryBody');
         if (!tbody) return;
@@ -170,6 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
             addRow('SSC Board', document.getElementById('ssc_board')?.value);
             addRow('SSC GPA', document.getElementById('ssc_gpa')?.value);
             addRow('Program Preference', document.getElementById('desired_group')?.value);
+            addRow('Optional Subject', document.getElementById('optional_subject')?.value);
         } else {
             addRow('HSC Roll', document.getElementById('hsc_roll')?.value);
             addRow('HSC Board', document.getElementById('hsc_board')?.value);
@@ -237,7 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Academic Data
             const academic = {};
             if (formType === 'hsc') {
-                ['ssc_roll', 'ssc_reg', 'ssc_board', 'ssc_year', 'ssc_gpa', 'ssc_group', 'desired_group', 'desired_section', 'prev_institution'].forEach(id => {
+                ['ssc_roll', 'ssc_reg', 'ssc_board', 'ssc_year', 'ssc_gpa', 'ssc_group', 'desired_group', 'optional_subject', 'desired_section', 'prev_institution'].forEach(id => {
                     const el = document.getElementById(id);
                     if (el) academic[id] = el.value;
                 });
