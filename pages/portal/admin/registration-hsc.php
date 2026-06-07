@@ -276,12 +276,9 @@
             <button class="tm-modal-close" id="detailClose"><i class="fas fa-times"></i></button>
         </div>
         <div class="tm-modal-body">
-            <div class="ra-modal-actions">
-                <button class="ra-btn-approve-full" id="detailApproveBtn"><i class="fas fa-check"></i> Approve</button>
-                <button class="ra-btn-reject-full"  id="detailRejectBtn"><i class="fas fa-times"></i> Reject</button>
-                <button class="btn-cancel" id="detailPrint" style="margin-left:auto;"><i class="fas fa-print"></i> Print</button>
-            </div>
-            <div id="rejectionReasonWrap" style="display:none;background:#fee2e2;border-radius:10px;padding:12px 16px;margin-top:12px;font-size:.82rem;color:#991b1b;font-family:'Inter',sans-serif;">
+            <div class="ra-modal-actions" style="justify-content: flex-end;">
+                <button class="btn-cancel" id="detailPrint"><i class="fas fa-print"></i> Print</button>
+            </div>            <div id="rejectionReasonWrap" style="display:none;background:#fee2e2;border-radius:10px;padding:12px 16px;margin-top:12px;font-size:.82rem;color:#991b1b;font-family:'Inter',sans-serif;">
                 <strong>Rejection reason:</strong> <span id="rejectionReasonText"></span>
             </div>
 
@@ -368,6 +365,11 @@
                     <textarea id="adminNoteTA" rows="3" placeholder="Add internal notes about this application…"></textarea>
                     <button class="btn-cancel" id="btnSaveNote" style="align-self:flex-start;"><i class="fas fa-save"></i> Save Note</button>
                 </div>
+            </div>
+
+            <div class="ra-modal-actions" style="margin-top: 30px; display: flex; justify-content: flex-end; gap: 10px; border-top: 1px solid var(--border); padding-top: 20px;">
+                <button class="ra-btn-reject-full"  id="detailRejectBtn"><i class="fas fa-times"></i> Reject</button>
+                <button class="ra-btn-approve-full" id="detailApproveBtn"><i class="fas fa-check"></i> Approve</button>
             </div>
         </div>
     </div>
