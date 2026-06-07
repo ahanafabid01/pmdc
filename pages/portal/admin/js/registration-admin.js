@@ -309,7 +309,14 @@ function openDetail(refNum) {
     setDetailField('dFather',  pd.father_name);
     setDetailField('dMother',  pd.mother_name);
     setDetailField('dPhone',   pd.guardian_phone);
-    setDetailField('dAddress', pd.present_address);
+    setDetailField('dStudentPhone', pd.student_phone || '—');
+    setDetailField('dEmail',   pd.email || '—');
+    setDetailField('dFatherNid', pd.father_nid || '—');
+    setDetailField('dFatherOcc', pd.father_occupation || '—');
+    setDetailField('dMotherNid', pd.mother_nid || '—');
+    setDetailField('dMotherOcc', pd.mother_occupation || '—');
+    setDetailField('dPresentAddress', pd.present_address || '—');
+    setDetailField('dPermanentAddress', pd.permanent_address || '—');
 
     // Academic info
     if (REG_TYPE === 'hsc') {
