@@ -31,6 +31,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Summary Toggle
+    const summaryToggle = document.querySelector('.reg-summary-toggle');
+    const summaryBody = document.querySelector('.reg-summary-body');
+    if (summaryToggle && summaryBody) {
+        summaryToggle.addEventListener('click', () => {
+            summaryBody.classList.toggle('open');
+            const icon = summaryToggle.querySelector('.fa-chevron-down, .fa-chevron-up');
+            if (icon) {
+                icon.classList.toggle('fa-chevron-down');
+                icon.classList.toggle('fa-chevron-up');
+            }
+        });
+    }
+
     function showStep(index) {
         steps[currentStep].classList.remove('active');
         nodes[currentStep].classList.remove('active');
@@ -91,22 +105,34 @@ document.addEventListener('DOMContentLoaded', () => {
         
         let summaryHtml = '<table style="width:100%; border-collapse:collapse; font-size: 0.85rem;">';
         const addRow = (label, val) => {
-            summaryHtml += `<tr><td style="padding:4px 0; color:#64748b;">${label}</td><td style="padding:4px 0; font-weight:600; text-align:right;">${val || '—'}</td></tr>`;
+            if (val) summaryHtml += `<tr><td style="padding:4px 0; color:#64748b;">${label}</td><td style="padding:4px 0; font-weight:600; text-align:right;">${val}</td></tr>`;
         };
 
         addRow('Name (EN)', document.getElementById('full_name_en')?.value);
         addRow('Date of Birth', document.getElementById('dob')?.value);
-        addRow('Phone', document.getElementById('guardian_phone')?.value);
+        addRow('Religion', document.getElementById('religion')?.value);
+        addRow('Blood Group', document.getElementById('blood_group')?.value);
+        addRow('National ID', document.getElementById('nid_number')?.value);
+        addRow('Email', document.getElementById('email')?.value);
+        addRow('Guardian Phone', document.getElementById('guardian_phone')?.value);
+        addRow('Student Phone', document.getElementById('student_phone')?.value);
+        addRow('Father Name', document.getElementById('father_name')?.value);
+        addRow('Mother Name', document.getElementById('mother_name')?.value);
+        addRow('Present Address', document.getElementById('present_address')?.value);
         
         if (formType === 'hsc') {
             addRow('SSC Roll', document.getElementById('ssc_roll')?.value);
-            addRow('Desired Group', document.getElementById('desired_group')?.value);
+            addRow('SSC Board', document.getElementById('ssc_board')?.value);
+            addRow('SSC GPA', document.getElementById('ssc_gpa')?.value);
+            addRow('Program Preference', document.getElementById('desired_group')?.value);
         } else {
             addRow('HSC Roll', document.getElementById('hsc_roll')?.value);
-            addRow('Desired Program', document.getElementById('desired_program')?.value);
+            addRow('HSC Board', document.getElementById('hsc_board')?.value);
+            addRow('HSC GPA', document.getElementById('hsc_gpa')?.value);
+            addRow('Program Preference', document.getElementById('desired_program')?.value);
         }
 
-        const pm = document.querySelector('input[name="payment_method"]:checked')?.value || '—';
+        const pm = document.querySelector('input[name="payment_method"]:checked')?.value;
         addRow('Payment Method', pm);
         addRow('Txn ID', document.getElementById('transaction_id')?.value);
         
@@ -114,26 +140,38 @@ document.addEventListener('DOMContentLoaded', () => {
         tbody.innerHTML = summaryHtml;
     }
 
+    // Auto-update summary live
+    const formWrap = document.getElementById('regFormWrap');
+    if (formWrap) {
+        formWrap.addEventListener('input', updateSummary);
+        formWrap.addEventListener('change', updateSummary);
+    }
+
     // Form Submission
     const submitBtn = document.getElementById('btnSubmit');
     if (submitBtn) {
         submitBtn.addEventListener('click', () => {
             const overlay = document.getElementById('regConfirmOverlay');
-            if (overlay) overlay.style.display = 'flex';
+            if (overlay) {
+                overlay.style.display = '';
+                overlay.classList.add('active');
+            }
         });
     }
 
     const cancelBtn = document.getElementById('confirmCancel');
     if (cancelBtn) {
         cancelBtn.addEventListener('click', () => {
-            document.getElementById('regConfirmOverlay').style.display = 'none';
+            const overlay = document.getElementById('regConfirmOverlay');
+            if (overlay) overlay.classList.remove('active');
         });
     }
 
     const confirmSubmitBtn = document.getElementById('confirmSubmit');
     if (confirmSubmitBtn) {
         confirmSubmitBtn.addEventListener('click', async () => {
-            document.getElementById('regConfirmOverlay').style.display = 'none';
+            const overlay = document.getElementById('regConfirmOverlay');
+            if (overlay) overlay.classList.remove('active');
             
             const btn = document.getElementById('btnSubmit');
             const spinner = document.getElementById('submitSpinner');
@@ -145,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Personal Data
             const personal = {};
-            ['full_name_en', 'full_name_bn', 'dob', 'religion', 'blood_group', 'nid_number', 'birth_cert_num', 'father_name', 'father_nid', 'father_occupation', 'mother_name', 'mother_nid', 'mother_occupation', 'guardian_phone', 'student_phone', 'present_address', 'permanent_address'].forEach(id => {
+            ['full_name_en', 'full_name_bn', 'dob', 'religion', 'blood_group', 'nid_number', 'birth_cert_num', 'father_name', 'father_nid', 'father_occupation', 'mother_name', 'mother_nid', 'mother_occupation', 'guardian_phone', 'student_phone', 'email', 'present_address', 'permanent_address'].forEach(id => {
                 const el = document.getElementById(id);
                 if (el) personal[id] = el.value;
             });
@@ -203,6 +241,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.disabled = false;
                 spinner.style.display = 'none';
             }
+        });
+    }
+
+    // Print functionality
+    const btnPrint = document.getElementById('btnPrint');
+    if (btnPrint) {
+        btnPrint.addEventListener('click', () => {
+            window.print();
         });
     }
 });

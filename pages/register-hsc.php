@@ -108,7 +108,9 @@ include '../includes/header.php';
             <div class="reg-success-summary"><table><tbody id="successSummaryBody"></tbody></table></div>
             <div class="reg-success-note">
                 <i class="fas fa-info-circle"></i>
-                <strong>Your application is under review.</strong> Please visit the college with all original documents within <strong>7 days</strong> of submission for verification.
+                <div>
+                    <strong>Action Required:</strong> Your application has been successfully received and is currently under review. Please visit the college campus with all original documents within <strong>7 days</strong> for final verification.
+                </div>
             </div>
             <div class="reg-success-btns">
                 <a href="../index.php" class="reg-btn-home"><i class="fas fa-home"></i> Go to Home</a>
@@ -138,7 +140,7 @@ include '../includes/header.php';
                 <div class="reg-group"><label for="full_name_en">Full Name (English) <span class="req">*</span></label><input type="text" id="full_name_en" placeholder="e.g. Fatema Khatun" autocomplete="name"><span class="reg-err" id="err_full_name_en"></span></div>
                 <div class="reg-group"><label for="full_name_bn">পূর্ণ নাম (বাংলা) <span class="req">*</span></label><input type="text" id="full_name_bn" placeholder="যেমন: ফাতেমা খাতুন"><span class="reg-err" id="err_full_name_bn"></span></div>
                 <div class="reg-group"><label for="dob">Date of Birth <span class="req">*</span></label><input type="date" id="dob" max="<?php echo date('Y-m-d'); ?>"><span class="reg-err" id="err_dob"></span></div>
-                <div class="reg-group"><label>Gender <span class="req">*</span></label><div class="reg-radio-group"><label class="reg-radio-label"><input type="radio" name="gender" value="female" checked> Female</label></div></div>
+                <div class="reg-group"><label for="email">Email Address <span class="req">*</span></label><input type="email" id="email" placeholder="example@gmail.com" required><span class="reg-err" id="err_email"></span><input type="hidden" id="gender" value="female"></div>
                 <div class="reg-group"><label for="religion">Religion <span class="req">*</span></label><select id="religion"><option value="">— Select —</option><option>Islam</option><option>Hindu</option><option>Christian</option><option>Buddhist</option><option>Other</option></select><span class="reg-err" id="err_religion"></span></div>
                 <div class="reg-group"><label for="blood_group">Blood Group</label><select id="blood_group"><option value="">— Optional —</option><option>A+</option><option>A-</option><option>B+</option><option>B-</option><option>O+</option><option>O-</option><option>AB+</option><option>AB-</option></select></div>
                 <div class="reg-group"><label for="nid_number">National ID Number <span style="color:#64748b;font-weight:400;">(optional if under 18)</span></label><input type="text" id="nid_number" placeholder="10 or 17 digit NID" maxlength="17"></div>
@@ -175,12 +177,11 @@ include '../includes/header.php';
                 <div class="reg-group"><label for="ssc_year">SSC Passing Year <span class="req">*</span></label><select id="ssc_year"><option value="">— Select Year —</option><?php for($y=2026;$y>=2020;$y--): ?><option><?php echo $y; ?></option><?php endfor; ?></select><span class="reg-err" id="err_ssc_year"></span></div>
                 <div class="reg-group"><label for="ssc_gpa">SSC GPA <span class="req">*</span></label><input type="number" id="ssc_gpa" placeholder="e.g. 4.50" min="0" max="5" step="0.01"><span class="reg-err" id="err_ssc_gpa"></span></div>
                 <div class="reg-group"><label for="ssc_group">SSC Group <span class="req">*</span></label><select id="ssc_group"><option value="">— Select —</option><option>Science</option><option>Humanities</option><option>Business Studies</option></select><span class="reg-err" id="err_ssc_group"></span></div>
-            </div>
-            <hr class="reg-section-sep"><div class="reg-section-head"><i class="fas fa-star"></i> Desired HSC Information</div>
-            <div class="reg-grid">
-                <div class="reg-group"><label for="desired_group">Desired Group for HSC <span class="req">*</span></label><select id="desired_group"><option value="">— Select —</option><option>Science</option><option>Humanities</option><option>Business Studies</option></select><span class="reg-err" id="err_desired_group"></span></div>
-                <div class="reg-group"><label for="desired_section">Preferred Section</label><select id="desired_section"><option value="">— No Preference —</option><option>A</option><option>B</option><option>C</option></select></div>
                 <div class="reg-group full"><label for="prev_institution">Previous Institution Name <span class="req">*</span></label><input type="text" id="prev_institution" placeholder="School where you passed SSC"><span class="reg-err" id="err_prev_institution"></span></div>
+            </div>
+            <hr class="reg-section-sep"><div class="reg-section-head"><i class="fas fa-book-open"></i> Admission Preferences</div>
+            <div class="reg-grid">
+                <div class="reg-group full"><label for="desired_group">Program Group Preference <span class="req">*</span></label><select id="desired_group"><option value="">— Select —</option><option>Science</option><option>Humanities</option><option>Business Studies</option></select><span class="reg-err" id="err_desired_group"></span></div>
             </div>
             <div class="reg-nav"><button class="reg-btn-back" data-action="back"><i class="fas fa-arrow-left"></i> Back</button><button class="reg-btn-next" data-action="next">Next <i class="fas fa-arrow-right"></i></button></div>
         </div>
