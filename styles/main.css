@@ -214,11 +214,12 @@ img { max-width: 100%; display: block; }
     display: flex; align-items: center; gap: 4px;
 }
 .nav-link {
-    font-size: .88rem; font-weight: 600;
+    font-size: .8rem; font-weight: 600;
     color: var(--muted);
-    padding: 8px 13px; border-radius: 8px;
+    padding: 8px 10px; border-radius: 8px;
     transition: all var(--transition);
     font-family: 'Inter', sans-serif;
+    white-space: nowrap;
 }
 .nav-link:hover { color: var(--navy); background: var(--surface); }
 .nav-link.active { color: var(--blue); background: var(--blue-light); }
@@ -227,8 +228,8 @@ img { max-width: 100%; display: block; }
     margin-left: 8px;
     background: linear-gradient(135deg, var(--blue), var(--blue-mid));
     color: var(--white) !important;
-    padding: 9px 20px !important; border-radius: 9px !important;
-    font-weight: 700 !important; font-size: .86rem !important;
+    padding: 8px 16px !important; border-radius: 9px !important;
+    font-weight: 700 !important; font-size: .8rem !important;
     box-shadow: 0 4px 14px rgba(37,99,235,.3);
 }
 .nav-apply:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(37,99,235,.4); color: var(--white) !important; background: var(--blue-mid) !important; }
@@ -1238,16 +1239,6 @@ footer {
 
 
 /* ── Bengali specific UI Optimisations ───────────────────── */
-html[lang="bn"] .nav-link {
-    font-size: 0.8rem;
-    padding: 8px 10px;
-    white-space: nowrap;
-}
-
-html[lang="bn"] .nav-apply {
-    padding: 8px 16px !important;
-    font-size: 0.8rem !important;
-}
 
 html[lang="bn"] .logo-sub {
     font-size: 0.52rem;

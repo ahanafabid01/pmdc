@@ -185,15 +185,15 @@
             en: 'Physics, Chemistry, Biology & Higher Mathematics — building the next generation of scientists, doctors, and engineers.',
             bn: 'পদার্থ, রসায়ন, জীববিজ্ঞান ও উচ্চতর গণিত — পরবর্তী প্রজন্মের বিজ্ঞানী, ডাক্তার ও প্রকৌশলী গড়ে তোলে।'
         },
-        'home.com.h3': { en: 'Commerce Group', bn: 'ব্যবসায় শিক্ষা বিভাগ' },
+        'home.com.h3': { en: 'Business Studies Group', bn: 'ব্যবসায় শিক্ষা বিভাগ' },
         'home.com.p': {
-            en: 'Accounting, Finance & Banking, Business Organisation & Management — shaping the business leaders of tomorrow.',
-            bn: 'হিসাববিজ্ঞান, অর্থ ও ব্যাংকিং, ব্যবসায় সংগঠন ও ব্যবস্থাপনা — আগামীর ব্যবসায়িক নেতৃত্ব গড়ে তোলে।'
+            en: 'Accounting, Business Policy & Practice, Marketing, Economics & Geography — shaping the business leaders of tomorrow.',
+            bn: 'হিসাব বিজ্ঞান, ব্যবসায়নীতি ও প্রয়োগ, মার্কেটিং, অর্থনীতি ও ভূগোল — আগামীর ব্যবসায়িক নেতৃত্ব গড়ে তোলে।'
         },
         'home.hum.h3': { en: 'Humanities Group', bn: 'মানবিক বিভাগ' },
         'home.hum.p': {
-            en: 'Civics, Sociology, Economics, History & Geography — nurturing thoughtful citizens and compassionate social thinkers.',
-            bn: 'পৌরনীতি, সমাজবিজ্ঞান, অর্থনীতি, ইতিহাস ও ভূগোল — চিন্তাশীল নাগরিক ও সহানুভূতিশীল সামাজিক চিন্তাবিদ গড়ে তোলে।'
+            en: 'Civics, Economics, Logic, Social Work, History, Geography & Islamic Studies — nurturing thoughtful citizens and compassionate social thinkers.',
+            bn: 'পৌরনীতি, অর্থনীতি, যুক্তিবিদ্যা, সমাজকর্ম, ইতিহাস, ভূগোল ও ইসলাম শিক্ষা — চিন্তাশীল নাগরিক ও সহানুভূতিশীল সামাজিক চিন্তাবিদ গড়ে তোলে।'
         },
         'home.comp.h3': { en: 'Compulsory Subjects', bn: 'বাধ্যতামূলক বিষয়' },
         'home.comp.p': {
@@ -214,8 +214,8 @@
         },
         'home.bss.h3': { en: 'Bachelor of Social Science', bn: 'সমাজবিজ্ঞান বিভাগ (বিএসএস)' },
         'home.bss.p': {
-            en: 'Economics, Social Welfare, Political Science & Islamic Studies — building socially conscious leaders.',
-            bn: 'অর্থনীতি, সমাজকল্যাণ, রাষ্ট্রবিজ্ঞান ও ইসলামিক স্টাডিজ — সামাজিকভাবে সচেতন নেতৃত্ব গড়ে তোলে।'
+            en: 'History, Philosophy, Political Science, Islamic Studies, Economics & Social Welfare — building socially conscious leaders.',
+            bn: 'ইতিহাস, দর্শন, রাষ্ট্রবিজ্ঞান, ইসলামিক স্টাডিজ, অর্থনীতি ও সমাজকল্যাণ — সামাজিকভাবে সচেতন নেতৃত্ব গড়ে তোলে।'
         },
         'home.bsc.h3': { en: 'Bachelor of Science', bn: 'বিজ্ঞান বিভাগ (বিএসসি)' },
         'home.bsc.p': {
@@ -224,8 +224,8 @@
         },
         'home.bmt.h3': { en: 'Business Management & Technology', bn: 'ব্যবসায় ব্যবস্থাপনা ও প্রযুক্তি (বিএমটি)' },
         'home.bmt.p': {
-            en: 'Accounting, Marketing, Economics & Digital Technology — a modern programme blending business with technology.',
-            bn: 'হিসাববিজ্ঞান, বিপণন, অর্থনীতি ও ডিজিটাল প্রযুক্তি — ব্যবসা ও প্রযুক্তির সমন্বয়ে আধুনিক প্রোগ্রাম।'
+            en: 'Accounting, Marketing, Economics, Business Math, Computer Application & Digital Tech — a modern programme blending business with technology.',
+            bn: 'হিসাব বিজ্ঞান, মার্কেটিং, অর্থনীতি, ব্যবসায়িক গণিত, কম্পিউটার অ্যাপ্লিকেশন ও ডিজিটাল টেকনোলজি — ব্যবসা ও প্রযুক্তির সমন্বয়ে আধুনিক প্রোগ্রাম।'
         },
         'home.viewprog': { en: 'View Programme', bn: 'প্রোগ্রাম দেখুন' },
         'home.degree.nu': { en: 'Conducted by National University of Bangladesh', bn: 'বাংলাদেশ জাতীয় বিশ্ববিদ্যালয় কর্তৃক পরিচালিত' },

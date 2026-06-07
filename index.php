@@ -189,7 +189,7 @@ include 'includes/header.php';
                     </div>
                     <div class="program-content">
                         <h3 data-i18n="home.com.h3">ব্যবসায় শিক্ষা বিভাগ</h3>
-                        <p data-i18n="home.com.p">হিসাববিজ্ঞান, অর্থ ও ব্যাংকিং, ব্যবসায় সংগঠন ও ব্যবস্থাপনা — আগামীর ব্যবসায়িক নেতৃত্ব গড়ে তোলে। বিষয় কোড: 253–254, 277–278, 286–293.</p>
+                        <p data-i18n="home.com.p">হিসাব বিজ্ঞান, ব্যবসায়নীতি ও প্রয়োগ, মার্কেটিং, অর্থনীতি ও ভূগোল — আগামীর ব্যবসায়িক নেতৃত্ব গড়ে তোলে। বিষয় কোড: 253–254, 277–278, 286–293.</p>
                         <a href="pages/academics.php#groups" class="read-more"><span data-i18n="home.viewsubjects">বিষয়সমূহ দেখুন</span> <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </article>
@@ -203,7 +203,7 @@ include 'includes/header.php';
                     </div>
                     <div class="program-content">
                         <h3 data-i18n="home.hum.h3">মানবিক বিভাগ</h3>
-                        <p data-i18n="home.hum.p">পৌরনীতি, সমাজবিজ্ঞান, অর্থনীতি, ইতিহাস ও ভূগোল — চিন্তাশীল নাগরিক ও সহানুভূতিশীল সামাজিক চিন্তাবিদ গড়ে তোলে। বিষয় কোড: 109–118, 269–305.</p>
+                        <p data-i18n="home.hum.p">পৌরনীতি, অর্থনীতি, যুক্তিবিদ্যা, সমাজকর্ম, ইতিহাস, ভূগোল ও ইসলাম শিক্ষা — চিন্তাশীল নাগরিক ও সহানুভূতিশীল সামাজিক চিন্তাবিদ গড়ে তোলে। বিষয় কোড: 109–118, 269–305.</p>
                         <a href="pages/academics.php#groups" class="read-more"><span data-i18n="home.viewsubjects">বিষয়সমূহ দেখুন</span> <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </article>
@@ -259,7 +259,7 @@ include 'includes/header.php';
                     </div>
                     <div class="program-content">
                         <h3 data-i18n="home.bss.h3">সমাজবিজ্ঞান বিভাগ (বিএসএস)</h3>
-                        <p data-i18n="home.bss.p">অর্থনীতি, সমাজকল্যাণ, রাষ্ট্রবিজ্ঞান ও ইসলামিক স্টাডিজ — সামাজিকভাবে সচেতন নেতৃত্ব গড়ে তোলে।</p>
+                        <p data-i18n="home.bss.p">ইতিহাস, দর্শন, রাষ্ট্রবিজ্ঞান, ইসলামিক স্টাডিজ, অর্থনীতি ও সমাজকল্যাণ — সামাজিকভাবে সচেতন নেতৃত্ব গড়ে তোলে।</p>
                         <a href="pages/degree-program.php" class="read-more"><span data-i18n="home.viewprog">প্রোগ্রাম দেখুন</span> <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </article>
@@ -287,15 +287,11 @@ include 'includes/header.php';
                     </div>
                     <div class="program-content">
                         <h3 data-i18n="home.bmt.h3">ব্যবসায় ব্যবস্থাপনা ও প্রযুক্তি (বিএমটি)</h3>
-                        <p data-i18n="home.bmt.p">হিসাববিজ্ঞান, বিপণন, অর্থনীতি ও ডিজিটাল প্রযুক্তি — ব্যবসা ও প্রযুক্তির সমন্বয়ে আধুনিক প্রোগ্রাম।</p>
+                        <p data-i18n="home.bmt.p">হিসাব বিজ্ঞান, মার্কেটিং, অর্থনীতি, ব্যবসায়িক গণিত, কম্পিউটার অ্যাপ্লিকেশন ও ডিজিটাল টেকনোলজি — ব্যবসা ও প্রযুক্তির সমন্বয়ে আধুনিক প্রোগ্রাম।</p>
                         <a href="pages/degree-program.php" class="read-more"><span data-i18n="home.viewprog">প্রোগ্রাম দেখুন</span> <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </article>
 
-            </div>
-            <div class="degree-footer reveal">
-                <span><i class="fas fa-university"></i> <span data-i18n="home.degree.nu">বাংলাদেশ জাতীয় বিশ্ববিদ্যালয় কর্তৃক পরিচালিত</span></span>
-                <a href="pages/degree-program.php" class="btn btn-outline"><span data-i18n="home.degree.btn">সম্পূর্ণ বিবরণ দেখুন</span> <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
