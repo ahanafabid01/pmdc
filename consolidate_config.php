@@ -37,14 +37,14 @@ function replaceRootConfig($dir) {
         if ($file->isFile() && $file->getExtension() === 'php') {
             $content = file_get_contents($file->getPathname());
             
-            // Replaces: dirname(__DIR__) . '/config.php'
+            // Replaces: dirname(__DIR__) . '/includes/config.php'
             // with:     dirname(__DIR__) . '/includes/config.php'
-            $newContent = str_replace("dirname(__DIR__) . '/config.php'", "dirname(__DIR__) . '/includes/config.php'", $content);
+            $newContent = str_replace("dirname(__DIR__) . '/includes/config.php'", "dirname(__DIR__) . '/includes/config.php'", $content);
             
             // Replaces: __DIR__ . '/config.php'
             // with:     __DIR__ . '/includes/config.php'
             // (Only if it's not already in includes, wait, if __DIR__ is includes, we don't want includes/includes/config.php)
-            // Wait, in includes/header.php, __DIR__ is includes. So dirname(__DIR__) . '/config.php' targets root config.
+            // Wait, in includes/header.php, __DIR__ is includes. So dirname(__DIR__) . '/includes/config.php' targets root config.
             // If we replace with dirname(__DIR__) . '/includes/config.php', it correctly targets includes/config.php.
             
             // In index.php: require_once __DIR__ . '/config.php';
@@ -53,9 +53,9 @@ function replaceRootConfig($dir) {
                 $newContent = str_replace("__DIR__ . '/config.php'", "__DIR__ . '/includes/config.php'", $newContent);
             }
             
-            // In pages/portal/portal-login.php: require_once __DIR__ . '/../../config.php';
+            // In pages/portal/portal-login.php: require_once __DIR__ . '/../../includes/config.php';
             // should become require_once __DIR__ . '/../../includes/config.php';
-            $newContent = str_replace("__DIR__ . '/../../config.php'", "__DIR__ . '/../../includes/config.php'", $newContent);
+            $newContent = str_replace("__DIR__ . '/../../includes/config.php'", "__DIR__ . '/../../includes/config.php'", $newContent);
             
             // In includes/registration-data.php: require_once __DIR__ . '/config.php'; -> this was already __DIR__ in includes!
             // Wait! If __DIR__ is includes, __DIR__ . '/config.php' is ALREADY targeting includes/config.php!

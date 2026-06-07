@@ -5,7 +5,7 @@
 (function () {
     'use strict';
 
-    const API = 'api/gallery-upload.php';
+    const API = window.BASE_URL + `/pages/portal/admin/api/gallery-upload.php`;
     const $ = id => document.getElementById(id);
 
     let allPhotos = [];

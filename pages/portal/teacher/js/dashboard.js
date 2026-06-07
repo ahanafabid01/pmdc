@@ -221,7 +221,7 @@ function populateSidebar(ctx) {
 /* ── Main init ────────────────────────────────────────────── */
 async function loadTeacherContext() {
     try {
-        const res  = await fetch('../api/get_teacher_context.php');
+        const res  = await fetch(window.BASE_URL + `/pages/portal/api/get_teacher_context.php`);
         const data = await res.json();
 
         if (!data.ok) {

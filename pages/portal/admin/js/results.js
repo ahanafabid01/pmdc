@@ -16,7 +16,7 @@ function showToast(msg, err = false) {
 // 1. Fetch initial exams and programs
 async function initResults() {
     try {
-        const res = await fetch('api/results.php?action=overview');
+        const res = await fetch(window.BASE_URL + `/pages/portal/admin/api/results.php?action=overview`);
         const data = await res.json();
         
         if (data.ok) {
@@ -46,7 +46,7 @@ $('loadProgressBtn').addEventListener('click', async () => {
     $('loadProgressBtn').innerHTML = '<i class="fas fa-spinner fa-spin"></i> Checking...';
 
     try {
-        const res = await fetch(`api/results.php?action=progress&exam_id=${examId}&program_id=${progId}`);
+        const res = await fetch(window.BASE_URL + `/pages/portal/admin/api/results.php?action=progress&exam_id=${examId}&program_id=${progId}`);
         const data = await res.json();
         
         if (data.ok) {
@@ -125,7 +125,7 @@ $('confirmReleaseBtn').addEventListener('click', async () => {
     btn.disabled = true;
 
     try {
-        const res = await fetch('api/results.php?action=release', {
+        const res = await fetch(window.BASE_URL + `/pages/portal/admin/api/results.php?action=release`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({

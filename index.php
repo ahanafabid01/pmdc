@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/includes/config.php';
 $page       = 'home';
 $page_title = 'Phulpur Mohila Degree College | Excellence in Education';
 require_once __DIR__ . '/includes/announcements-data.php';

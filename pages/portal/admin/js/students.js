@@ -44,7 +44,7 @@ const OPTIONAL_SUBJECTS = {
 };
 
 
-const API_URL = 'api-students.php';
+const API_URL = window.BASE_URL + `/pages/portal/admin/api-students.php`;
 
 let allStudents     = [];
 let filtered        = [];

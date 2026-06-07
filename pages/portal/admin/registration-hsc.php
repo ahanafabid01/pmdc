@@ -82,7 +82,7 @@
                 <p>Manage HSC admission registrations — settings, review, and approval</p>
             </div>
             <div class="tm-header-actions">
-                <a href="../../../pages/register-hsc.php" target="_blank" class="btn-preview">
+                <a href="<?= BASE_URL ?>/register-hsc" target="_blank" class="btn-preview">
                     <i class="fas fa-external-link-alt"></i> View Public Form
                 </a>
             </div>
@@ -407,7 +407,8 @@
     overlay?.addEventListener('click',close);
 })();
 </script>
-<script src="<?= BASE_URL ?>/pages/portal/admin/js/registration-admin.js"></script>
+<script>window.BASE_URL = "<?= BASE_URL ?>";</script>
+    <script src="<?= BASE_URL ?>/pages/portal/admin/js/registration-admin.js"></script>
 </body>
 </html>
 

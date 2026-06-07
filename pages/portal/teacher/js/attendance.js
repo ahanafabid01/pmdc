@@ -281,7 +281,7 @@ async function loadStudentsForTake() {
 
     // Try loading existing record
     try {
-        const r = await fetch(`api/attendance.php?action=list&date=${TODAY}&year=${year}&group=${progId}&section=${section}`);
+        const r = await fetch(window.BASE_URL + `/pages/portal/teacher/api/attendance.php?action=list&date=${TODAY}&year=${year}&group=${progId}&section=${section}`);
         const d = await r.json();
         if (d.ok && d.records?.length) {
             const rec = d.records[0];
@@ -359,7 +359,7 @@ $('confirmSubmitBtn').addEventListener('click', async () => {
     }));
 
     try {
-        const res = await fetch('api/attendance.php?action=save', {
+        const res = await fetch(window.BASE_URL + `/pages/portal/teacher/api/attendance.php?action=save`, {
             method:  'POST',
             headers: { 'Content-Type': 'application/json' },
             body:    JSON.stringify({
@@ -403,7 +403,7 @@ async function searchHistory() {
     wrap.innerHTML = `<div class="att-loading-banner"><i class="fas fa-spinner fa-spin"></i><span>Loading records…</span></div>`;
 
     try {
-        const res  = await fetch(`api/attendance.php?action=list&date=${date}&year=${year}&group=${program}&section=${section}`);
+        const res  = await fetch(window.BASE_URL + `/pages/portal/teacher/api/attendance.php?action=list&date=${date}&year=${year}&group=${program}&section=${section}`);
         const data = await res.json();
 
         if (!data.ok || !data.records?.length) {
@@ -487,7 +487,7 @@ async function generateReport() {
         `<tr><td colspan="6" style="text-align:center;padding:28px;"><i class="fas fa-spinner fa-spin"></i></td></tr>`;
 
     try {
-        const res  = await fetch(`api/attendance.php?action=report&year=${year}&group=${prog}&section=${section}&from=${from}&to=${to}`);
+        const res  = await fetch(window.BASE_URL + `/pages/portal/teacher/api/attendance.php?action=report&year=${year}&group=${prog}&section=${section}&from=${from}&to=${to}`);
         const data = await res.json();
 
         $('sumTotalClasses').textContent = data.total_classes ?? 0;
@@ -539,7 +539,7 @@ $('printReportBtn')?.addEventListener('click', () => window.print());
 /* ══ INIT ═══════════════════════════════════════════════════════ */
 async function loadTeacherContext() {
     try {
-        const res  = await fetch('../api/get_teacher_context.php');
+        const res  = await fetch(window.BASE_URL + `/pages/portal/api/get_teacher_context.php`);
         const data = await res.json();
 
         if (!data.ok) { window.location.href = '../portal-login.php'; return; }

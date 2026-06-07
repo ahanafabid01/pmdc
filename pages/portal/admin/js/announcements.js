@@ -10,7 +10,7 @@
    API FETCHING
 ═══════════════════════════════════════════════════════════ */
 
-const API = 'api/announcements.php';
+const API = window.BASE_URL + `/pages/portal/admin/api/announcements.php`;
 
 function loadData() {
     fetch(API + '?action=list')

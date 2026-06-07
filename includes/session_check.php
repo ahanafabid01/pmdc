@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__DIR__) . '/config.php';
+require_once dirname(__DIR__) . '/includes/config.php';
 session_start();
 
 // Determine which portal is being accessed based on the URL path

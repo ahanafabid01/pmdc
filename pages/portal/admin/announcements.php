@@ -304,6 +304,7 @@
         </div>
     </div>
 
+    <script>window.BASE_URL = "<?= BASE_URL ?>";</script>
     <script src="<?= BASE_URL ?>/pages/portal/admin/js/announcements.js"></script>
     <script>
     (function() {

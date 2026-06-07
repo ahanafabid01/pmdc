@@ -9,8 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/attendance.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/pages/portal/teacher/css/styles.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/pages/portal/teacher/css/attendance.css">
 </head>
 <body>
 
@@ -22,7 +22,7 @@
         <div class="close-sidebar" id="closeSidebar"><i class="fas fa-times"></i></div>
     </div>
     <nav class="sidebar-nav">
-        <a href="index.php"      class="nav-item"><i class="fas fa-th-large"></i><span>Dashboard</span></a>
+        <a href="<?= BASE_URL ?>/teacher"      class="nav-item"><i class="fas fa-th-large"></i><span>Dashboard</span></a>
         <a href="attendance.php" class="nav-item active"><i class="fas fa-clipboard-check"></i><span>Attendance</span></a>
         <a href="grades.php"     class="nav-item"><i class="fas fa-graduation-cap"></i><span>Results</span></a>
     </nav>
@@ -51,7 +51,7 @@
             <img class="user-avatar-sm" id="headerAvatar"
                  src="https://ui-avatars.com/api/?name=Teacher&background=2563eb&color=fff"
                  alt="Teacher">
-            <a href="../portal-login.php" class="logout-btn" title="Logout">
+            <a href="<?= BASE_URL ?>/admin/login" class="logout-btn" title="Logout">
                 <i class="fas fa-sign-out-alt"></i>
                 <span class="logout-text">Log Out</span>
             </a>
@@ -314,6 +314,7 @@
     <span id="toastMsg">Saved</span>
 </div>
 
-<script src="js/attendance.js?v=2"></script>
+<script>window.BASE_URL = "<?= BASE_URL ?>";</script>
+    <script src="<?= BASE_URL ?>/pages/portal/teacher/js/attendance.js?v=2"></script>
 </body>
 </html>

@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function loadMetadata() {
         try {
-            const res = await fetch('api/assign_teacher.php?action=meta');
+            const res = await fetch(window.BASE_URL + `/pages/portal/admin/api/assign_teacher.php?action=meta`);
             const data = await res.json();
             if (data.ok) {
                 assignClassId.innerHTML = '<option value="">-- Select Class/Program --</option>' + 
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function loadTeachers() {
         try {
-            const res = await fetch('api/staff.php?action=list');
+            const res = await fetch(window.BASE_URL + `/pages/portal/admin/api/staff.php?action=list`);
             const data = await res.json();
             if (data.ok) {
                 const teachers = data.staff.filter(s => s.category.toLowerCase() === 'teacher');
@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function loadAssignments() {
         assignTableBody.innerHTML = '<tr class="tm-empty-row"><td colspan="4"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>';
         try {
-            const res = await fetch('api/assign_teacher.php?action=list_all');
+            const res = await fetch(window.BASE_URL + `/pages/portal/admin/api/assign_teacher.php?action=list_all`);
             const data = await res.json();
             if (data.ok) {
                 allAssignments = data.assignments;
@@ -188,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btnAddAssignment.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
 
         try {
-            const res = await fetch('api/assign_teacher.php?action=add', {
+            const res = await fetch(window.BASE_URL + `/pages/portal/admin/api/assign_teacher.php?action=add`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ staff_id: staffId, staff_name: staffName, class_id: classId, subject_id: subjectId })
@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.deleteAssignment = async (id) => {
         if (!confirm("Are you sure you want to remove this assignment?")) return;
         try {
-            const res = await fetch(`api/assign_teacher.php?action=delete&id=${id}`);
+            const res = await fetch(window.BASE_URL + `/pages/portal/admin/api/assign_teacher.php?action=delete&id=${id}`);
             const data = await res.json();
             if (data.ok) {
                 showToast("Assignment removed");

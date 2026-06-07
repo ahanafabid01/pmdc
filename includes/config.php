@@ -1,4 +1,16 @@
 <?php
+// Detect localhost or live automatically
+if ($_SERVER['HTTP_HOST'] === 'localhost' ||
+    strpos($_SERVER['HTTP_HOST'], 'localhost') !== false ||
+    strpos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false) {
+
+    // Localhost
+    if (!defined('BASE_URL')) define('BASE_URL', 'http://localhost/pmdc');
+} else {
+    // Live domain
+    if (!defined('BASE_URL')) define('BASE_URL', 'https://' . $_SERVER['HTTP_HOST']);
+}
+
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');

@@ -586,7 +586,8 @@
     <span id="toastMsg">Saved!</span>
 </div>
 
-<script src="<?= BASE_URL ?>/pages/portal/admin/js/portal.js"></script>
+<script>window.BASE_URL = "<?= BASE_URL ?>";</script>
+    <script src="<?= BASE_URL ?>/pages/portal/admin/js/portal.js"></script>
 <script src="<?= BASE_URL ?>/pages/portal/admin/js/students.js"></script>
 <script>
 (function() {

@@ -91,7 +91,7 @@
                     <p>One calendar file (image or PDF) per academic year, shown on the public website</p>
                 </div>
                 <div class="tm-header-actions">
-                    <a href="../../../pages/academic-calendar.php" target="_blank" class="btn-preview">
+                    <a href="<?= BASE_URL ?>/academic-calendar" target="_blank" class="btn-preview">
                         <i class="fas fa-external-link-alt"></i> Preview Public Page
                     </a>
                     <button class="btn-add-staff" id="btnUpload">

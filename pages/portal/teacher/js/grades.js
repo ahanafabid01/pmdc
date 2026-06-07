@@ -116,7 +116,7 @@ $('loadStudentsBtn').addEventListener('click', async () => {
 
     try {
         // Fetch existing marks
-        const res = await fetch(`api/grades.php?action=list&exam_id=${examId}&program_id=${progId}&subject_name=${encodeURIComponent(subject)}`);
+        const res = await fetch(window.BASE_URL + `/pages/portal/teacher/api/grades.php?action=list&exam_id=${examId}&program_id=${progId}&subject_name=${encodeURIComponent(subject)}`);
         const data = await res.json();
         
         if (data.ok) {
@@ -247,7 +247,7 @@ async function submitMarks(actionType) {
     btn.disabled = true;
 
     try {
-        const res = await fetch('api/grades.php?action=' + actionType, {
+        const res = await fetch(window.BASE_URL + `/pages/portal/teacher/api/grades.php?action=` + actionType, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -282,7 +282,7 @@ async function submitMarks(actionType) {
 /* ══ INIT ═══════════════════════════════════════════════════════ */
 async function loadTeacherContext() {
     try {
-        const res  = await fetch('../api/get_teacher_context.php');
+        const res  = await fetch(window.BASE_URL + `/pages/portal/api/get_teacher_context.php`);
         const data = await res.json();
         if (data.ok) {
             CTX = data;

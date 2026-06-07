@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__DIR__) . '/config.php';
+require_once dirname(__DIR__) . '/includes/config.php';
 /* ── Central Bangla page-title map ───────────────────────────
    Pages may override $page_title_bn individually.
    If not set, this map provides the Bangla title automatically.

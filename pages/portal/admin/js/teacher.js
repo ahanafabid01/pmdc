@@ -76,7 +76,7 @@ function defaultStaff() {
 /* ── API helpers ─────────────────────────────────── */
 async function loadStaff() {
     try {
-        const res = await fetch('api/staff.php?action=list');
+        const res = await fetch(window.BASE_URL + `/pages/portal/admin/api/staff.php?action=list`);
         const data = await res.json();
         if (data.ok) {
             allStaff = data.staff;
@@ -353,7 +353,7 @@ async function saveStaffMember() {
         btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
         btn.disabled = true;
 
-        const res = await fetch('api/staff.php?action=save', {
+        const res = await fetch(window.BASE_URL + `/pages/portal/admin/api/staff.php?action=save`, {
             method: 'POST',
             body: formData
         });
@@ -392,7 +392,7 @@ function closeDelete() {
 async function confirmDelete() {
     const s = allStaff.find(x => x.id === deleteId);
     try {
-        const res = await fetch('api/staff.php?action=delete', {
+        const res = await fetch(window.BASE_URL + `/pages/portal/admin/api/staff.php?action=delete`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: `id=${deleteId}`

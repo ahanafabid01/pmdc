@@ -199,6 +199,7 @@
     <!-- Toast Notification -->
     <div class="tm-toast" id="tmToast"></div>
 
+    <script>window.BASE_URL = "<?= BASE_URL ?>";</script>
     <script src="<?= BASE_URL ?>/pages/portal/admin/js/assign_teachers.js"></script>
 </body>
 </html>

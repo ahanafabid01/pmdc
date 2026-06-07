@@ -1,6 +1,6 @@
 <?php
 http_response_code(404);
-require_once dirname(__DIR__) . '/config.php';
+require_once dirname(__DIR__) . '/includes/config.php';
 $page = '404';
 $page_title = 'Page Not Found | PMDC';
 include '../includes/header.php';

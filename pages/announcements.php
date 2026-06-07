@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__DIR__) . '/config.php';
+require_once dirname(__DIR__) . '/includes/config.php';
 $page       = 'announcements';
 $page_title = 'Announcements | Phulpur Mohila Degree College';
 $page_css   = 'announcements.css';

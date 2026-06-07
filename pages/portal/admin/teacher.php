@@ -1,3 +1,4 @@
+<?php require_once '../../../includes/session_check.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -91,7 +92,7 @@
                     <p>Manage staff records displayed on the public website</p>
                 </div>
                 <div class="tm-header-actions">
-                    <a href="../../../pages/teachers.php" target="_blank" class="btn-preview">
+                    <a href="<?= BASE_URL ?>/teachers" target="_blank" class="btn-preview">
                         <i class="fas fa-external-link-alt"></i> Preview Public Page
                     </a>
                     <button class="btn-export" id="btnExport">
@@ -279,6 +280,7 @@
     <!-- Toast -->
     <div class="tm-toast" id="tmToast"></div>
 
+    <script>window.BASE_URL = "<?= BASE_URL ?>";</script>
     <script src="<?= BASE_URL ?>/pages/portal/admin/js/teacher.js"></script>
     <script>
     (function() {
