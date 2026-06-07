@@ -202,9 +202,9 @@ include '../includes/header.php';
                         <img src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=400&h=400&fit=crop&q=80" alt="Head of Humanities Department" loading="lazy">
                     </div>
                     <div class="team-info">
-                        <h4>Head of Humanities Dept.</h4>
-                        <span class="team-role">Department Head</span>
-                        <p class="team-dept">মানবিক বিভাগ</p>
+                        <h4 data-i18n="about.team.h.name">Head of Humanities Dept.</h4>
+                        <span class="team-role" data-i18n="about.team.h.role">Department Head</span>
+                        <p class="team-dept" data-i18n="about.team.h.dept">মানবিক বিভাগ</p>
                         <div class="team-links">
                             <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
                         </div>
@@ -219,15 +219,15 @@ include '../includes/header.php';
     <section class="cta-band">
         <div class="container cta-inner reveal">
             <div>
-                <h2>Ready to Join Our College?</h2>
-                <p>HSC and degree admissions are open for eligible students.</p>
+                <h2 data-i18n="about.cta.h2">Ready to Join Our College?</h2>
+                <p data-i18n="about.cta.p">HSC and degree admissions are open for eligible students.</p>
             </div>
             <div class="cta-actions">
                 <a href="#" onclick="openModal('Apply Now')" class="btn btn-primary">
-                    <i class="fas fa-user-plus"></i> Apply Now
+                    <i class="fas fa-user-plus"></i> <span data-i18n="about.cta.apply">Apply Now</span>
                 </a>
                 <a href="../pages/contact.php" class="btn btn-outline-dark">
-                    <i class="fas fa-phone"></i> Contact Us
+                    <i class="fas fa-phone"></i> <span data-i18n="about.cta.contact">Contact Us</span>
                 </a>
             </div>
         </div>
