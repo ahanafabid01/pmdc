@@ -309,70 +309,69 @@ include 'includes/header.php';
 
                 <!-- News List -->
                 <div class="news-list reveal">
-
+                    <?php
+                    $all_announcements = pmdc_get_published_announcements();
+                    $news_count = 0;
+                    foreach ($all_announcements as $item):
+                        if ($item['category'] === 'event') continue;
+                        if ($news_count >= 3) break;
+                        $news_count++;
+                        $ts = strtotime($item['date']);
+                        $detailUrl = 'pages/announcement-detail.php?id=' . urlencode((string)$item['id']);
+                        
+                        $icon = 'fa-bell';
+                        if ($item['category'] === 'academic') $icon = 'fa-graduation-cap';
+                        if ($item['category'] === 'admission') $icon = 'fa-user-plus';
+                        
+                        $clean_body = trim(preg_replace('/\s+/', ' ', $item['body']));
+                        $excerpt = (strlen($clean_body) > 150) ? rtrim(substr($clean_body, 0, 149)) . '...' : $clean_body;
+                    ?>
                     <div class="news-item">
                         <div class="news-date-box">
-                            <span class="news-day">15</span>
-                            <span class="news-month">Oct</span>
+                            <span class="news-day"><?php echo date('d', $ts); ?></span>
+                            <span class="news-month"><?php echo date('M', $ts); ?></span>
                         </div>
                         <div class="news-details">
-                            <span class="news-tag tag-results"><i class="fas fa-trophy"></i> Results</span>
-                            <h4>HSC Board Exam Results 2025 — 92% Pass Rate</h4>
-                            <p>Phulpur Mohila Degree College continues to celebrate strong HSC outcomes, with students progressing through the Half-Yearly, Year-Change, Pre-Test, and Test examination system.</p>
-                            <a href="pages/results.php" class="read-more"><span data-i18n="home.news.viewresults">ফলাফল দেখুন</span> <i class="fas fa-arrow-right"></i></a>
+                            <span class="news-tag tag-<?php echo htmlspecialchars($item['category'], ENT_QUOTES, 'UTF-8'); ?>">
+                                <i class="fas <?php echo $icon; ?>"></i> <?php echo htmlspecialchars($item['category_label'], ENT_QUOTES, 'UTF-8'); ?>
+                            </span>
+                            <h4><a href="<?php echo $detailUrl; ?>" style="color: inherit; text-decoration: none;"><?php echo htmlspecialchars($item['title'], ENT_QUOTES, 'UTF-8'); ?></a></h4>
+                            <p><?php echo htmlspecialchars($excerpt, ENT_QUOTES, 'UTF-8'); ?></p>
+                            <a href="<?php echo $detailUrl; ?>" class="read-more"><span data-i18n="home.news.readmore">আরও পড়ুন</span> <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
-
-                    <div class="news-item">
-                        <div class="news-date-box">
-                            <span class="news-day">22</span>
-                            <span class="news-month">Sep</span>
-                        </div>
-                        <div class="news-details">
-                            <span class="news-tag tag-exam"><i class="fas fa-calendar-alt"></i> Examination</span>
-                            <h4>HSC Test Examination 2026 — Schedule Released</h4>
-                            <p>The Test Examination for HSC 2nd Year students is one of the college's key academic checkpoints. Admit cards must be collected 10 days before the exam.</p>
-                            <a href="pages/announcements.php" class="read-more"><span data-i18n="home.news.readmore">আরও পড়ুন</span> <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="news-item">
-                        <div class="news-date-box">
-                            <span class="news-day">05</span>
-                            <span class="news-month">Sep</span>
-                        </div>
-                        <div class="news-details">
-                            <span class="news-tag tag-admission"><i class="fas fa-user-plus"></i> Admission</span>
-                            <h4>Class XI Admission 2025–26 — Applications Open</h4>
-                            <p>Admissions are open for HSC 1st Year students in Science, Humanities, and Business Studies groups. Degree programme information can be obtained from the college office.</p>
-                            <a href="pages/announcements.php" class="read-more"><span data-i18n="home.news.readmore">আরও পড়ুন</span> <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-
+                    <?php endforeach; ?>
+                    <?php if ($news_count === 0): ?>
+                    <p style="padding: 20px; color: var(--muted);">No recent updates available.</p>
+                    <?php endif; ?>
                 </div>
 
                 <!-- Events Sidebar -->
                 <aside class="events-sidebar reveal">
                     <h3><i class="fas fa-calendar-star"></i> <span data-i18n="home.events.h3">আসন্ন অনুষ্ঠানসমূহ</span></h3>
 
+                    <?php
+                    $event_count = 0;
+                    foreach ($all_announcements as $item):
+                        if ($item['category'] !== 'event') continue;
+                        if ($event_count >= 3) break;
+                        $event_count++;
+                        $ts = strtotime($item['date']);
+                        $detailUrl = 'pages/announcement-detail.php?id=' . urlencode((string)$item['id']);
+                        
+                        $clean_body = trim(preg_replace('/\s+/', ' ', $item['body']));
+                        $excerpt = (strlen($clean_body) > 80) ? rtrim(substr($clean_body, 0, 79)) . '...' : $clean_body;
+                    ?>
                     <div class="event-card">
-                        <h4>অভিভাবক সমাবেশ (Parents' Meeting)</h4>
-                        <div class="event-meta"><i class="fas fa-clock"></i> 10:00 AM – 1:00 PM</div>
-                        <p>Parents and guardians are invited to discuss academic progress, attendance, and discipline with class teachers.</p>
+                        <h4><a href="<?php echo $detailUrl; ?>" style="color: inherit; text-decoration: none;"><?php echo htmlspecialchars($item['title'], ENT_QUOTES, 'UTF-8'); ?></a></h4>
+                        <div class="event-meta"><i class="fas fa-calendar-day"></i> <?php echo date('F d, Y', $ts); ?></div>
+                        <p><?php echo htmlspecialchars($excerpt, ENT_QUOTES, 'UTF-8'); ?></p>
                     </div>
-
-                    <div class="event-card">
-                        <h4>সাংস্কৃতিক অনুষ্ঠান (Cultural Program)</h4>
-                        <div class="event-meta"><i class="fas fa-clock"></i> 4:00 PM onwards</div>
-                        <p>Annual cultural program showcasing the talent of our Class XI and XII students.</p>
-                    </div>
-
-                    <div class="event-card">
-                        <h4>HSC Test Examination</h4>
-                        <div class="event-meta"><i class="fas fa-calendar"></i> Scheduled by college notice</div>
-                        <p>HSC 2nd Year students must pass the Test Examination to be eligible for HSC form fill-up.</p>
-                    </div>
-                </aside>
+                    <?php endforeach; ?>
+                    <?php if ($event_count === 0): ?>
+                    <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">No upcoming events.</p>
+                    <?php endif; ?>
+                </aside
 
             </div>
         </div>

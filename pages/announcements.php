@@ -131,34 +131,28 @@ include '../includes/header.php';
                     <div class="sidebar-card reveal">
                         <h4 class="sc-title"><i class="fas fa-calendar-alt"></i> <span data-i18n="ann.sidebar.events">আসন্ন অনুষ্ঠান</span></h4>
                         <div class="upcoming-list">
-                            <div class="up-item">
-                                <div class="up-dot dot-blue"></div>
+                            <?php
+                            $event_count = 0;
+                            $dot_colors = ['dot-blue', 'dot-gold', 'dot-red', 'dot-green'];
+                            foreach ($announcements as $item):
+                                if ($item['category'] !== 'event') continue;
+                                if ($event_count >= 4) break;
+                                $ts = strtotime($item['date']);
+                                $detailUrl = 'announcement-detail.php?id=' . urlencode((string)$item['id']);
+                                $dot_class = $dot_colors[$event_count % 4];
+                                $event_count++;
+                            ?>
+                            <a href="<?php echo htmlspecialchars($detailUrl, ENT_QUOTES, 'UTF-8'); ?>" class="up-item" style="text-decoration: none; display: flex;">
+                                <div class="up-dot <?php echo $dot_class; ?>"></div>
                                 <div>
-                                    <div class="up-title" data-i18n="ann.sidebar.parents">অভিভাবক সমাবেশ</div>
-                                    <div class="up-date">10:00 AM - 1:00 PM</div>
+                                    <div class="up-title" style="color: var(--navy);"><?php echo htmlspecialchars($item['title'], ENT_QUOTES, 'UTF-8'); ?></div>
+                                    <div class="up-date"><?php echo date('F d, Y', $ts); ?></div>
                                 </div>
-                            </div>
-                            <div class="up-item">
-                                <div class="up-dot dot-gold"></div>
-                                <div>
-                                    <div class="up-title" data-i18n="ann.sidebar.cultural">বার্ষিক সাংস্কৃতিক অনুষ্ঠান</div>
-                                    <div class="up-date">4:00 PM onwards</div>
-                                </div>
-                            </div>
-                            <div class="up-item">
-                                <div class="up-dot dot-red"></div>
-                                <div>
-                                    <div class="up-title" data-i18n="ann.sidebar.hscboard">এইচএসসি বোর্ড পরীক্ষা</div>
-                                    <div class="up-date">Nov 15 - Dec 15</div>
-                                </div>
-                            </div>
-                            <div class="up-item">
-                                <div class="up-dot dot-green"></div>
-                                <div>
-                                    <div class="up-title" data-i18n="ann.sidebar.admission">একাদশ শ্রেণি ভর্তির শেষ তারিখ</div>
-                                    <div class="up-date">Feb 28, 2026</div>
-                                </div>
-                            </div>
+                            </a>
+                            <?php endforeach; ?>
+                            <?php if ($event_count === 0): ?>
+                            <p style="padding: 10px; color: var(--muted); font-size: 0.85rem;">No upcoming events.</p>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </aside>
