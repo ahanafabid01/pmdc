@@ -295,15 +295,27 @@
                     <div class="ra-detail-item"><span class="ra-detail-lbl">Blood Group</span><span class="ra-detail-val" id="dBlood">—</span></div>
                     <div class="ra-detail-item"><span class="ra-detail-lbl">NID Number</span><span class="ra-detail-val" id="dNid">—</span></div>
                     <div class="ra-detail-item"><span class="ra-detail-lbl">Birth Cert No.</span><span class="ra-detail-val" id="dBirth">—</span></div>
-                    <div class="ra-detail-item"><span class="ra-detail-lbl">Guardian Phone</span><span class="ra-detail-val" id="dPhone">—</span></div>
                     <div class="ra-detail-item"><span class="ra-detail-lbl">Student Phone</span><span class="ra-detail-val" id="dStudentPhone">—</span></div>
                     <div class="ra-detail-item"><span class="ra-detail-lbl">Email</span><span class="ra-detail-val" id="dEmail">—</span></div>
+                </div>
+            </div>
+
+            <div class="ra-detail-section">
+                <div class="ra-detail-section-title"><i class="fas fa-users"></i> Parents/Guardian Information</div>
+                <div class="ra-detail-grid">
                     <div class="ra-detail-item"><span class="ra-detail-lbl">Father's Name</span><span class="ra-detail-val" id="dFather">—</span></div>
                     <div class="ra-detail-item"><span class="ra-detail-lbl">Father's NID</span><span class="ra-detail-val" id="dFatherNid">—</span></div>
                     <div class="ra-detail-item"><span class="ra-detail-lbl">Father's Occ.</span><span class="ra-detail-val" id="dFatherOcc">—</span></div>
                     <div class="ra-detail-item"><span class="ra-detail-lbl">Mother's Name</span><span class="ra-detail-val" id="dMother">—</span></div>
                     <div class="ra-detail-item"><span class="ra-detail-lbl">Mother's NID</span><span class="ra-detail-val" id="dMotherNid">—</span></div>
                     <div class="ra-detail-item"><span class="ra-detail-lbl">Mother's Occ.</span><span class="ra-detail-val" id="dMotherOcc">—</span></div>
+                    <div class="ra-detail-item"><span class="ra-detail-lbl">Guardian Phone</span><span class="ra-detail-val" id="dPhone">—</span></div>
+                </div>
+            </div>
+
+            <div class="ra-detail-section">
+                <div class="ra-detail-section-title"><i class="fas fa-map-marker-alt"></i> Address Information</div>
+                <div class="ra-detail-grid">
                     <div class="ra-detail-item"><span class="ra-detail-lbl">Present Address</span><span class="ra-detail-val" id="dPresentAddress">—</span></div>
                     <div class="ra-detail-item"><span class="ra-detail-lbl">Permanent Address</span><span class="ra-detail-val" id="dPermanentAddress">—</span></div>
                 </div>
