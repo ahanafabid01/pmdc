@@ -78,7 +78,7 @@
     function renderAll() { renderStats(); applyFilter(); }
 
     /* ── Helpers ──────────────────────────────────────── */
-    function photoUrl(p) { return p.is_external ? p.filename : '../../../uploads/gallery/' + p.filename; }
+    function photoUrl(p) { return p.is_external ? p.filename : window.BASE_URL + '/uploads/gallery/' + p.filename; }
     function esc(s) { const d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
     function fmtDate(d) {
         if (!d) return '—';

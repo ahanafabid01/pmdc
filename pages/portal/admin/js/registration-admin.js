@@ -392,10 +392,9 @@ function renderDocThumb(id, path, label) {
     if (!wrap) return;
     if (path) {
         const isImg = /\.(jpg|jpeg|png)$/i.test(path);
-        // Path is relative to pages/portal/admin, so 3 levels up: ../../../ + path (e.g. uploads/...)
         wrap.innerHTML = isImg
-            ? `<img class="ra-doc-img" src="../../../${path}" alt="${label}" onclick="window.open(this.src,'_blank')" style="object-fit:cover;width:100%;height:120px;border-radius:10px;border:1px solid #cbd5e1;cursor:pointer;">`
-            : `<div class="ra-doc-none" title="Click to view PDF" style="cursor:pointer;flex-direction:column;background:#fff1f2;border-color:#fecdd3;" onclick="window.open('../../../${path}','_blank')">
+            ? `<img class="ra-doc-img" src="${window.BASE_URL}/${path}" alt="${label}" onclick="window.open(this.src,'_blank')" style="object-fit:cover;width:100%;height:120px;border-radius:10px;border:1px solid #cbd5e1;cursor:pointer;">`
+            : `<div class="ra-doc-none" title="Click to view PDF" style="cursor:pointer;flex-direction:column;background:#fff1f2;border-color:#fecdd3;" onclick="window.open('${window.BASE_URL}/${path}','_blank')">
                  <i class="fas fa-file-pdf" style="color:#e11d48;font-size:2.5rem;margin-bottom:8px;"></i>
                  <div style="font-size:.75rem;font-weight:700;color:#e11d48;">VIEW PDF</div>
                </div>`;

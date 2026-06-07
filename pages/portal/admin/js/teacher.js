@@ -207,7 +207,7 @@ function renderTable() {
     tbody.innerHTML = slice.map((s, i) => {
         const idx    = start + i + 1;
         const avatar = s.photo
-            ? `<img src="../../../${s.photo}" alt="${s.name}" class="tm-staff-avatar">`
+            ? `<img src="${window.BASE_URL}/${s.photo}" alt="${s.name}" class="tm-staff-avatar">`
             : `<div class="tm-staff-avatar-initials" style="background:${avatarColor(s.name)}">${initials(s.name)}</div>`;
 
         const prinTag = s.isPrincipal
@@ -299,7 +299,7 @@ function openEdit(id) {
     fIsPrincipal.checked= !!s.isPrincipal;
 
     photoPreview.innerHTML = s.photo
-        ? `<img src="../../../${s.photo}" alt="Photo" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">`
+        ? `<img src="${window.BASE_URL}/${s.photo}" alt="Photo" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">`
         : `<i class="fas fa-user"></i>`;
 
     modalTitle.innerHTML = '<i class="fas fa-pencil-alt"></i> Edit Staff Member';

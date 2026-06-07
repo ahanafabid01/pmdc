@@ -232,7 +232,7 @@
         'use strict';
 
         const API  = 'api/academic-calendar.php';
-        const BASE = '../../../uploads/academic-calendar/';
+        const BASE = window.BASE_URL + '/uploads/academic-calendar/';
         const $    = id => document.getElementById(id);
 
         let calendars  = [];   // loaded data
