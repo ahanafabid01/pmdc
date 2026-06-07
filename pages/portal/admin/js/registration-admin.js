@@ -320,6 +320,14 @@ function openDetail(refNum) {
         setDetailField('dAcadGPA',   ad.ssc_gpa);
         setDetailField('dAcadPrevGroup', ad.ssc_group);
         setDetailField('dAcadDesiredGroup', ad.desired_group);
+        
+        let optText = '—';
+        if (ad.optional_subjects && Array.isArray(ad.optional_subjects)) {
+            optText = ad.optional_subjects.join(', ');
+        }
+        setDetailField('dAcadOptSubjects', optText);
+        setDetailField('dAcadFourthSubject', ad.fourth_subject || '—');
+        
         setDetailField('dAcadInst',  ad.prev_institution);
     } else {
         setDetailField('dAcadRoll',  ad.hsc_roll);

@@ -319,6 +319,8 @@
                 <div class="ra-detail-section-title"><i class="fas fa-bullseye"></i> Admission Preference</div>
                 <div class="ra-detail-grid">
                     <div class="ra-detail-item full"><span class="ra-detail-lbl">Desired Group</span><span class="ra-detail-val" id="dAcadDesiredGroup">—</span></div>
+                    <div class="ra-detail-item full"><span class="ra-detail-lbl">Optional Subjects</span><span class="ra-detail-val" id="dAcadOptSubjects" style="color:#d97706;font-weight:600;">—</span></div>
+                    <div class="ra-detail-item full"><span class="ra-detail-lbl">4th Subject</span><span class="ra-detail-val" id="dAcadFourthSubject" style="color:#2563eb;font-weight:600;">—</span></div>
                 </div>
             </div>
 

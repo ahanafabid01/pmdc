@@ -11,8 +11,27 @@ document.addEventListener('DOMContentLoaded', () => {
     // Navigation
     document.querySelectorAll('[data-action="next"]').forEach(btn => {
         btn.addEventListener('click', () => {
+            // Step 2 Validation for HSC dynamic subjects
+            if (currentStep === 1 && formType === 'hsc') {
+                const optCbs = document.querySelectorAll('.dyn-opt-cb');
+                if (optCbs.length > 0) {
+                    const checkedCount = document.querySelectorAll('.dyn-opt-cb:checked').length;
+                    if (checkedCount !== 3) {
+                        alert("You must select exactly 3 Optional Subjects.");
+                        return;
+                    }
+                }
+                
+                const fourthSelect = document.getElementById('fourth_subject');
+                if (fourthSelect) {
+                    if (!fourthSelect.value) {
+                        alert("You must select a 4th Subject.");
+                        return;
+                    }
+                }
+            }
+            
             if (currentStep < steps.length - 1) {
-                // Optionally validate inputs here
                 showStep(currentStep + 1);
             }
         });
@@ -145,20 +164,66 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Dynamic Optional Subjects for HSC
     const desiredGroup = document.getElementById('desired_group');
-    const optionalSubject = document.getElementById('optional_subject');
-    if (desiredGroup && optionalSubject && typeof optionalSubjectsMap !== 'undefined') {
+    const container = document.getElementById('dynamic_subjects_container');
+    
+    if (desiredGroup && container && typeof programSubjects !== 'undefined') {
         desiredGroup.addEventListener('change', () => {
             const group = desiredGroup.value;
-            const subjects = optionalSubjectsMap[group] || [];
+            container.style.display = group ? 'block' : 'none';
+            container.innerHTML = '';
             
-            optionalSubject.innerHTML = '<option value="">— Select Optional / 4th Subject —</option>';
-            if (subjects.length > 0) {
-                subjects.forEach(sub => {
-                    optionalSubject.innerHTML += `<option value="${sub}">${sub}</option>`;
+            if (!group || !programSubjects[group]) return;
+            
+            const data = programSubjects[group];
+            let html = '';
+            
+            // 1. Optional Subjects (Only render if > 3 choices)
+            if (data.optional && data.optional.length > 3) {
+                html += `
+                <div class="reg-group full">
+                    <label>Optional Subjects <span class="req">*</span> <span style="font-weight:400;color:#64748b;">(Choose exactly 3)</span></label>
+                    <div style="display:flex; flex-direction:column; gap:8px; padding:10px; border:1px solid #e2e8f0; border-radius:8px; background:#fff;">
+                `;
+                data.optional.forEach((sub, idx) => {
+                    html += `
+                        <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-weight:400; font-size:0.95rem; color:#0f172a;">
+                            <input type="checkbox" name="opt_subject[]" value="${sub}" class="dyn-opt-cb" style="width:16px; height:16px;">
+                            ${sub}
+                        </label>
+                    `;
                 });
-            } else {
-                optionalSubject.innerHTML = '<option value="">— No optional subjects available —</option>';
+                html += `</div><span class="reg-err" id="err_opt_subjects"></span></div>`;
             }
+            
+            // 2. 4th Subject (Always render if available)
+            if (data.fourth && data.fourth.length > 0) {
+                html += `
+                <div class="reg-group full">
+                    <label for="fourth_subject">4th Subject <span class="req">*</span> <span style="font-weight:400;color:#64748b;">(Choose any 1)</span></label>
+                    <select id="fourth_subject" name="fourth_subject" required>
+                        <option value="">— Select 4th Subject —</option>
+                `;
+                data.fourth.forEach((sub, idx) => {
+                    html += `<option value="${sub}">${sub}</option>`;
+                });
+                html += `</select><span class="reg-err" id="err_fourth_subject"></span></div>`;
+            }
+            
+            container.innerHTML = html;
+            
+            // Enforce max 3 checkboxes for optional
+            const optCbs = container.querySelectorAll('.dyn-opt-cb');
+            optCbs.forEach(cb => {
+                cb.addEventListener('change', () => {
+                    const checkedCount = container.querySelectorAll('.dyn-opt-cb:checked').length;
+                    if (checkedCount > 3) {
+                        cb.checked = false;
+                        document.getElementById('err_opt_subjects').textContent = 'You can only select exactly 3 optional subjects.';
+                    } else {
+                        document.getElementById('err_opt_subjects').textContent = '';
+                    }
+                });
+            });
         });
     }
 
@@ -189,7 +254,17 @@ document.addEventListener('DOMContentLoaded', () => {
             addRow('SSC Board', document.getElementById('ssc_board')?.value);
             addRow('SSC GPA', document.getElementById('ssc_gpa')?.value);
             addRow('Program Preference', document.getElementById('desired_group')?.value);
-            addRow('Optional Subject', document.getElementById('optional_subject')?.value);
+            
+            // Add Optional and 4th Subjects if present
+            const optCbs = document.querySelectorAll('.dyn-opt-cb:checked');
+            if (optCbs.length > 0) {
+                const optVals = Array.from(optCbs).map(cb => cb.value).join(', ');
+                addRow('Optional Subjects', optVals);
+            }
+            const fourthSelect = document.getElementById('fourth_subject');
+            if (fourthSelect && fourthSelect.value) {
+                addRow('4th Subject', fourthSelect.value);
+            }
         } else {
             addRow('HSC Roll', document.getElementById('hsc_roll')?.value);
             addRow('HSC Board', document.getElementById('hsc_board')?.value);
@@ -257,10 +332,20 @@ document.addEventListener('DOMContentLoaded', () => {
             // Academic Data
             const academic = {};
             if (formType === 'hsc') {
-                ['ssc_roll', 'ssc_reg', 'ssc_board', 'ssc_year', 'ssc_gpa', 'ssc_group', 'desired_group', 'optional_subject', 'desired_section', 'prev_institution'].forEach(id => {
+                ['ssc_roll', 'ssc_reg', 'ssc_board', 'ssc_year', 'ssc_gpa', 'ssc_group', 'desired_group', 'desired_section', 'prev_institution'].forEach(id => {
                     const el = document.getElementById(id);
                     if (el) academic[id] = el.value;
                 });
+                // Extract Optional Subjects
+                const optCbs = document.querySelectorAll('.dyn-opt-cb:checked');
+                if (optCbs.length > 0) {
+                    academic['optional_subjects'] = Array.from(optCbs).map(cb => cb.value);
+                }
+                // Extract 4th Subject
+                const fourthSelect = document.getElementById('fourth_subject');
+                if (fourthSelect && fourthSelect.value) {
+                    academic['fourth_subject'] = fourthSelect.value;
+                }
             } else {
                 ['hsc_roll', 'hsc_reg', 'hsc_board', 'hsc_year', 'hsc_gpa', 'hsc_group', 'desired_program', 'prev_institution'].forEach(id => {
                     const el = document.getElementById(id);
