@@ -5,6 +5,7 @@ $page_css   = 'results.css';
 $base_path  = '../';
 include '../includes/header.php';
 ?>
+<link rel="stylesheet" href="../styles/marksheet.css">
 
     <!-- ══════════════════ PAGE HEADER ══════════════════ -->
     <section class="page-hero">
@@ -35,48 +36,15 @@ include '../includes/header.php';
                         <form class="lookup-form" id="resultSearchForm">
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="studentId"><i class="fas fa-id-card"></i> Roll Number</label>
-                                    <input type="text" id="studentId" name="studentId"
-                                           placeholder="e.g. PMDC-XII-2025-001" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="studentName"><i class="fas fa-user"></i> Full Name</label>
-                                    <input type="text" id="studentName" name="studentName"
-                                           placeholder="As per college records" required>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="examType"><i class="fas fa-file-alt"></i> Exam Type</label>
-                                    <select id="examType" name="examType" required>
-                                        <option value="">Select exam…</option>
-                                        <optgroup label="HSC 1st Year — একাদশ শ্রেণি">
-                                            <option value="halfyearly_xi">Half-Yearly (ষাণ্মাসিক / অর্ধ-বার্ষিক)</option>
-                                            <option value="yearchange_xi">Year-Change (বার্ষিক)</option>
-                                        </optgroup>
-                                        <optgroup label="HSC 2nd Year — দ্বাদশ শ্রেণি">
-                                            <option value="pretest_xii">Pre-Test (প্রি-টেস্ট)</option>
-                                            <option value="test_xii">Test Exam (টেস্ট পরীক্ষা)</option>
-                                        </optgroup>
+                                    <label for="examSelect"><i class="fas fa-file-alt"></i> Examination</label>
+                                    <select id="examSelect" name="examSelect" required>
+                                        <option value="">Loading Exams...</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="examYear"><i class="fas fa-calendar-alt"></i> Session Year</label>
-                                    <select id="examYear" name="examYear" required>
-                                        <option value="">Select year…</option>
-                                        <option value="2025">2024 – 2025</option>
-                                        <option value="2024">2023 – 2024</option>
-                                        <option value="2023">2022 – 2023</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="studentGroup"><i class="fas fa-layer-group"></i> Academic Group</label>
-                                    <select id="studentGroup" name="studentGroup" required>
-                                        <option value="">Select group…</option>
-                                        <option value="science">বিজ্ঞান (Science)</option>
-                                        <option value="commerce">ব্যবসায় শিক্ষা (Commerce)</option>
-                                        <option value="humanities">মানবিক (Humanities)</option>
-                                    </select>
+                                    <label for="rollInput"><i class="fas fa-id-card"></i> Roll Number</label>
+                                    <input type="text" id="rollInput" name="rollInput"
+                                           placeholder="e.g. 1010" required>
                                 </div>
                             </div>
 
@@ -88,13 +56,69 @@ include '../includes/header.php';
                             <button type="submit" class="btn btn-primary btn-search" id="searchBtn">
                                 <i class="fas fa-search"></i>
                                 <span class="btn-text">Search Result</span>
-                                <span class="btn-spin" style="display:none;"><i class="fas fa-spinner fa-spin"></i> Searching…</span>
                             </button>
                         </form>
 
                         <div class="lookup-note">
                             <i class="fas fa-info-circle"></i>
                             Roll number and name must match college registration records exactly.
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Marksheet Rendered Here -->
+                    <div class="marksheet-card" id="marksheetCard" style="display:none; margin-top:30px;">
+                        <div class="marksheet-actions">
+                            <button class="btn-back" id="backBtn"><i class="fas fa-arrow-left"></i> Back</button>
+                            <button class="btn-download" id="downloadBtn" onclick="window.print()"><i class="fas fa-print"></i> Print / Download PDF</button>
+                        </div>
+                        
+                        <div class="marksheet-wrapper" id="printableArea">
+                            <div class="marksheet-header">
+                                <div class="m-logo"><i class="fas fa-school" style="font-size:3rem; color:#2563eb;"></i></div>
+                                <h1>Patuakhali Model Degree College</h1>
+                                <h3>Academic Transcript</h3>
+                                <p id="msExamName" style="font-weight:700; margin-top:5px; color:#1e293b;">Final Examination</p>
+                            </div>
+
+                            <div class="student-info-grid">
+                                <div class="info-row"><span class="info-label">Name of Student:</span> <span class="info-value" id="msName">Abid</span></div>
+                                <div class="info-row"><span class="info-label">Roll No:</span> <span class="info-value" id="msRoll">1010</span></div>
+                                <div class="info-row"><span class="info-label">Registration No:</span> <span class="info-value" id="msRegNo">20261010</span></div>
+                                <div class="info-row"><span class="info-label">Group / Class:</span> <span class="info-value" id="msGroup">Science</span></div>
+                                <div class="info-row"><span class="info-label">Session:</span> <span class="info-value" id="msSession">2026-2027</span></div>
+                            </div>
+
+                            <table class="marks-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name of Subjects</th>
+                                        <th>Full Marks</th>
+                                        <th>Marks Obtained</th>
+                                        <th>Letter Grade</th>
+                                        <th>Grade Point</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="msTableBody">
+                                    <!-- Filled by JS -->
+                                </tbody>
+                            </table>
+
+                            <div class="marksheet-footer">
+                                <div class="gpa-box">
+                                    <div class="gpa-label">Result Status</div>
+                                    <div class="gpa-value" id="msStatus">PASSED</div>
+                                </div>
+                                <div class="gpa-box" style="background:#eff6ff; border-color:#bfdbfe;">
+                                    <div class="gpa-label">GPA</div>
+                                    <div class="gpa-value" style="color:#1d4ed8;" id="msGpa">5.00</div>
+                                </div>
+                            </div>
+                            
+                            <div class="signatures">
+                                <div class="sig-line">Prepared By</div>
+                                <div class="sig-line">Controller of Exams</div>
+                                <div class="sig-line">Principal</div>
+                            </div>
                         </div>
                     </div>
 
@@ -293,28 +317,8 @@ include '../includes/header.php';
         </div>
     </section>
 
+    <script src="../javascript/marksheet.js?v=2"></script>
     <script>
-    // ── Lookup form ────────────────────────────────────────
-    document.getElementById('resultSearchForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const btn    = document.getElementById('searchBtn');
-        const err    = document.getElementById('searchError');
-        const errMsg = document.getElementById('searchErrorMsg');
-        err.style.display = 'none';
-
-        btn.querySelector('.btn-text').style.display = 'none';
-        btn.querySelector('.btn-spin').style.display = 'inline-flex';
-        btn.disabled = true;
-
-        setTimeout(() => {
-            btn.querySelector('.btn-text').style.display = '';
-            btn.querySelector('.btn-spin').style.display = 'none';
-            btn.disabled = false;
-            err.style.display = 'flex';
-            errMsg.textContent = 'No result found. Please check your roll number and name, or contact the Examination Cell.';
-        }, 1600);
-    });
-
     // ── Published results filter ───────────────────────────
     document.querySelectorAll('.pf-btn').forEach(btn => {
         btn.addEventListener('click', function() {

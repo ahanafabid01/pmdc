@@ -133,6 +133,10 @@ try {
         }
     }
 
+    /* ── 6. Fetch active exams ── */
+    $stmtExams = $pdo->query("SELECT id, name, year FROM exams WHERE status = 'active' ORDER BY id DESC");
+    $activeExams = $stmtExams->fetchAll();
+
     echo json_encode([
         'ok'              => true,
         'teacher_name'    => $_SESSION['name'] ?? 'Teacher',
@@ -145,6 +149,7 @@ try {
         'program_sections'=> $programSections,
         'students'        => $students,
         'student_count'   => count($students),
+        'exams'           => $activeExams,
     ]);
 
 } catch (PDOException $e) {

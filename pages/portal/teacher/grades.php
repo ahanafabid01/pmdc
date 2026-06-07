@@ -9,8 +9,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/grades.css">
+    <link rel="stylesheet" href="css/styles.css?v=2">
+    <link rel="stylesheet" href="css/dashboard.css?v=2">
+    <link rel="stylesheet" href="css/attendance.css?v=2">
+    <link rel="stylesheet" href="css/grades.css?v=2">
     <script>
         window.onerror = function(msg, url, line, col, error) {
             alert("JS Error: " + msg + "\nURL: " + url + "\nLine: " + line);
@@ -143,44 +145,33 @@
             </div>
         </div>
 
-        <!-- Tabs + Filters -->
-        <div class="card grades-filter-card" id="gradesFilterCard" style="display:none;">
-            <!-- Class Tabs — built by JS from teacher's programs -->
-            <div class="grades-tabs" id="gradesTabs">
-                <button class="grade-tab active" data-class="all">All Classes</button>
-                <!-- More tabs injected by grades.js -->
+        <!-- Filters -->
+        <div class="card att-card" id="gradesFilterCard" style="display:none;">
+            <div class="card-header">
+                <h3><i class="fas fa-sliders-h"></i> Select Exam &amp; Subject</h3>
             </div>
-            <!-- Filter Row -->
-            <div class="grades-filter-row">
-                <div class="filter-search">
-                    <i class="fas fa-search"></i>
-                    <input type="text" id="gradeSearch" placeholder="Search by name or roll no…">
+            <div class="card-body att-pad">
+                <div class="att-filter-grid">
+                    <div class="att-field">
+                        <label>Exam</label>
+                        <select id="takeExam"><option value="">Loading…</option></select>
+                    </div>
+                    <div class="att-field">
+                        <label>Program</label>
+                        <select id="takeProgram"><option value="">Select Program</option></select>
+                    </div>
+                    <div class="att-field">
+                        <label>Subject</label>
+                        <select id="takeSubject"><option value="">Select Subject</option></select>
+                    </div>
+                    <div class="att-field">
+                        <label>Full Marks</label>
+                        <input type="number" id="takeMaxMarks" value="100" readonly>
+                    </div>
                 </div>
-                <div class="filter-group">
-                    <label>Session</label>
-                    <select id="sessionFilter" class="filter-select">
-                        <option value="">All Sessions</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label>Exam</label>
-                    <select id="examFilter" class="filter-select">
-                        <option value="">All Exams</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label>GPA Grade</label>
-                    <select id="gradeFilter" class="filter-select">
-                        <option value="">All Grades</option>
-                        <option value="A+">A+ (GPA 5.00)</option>
-                        <option value="A">A  (GPA 4.00)</option>
-                        <option value="A-">A- (GPA 3.50)</option>
-                        <option value="B">B  (GPA 3.00)</option>
-                        <option value="C">C  (GPA 2.00)</option>
-                        <option value="D">D  (GPA 1.00)</option>
-                        <option value="F">F  (Fail)</option>
-                    </select>
-                </div>
+                <button class="btn-att-primary" id="loadStudentsBtn">
+                    <i class="fas fa-users"></i> Load Students
+                </button>
             </div>
         </div>
 
@@ -201,14 +192,12 @@
                 <table class="grades-table" id="gradesTable">
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Student</th>
                             <th>Roll No</th>
-                            <th>Session</th>
-                            <th>Group / Class</th>
+                            <th>Mark</th>
                             <th class="exam-col-header">GPA</th>
                             <th class="exam-col-header">Grade</th>
-                            <th>Status</th>
-                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody id="gradesTableBody"></tbody>
@@ -230,15 +219,10 @@
     </div><!-- /content-area -->
 </main>
 
-<!-- Grade Entry Modal -->
-<div class="modal-overlay" id="gradeModal">
-    <div class="modal-box modal-wide">
-        <div class="modal-header">
-            <h2 id="modalTitle"><i class="fas fa-graduation-cap"></i> Results</h2>
-            <button class="modal-close" id="closeGradeModal"><i class="fas fa-times"></i></button>
-        </div>
-        <div class="modal-body" id="modalContent"></div>
-    </div>
+<!-- Save Status Toast -->
+<div class="toast" id="toast">
+    <i class="fas fa-info-circle"></i>
+    <span id="toastMsg">Saved!</span>
 </div>
 
 <!-- Publish Modal -->

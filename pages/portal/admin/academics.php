@@ -35,6 +35,7 @@
             <a href="teacher.php" class="nav-item"><i class="fas fa-chalkboard-teacher"></i><span>Teachers &amp; Staff</span></a>
             <a href="gallery.php" class="nav-item"><i class="fas fa-images"></i><span>Gallery</span></a>
             <a href="academics.php" class="nav-item active"><i class="fas fa-book-open"></i><span>Academics</span></a>
+            <a href="results.php" class="nav-item"><i class="fas fa-graduation-cap"></i><span>Results</span></a>
             <div class="nav-divider"></div>
             <span class="nav-section-label">Management</span>
             <a href="academic-calendar.php" class="nav-item"><i class="fas fa-calendar-alt"></i><span>Academic Calendar</span></a>

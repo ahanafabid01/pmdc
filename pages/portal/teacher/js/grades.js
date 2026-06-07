@@ -1,17 +1,14 @@
 /**
- * grades.js — Teacher Results Management (Dynamic)
- * Completely driven by get_teacher_context.php
- * No hardcoded students or programs.
+ * grades.js — Teacher Results Management
+ * Connects to get_teacher_context.php & api/grades.php
  */
 'use strict';
 
 /* ══ Globals ═══════════════════════════════════════════════════ */
-let CTX         = null;
+let CTX = null;
 let allStudents = [];
-let filtered    = [];
-let activeTab   = 'all';
-let currentPage = 1;
-const PAGE_SIZE = 15;
+let currentStudents = [];
+let isPublished = false;
 
 /* ══ Helpers ════════════════════════════════════════════════════ */
 const $ = id => document.getElementById(id);
@@ -47,222 +44,274 @@ function markToGrade(mark, fullMarks = 100) {
     return              { letter:'F',  gp:0.00, color:'#b91c1c', bg:'#fef2f2' };
 }
 
-function gpaToLetter(gpa) {
-    if (gpa === null) return null;
-    if (gpa >= 5.00) return { letter:'A+', color:'#15803d', bg:'#f0fdf4' };
-    if (gpa >= 4.00) return { letter:'A',  color:'#0f766e', bg:'#f0fdfa' };
-    if (gpa >= 3.50) return { letter:'A-', color:'#1d4ed8', bg:'#eff6ff' };
-    if (gpa >= 3.00) return { letter:'B',  color:'#b45309', bg:'#fffbeb' };
-    if (gpa >= 2.00) return { letter:'C',  color:'#9a3412', bg:'#fff7ed' };
-    if (gpa >= 1.00) return { letter:'D',  color:'#a21caf', bg:'#fdf4ff' };
-    return               { letter:'F',  color:'#b91c1c', bg:'#fef2f2' };
-}
-
-/* Mock single exam GPA for demonstration of UI — backend handles real calculation */
-function mockExamGpa(student) {
-    if (!student.mockGrades) {
-        student.mockGrades = Math.random() > 0.3 ? (Math.random() * 2 + 3) : null; // 3.0 to 5.0 or null
-    }
-    return student.mockGrades;
-}
-
 /* ══ Building Dynamic UI from CTX ═══════════════════════════════ */
+function buildFilters() {
+    // Populate Exams
+    const exams = CTX.exams || [];
+    $('takeExam').innerHTML = '<option value="">Select Exam</option>' + 
+        exams.map(e => `<option value="${e.id}">${e.name} (${e.year})</option>`).join('');
 
-function buildTabsAndFilters() {
-    const tabsWrap = $('gradesTabs');
+    // Populate Programs
     const programs = CTX.programs || [];
-    
-    // Add tabs for each program
-    let tabsHtml = `<button class="grade-tab active" data-class="all">All Classes</button>`;
-    programs.forEach(p => {
-        tabsHtml += `<button class="grade-tab" data-class="${p.id}">${p.name}</button>`;
-    });
-    tabsWrap.innerHTML = tabsHtml;
+    $('takeProgram').innerHTML = '<option value="">Select Program</option>' + 
+        programs.map(p => `<option value="${p.id}">${p.name}</option>`).join('');
 
-    document.querySelectorAll('.grade-tab').forEach(tab => {
-        tab.addEventListener('click', function() {
-            document.querySelectorAll('.grade-tab').forEach(t => t.classList.remove('active'));
-            this.classList.add('active');
-            activeTab = this.dataset.class;
-            applyFilters();
-        });
+    // Cascade Program -> Subject
+    $('takeProgram').addEventListener('change', function() {
+        const pid = this.value;
+        const subjects = CTX.program_subjects?.[pid] || [];
+        $('takeSubject').innerHTML = '<option value="">Select Subject</option>' + 
+            subjects.map(s => `<option value="${s}">${s}</option>`).join('');
     });
 
-    // Sessions
-    const sessions = new Set(allStudents.map(s => s.session || '').filter(Boolean));
-    const sessSel = $('sessionFilter');
-    sessSel.innerHTML = '<option value="">All Sessions</option>' + 
-        [...sessions].sort().map(s => `<option value="${s}">${s}</option>`).join('');
+    if (programs.length) {
+        $('takeProgram').value = programs[0].id;
+        $('takeProgram').dispatchEvent(new Event('change'));
+    }
 
-    // Update stats
     $('statTotalStudents').textContent = allStudents.length;
     $('statProgramCount').textContent = programs.length;
+    $('statSubjectCount').textContent = CTX.subjects.length;
     
-    const subs = new Set(CTX.subjects?.map(s => s.code));
-    $('statSubjectCount').textContent = subs.size;
-
-    const secs = new Set(allStudents.map(s => s.section).filter(Boolean));
-    $('statSectionCount').textContent = secs.size;
+    let sections = new Set();
+    Object.values(CTX.program_sections || {}).forEach(arr => arr.forEach(s => sections.add(s)));
+    $('statSectionCount').textContent = sections.size;
 }
 
-/* ══ Rendering Table ════════════════════════════════════════════ */
+function programMatchesStudent(progId, student) {
+    const PROGRAM_GROUP_MAP = {
+        'hsc-science':    ['science'],
+        'hsc-humanities': ['humanities'],
+        'hsc-business':   ['business', 'commerce', 'business studies'],
+        'deg-ba':         ['ba', 'arts', 'ba'],
+        'deg-bmt':        ['bmt', 'business management', 'bmt'],
+        'deg-bsc':        ['bsc', 'science'],
+        'deg-bss':        ['bss', 'social science']
+    };
+    const groups = PROGRAM_GROUP_MAP[progId] || [];
+    const sg = (student.group || '').toLowerCase();
+    return groups.some(g => sg === g);
+}
 
-function renderTable() {
-    const start = (currentPage - 1) * PAGE_SIZE;
-    const end   = Math.min(start + PAGE_SIZE, filtered.length);
-    const page  = filtered.slice(start, end);
+/* ══ Load Students & Render Table ═══════════════════════════════ */
+$('loadStudentsBtn').addEventListener('click', async () => {
+    const examId = $('takeExam').value;
+    const progId = $('takeProgram').value;
+    const subject = $('takeSubject').value;
 
-    const tbody = $('gradesTableBody');
-
-    if (!filtered.length) {
-        tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:30px;color:#64748b;">No students match the current filters.</td></tr>`;
-        $('gradeCount').textContent = `0 students`;
-        $('gradeTableInfo').textContent = '';
-        $('gradePagination').innerHTML = '';
+    if (!examId || !progId || !subject) {
+        showToast("Please select Exam, Program, and Subject.", true);
         return;
     }
 
-    tbody.innerHTML = page.map(s => {
-        const prog = CTX.programs?.find(p => p.id === s.program_id) || { name: s.program_id || 'Unknown' };
-        const gpa = mockExamGpa(s);
-        const g = gpaToLetter(gpa);
-        const hasMarks = gpa !== null;
-
-        return `
-        <tr>
-            <td>
-                <div style="font-weight:600;color:#0f2744;">${esc(s.name)}</div>
-            </td>
-            <td><code style="background:#f1f5f9;padding:2px 6px;border-radius:4px;font-family:monospace;font-size:.8rem;">${esc(s.roll)}</code></td>
-            <td><span style="font-size:.8rem;color:#64748b;font-weight:600;">${esc(s.session || '—')}</span></td>
-            <td><span style="font-size:.8rem;background:#eff6ff;color:#1d4ed8;padding:2px 8px;border-radius:12px;font-weight:700;">${esc(prog.name)}</span></td>
-            <td style="text-align:center;font-weight:700;">${gpa !== null ? gpa.toFixed(2) : '<span style="color:#cbd5e1;">—</span>'}</td>
-            <td style="text-align:center;">
-                ${g 
-                  ? `<span style="background:${g.bg};color:${g.color};padding:3px 8px;border-radius:6px;font-weight:700;font-size:.8rem;">${g.letter}</span>` 
-                  : '<span style="color:#cbd5e1;">—</span>'}
-            </td>
-            <td>
-                ${hasMarks
-                    ? `<span style="color:#15803d;font-size:.75rem;font-weight:700;display:flex;align-items:center;gap:4px;"><i class="fas fa-check-circle"></i> Entered</span>`
-                    : `<span style="color:#b45309;font-size:.75rem;font-weight:700;display:flex;align-items:center;gap:4px;"><i class="fas fa-hourglass-half"></i> Pending</span>`
-                }
-            </td>
-            <td>
-                <div style="display:flex;gap:6px;">
-                    <button class="act-btn act-view" onclick="alert('View Result Sheet for ${esc(s.name)}')" style="width:28px;height:28px;border-radius:6px;border:none;background:#f1f5f9;color:#3b82f6;cursor:pointer;"><i class="fas fa-file-alt"></i></button>
-                    <button class="act-btn act-edit" onclick="alert('Enter Marks for ${esc(s.name)}')" style="width:28px;height:28px;border-radius:6px;border:none;background:#f1f5f9;color:#64748b;cursor:pointer;"><i class="fas fa-edit"></i></button>
-                </div>
-            </td>
-        </tr>`;
-    }).join('');
-
-    $('gradeCount').textContent = `${filtered.length} students`;
-    $('gradeTableInfo').textContent = `Showing ${start + 1}–${end} of ${filtered.length} students`;
-    renderPagination();
-}
-
-function renderPagination() {
-    const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
-    const el = $('gradePagination');
-    if (totalPages <= 1) { el.innerHTML = ''; return; }
-
-    let html = `<button class="page-btn" onclick="goPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}><i class="fas fa-chevron-left"></i></button>`;
-    for (let p = 1; p <= totalPages; p++) {
-        if (p === 1 || p === totalPages || Math.abs(p - currentPage) <= 1)
-            html += `<button class="page-btn ${p === currentPage ? 'active' : ''}" onclick="goPage(${p})">${p}</button>`;
-        else if (Math.abs(p - currentPage) === 2)
-            html += `<span class="page-ellipsis">…</span>`;
+    // Filter students by program
+    const students = allStudents.filter(s => programMatchesStudent(progId, s));
+    if (!students.length) {
+        showToast("No students found for this program.", true);
+        return;
     }
-    html += `<button class="page-btn" onclick="goPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}><i class="fas fa-chevron-right"></i></button>`;
-    el.innerHTML = html;
-}
 
-window.goPage = p => {
-    const total = Math.ceil(filtered.length / PAGE_SIZE);
-    if (p < 1 || p > total) return;
-    currentPage = p;
-    renderTable();
-};
+    $('loadStudentsBtn').disabled = true;
+    $('loadStudentsBtn').innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
 
-/* ══ Filters ════════════════════════════════════════════════════ */
-function applyFilters() {
-    const q     = ($('gradeSearch')?.value || '').toLowerCase().trim();
-    const sessF = $('sessionFilter')?.value || '';
-    const grdF  = $('gradeFilter')?.value || '';
+    try {
+        // Fetch existing marks
+        const res = await fetch(`api/grades.php?action=list&exam_id=${examId}&program_id=${progId}&subject_name=${encodeURIComponent(subject)}`);
+        const data = await res.json();
+        
+        if (data.ok) {
+            isPublished = data.is_published;
+            const markMap = {};
+            (data.records || []).forEach(r => markMap[r.student_id] = r.mark);
 
-    filtered = allStudents.filter(s => {
-        // Tab filter
-        if (activeTab !== 'all' && s.program_id !== activeTab) return false;
-        // Session filter
-        if (sessF && s.session !== sessF) return false;
-        // Search
-        if (q && !s.name.toLowerCase().includes(q) && !(s.roll || '').toLowerCase().includes(q)) return false;
-        // Grade filter
-        if (grdF) {
-            const g = gpaToLetter(mockExamGpa(s));
-            if (!g || g.letter !== grdF) return false;
+            currentStudents = students.map(s => ({
+                ...s,
+                mark: markMap[s.id] ?? ''
+            })).sort((a,b) => String(a.roll).localeCompare(String(b.roll), undefined, {numeric: true}));
+
+            renderGradebook();
+            
+            // Show gradebook
+            $('gradebookCard').style.display = 'block';
+            $('gradebookCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+            showToast(data.msg || "Failed to load marks.", true);
         }
-        return true;
+    } catch (e) {
+        console.error(e);
+        showToast("Network error while loading marks.", true);
+    } finally {
+        $('loadStudentsBtn').disabled = false;
+        $('loadStudentsBtn').innerHTML = '<i class="fas fa-users"></i> Load Students';
+    }
+});
+
+function renderGradebook() {
+    const tbody = $('gradesTableBody');
+    const fullMarks = Number($('takeMaxMarks').value) || 100;
+    
+    // Inject Save Draft button if not there
+    let actionsWrap = document.querySelector('.gradebook-header-actions');
+    actionsWrap.innerHTML = `
+        <button class="btn-att-primary" id="saveDraftBtn" style="width:auto; margin-top:0; padding:8px 12px; margin-right:8px; background: #475569;">
+            <i class="fas fa-save"></i> Save Draft
+        </button>
+        <button class="btn-publish" id="publishBtn2" ${isPublished ? 'disabled' : ''}>
+            <i class="fas fa-paper-plane"></i> ${isPublished ? 'Published' : 'Publish'}
+        </button>
+    `;
+
+    // Bind listeners immediately
+    $('saveDraftBtn').addEventListener('click', () => submitMarks('save'));
+    $('publishBtn2').addEventListener('click', attemptPublish);
+
+    // Top page publish btn
+    $('publishBtn').style.display = isPublished ? 'none' : 'inline-flex';
+    $('publishBtn').onclick = attemptPublish;
+
+    let html = '';
+    currentStudents.forEach((st, i) => {
+        const gradeInfo = markToGrade(st.mark, fullMarks);
+        const gpHtml = gradeInfo ? `<span style="font-weight:700;color:${gradeInfo.color}">${gradeInfo.gp.toFixed(2)}</span>` : '-';
+        const lgHtml = gradeInfo ? `<span class="badge" style="background:${gradeInfo.bg};color:${gradeInfo.color}">${gradeInfo.letter}</span>` : '-';
+        
+        html += `
+            <tr>
+                <td>${i+1}</td>
+                <td>
+                    <div style="font-weight:600; color:#1e293b;">${esc(st.name)}</div>
+                    <div style="font-size:0.75rem; color:#64748b;">Sec ${esc(st.section?.toUpperCase() || 'A')}</div>
+                </td>
+                <td><code class="roll-chip">${esc(st.roll)}</code></td>
+                <td>
+                    <input type="number" class="mark-input" data-id="${st.id}" value="${st.mark !== null ? st.mark : ''}" 
+                           min="0" max="${fullMarks}" ${isPublished ? 'disabled' : ''} 
+                           style="width: 70px; padding: 6px; border: 1px solid #cbd5e1; border-radius: 6px; text-align: center;">
+                </td>
+                <td id="gp_${st.id}">${gpHtml}</td>
+                <td id="lg_${st.id}">${lgHtml}</td>
+            </tr>
+        `;
     });
 
-    currentPage = 1;
-    renderTable();
+    tbody.innerHTML = html;
+    $('gradeCount').textContent = `${currentStudents.length} students`;
+    $('gradeTableInfo').textContent = isPublished ? "Marks are published and locked." : "Draft mode - don't forget to save!";
+
+    // Live update GPA
+    document.querySelectorAll('.mark-input').forEach(inp => {
+        inp.addEventListener('input', function() {
+            const sid = this.dataset.id;
+            const mark = this.value;
+            const s = currentStudents.find(x => String(x.id) === sid);
+            if (s) s.mark = mark;
+
+            const gi = markToGrade(mark, fullMarks);
+            $(`gp_${sid}`).innerHTML = gi ? `<span style="font-weight:700;color:${gi.color}">${gi.gp.toFixed(2)}</span>` : '-';
+            $(`lg_${sid}`).innerHTML = gi ? `<span class="badge" style="background:${gi.bg};color:${gi.color}">${gi.letter}</span>` : '-';
+        });
+    });
 }
 
-$('gradeSearch')?.addEventListener('input', applyFilters);
-$('sessionFilter')?.addEventListener('change', applyFilters);
-$('gradeFilter')?.addEventListener('change', applyFilters);
+function attemptPublish() {
+    if (isPublished) return;
+    const subject = $('takeSubject').value;
+    if (!subject) return;
+    $('publishClassName').textContent = subject;
+    $('publishModal').classList.add('active');
+}
+
+$('confirmPublish').addEventListener('click', () => {
+    $('publishModal').classList.remove('active');
+    submitMarks('publish');
+});
+
+$('closePublishModal').addEventListener('click', () => $('publishModal').classList.remove('active'));
+$('cancelPublish').addEventListener('click', () => $('publishModal').classList.remove('active'));
+
+async function submitMarks(actionType) {
+    if (isPublished) return;
+
+    const examId = $('takeExam').value;
+    const progId = $('takeProgram').value;
+    const subject = $('takeSubject').value;
+
+    const marksPayload = currentStudents.map(s => ({
+        student_id: s.id,
+        mark: s.mark
+    }));
+
+    const btn = (actionType === 'publish') ? $('publishBtn2') : $('saveDraftBtn');
+    const oldText = btn.innerHTML;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+    btn.disabled = true;
+
+    try {
+        const res = await fetch('api/grades.php?action=' + actionType, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                exam_id: examId,
+                program_id: progId,
+                subject_name: subject,
+                marks: marksPayload
+            })
+        });
+        const data = await res.json();
+        
+        if (data.ok) {
+            showToast(data.msg);
+            if (actionType === 'publish') {
+                isPublished = true;
+                renderGradebook(); // Will disable all inputs
+            }
+        } else {
+            showToast(data.msg, true);
+        }
+    } catch (e) {
+        console.error(e);
+        showToast("Network Error", true);
+    } finally {
+        if (!isPublished) {
+            btn.disabled = false;
+            btn.innerHTML = oldText;
+        }
+    }
+}
 
 /* ══ INIT ═══════════════════════════════════════════════════════ */
 async function loadTeacherContext() {
     try {
         const res  = await fetch('../api/get_teacher_context.php');
         const data = await res.json();
+        if (data.ok) {
+            CTX = data;
+            allStudents = data.students || [];
 
-        if (!data.ok) { window.location.href = '../portal-login.php'; return; }
+            // Update header
+            document.querySelectorAll('.t-name').forEach(el => el.textContent = data.teacher_name);
+            document.querySelectorAll('.t-role').forEach(el => el.textContent = 'Teacher (' + (data.assignments.length ? 'Assigned' : 'No subjects') + ')');
+            const initials = data.teacher_name.substring(0, 2).toUpperCase();
+            $('sidebarAvatar').textContent = initials;
+            $('headerAvatar').src = `https://ui-avatars.com/api/?name=${encodeURIComponent(data.teacher_name)}&background=2563eb&color=fff`;
 
-        CTX = data;
-        allStudents = data.students || [];
-        filtered = [...allStudents];
-
-        // Header / Sidebar Identity
-        document.querySelectorAll('.t-name').forEach(el => el.textContent = data.teacher_name);
-        document.querySelectorAll('.t-role').forEach(el => {
-            el.textContent = data.programs?.length
-                ? data.programs.map(p => p.name).join(', ')
-                : 'No programs assigned';
-        });
-
-        const av = $('sidebarAvatar');
-        if (av) av.textContent = data.teacher_name.trim().split(/\s+/).map(w => w[0].toUpperCase()).slice(0,2).join('');
-        const ha = $('headerAvatar');
-        if (ha) {
-            ha.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(data.teacher_name)}&background=2563eb&color=fff`;
-            ha.alt = data.teacher_name;
+            if (data.programs && data.programs.length > 0) {
+                $('gradesFilterCard').style.display = 'block';
+                $('gradesStatsGrid').style.display  = 'grid';
+                buildFilters();
+            } else {
+                $('gradesNoPrograms').style.display = 'flex';
+            }
+        } else {
+            throw new Error(data.msg);
         }
-
-        // Hide loading
-        $('gradesLoadingBanner').style.display = 'none';
-
-        if (!data.programs?.length || !allStudents.length) {
-            $('gradesEmptyState').style.display = 'flex';
-            if (!data.programs?.length) $('gradesNoPrograms').style.display = 'flex';
-            return;
-        }
-
-        // Show UI
-        $('gradesStatsGrid').style.display = 'grid';
-        $('gradesFilterCard').style.display = 'block';
-        $('gradebookCard').style.display = 'block';
-
-        buildTabsAndFilters();
-        renderTable();
-
     } catch (e) {
         console.error('Context load failed', e);
         $('gradesLoadingBanner').innerHTML = '<i class="fas fa-exclamation-circle"></i><span>Failed to load context. Please refresh.</span>';
+    } finally {
+        const banner = $('gradesLoadingBanner');
+        if (CTX && CTX.ok) banner.style.display = 'none';
     }
 }
 
-loadTeacherContext();
+document.addEventListener('DOMContentLoaded', loadTeacherContext);

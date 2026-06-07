@@ -52,6 +52,10 @@
                 <i class="fas fa-book-open"></i>
                 <span>Academics</span>
             </a>
+            <a href="results.php" class="nav-item">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Results</span>
+            </a>
 
             <div class="nav-divider"></div>
             <span class="nav-section-label">Management</span>
