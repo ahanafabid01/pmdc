@@ -144,7 +144,7 @@ include '../includes/header.php';
                 <div class="reg-group"><label for="religion">Religion <span class="req">*</span></label><select id="religion"><option value="">— Select —</option><option>Islam</option><option>Hindu</option><option>Christian</option><option>Buddhist</option><option>Other</option></select><span class="reg-err" id="err_religion"></span></div>
                 <div class="reg-group"><label for="blood_group">Blood Group</label><select id="blood_group"><option value="">— Optional —</option><option>A+</option><option>A-</option><option>B+</option><option>B-</option><option>O+</option><option>O-</option><option>AB+</option><option>AB-</option></select></div>
                 <div class="reg-group"><label for="nid_number">National ID Number <span style="color:#64748b;font-weight:400;">(optional if under 18)</span></label><input type="text" id="nid_number" placeholder="10 or 17 digit NID" maxlength="17"></div>
-                <div class="reg-group"><label for="birth_cert_num">Birth Certificate Number <span class="req">*</span></label><input type="text" id="birth_cert_num" placeholder="Birth Certificate No."><span class="reg-err" id="err_birth_cert_num"></span></div>
+                <div class="reg-group"><label for="birth_cert_num">Birth Certificate Number <span class="req">*</span></label><input type="text" id="birth_cert_num" placeholder="Birth Certificate No." required><span class="reg-err" id="err_birth_cert_num"></span></div>
             </div>
             <hr class="reg-section-sep"><div class="reg-section-head"><i class="fas fa-users"></i> Parent / Guardian Information</div>
             <div class="reg-grid">
@@ -249,5 +249,5 @@ include '../includes/header.php';
 
 <div class="reg-toast" id="regToast"></div>
 <script>document.body.dataset.formType = 'hsc';</script>
-<script src="<?php echo $base_path; ?>javascript/registration.js"></script>
+<script src="<?php echo $base_path; ?>javascript/registration.js?v=<?php echo time(); ?>"></script>
 <?php include '../includes/footer.php'; ?>

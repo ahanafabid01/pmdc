@@ -157,6 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
         addRow('Religion', document.getElementById('religion')?.value);
         addRow('Blood Group', document.getElementById('blood_group')?.value);
         addRow('National ID', document.getElementById('nid_number')?.value);
+        addRow('Birth Cert No.', document.getElementById('birth_cert_num')?.value);
         addRow('Email', document.getElementById('email')?.value);
         addRow('Guardian Phone', document.getElementById('guardian_phone')?.value);
         addRow('Student Phone', document.getElementById('student_phone')?.value);
