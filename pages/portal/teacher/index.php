@@ -24,8 +24,8 @@
     </div>
     <nav class="sidebar-nav">
         <a href="<?= BASE_URL ?>/teacher"      class="nav-item active"><i class="fas fa-th-large"></i><span>Dashboard</span></a>
-        <a href="attendance.php" class="nav-item"><i class="fas fa-clipboard-check"></i><span>Attendance</span></a>
-        <a href="grades.php"     class="nav-item"><i class="fas fa-graduation-cap"></i><span>Results</span></a>
+        <a href="<?= BASE_URL ?>/teacher/attendance" class="nav-item"><i class="fas fa-clipboard-check"></i><span>Attendance</span></a>
+        <a href="<?= BASE_URL ?>/teacher/grades"     class="nav-item"><i class="fas fa-graduation-cap"></i><span>Results</span></a>
     </nav>
     <div class="sidebar-footer">
         <div class="user-avatar" id="sidebarAvatar">T</div>
@@ -174,7 +174,7 @@
             <div class="card dash-card">
                 <div class="card-header">
                     <h3><i class="fas fa-user-graduate" style="color:#db2777;"></i> Students in My Classes</h3>
-                    <a href="attendance.php" class="view-all-link">Take Attendance <i class="fas fa-arrow-right"></i></a>
+                    <a href="<?= BASE_URL ?>/teacher/attendance" class="view-all-link">Take Attendance <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="card-body" id="recentStudentsList">
                     <div class="panel-loading"><i class="fas fa-spinner fa-spin"></i></div>

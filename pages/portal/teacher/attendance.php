@@ -23,8 +23,8 @@
     </div>
     <nav class="sidebar-nav">
         <a href="<?= BASE_URL ?>/teacher"      class="nav-item"><i class="fas fa-th-large"></i><span>Dashboard</span></a>
-        <a href="attendance.php" class="nav-item active"><i class="fas fa-clipboard-check"></i><span>Attendance</span></a>
-        <a href="grades.php"     class="nav-item"><i class="fas fa-graduation-cap"></i><span>Results</span></a>
+        <a href="<?= BASE_URL ?>/teacher/attendance" class="nav-item active"><i class="fas fa-clipboard-check"></i><span>Attendance</span></a>
+        <a href="<?= BASE_URL ?>/teacher/grades"     class="nav-item"><i class="fas fa-graduation-cap"></i><span>Results</span></a>
     </nav>
     <div class="sidebar-footer">
         <div class="user-avatar" id="sidebarAvatar">T</div>
