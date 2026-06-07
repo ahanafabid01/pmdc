@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__DIR__) . '/config.php';
 /* ── Central Bangla page-title map ───────────────────────────
    Pages may override $page_title_bn individually.
    If not set, this map provides the Bangla title automatically.
@@ -43,12 +44,12 @@ if (!isset($page_title_bn)) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="<?php echo isset($base_path) ? $base_path : ''; ?>styles/main.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/main.css?v=<?= time() ?>">
     <?php if(isset($page_css)): ?>
-    <link rel="stylesheet" href="<?php echo isset($base_path) ? $base_path : ''; ?>styles/<?php echo $page_css; ?>">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/<?php echo $page_css; ?>?v=<?= time() ?>">
     <?php endif; ?>
     <!-- i18n: load early so translations apply before paint -->
-    <script src="<?php echo isset($base_path) ? $base_path : ''; ?>javascript/i18n.js"></script>
+    <script src="<?= BASE_URL ?>/javascript/i18n.js?v=<?= time() ?>"></script>
 </head>
 <body data-page="<?php echo isset($page) ? htmlspecialchars($page, ENT_QUOTES, 'UTF-8') : 'home'; ?>">
 
@@ -65,7 +66,7 @@ if (!isset($page_title_bn)) {
             <div class="top-links">
                 <a href="#" data-i18n="topbar.library">পাঠাগার</a>
                 <a href="#" data-i18n="topbar.alumni">প্রাক্তন শিক্ষার্থী</a>
-                <a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/portal/portal-login.php" class="portal-link">
+                <a href="<?= BASE_URL ?>/admin/login" class="portal-link">
                     <i class="fas fa-lock"></i> <span data-i18n="topbar.portal">পোর্টাল</span>
                 </a>
             </div>
@@ -75,7 +76,7 @@ if (!isset($page_title_bn)) {
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="container">
-            <a href="<?php echo isset($base_path) ? $base_path : ''; ?>index.php" class="logo">
+            <a href="<?= BASE_URL ?>/" class="logo">
                 <div class="logo-icon-wrap"><i class="fas fa-school"></i></div>
                 <div class="logo-text-wrap">
                     <span class="logo-abbr">PMDC</span>
@@ -88,8 +89,8 @@ if (!isset($page_title_bn)) {
                 <span class="hb-bar"></span>
             </button>
             <ul class="nav-menu" id="nav-menu" role="navigation">
-                <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>index.php"              class="nav-link <?php echo isset($page) && $page == 'home' ? 'active' : ''; ?>" data-i18n="nav.home">হোম</a></li>
-                <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/about.php"        class="nav-link <?php echo isset($page) && $page == 'about' ? 'active' : ''; ?>" data-i18n="nav.about">প্রতিষ্ঠান পরিচিতি</a></li>
+                <li><a href="<?= BASE_URL ?>/"              class="nav-link <?php echo isset($page) && $page == 'home' ? 'active' : ''; ?>" data-i18n="nav.home">হোম</a></li>
+                <li><a href="<?= BASE_URL ?>/about"        class="nav-link <?php echo isset($page) && $page == 'about' ? 'active' : ''; ?>" data-i18n="nav.about">প্রতিষ্ঠান পরিচিতি</a></li>
 
                 <!-- Academic Info Dropdown -->
                 <?php $is_academic = isset($page_group) && $page_group === 'academic'; ?>
@@ -99,39 +100,39 @@ if (!isset($page_title_bn)) {
                     </a>
                     <ul class="nav-dropdown-menu">
                         <div class="nav-dropdown-inner">
-                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/hsc-program.php"        class="dropdown-item <?php echo isset($page) && $page == 'hsc-program'    ? 'active' : ''; ?>"><i class="fas fa-scroll"></i> <span data-i18n="nav.hsc">এইচএসসি প্রোগ্রাম</span></a></li>
-                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/degree-program.php"     class="dropdown-item <?php echo isset($page) && $page == 'degree-program' ? 'active' : ''; ?>"><i class="fas fa-user-graduate"></i> <span data-i18n="nav.degree">ডিগ্রি প্রোগ্রাম</span></a></li>
+                        <li><a href="<?= BASE_URL ?>/hsc-program"        class="dropdown-item <?php echo isset($page) && $page == 'hsc-program'    ? 'active' : ''; ?>"><i class="fas fa-scroll"></i> <span data-i18n="nav.hsc">এইচএসসি প্রোগ্রাম</span></a></li>
+                        <li><a href="<?= BASE_URL ?>/degree-program"     class="dropdown-item <?php echo isset($page) && $page == 'degree-program' ? 'active' : ''; ?>"><i class="fas fa-user-graduate"></i> <span data-i18n="nav.degree">ডিগ্রি প্রোগ্রাম</span></a></li>
                         <li class="dropdown-divider"></li>
-                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/holiday-list.php"           class="dropdown-item <?php echo isset($page) && $page == 'holiday-list' ? 'active' : ''; ?>"><i class="fas fa-umbrella-beach"></i> <span data-i18n="nav.holiday">ছুটির তালিকা</span></a></li>
-                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/academic-calendar.php"      class="dropdown-item <?php echo isset($page) && $page == 'academic-calendar' ? 'active' : ''; ?>"><i class="fas fa-calendar-alt"></i> <span data-i18n="nav.calendar">একাডেমিক ক্যালেন্ডার</span></a></li>
-                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/class-routine.php"          class="dropdown-item <?php echo isset($page) && $page == 'class-routine' ? 'active' : ''; ?>"><i class="fas fa-chalkboard"></i> <span data-i18n="nav.class-routine">ক্লাস রুটিন</span></a></li>
-                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/exam-routine.php"           class="dropdown-item <?php echo isset($page) && $page == 'exam-routine' ? 'active' : ''; ?>"><i class="fas fa-pen-alt"></i> <span data-i18n="nav.exam-routine">পরীক্ষার রুটিন</span></a></li>
-                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/syllabus.php"               class="dropdown-item <?php echo isset($page) && $page == 'syllabus' ? 'active' : ''; ?>"><i class="fas fa-book-open"></i> <span data-i18n="nav.syllabus">পাঠ্যক্রম</span></a></li>
+                        <li><a href="<?= BASE_URL ?>/academic/holiday-list"           class="dropdown-item <?php echo isset($page) && $page == 'holiday-list' ? 'active' : ''; ?>"><i class="fas fa-umbrella-beach"></i> <span data-i18n="nav.holiday">ছুটির তালিকা</span></a></li>
+                        <li><a href="<?= BASE_URL ?>/academic/calendar"      class="dropdown-item <?php echo isset($page) && $page == 'academic-calendar' ? 'active' : ''; ?>"><i class="fas fa-calendar-alt"></i> <span data-i18n="nav.calendar">একাডেমিক ক্যালেন্ডার</span></a></li>
+                        <li><a href="<?= BASE_URL ?>/academic/class-routine"          class="dropdown-item <?php echo isset($page) && $page == 'class-routine' ? 'active' : ''; ?>"><i class="fas fa-chalkboard"></i> <span data-i18n="nav.class-routine">ক্লাস রুটিন</span></a></li>
+                        <li><a href="<?= BASE_URL ?>/academic/exam-routine"           class="dropdown-item <?php echo isset($page) && $page == 'exam-routine' ? 'active' : ''; ?>"><i class="fas fa-pen-alt"></i> <span data-i18n="nav.exam-routine">পরীক্ষার রুটিন</span></a></li>
+                        <li><a href="<?= BASE_URL ?>/academic/syllabus"               class="dropdown-item <?php echo isset($page) && $page == 'syllabus' ? 'active' : ''; ?>"><i class="fas fa-book-open"></i> <span data-i18n="nav.syllabus">পাঠ্যক্রম</span></a></li>
                         <li class="dropdown-divider"></li>
-                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/uniform.php"                class="dropdown-item <?php echo isset($page) && $page == 'uniform' ? 'active' : ''; ?>"><i class="fas fa-tshirt"></i> <span data-i18n="nav.uniform">পোশাক বিধি</span></a></li>
-                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/rules-regulation.php"      class="dropdown-item <?php echo isset($page) && $page == 'rules-regulation' ? 'active' : ''; ?>"><i class="fas fa-gavel"></i> <span data-i18n="nav.rules">নিয়ম ও বিধিমালা</span></a></li>
-                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/student-instruction.php"   class="dropdown-item <?php echo isset($page) && $page == 'student-instruction' ? 'active' : ''; ?>"><i class="fas fa-info-circle"></i> <span data-i18n="nav.instruction">শিক্ষার্থী নির্দেশিকা</span></a></li>
+                        <li><a href="<?= BASE_URL ?>/academic/uniform"                class="dropdown-item <?php echo isset($page) && $page == 'uniform' ? 'active' : ''; ?>"><i class="fas fa-tshirt"></i> <span data-i18n="nav.uniform">পোশাক বিধি</span></a></li>
+                        <li><a href="<?= BASE_URL ?>/academic/rules"      class="dropdown-item <?php echo isset($page) && $page == 'rules-regulation' ? 'active' : ''; ?>"><i class="fas fa-gavel"></i> <span data-i18n="nav.rules">নিয়ম ও বিধিমালা</span></a></li>
+                        <li><a href="<?= BASE_URL ?>/academic/student-instruction"   class="dropdown-item <?php echo isset($page) && $page == 'student-instruction' ? 'active' : ''; ?>"><i class="fas fa-info-circle"></i> <span data-i18n="nav.instruction">শিক্ষার্থী নির্দেশিকা</span></a></li>
                         <li class="dropdown-divider"></li>
-                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/admit-card.php"            class="dropdown-item <?php echo isset($page) && $page == 'admit-card' ? 'active' : ''; ?>"><i class="fas fa-id-card"></i> <span data-i18n="nav.admit">প্রবেশপত্র</span></a></li>
-                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/hsc-form-fillup.php"       class="dropdown-item <?php echo isset($page) && $page == 'hsc-form-fillup' ? 'active' : ''; ?>"><i class="fas fa-file-alt"></i> <span data-i18n="nav.form-fillup">এইচএসসি ফর্ম পূরণ</span></a></li>
-                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/degree-form-fillup.php"    class="dropdown-item <?php echo isset($page) && $page == 'degree-form-fillup' ? 'active' : ''; ?>"><i class="fas fa-university"></i> <span data-i18n="nav.degree_form_fillup">ডিগ্রি ফর্ম পূরণ</span></a></li>
+                        <li><a href="<?= BASE_URL ?>/academic/admit-card"            class="dropdown-item <?php echo isset($page) && $page == 'admit-card' ? 'active' : ''; ?>"><i class="fas fa-id-card"></i> <span data-i18n="nav.admit">প্রবেশপত্র</span></a></li>
+                        <li><a href="<?= BASE_URL ?>/academic/hsc-form"       class="dropdown-item <?php echo isset($page) && $page == 'hsc-form-fillup' ? 'active' : ''; ?>"><i class="fas fa-file-alt"></i> <span data-i18n="nav.form-fillup">এইচএসসি ফর্ম পূরণ</span></a></li>
+                        <li><a href="<?= BASE_URL ?>/academic/degree-form"    class="dropdown-item <?php echo isset($page) && $page == 'degree-form-fillup' ? 'active' : ''; ?>"><i class="fas fa-university"></i> <span data-i18n="nav.degree_form_fillup">ডিগ্রি ফর্ম পূরণ</span></a></li>
                         </div>
                     </ul>
                 </li>
 
-                <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/announcements.php" class="nav-link <?php echo isset($page) && $page == 'announcements' ? 'active' : ''; ?>" data-i18n="nav.announcements">বিজ্ঞপ্তি</a></li>
-                <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/gallery.php"        class="nav-link <?php echo isset($page) && $page == 'gallery' ? 'active' : ''; ?>" data-i18n="nav.gallery">গ্যালারি</a></li>
-                <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/teachers.php"      class="nav-link <?php echo isset($page) && $page == 'teachers' ? 'active' : ''; ?>" data-i18n="nav.teachers">শিক্ষক ও কর্মচারী</a></li>
-                <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/results.php"      class="nav-link <?php echo isset($page) && $page == 'results' ? 'active' : ''; ?>" data-i18n="nav.results">ফলাফল</a></li>
-                <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/contact.php"      class="nav-link <?php echo isset($page) && $page == 'contact' ? 'active' : ''; ?>" data-i18n="nav.contact">যোগাযোগ</a></li>
+                <li><a href="<?= BASE_URL ?>/announcement" class="nav-link <?php echo isset($page) && $page == 'announcements' ? 'active' : ''; ?>" data-i18n="nav.announcements">বিজ্ঞপ্তি</a></li>
+                <li><a href="<?= BASE_URL ?>/gallery"        class="nav-link <?php echo isset($page) && $page == 'gallery' ? 'active' : ''; ?>" data-i18n="nav.gallery">গ্যালারি</a></li>
+                <li><a href="<?= BASE_URL ?>/teachers"      class="nav-link <?php echo isset($page) && $page == 'teachers' ? 'active' : ''; ?>" data-i18n="nav.teachers">শিক্ষক ও কর্মচারী</a></li>
+                <li><a href="<?= BASE_URL ?>/results"      class="nav-link <?php echo isset($page) && $page == 'results' ? 'active' : ''; ?>" data-i18n="nav.results">ফলাফল</a></li>
+                <li><a href="<?= BASE_URL ?>/contact"      class="nav-link <?php echo isset($page) && $page == 'contact' ? 'active' : ''; ?>" data-i18n="nav.contact">যোগাযোগ</a></li>
                 <li class="nav-has-dropdown">
                     <a href="javascript:void(0)" class="nav-link nav-apply nav-dropdown-toggle">
                         <span data-i18n="nav.apply">ভর্তি হন</span> <i class="fas fa-chevron-down nav-dropdown-arrow"></i>
                     </a>
                     <ul class="nav-dropdown-menu">
                         <div class="nav-dropdown-inner">
-                            <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/register-hsc.php" class="dropdown-item"><i class="fas fa-file-alt"></i> <span>HSC Admission</span></a></li>
-                            <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/register-degree.php" class="dropdown-item"><i class="fas fa-university"></i> <span>Degree Admission</span></a></li>
+                            <li><a href="<?= BASE_URL ?>/apply/hsc" class="dropdown-item"><i class="fas fa-file-alt"></i> <span>HSC Admission</span></a></li>
+                            <li><a href="<?= BASE_URL ?>/apply/degree" class="dropdown-item"><i class="fas fa-university"></i> <span>Degree Admission</span></a></li>
                         </div>
                     </ul>
                 </li>
@@ -151,7 +152,7 @@ if (!isset($page_title_bn)) {
                             </a>
                         </div>
                         <!-- Staff Portal -->
-                        <a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/portal/portal-login.php" class="npf-portal-btn">
+                        <a href="<?= BASE_URL ?>/admin/login" class="npf-portal-btn">
                             <i class="fas fa-lock"></i> <span data-i18n="footer.staffportal">স্টাফ পোর্টাল</span>
                         </a>
                         <!-- Language Toggle -->

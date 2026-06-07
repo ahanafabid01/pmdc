@@ -70,9 +70,10 @@ include '../includes/header.php';
             <div class="gallery-grid" id="grid-<?php echo $year; ?>" data-year="<?php echo $year; ?>">
                 <?php foreach ($photos as $idx => $photo):
                     $isExternal = !empty($photo['is_external']);
-                    $src   = $isExternal ? $photo['filename'] : '../uploads/gallery/' . $photo['filename'];
-                    $thumbPath = '../uploads/gallery/thumbs/' . $photo['filename'];
-                    $thumb = ($isExternal || !file_exists($thumbPath)) ? $src : $thumbPath;
+                    $src   = $isExternal ? $photo['filename'] : BASE_URL . '/uploads/gallery/' . $photo['filename'];
+                    $thumbPathLocal = __DIR__ . '/../uploads/gallery/thumbs/' . $photo['filename'];
+                    $thumbUrl = BASE_URL . '/uploads/gallery/thumbs/' . $photo['filename'];
+                    $thumb = ($isExternal || !file_exists($thumbPathLocal)) ? $src : $thumbUrl;
                     $title = htmlspecialchars($photo['title'] ?: 'Photo', ENT_QUOTES, 'UTF-8');
                     $date  = date('d M Y', strtotime($photo['date_uploaded']));
                     $extra = $idx >= 24 ? 'style="display:none;" data-extra="1"' : '';
@@ -146,5 +147,5 @@ include '../includes/header.php';
     </div>
 </div>
 
-<script src="../javascript/gallery.js"></script>
+<script src="<?= BASE_URL ?>/javascript/gallery.js"></script>
 <?php include '../includes/footer.php'; ?>

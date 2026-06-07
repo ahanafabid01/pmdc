@@ -22,12 +22,12 @@
                 <div class="footer-col">
                     <h3 data-i18n="footer.quicklinks">দ্রুত সংযোগ</h3>
                     <ul class="footer-links">
-                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>index.php" data-i18n="footer.home">হোম</a></li>
-                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/about.php" data-i18n="footer.about">প্রতিষ্ঠান পরিচিতি</a></li>
-                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/academics.php" data-i18n="footer.academicslink">একাডেমিক</a></li>
-                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/announcements.php" data-i18n="footer.announcementslink">বিজ্ঞপ্তি</a></li>
-                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/results.php" data-i18n="footer.results">ফলাফল</a></li>
-                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/contact.php" data-i18n="footer.contactlink">যোগাযোগ</a></li>
+                        <li><a href="<?= BASE_URL ?>/" data-i18n="footer.home">হোম</a></li>
+                        <li><a href="<?= BASE_URL ?>/about" data-i18n="footer.about">প্রতিষ্ঠান পরিচিতি</a></li>
+                        <li><a href="<?= BASE_URL ?>/academic/class-routine" data-i18n="footer.academicslink">একাডেমিক</a></li>
+                        <li><a href="<?= BASE_URL ?>/announcement" data-i18n="footer.announcementslink">বিজ্ঞপ্তি</a></li>
+                        <li><a href="<?= BASE_URL ?>/results" data-i18n="footer.results">ফলাফল</a></li>
+                        <li><a href="<?= BASE_URL ?>/contact" data-i18n="footer.contactlink">যোগাযোগ</a></li>
                     </ul>
                 </div>
 
@@ -35,11 +35,11 @@
                 <div class="footer-col">
                     <h3 data-i18n="footer.academics">একাডেমিক</h3>
                     <ul class="footer-links">
-                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/academics.php#groups" data-i18n="footer.science">বিজ্ঞান বিভাগ</a></li>
-                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/academics.php#groups" data-i18n="footer.commerce">ব্যবসায় শিক্ষা</a></li>
-                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/academics.php#groups" data-i18n="footer.humanities">মানবিক বিভাগ</a></li>
-                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/academics.php#groups" data-i18n="footer.compulsory">বাধ্যতামূলক বিষয়</a></li>
-                        <li><a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/results.php" data-i18n="footer.examresults">পরীক্ষার ফলাফল</a></li>
+                        <li><a href="<?= BASE_URL ?>/academic/class-routine#groups" data-i18n="footer.science">বিজ্ঞান বিভাগ</a></li>
+                        <li><a href="<?= BASE_URL ?>/academic/class-routine#groups" data-i18n="footer.commerce">ব্যবসায় শিক্ষা</a></li>
+                        <li><a href="<?= BASE_URL ?>/academic/class-routine#groups" data-i18n="footer.humanities">মানবিক বিভাগ</a></li>
+                        <li><a href="<?= BASE_URL ?>/academic/class-routine#groups" data-i18n="footer.compulsory">বাধ্যতামূলক বিষয়</a></li>
+                        <li><a href="<?= BASE_URL ?>/results" data-i18n="footer.examresults">পরীক্ষার ফলাফল</a></li>
                     </ul>
                 </div>
 
@@ -70,7 +70,7 @@
                 <p>
                     <a href="#" data-i18n="footer.privacy">গোপনীয়তা নীতি</a> &nbsp;·&nbsp;
                     <a href="#" data-i18n="footer.terms">ব্যবহারের শর্ত</a> &nbsp;·&nbsp;
-                    <a href="<?php echo isset($base_path) ? $base_path : ''; ?>pages/portal/portal-login.php" data-i18n="footer.staffportal">স্টাফ পোর্টাল</a>
+                    <a href="<?= BASE_URL ?>/admin/login" data-i18n="footer.staffportal">স্টাফ পোর্টাল</a>
                 </p>
             </div>
         </div>
@@ -85,9 +85,9 @@
         </div>
     </div>
 
-    <script src="<?php echo isset($base_path) ? $base_path : ''; ?>javascript/main.js"></script>
+    <script src="<?= BASE_URL ?>/javascript/main.js?v=<?= time() ?>"></script>
     <?php if(isset($page_js)): ?>
-    <script src="<?php echo isset($base_path) ? $base_path : ''; ?>javascript/<?php echo $page_js; ?>"></script>
+    <script src="<?= BASE_URL ?>/javascript/<?php echo $page_js; ?>?v=<?= time() ?>"></script>
     <?php endif; ?>
 
 </body>

@@ -5,7 +5,7 @@ $page_css   = 'results.css';
 $base_path  = '../';
 include '../includes/header.php';
 ?>
-<link rel="stylesheet" href="../styles/marksheet.css">
+<link rel="stylesheet" href="<?= BASE_URL ?>/styles/marksheet.css">
 
     <!-- ══════════════════ PAGE HEADER ══════════════════ -->
     <section class="page-hero">
@@ -297,7 +297,7 @@ include '../includes/header.php';
                     <!-- Quick Links -->
                     <div class="sidebar-links reveal">
                         <div class="sl-head">Related Links</div>
-                        <a href="announcements.php" class="sl-item">
+                        <a href="<?= BASE_URL ?>/announcement" class="sl-item">
                             <i class="fas fa-bell"></i> Announcements
                             <i class="fas fa-chevron-right sl-arr"></i>
                         </a>
@@ -305,7 +305,7 @@ include '../includes/header.php';
                             <i class="fas fa-graduation-cap"></i> Academics
                             <i class="fas fa-chevron-right sl-arr"></i>
                         </a>
-                        <a href="contact.php" class="sl-item">
+                        <a href="<?= BASE_URL ?>/contact" class="sl-item">
                             <i class="fas fa-envelope"></i> Contact Office
                             <i class="fas fa-chevron-right sl-arr"></i>
                         </a>
@@ -317,7 +317,7 @@ include '../includes/header.php';
         </div>
     </section>
 
-    <script src="../javascript/marksheet.js?v=2"></script>
+    <script src="<?= BASE_URL ?>/javascript/marksheet.js?v=2"></script>
     <script>
     // ── Published results filter ───────────────────────────
     document.querySelectorAll('.pf-btn').forEach(btn => {

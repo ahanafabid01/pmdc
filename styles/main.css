@@ -1356,3 +1356,8 @@ html[lang="bn"] .nt-all {
     .nt-item { font-size: .76rem; }
     .nt-track { animation-duration: 28s; }
 }
+
+/* CSS-based i18n Toggling */
+body.pmdc-lang-bn .show-en { display: none !important; }
+body.pmdc-lang-en .show-bn { display: none !important; }
+

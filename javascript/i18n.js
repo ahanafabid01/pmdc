@@ -299,6 +299,12 @@
         'about.cta.apply': { en: 'Apply Now', bn: 'আবেদন করুন' },
         'about.cta.contact': { en: 'Contact Us', bn: 'যোগাযোগ করুন' },
 
+        /* ━━━━━━━━━━━ CONTACT PAGE ━━━━━━━━━━━ */
+        'cf.name.ph': { en: 'Your full name', bn: 'আপনার পুরো নাম' },
+        'cf.email.ph': { en: 'you@example.com', bn: 'আপনার ইমেইল' },
+        'cf.phone.ph': { en: '+880 1XXX-XXXXXX', bn: '+880 1XXX-XXXXXX' },
+        'cf.msg.ph': { en: 'Write your message here…', bn: 'আপনার বার্তা এখানে লিখুন…' },
+
         /* ━━━━━━━━━━━ ANNOUNCEMENTS PAGE ━━━━━━━━━━━ */
         'ann.kicker': { en: 'PMDC Updates', bn: 'পিএমডিসি আপডেট' },
         'ann.h1': { en: 'Announcements & Notices', bn: 'বিজ্ঞপ্তি ও নোটিশ' },
@@ -557,8 +563,15 @@
         currentLang = lang;
         setLang(lang);
 
-        // Set html lang attribute
+        // Set html lang attribute and body class
         document.documentElement.lang = lang === 'bn' ? 'bn' : 'en';
+        if (lang === 'bn') {
+            document.body.classList.add('pmdc-lang-bn');
+            document.body.classList.remove('pmdc-lang-en');
+        } else {
+            document.body.classList.add('pmdc-lang-en');
+            document.body.classList.remove('pmdc-lang-bn');
+        }
 
         // Update browser tab title from <meta name="title-bn"> / <meta name="title-en">
         const titleMeta = document.querySelector('meta[name="title-' + lang + '"]');

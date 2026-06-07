@@ -14,10 +14,18 @@ include '../includes/header.php';
 
     <section class="page-hero">
         <div class="container ph-content">
-
-            <div class="ph-kicker reveal">Academic Info</div>
-            <h1 class="reveal">HSC Program</h1>
-            <p class="reveal">Higher Secondary Certificate — groups, subjects, and program structure</p>
+            <div class="ph-kicker reveal">
+                <span class="show-en">Academic Info</span>
+                <span class="show-bn">একাডেমিক তথ্য</span>
+            </div>
+            <h1 class="reveal">
+                <span class="show-en">HSC Program</span>
+                <span class="show-bn">এইচএসসি প্রোগ্রাম</span>
+            </h1>
+            <p class="reveal">
+                <span class="show-en">Higher Secondary Certificate — groups, subjects, and program structure</span>
+                <span class="show-bn">উচ্চ মাধ্যমিক সার্টিফিকেট — বিভাগ, বিষয়সমূহ এবং প্রোগ্রামের কাঠামো</span>
+            </p>
         </div>
     </section>
 
@@ -29,24 +37,42 @@ include '../includes/header.php';
                 <div class="prog-overview-item">
                     <i class="fas fa-graduation-cap"></i>
                     <div>
-                        <div class="poi-label">Program</div>
-                        <div class="poi-val">HSC (Higher Secondary Certificate)</div>
+                        <div class="poi-label">
+                            <span class="show-en">Program</span>
+                            <span class="show-bn">প্রোগ্রাম</span>
+                        </div>
+                        <div class="poi-val">
+                            <span class="show-en">HSC (Higher Secondary Certificate)</span>
+                            <span class="show-bn">এইচএসসি (উচ্চ মাধ্যমিক)</span>
+                        </div>
                     </div>
                 </div>
                 <div class="prog-overview-sep"></div>
                 <div class="prog-overview-item">
                     <i class="fas fa-clock"></i>
                     <div>
-                        <div class="poi-label">Duration</div>
-                        <div class="poi-val">2 Years (Class XI &amp; XII)</div>
+                        <div class="poi-label">
+                            <span class="show-en">Duration</span>
+                            <span class="show-bn">মেয়াদ</span>
+                        </div>
+                        <div class="poi-val">
+                            <span class="show-en">2 Years (Class XI &amp; XII)</span>
+                            <span class="show-bn">২ বছর (একাদশ ও দ্বাদশ শ্রেণি)</span>
+                        </div>
                     </div>
                 </div>
                 <div class="prog-overview-sep"></div>
                 <div class="prog-overview-item">
                     <i class="fas fa-layer-group"></i>
                     <div>
-                        <div class="poi-label">Groups Offered</div>
-                        <div class="poi-val">Science, Humanities, Business Studies</div>
+                        <div class="poi-label">
+                            <span class="show-en">Groups Offered</span>
+                            <span class="show-bn">প্রস্তাবিত বিভাগসমূহ</span>
+                        </div>
+                        <div class="poi-val">
+                            <span class="show-en">Science, Humanities, Business Studies</span>
+                            <span class="show-bn">বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -55,24 +81,51 @@ include '../includes/header.php';
             <div class="ai-info-card reveal" style="margin-bottom:32px;">
                 <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
                     <i class="fas fa-list-ol" style="color:var(--blue);font-size:1rem;"></i>
-                    <strong style="font-size:.95rem;color:var(--navy);font-family:'Inter',sans-serif;">Internal Examination Structure</strong>
+                    <strong style="font-size:.95rem;color:var(--navy);font-family:'Inter',sans-serif;">
+                        <span class="show-en">Internal Examination Structure</span>
+                        <span class="show-bn">আভ্যন্তরীণ পরীক্ষার কাঠামো</span>
+                    </strong>
                 </div>
                 <div class="prog-exam-grid">
                     <div class="prog-exam-card">
-                        <div class="pec-year">Class XI (1st Year)</div>
-                        <div class="pec-exams">
-                            <span class="ai-badge badge-college">Half-Yearly Exam</span>
-                            <span class="ai-badge badge-college">Year-Change Exam</span>
+                        <div class="pec-year">
+                            <span class="show-en">Class XI (1st Year)</span>
+                            <span class="show-bn">একাদশ শ্রেণি (১ম বর্ষ)</span>
                         </div>
-                        <div class="pec-note">Students failing any subject in the Year-Change exam are NOT promoted to Class XII.</div>
+                        <div class="pec-exams">
+                            <span class="ai-badge badge-college">
+                                <span class="show-en">Half-Yearly Exam</span>
+                                <span class="show-bn">অর্ধ-বার্ষিক পরীক্ষা</span>
+                            </span>
+                            <span class="ai-badge badge-college">
+                                <span class="show-en">Year-Change Exam</span>
+                                <span class="show-bn">বর্ষ-উত্তীর্ণ পরীক্ষা</span>
+                            </span>
+                        </div>
+                        <div class="pec-note">
+                            <span class="show-en">Students failing any subject in the Year-Change exam are NOT promoted to Class XII.</span>
+                            <span class="show-bn">বর্ষ-উত্তীর্ণ পরীক্ষায় কোনো বিষয়ে অকৃতকার্য হলে দ্বাদশ শ্রেণিতে উত্তীর্ণ করা হবে না।</span>
+                        </div>
                     </div>
                     <div class="prog-exam-card">
-                        <div class="pec-year">Class XII (2nd Year)</div>
-                        <div class="pec-exams">
-                            <span class="ai-badge badge-exam">Pre-Test Exam</span>
-                            <span class="ai-badge badge-exam">Test Exam</span>
+                        <div class="pec-year">
+                            <span class="show-en">Class XII (2nd Year)</span>
+                            <span class="show-bn">দ্বাদশ শ্রেণি (২য় বর্ষ)</span>
                         </div>
-                        <div class="pec-note">Students failing even 1 subject in the Test Exam are NOT permitted to fill the HSC Board form.</div>
+                        <div class="pec-exams">
+                            <span class="ai-badge badge-exam">
+                                <span class="show-en">Pre-Test Exam</span>
+                                <span class="show-bn">প্রাক-নির্বাচনী পরীক্ষা</span>
+                            </span>
+                            <span class="ai-badge badge-exam">
+                                <span class="show-en">Test Exam</span>
+                                <span class="show-bn">নির্বাচনী পরীক্ষা</span>
+                            </span>
+                        </div>
+                        <div class="pec-note">
+                            <span class="show-en">Students failing even 1 subject in the Test Exam are NOT permitted to fill the HSC Board form.</span>
+                            <span class="show-bn">নির্বাচনী পরীক্ষায় ১টি বিষয়েও অকৃতকার্য হলে বোর্ড পরীক্ষার ফর্ম পূরণের অনুমতি দেওয়া হবে না।</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -85,15 +138,20 @@ include '../includes/header.php';
                         <i class="<?php echo $g['icon']; ?>"></i>
                     </div>
                     <div>
-                        <div class="pgc-name"><?php echo htmlspecialchars($g['name']); ?></div>
-                        <div class="pgc-bengali"><?php echo htmlspecialchars($g['bengali']); ?></div>
+                        <div class="pgc-name show-en"><?php echo htmlspecialchars($g['name']); ?></div>
+                        <div class="pgc-name show-bn"><?php echo htmlspecialchars($g['bengali']); ?></div>
                     </div>
-                    <span class="pgc-badge" style="background:<?php echo $g['accent']; ?>15;color:<?php echo $g['accent']; ?>;"><?php echo count($g['compulsory']) + count($g['optional']); ?>+ Subjects</span>
+                    <span class="pgc-badge" style="background:<?php echo $g['accent']; ?>15;color:<?php echo $g['accent']; ?>;">
+                        <span class="show-en"><?php echo count($g['compulsory']) + count($g['optional']); ?>+ Subjects</span>
+                        <span class="show-bn"><?php echo count($g['compulsory']) + count($g['optional']); ?>+ বিষয়</span>
+                    </span>
                 </div>
                 <div class="pgc-subjects">
                     <div class="pgc-col">
                         <div class="pgc-col-head" style="color:<?php echo $g['accent']; ?>;">
-                            <i class="fas fa-check-circle"></i> Compulsory Subjects
+                            <i class="fas fa-check-circle"></i> 
+                            <span class="show-en">Compulsory Subjects</span>
+                            <span class="show-bn">বাধ্যতামূলক বিষয়সমূহ</span>
                         </div>
                         <ul class="pgc-subject-list">
                             <?php foreach ($g['compulsory'] as $sub): ?>
@@ -103,7 +161,10 @@ include '../includes/header.php';
                     </div>
                     <div class="pgc-col">
                         <div class="pgc-col-head" style="color:<?php echo $g['accent']; ?>;">
-                            <i class="fas fa-list"></i> Optional Subjects <span class="pgc-note-tag"><?php echo htmlspecialchars($g['optional_note']); ?></span>
+                            <i class="fas fa-list"></i> 
+                            <span class="show-en">Optional Subjects</span>
+                            <span class="show-bn">ঐচ্ছিক বিষয়সমূহ</span>
+                            <span class="pgc-note-tag"><?php echo htmlspecialchars($g['optional_note']); ?></span>
                         </div>
                         <ul class="pgc-subject-list">
                             <?php foreach ($g['optional'] as $sub): ?>
@@ -114,7 +175,10 @@ include '../includes/header.php';
                     <?php if (!empty($g['fourth'])): ?>
                     <div class="pgc-col pgc-fourth-col">
                         <div class="pgc-col-head" style="color:#f59e0b;">
-                            <i class="fas fa-plus-circle"></i> 4th Subject <span class="pgc-note-tag"><?php echo htmlspecialchars($g['fourth_note']); ?></span>
+                            <i class="fas fa-plus-circle"></i> 
+                            <span class="show-en">4th Subject</span>
+                            <span class="show-bn">৪র্থ বিষয়</span>
+                            <span class="pgc-note-tag"><?php echo htmlspecialchars($g['fourth_note']); ?></span>
                         </div>
                         <ul class="pgc-subject-list">
                             <?php foreach ($g['fourth'] as $sub): ?>
@@ -131,7 +195,10 @@ include '../includes/header.php';
             <div class="ai-info-card reveal" style="margin-top:32px;background:linear-gradient(135deg,#f0f9ff,#e0f2fe);border-color:#bae6fd;">
                 <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
                     <i class="fas fa-star" style="color:#0284c7;"></i>
-                    <strong style="font-size:.95rem;color:#0c4a6e;font-family:'Inter',sans-serif;">Grading Scale (HSC)</strong>
+                    <strong style="font-size:.95rem;color:#0c4a6e;font-family:'Inter',sans-serif;">
+                        <span class="show-en">Grading Scale (HSC)</span>
+                        <span class="show-bn">গ্রেডিং স্কেল (এইচএসসি)</span>
+                    </strong>
                 </div>
                 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;">
                     <?php
@@ -154,7 +221,8 @@ include '../includes/header.php';
                 </div>
                 <p style="font-size:.78rem;color:#0369a1;font-family:'Inter',sans-serif;margin-top:14px;padding-top:12px;border-top:1px solid #bae6fd;">
                     <i class="fas fa-info-circle" style="margin-right:5px;"></i>
-                    4th subject bonus: GP above 2.00 is added as bonus to the total GPA. Each internal exam has an independent GPA — no combined totals across exams.
+                    <span class="show-en">4th subject bonus: GP above 2.00 is added as bonus to the total GPA. Each internal exam has an independent GPA — no combined totals across exams.</span>
+                    <span class="show-bn">৪র্থ বিষয়ের বোনাস: জিপি ২.০০ এর উপরে থাকলে তা মোট জিপিএ-তে যুক্ত হয়। প্রতিটি অভ্যন্তরীণ পরীক্ষার আলাদা জিপিএ থাকে — একাধিক পরীক্ষার ফলাফল মিলিয়ে হিসাব করা হয় না।</span>
                 </p>
             </div>
 

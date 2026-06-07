@@ -25,8 +25,14 @@ include '../includes/header.php';
     <section class="page-hero">
         <div class="container ph-content">
 
-            <div class="ph-kicker reveal">Academic Info</div>
-            <h1 class="reveal">Student Instruction</h1>
+            <div class="ph-kicker reveal">
+                <span class="show-en">Academic Info</span>
+                <span class="show-bn">একাডেমিক তথ্য</span>
+            </div>
+            <h1 class="reveal">
+                <span class="show-en">Student Instruction</span>
+                <span class="show-bn">শিক্ষার্থী নির্দেশিকা</span>
+            </h1>
             <p class="reveal">Important instructions for all students of Phulpur Mohila Degree College</p>
         </div>
     </section>

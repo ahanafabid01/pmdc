@@ -12,8 +12,14 @@ include '../includes/header.php';
     <section class="page-hero">
         <div class="container ph-content">
 
-            <div class="ph-kicker reveal">Academic Info</div>
-            <h1 class="reveal">Uniform</h1>
+            <div class="ph-kicker reveal">
+                <span class="show-en">Academic Info</span>
+                <span class="show-bn">একাডেমিক তথ্য</span>
+            </div>
+            <h1 class="reveal">
+                <span class="show-en">Uniform</span>
+                <span class="show-bn">পোশাক বিধি</span>
+            </h1>
             <p class="reveal">Official PMDC uniform guidelines for all students</p>
         </div>
     </section>

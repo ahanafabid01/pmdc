@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/../../config.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/pages/portal/css/login.css?v=<?= time() ?>">
 </head>
 <body>
 
@@ -88,7 +89,7 @@
                             id="btn-select-teacher"
                             aria-label="Continue as Teacher"
                             data-portal="teacher"
-                            data-dest="teacher/index.php"
+                            data-dest="<?= BASE_URL ?>/teacher"
                             data-color="blue"
                             data-label="Teacher Portal"
                             data-icon="fa-chalkboard-teacher">
@@ -106,7 +107,7 @@
                             id="btn-select-admin"
                             aria-label="Continue as Admin"
                             data-portal="admin"
-                            data-dest="admin/index.php"
+                            data-dest="<?= BASE_URL ?>/admin"
                             data-color="purple"
                             data-label="Administration"
                             data-icon="fa-user-shield">
@@ -123,7 +124,7 @@
                 </div>
 
                 <div class="step-footer">
-                    <a href="../../index.php" class="back-link">
+                    <a href="<?= BASE_URL ?>/" class="back-link">
                         <i class="fas fa-arrow-left"></i> Back to Website
                     </a>
                     <span class="copy-year">&copy; <span id="currentYear"></span> PMDC</span>
@@ -220,6 +221,7 @@
 
 </div><!-- /page-wrap -->
 
-<script src="js/login.js"></script>
+<script>window.BASE_URL = "<?= BASE_URL ?>";</script>
+<script src="<?= BASE_URL ?>/pages/portal/js/login.js?v=<?= time() ?>"></script>
 </body>
 </html>

@@ -1,15 +1,21 @@
 <?php
-require_once '../includes/announcements-data.php';
+require_once dirname(__DIR__) . '/config.php';
+require_once dirname(__DIR__) . '/includes/announcements-data.php';
 
 $page = 'announcements';
 $base_path = '../';
 $announcementId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+$announcementSlug = isset($_GET['slug']) ? trim($_GET['slug']) : '';
 $announcements = pmdc_get_published_announcements();
 
 $announcement = null;
 $currentIndex = null;
 foreach ($announcements as $idx => $item) {
-    if ((int)$item['id'] === $announcementId) {
+    if ($announcementId > 0 && (int)$item['id'] === $announcementId) {
+        $announcement = $item;
+        $currentIndex = $idx;
+        break;
+    } elseif ($announcementSlug !== '' && $item['slug'] === $announcementSlug) {
         $announcement = $item;
         $currentIndex = $idx;
         break;
@@ -38,9 +44,7 @@ $page_js = 'announcement-detail.js';
 if ($announcement) {
     $page_title = $announcement['title'] . ' | Announcements | Phulpur Mohila Degree College';
     $page_meta_description = pmdc_meta_excerpt($announcement['body'], 150);
-    $currentUrl = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https://' : 'http://')
-        . ($_SERVER['HTTP_HOST'] ?? 'localhost')
-        . ($_SERVER['REQUEST_URI'] ?? '/pages/announcement-detail.php?id=' . $announcement['id']);
+    $currentUrl = BASE_URL . '/announcement/' . ($announcement['slug'] ? $announcement['slug'] : $announcement['id']);
     $page_meta_tags = "\n"
         . '<meta property="og:title" content="' . htmlspecialchars($announcement['title'], ENT_QUOTES, 'UTF-8') . '">' . "\n"
         . '<meta property="og:description" content="' . htmlspecialchars($page_meta_description, ENT_QUOTES, 'UTF-8') . '">' . "\n"
@@ -69,7 +73,7 @@ include '../includes/header.php';
                 <i class="fas fa-file-circle-xmark"></i>
                 <h2>Announcement Not Found</h2>
                 <p>This announcement may have been removed or does not exist.</p>
-                <a href="announcements.php" class="btn btn-primary">Back to Announcements</a>
+                <a href="<?= BASE_URL ?>/announcement" class="btn btn-primary">Back to Announcements</a>
             </div>
         </div>
     </section>
@@ -148,13 +152,17 @@ include '../includes/header.php';
 
                     <?php if ($prevAnn || $nextAnn): ?>
                         <div class="ann-detail-nav detail-animate">
-                            <?php if ($prevAnn): ?>
-                                <a href="announcement-detail.php?id=<?php echo (int)$prevAnn['id']; ?>" class="ann-nav-link left">
+                            <?php if ($prevAnn): 
+                                $prevUrl = BASE_URL . '/announcement/' . ($prevAnn['slug'] ? $prevAnn['slug'] : $prevAnn['id']);
+                            ?>
+                                <a href="<?php echo $prevUrl; ?>" class="ann-nav-link left">
                                     <span class="arr">&larr;</span> Previous Announcement
                                 </a>
                             <?php endif; ?>
-                            <?php if ($nextAnn): ?>
-                                <a href="announcement-detail.php?id=<?php echo (int)$nextAnn['id']; ?>" class="ann-nav-link right">
+                            <?php if ($nextAnn): 
+                                $nextUrl = BASE_URL . '/announcement/' . ($nextAnn['slug'] ? $nextAnn['slug'] : $nextAnn['id']);
+                            ?>
+                                <a href="<?php echo $nextUrl; ?>" class="ann-nav-link right">
                                     Next Announcement <span class="arr">&rarr;</span>
                                 </a>
                             <?php endif; ?>
@@ -167,8 +175,11 @@ include '../includes/header.php';
                         <h4 class="sc-title"><i class="fas fa-clock"></i> Recent Announcements</h4>
                         <div class="recent-ann-list">
                             <?php foreach ($recentAnnouncements as $recent): ?>
-                                <?php $rts = strtotime($recent['date']); ?>
-                                <a href="announcement-detail.php?id=<?php echo (int)$recent['id']; ?>" class="recent-ann-item">
+                                <?php 
+                                    $rts = strtotime($recent['date']); 
+                                    $recentUrl = BASE_URL . '/announcement/' . ($recent['slug'] ? $recent['slug'] : $recent['id']);
+                                ?>
+                                <a href="<?php echo $recentUrl; ?>" class="recent-ann-item">
                                     <div class="ann-date">
                                         <span class="ad-day"><?php echo date('d', $rts); ?></span>
                                         <span class="ad-mon"><?php echo date('M', $rts); ?></span>
@@ -177,7 +188,7 @@ include '../includes/header.php';
                                 </a>
                             <?php endforeach; ?>
                         </div>
-                        <a href="announcements.php" class="view-all-ann">View All Announcements <i class="fas fa-arrow-right"></i></a>
+                        <a href="<?= BASE_URL ?>/announcement" class="view-all-ann">View All Announcements <i class="fas fa-arrow-right"></i></a>
                     </div>
 
                     <div class="sidebar-card reveal sidebar-stagger">
@@ -198,7 +209,7 @@ include '../includes/header.php';
             </div>
 
             <div class="ann-back-row reveal">
-                <a href="announcements.php" class="ann-back-link">&larr; Back to Announcements</a>
+                <a href="<?= BASE_URL ?>/announcement" class="ann-back-link">&larr; Back to Announcements</a>
             </div>
         </div>
     </section>

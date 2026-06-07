@@ -59,7 +59,7 @@ include '../includes/header.php';
         <div class="reg-closed-title-bn">ভর্তি আবেদন এখনও শুরু হয়নি</div>
         <p class="reg-closed-msg">Degree admission for session <strong><?php echo htmlspecialchars($session); ?></strong> has not started yet.<?php if ($open_date_fmt): ?> Admission will open on <strong><?php echo $open_date_fmt; ?></strong>.<?php endif; ?></p>
         <p class="reg-closed-session">Please check the announcements page for updates.</p>
-        <a href="announcements.php" class="reg-closed-btn"><i class="fas fa-bell"></i> View Announcements →</a>
+        <a href="<?= BASE_URL ?>/announcement" class="reg-closed-btn"><i class="fas fa-bell"></i> View Announcements →</a>
     </div>
 
     <?php elseif ($state === 'closed'): ?>
@@ -69,7 +69,7 @@ include '../includes/header.php';
         <div class="reg-closed-title-bn">ভর্তি আবেদন বন্ধ</div>
         <p class="reg-closed-msg">Degree admission for session <strong><?php echo htmlspecialchars($session); ?></strong> is currently closed.<?php if ($close_date_fmt): ?> The application window closed on <strong><?php echo $close_date_fmt; ?></strong>.<?php endif; ?></p>
         <p class="reg-closed-session">Please check the announcements page for updates on the next session.</p>
-        <a href="announcements.php" class="reg-closed-btn"><i class="fas fa-bell"></i> View Announcements →</a>
+        <a href="<?= BASE_URL ?>/announcement" class="reg-closed-btn"><i class="fas fa-bell"></i> View Announcements →</a>
     </div>
 
     <?php else: /* OPEN */ ?>
@@ -92,7 +92,7 @@ include '../includes/header.php';
                 </div>
             </div>
             <div class="reg-success-btns">
-                <a href="../index.php" class="reg-btn-home"><i class="fas fa-home"></i> Go to Home</a>
+                <a href="<?= BASE_URL ?>/" class="reg-btn-home"><i class="fas fa-home"></i> Go to Home</a>
                 <button class="reg-btn-print" id="btnPrint"><i class="fas fa-print"></i> Print Application</button>
             </div>
         </div>

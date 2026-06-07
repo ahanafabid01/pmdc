@@ -1,7 +1,8 @@
 <?php
+require_once __DIR__ . '/config.php';
 $page       = 'home';
 $page_title = 'Phulpur Mohila Degree College | Excellence in Education';
-require_once 'includes/announcements-data.php';
+require_once __DIR__ . '/includes/announcements-data.php';
 $ticker_notices = array_slice(pmdc_get_published_announcements(), 0, 8);
 include 'includes/header.php';
 ?>
@@ -176,7 +177,7 @@ include 'includes/header.php';
                     <div class="program-content">
                         <h3 data-i18n="home.sci.h3">বিজ্ঞান বিভাগ</h3>
                         <p data-i18n="home.sci.p">পদার্থ, রসায়ন, জীববিজ্ঞান ও উচ্চতর গণিত — পরবর্তী প্রজন্মের বিজ্ঞানী, ডাক্তার ও প্রকৌশলী গড়ে তোলে। বিষয় কোড: 174–179, 265–266.</p>
-                        <a href="pages/academics.php#groups" class="read-more"><span data-i18n="home.viewsubjects">বিষয়সমূহ দেখুন</span> <i class="fas fa-arrow-right"></i></a>
+                        <a href="<?= BASE_URL ?>/academic/class-routine#groups" class="read-more"><span data-i18n="home.viewsubjects">বিষয়সমূহ দেখুন</span> <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </article>
 
@@ -190,7 +191,7 @@ include 'includes/header.php';
                     <div class="program-content">
                         <h3 data-i18n="home.com.h3">ব্যবসায় শিক্ষা বিভাগ</h3>
                         <p data-i18n="home.com.p">হিসাব বিজ্ঞান, ব্যবসায়নীতি ও প্রয়োগ, মার্কেটিং, অর্থনীতি ও ভূগোল — আগামীর ব্যবসায়িক নেতৃত্ব গড়ে তোলে। বিষয় কোড: 253–254, 277–278, 286–293.</p>
-                        <a href="pages/academics.php#groups" class="read-more"><span data-i18n="home.viewsubjects">বিষয়সমূহ দেখুন</span> <i class="fas fa-arrow-right"></i></a>
+                        <a href="<?= BASE_URL ?>/academic/class-routine#groups" class="read-more"><span data-i18n="home.viewsubjects">বিষয়সমূহ দেখুন</span> <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </article>
 
@@ -204,7 +205,7 @@ include 'includes/header.php';
                     <div class="program-content">
                         <h3 data-i18n="home.hum.h3">মানবিক বিভাগ</h3>
                         <p data-i18n="home.hum.p">পৌরনীতি, অর্থনীতি, যুক্তিবিদ্যা, সমাজকর্ম, ইতিহাস, ভূগোল ও ইসলাম শিক্ষা — চিন্তাশীল নাগরিক ও সহানুভূতিশীল সামাজিক চিন্তাবিদ গড়ে তোলে। বিষয় কোড: 109–118, 269–305.</p>
-                        <a href="pages/academics.php#groups" class="read-more"><span data-i18n="home.viewsubjects">বিষয়সমূহ দেখুন</span> <i class="fas fa-arrow-right"></i></a>
+                        <a href="<?= BASE_URL ?>/academic/class-routine#groups" class="read-more"><span data-i18n="home.viewsubjects">বিষয়সমূহ দেখুন</span> <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </article>
 
@@ -260,7 +261,7 @@ include 'includes/header.php';
                     <div class="program-content">
                         <h3 data-i18n="home.bss.h3">সমাজবিজ্ঞান বিভাগ (বিএসএস)</h3>
                         <p data-i18n="home.bss.p">ইতিহাস, দর্শন, রাষ্ট্রবিজ্ঞান, ইসলামিক স্টাডিজ, অর্থনীতি ও সমাজকল্যাণ — সামাজিকভাবে সচেতন নেতৃত্ব গড়ে তোলে।</p>
-                        <a href="pages/degree-program.php" class="read-more"><span data-i18n="home.viewprog">প্রোগ্রাম দেখুন</span> <i class="fas fa-arrow-right"></i></a>
+                        <a href="<?= BASE_URL ?>/academic/class-routine" class="read-more"><span data-i18n="home.viewprog">প্রোগ্রাম দেখুন</span> <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </article>
 
@@ -288,7 +289,7 @@ include 'includes/header.php';
                     <div class="program-content">
                         <h3 data-i18n="home.bmt.h3">ব্যবসায় ব্যবস্থাপনা ও প্রযুক্তি (বিএমটি)</h3>
                         <p data-i18n="home.bmt.p">হিসাব বিজ্ঞান, মার্কেটিং, অর্থনীতি, ব্যবসায়িক গণিত, কম্পিউটার অ্যাপ্লিকেশন ও ডিজিটাল টেকনোলজি — ব্যবসা ও প্রযুক্তির সমন্বয়ে আধুনিক প্রোগ্রাম।</p>
-                        <a href="pages/degree-program.php" class="read-more"><span data-i18n="home.viewprog">প্রোগ্রাম দেখুন</span> <i class="fas fa-arrow-right"></i></a>
+                        <a href="<?= BASE_URL ?>/academic/class-routine" class="read-more"><span data-i18n="home.viewprog">প্রোগ্রাম দেখুন</span> <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </article>
 
@@ -317,7 +318,7 @@ include 'includes/header.php';
                         if ($news_count >= 3) break;
                         $news_count++;
                         $ts = strtotime($item['date']);
-                        $detailUrl = 'pages/announcement-detail.php?id=' . urlencode((string)$item['id']);
+                        $detailUrl = BASE_URL . '/announcement/' . ($item['slug'] ? $item['slug'] : $item['id']);
                         
                         $icon = 'fa-bell';
                         if ($item['category'] === 'academic') $icon = 'fa-graduation-cap';
@@ -357,7 +358,7 @@ include 'includes/header.php';
                         if ($event_count >= 3) break;
                         $event_count++;
                         $ts = strtotime($item['date']);
-                        $detailUrl = 'pages/announcement-detail.php?id=' . urlencode((string)$item['id']);
+                        $detailUrl = BASE_URL . '/announcement/' . ($item['slug'] ? $item['slug'] : $item['id']);
                         
                         $clean_body = trim(preg_replace('/\s+/', ' ', $item['body']));
                         $excerpt = (strlen($clean_body) > 80) ? rtrim(substr($clean_body, 0, 79)) . '...' : $clean_body;

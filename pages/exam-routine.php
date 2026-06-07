@@ -81,8 +81,14 @@ include '../includes/header.php';
     <section class="page-hero">
         <div class="container ph-content">
 
-            <div class="ph-kicker reveal">Academic Info</div>
-            <h1 class="reveal">Exam Routine</h1>
+            <div class="ph-kicker reveal">
+                <span class="show-en">Academic Info</span>
+                <span class="show-bn">একাডেমিক তথ্য</span>
+            </div>
+            <h1 class="reveal">
+                <span class="show-en">Exam Routine</span>
+                <span class="show-bn">পরীক্ষার রুটিন</span>
+            </h1>
             <p class="reveal">Examination schedule for each year and exam type</p>
         </div>
     </section>

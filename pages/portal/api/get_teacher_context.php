@@ -4,8 +4,8 @@
  * Returns the authenticated teacher's assigned programs, subjects and real students.
  */
 header('Content-Type: application/json');
-require_once '../../../includes/session_check.php';
-require_once '../../../includes/config.php';
+require_once __DIR__ . '/../../../includes/session_check.php';
+require_once __DIR__ . '/../../../includes/config.php';
 
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'teacher') {
     echo json_encode(['ok' => false, 'msg' => 'Unauthorized']);

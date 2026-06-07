@@ -22,18 +22,35 @@ function pmdc_announcements_db() {
     return $pdo;
 }
 
+function pmdc_generate_slug($title) {
+    $slug = strtolower(trim($title));
+    $slug = preg_replace('/[^a-z0-9\s\-]/', '', $slug);
+    $slug = preg_replace('/[\s\-]+/', '-', $slug);
+    return trim($slug, '-');
+}
+
 function pmdc_announcements_init() {
     $db = pmdc_announcements_db();
     if (!$db) return false;
 
     $check = $db->query("SHOW TABLES LIKE 'pmdc_announcements'");
     if ($check && $check->rowCount() > 0) {
+        $check_col = $db->query("SHOW COLUMNS FROM pmdc_announcements LIKE 'slug'");
+        if ($check_col && $check_col->rowCount() == 0) {
+            $db->exec("ALTER TABLE pmdc_announcements ADD COLUMN slug VARCHAR(255) UNIQUE AFTER title");
+            $rows = $db->query("SELECT id, title FROM pmdc_announcements")->fetchAll();
+            $upd = $db->prepare("UPDATE pmdc_announcements SET slug = ? WHERE id = ?");
+            foreach ($rows as $r) {
+                $upd->execute([pmdc_generate_slug($r['title']), $r['id']]);
+            }
+        }
         return true;
     }
 
     $sql = "CREATE TABLE pmdc_announcements (
         id INT AUTO_INCREMENT PRIMARY KEY,
         title VARCHAR(255) NOT NULL,
+        slug VARCHAR(255) UNIQUE,
         category VARCHAR(50) DEFAULT 'notice',
         category_label VARCHAR(50) DEFAULT 'Notice',
         badge_label VARCHAR(50) DEFAULT '',
@@ -121,9 +138,10 @@ function pmdc_announcements_init() {
             ],
         ];
 
-        $stmt = $db->prepare("INSERT INTO pmdc_announcements (title, category, category_label, badge_label, badge_class, date, author, published, body, attachment) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt = $db->prepare("INSERT INTO pmdc_announcements (title, slug, category, category_label, badge_label, badge_class, date, author, published, body, attachment) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         foreach ($items as $item) {
-            $stmt->execute([$item['title'], $item['category'], $item['category_label'], $item['badge_label'], $item['badge_class'], $item['date'], $item['author'], $item['published'], $item['body'], $item['attachment']]);
+            $slug = pmdc_generate_slug($item['title']);
+            $stmt->execute([$item['title'], $slug, $item['category'], $item['category_label'], $item['badge_label'], $item['badge_class'], $item['date'], $item['author'], $item['published'], $item['body'], $item['attachment']]);
         }
     }
     return true;
@@ -185,13 +203,33 @@ function pmdc_find_published_announcement_by_id($id) {
     return null;
 }
 
+function pmdc_find_published_announcement_by_slug($slug) {
+    pmdc_announcements_init();
+    $db = pmdc_announcements_db();
+    if (!$db) return null;
+
+    $stmt = $db->prepare("SELECT * FROM pmdc_announcements WHERE slug = ? AND published = 1 LIMIT 1");
+    $stmt->execute([$slug]);
+    $row = $stmt->fetch();
+    
+    if ($row) {
+        if ($row['attachment']) {
+            $row['attachment'] = json_decode($row['attachment'], true);
+        } else {
+            $row['attachment'] = null;
+        }
+        return $row;
+    }
+    return null;
+}
+
 // Admin API helper functions
 function pmdc_announcement_insert($data) {
     pmdc_announcements_init();
     $db = pmdc_announcements_db();
     if (!$db) return false;
 
-    $stmt = $db->prepare("INSERT INTO pmdc_announcements (title, category, category_label, badge_label, badge_class, date, author, published, body, attachment) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $db->prepare("INSERT INTO pmdc_announcements (title, slug, category, category_label, badge_label, badge_class, date, author, published, body, attachment) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $published = $data['published'] ? 1 : 0;
     
     $attachment = null;
@@ -199,8 +237,10 @@ function pmdc_announcement_insert($data) {
         $attachment = json_encode($data['attachment']);
     }
 
+    $slug = pmdc_generate_slug($data['title']);
+
     return $stmt->execute([
-        $data['title'], $data['category'], $data['category_label'], $data['badge_label'], $data['badge_class'], 
+        $data['title'], $slug, $data['category'], $data['category_label'], $data['badge_label'], $data['badge_class'], 
         $data['date'], $data['author'], $published, $data['body'], $attachment
     ]);
 }
@@ -210,7 +250,7 @@ function pmdc_announcement_update($id, $data) {
     $db = pmdc_announcements_db();
     if (!$db) return false;
 
-    $stmt = $db->prepare("UPDATE pmdc_announcements SET title=?, category=?, category_label=?, badge_label=?, badge_class=?, date=?, author=?, published=?, body=?, attachment=? WHERE id=?");
+    $stmt = $db->prepare("UPDATE pmdc_announcements SET title=?, slug=?, category=?, category_label=?, badge_label=?, badge_class=?, date=?, author=?, published=?, body=?, attachment=? WHERE id=?");
     $published = $data['published'] ? 1 : 0;
 
     $attachment = null;
@@ -218,8 +258,10 @@ function pmdc_announcement_update($id, $data) {
         $attachment = json_encode($data['attachment']);
     }
 
+    $slug = pmdc_generate_slug($data['title']);
+
     return $stmt->execute([
-        $data['title'], $data['category'], $data['category_label'], $data['badge_label'], $data['badge_class'], 
+        $data['title'], $slug, $data['category'], $data['category_label'], $data['badge_label'], $data['badge_class'], 
         $data['date'], $data['author'], $published, $data['body'], $attachment, (int)$id
     ]);
 }

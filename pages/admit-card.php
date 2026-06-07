@@ -44,8 +44,14 @@ include '../includes/header.php';
     <section class="page-hero">
         <div class="container ph-content">
 
-            <div class="ph-kicker reveal">Academic Info</div>
-            <h1 class="reveal">Admit Card</h1>
+            <div class="ph-kicker reveal">
+                <span class="show-en">Academic Info</span>
+                <span class="show-bn">একাডেমিক তথ্য</span>
+            </div>
+            <h1 class="reveal">
+                <span class="show-en">Admit Card</span>
+                <span class="show-bn">প্রবেশপত্র</span>
+            </h1>
             <p class="reveal">Download your examination admit card by entering your roll number</p>
         </div>
     </section>

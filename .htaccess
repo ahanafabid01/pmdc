@@ -1,0 +1,89 @@
+Options -Indexes
+RewriteEngine On
+RewriteBase /pmdc/
+
+# Let real files and folders through (CSS, JS, images, uploads)
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Remove trailing slash (except root)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+# =====================
+# PUBLIC PAGES
+# =====================
+
+RewriteRule ^$ index.php [L]
+RewriteRule ^about/?$ pages/about.php [L]
+RewriteRule ^contact/?$ pages/contact.php [L]
+
+# Programs
+RewriteRule ^hsc-program/?$ pages/hsc-program.php [L]
+RewriteRule ^degree-program/?$ pages/degree-program.php [L]
+
+# Announcement
+RewriteRule ^announcement/?$ pages/announcements.php [L]
+RewriteRule ^announcement/([0-9]+)/?$ pages/announcement-detail.php?id=$1 [L]
+RewriteRule ^announcement/([a-z0-9\-]+)/?$ pages/announcement-detail.php?slug=$1 [L]
+
+# Teachers & Staff
+RewriteRule ^teachers/?$ pages/teachers.php [L]
+
+# Gallery
+RewriteRule ^gallery/?$ pages/gallery.php [L]
+
+# Results
+RewriteRule ^results/?$ pages/results.php [L]
+
+# Academic Info
+RewriteRule ^academic/holiday-list/?$ pages/holiday-list.php [L]
+RewriteRule ^academic/calendar/?$ pages/academic-calendar.php [L]
+RewriteRule ^academic/class-routine/?$ pages/class-routine.php [L]
+RewriteRule ^academic/exam-routine/?$ pages/exam-routine.php [L]
+RewriteRule ^academic/syllabus/?$ pages/syllabus.php [L]
+RewriteRule ^academic/uniform/?$ pages/uniform.php [L]
+RewriteRule ^academic/rules/?$ pages/rules-regulation.php [L]
+RewriteRule ^academic/student-instruction/?$ pages/student-instruction.php [L]
+RewriteRule ^academic/admit-card/?$ pages/admit-card.php [L]
+RewriteRule ^academic/hsc-form/?$ pages/hsc-form-fillup.php [L]
+RewriteRule ^academic/degree-form/?$ pages/degree-form-fillup.php [L]
+RewriteRule ^academic/monitoring-committee/?$ pages/monitoring-committee.php [L]
+RewriteRule ^academic/guide-teachers/?$ pages/guide-teachers.php [L]
+
+# Apply / Registration
+RewriteRule ^apply/hsc/?$ pages/register-hsc.php [L]
+RewriteRule ^apply/degree/?$ pages/register-degree.php [L]
+
+# =====================
+# ADMIN PAGES
+# =====================
+
+RewriteRule ^admin/?$ pages/portal/admin/index.php [L]
+RewriteRule ^admin/login/?$ pages/portal/portal-login.php [L]
+RewriteRule ^admin/students/?$ pages/portal/admin/students.php [L]
+RewriteRule ^admin/results/?$ pages/portal/admin/results.php [L]
+RewriteRule ^admin/announcement/?$ pages/portal/admin/announcements.php [L]
+RewriteRule ^admin/attendance/?$ pages/portal/admin/attendance.php [L]
+RewriteRule ^admin/staff/?$ pages/portal/admin/teacher.php [L]
+RewriteRule ^admin/gallery/?$ pages/portal/admin/gallery.php [L]
+RewriteRule ^admin/registration/?$ pages/portal/admin/registration-hsc.php [L]
+RewriteRule ^admin/academics/?$ pages/portal/admin/academics.php [L]
+RewriteRule ^admin/holiday-list/?$ pages/portal/admin/academics.php [L]
+RewriteRule ^admin/calendar/?$ pages/portal/admin/academic-calendar.php [L]
+RewriteRule ^admin/class-routine/?$ pages/portal/admin/academics.php [L]
+RewriteRule ^admin/exam-routine/?$ pages/portal/admin/academics.php [L]
+RewriteRule ^admin/syllabus/?$ pages/portal/admin/academics.php [L]
+RewriteRule ^admin/uniform/?$ pages/portal/admin/academics.php [L]
+RewriteRule ^admin/rules/?$ pages/portal/admin/academics.php [L]
+RewriteRule ^admin/student-instruction/?$ pages/portal/admin/academics.php [L]
+RewriteRule ^admin/admit-card/?$ pages/portal/admin/academics.php [L]
+RewriteRule ^admin/hsc-form/?$ pages/portal/admin/registration-hsc.php [L]
+RewriteRule ^admin/monitoring-committee/?$ pages/portal/admin/academics.php [L]
+RewriteRule ^admin/guide-teachers/?$ pages/portal/admin/teacher.php [L]
+
+# =====================
+# 404 FALLBACK
+# =====================
+RewriteRule ^(.*)$ pages/404.php [L]

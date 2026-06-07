@@ -33,8 +33,8 @@ include '../includes/header.php';
 <section class="page-hero">
     <div class="container ph-content">
         <nav class="ph-breadcrumb reveal">
-            <a href="../index.php">Home</a> <i class="fas fa-chevron-right"></i>
-            <a href="degree-form-fillup.php">HSC Form Fillup</a> <i class="fas fa-chevron-right"></i>
+            <a href="<?= BASE_URL ?>/">Home</a> <i class="fas fa-chevron-right"></i>
+            <a href="<?= BASE_URL ?>/academic/degree-form">HSC Form Fillup</a> <i class="fas fa-chevron-right"></i>
             <span>Apply Now</span>
         </nav>
         <div class="ph-kicker reveal">ADMISSION <?php echo htmlspecialchars($session); ?>); ?></div>
@@ -79,7 +79,7 @@ include '../includes/header.php';
             <?php endif; ?>
         </p>
         <p class="reg-closed-session">Please check the announcements page for updates.</p>
-        <a href="announcements.php" class="reg-closed-btn"><i class="fas fa-bell"></i> View Announcements →</a>
+        <a href="<?= BASE_URL ?>/announcement" class="reg-closed-btn"><i class="fas fa-bell"></i> View Announcements →</a>
     </div>
 
     <?php elseif ($state === 'closed'): ?>
@@ -95,7 +95,7 @@ include '../includes/header.php';
             <?php endif; ?>
         </p>
         <p class="reg-closed-session">Please check the announcements page for updates on the next session.</p>
-        <a href="announcements.php" class="reg-closed-btn"><i class="fas fa-bell"></i> View Announcements →</a>
+        <a href="<?= BASE_URL ?>/announcement" class="reg-closed-btn"><i class="fas fa-bell"></i> View Announcements →</a>
     </div>
 
     <?php else: /* OPEN */ ?>
@@ -117,7 +117,7 @@ include '../includes/header.php';
                 <strong>Your application is under review.</strong> Please visit the college with all original documents within <strong>7 days</strong> of submission for verification.
             </div>
             <div class="reg-success-btns">
-                <a href="../index.php" class="reg-btn-home"><i class="fas fa-home"></i> Go to Home</a>
+                <a href="<?= BASE_URL ?>/" class="reg-btn-home"><i class="fas fa-home"></i> Go to Home</a>
                 <button class="reg-btn-print" id="btnPrint"><i class="fas fa-print"></i> Print Application</button>
             </div>
         </div>

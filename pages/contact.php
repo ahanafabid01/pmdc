@@ -9,9 +9,18 @@ include '../includes/header.php';
     <!-- ══════════════════ PAGE HEADER ══════════════════ -->
     <section class="page-hero">
         <div class="container ph-content">
-            <div class="ph-kicker reveal">Get in Touch</div>
-            <h1 class="reveal">Contact Us</h1>
-            <p class="reveal">We're here to help. Reach out to us for admission queries, academic information, or general enquiries about Phulpur Mohila Degree College.</p>
+            <div class="ph-kicker reveal">
+                <span class="show-en">Get in Touch</span>
+                <span class="show-bn">যোগাযোগ করুন</span>
+            </div>
+            <h1 class="reveal">
+                <span class="show-en">Contact Us</span>
+                <span class="show-bn">যোগাযোগ</span>
+            </h1>
+            <p class="reveal">
+                <span class="show-en">We're here to help. Reach out to us for admission queries, academic information, or general enquiries about Phulpur Mohila Degree College.</span>
+                <span class="show-bn">আমরা সাহায্য করতে এখানে আছি। ভর্তি, একাডেমিক তথ্য বা কলেজের সাধারণ জিজ্ঞাসার জন্য আমাদের সাথে যোগাযোগ করুন।</span>
+            </p>
         </div>
     </section>
 
@@ -25,30 +34,51 @@ include '../includes/header.php';
 
                     <!-- Address Card -->
                     <div class="info-card reveal">
-                        <h3>Visit Our College</h3>
-                        <p>Our college office is open Sunday through Thursday during office hours. Walk-in visits are welcome.</p>
+                        <h3>
+                            <span class="show-en">Visit Our College</span>
+                            <span class="show-bn">আমাদের কলেজ পরিদর্শন করুন</span>
+                        </h3>
+                        <p>
+                            <span class="show-en">Our college office is open Sunday through Thursday during office hours. Walk-in visits are welcome.</span>
+                            <span class="show-bn">আমাদের কলেজ অফিস রবিবার থেকে বৃহস্পতিবার অফিস চলাকালীন খোলা থাকে। সরাসরি পরিদর্শন করতে পারেন।</span>
+                        </p>
 
                         <div class="info-item">
                             <div class="ii-icon"><i class="fas fa-map-marker-alt"></i></div>
                             <div class="ii-body">
-                                <div class="ii-label">Address</div>
-                                <div class="ii-val">Phulpur, Mymensingh District<br>Bangladesh</div>
+                                <div class="ii-label">
+                                    <span class="show-en">Address</span>
+                                    <span class="show-bn">ঠিকানা</span>
+                                </div>
+                                <div class="ii-val">
+                                    <span class="show-en">Phulpur, Mymensingh District<br>Bangladesh</span>
+                                    <span class="show-bn">ফুলপুর, ময়মনসিংহ জেলা<br>বাংলাদেশ</span>
+                                </div>
                             </div>
                         </div>
 
                         <div class="info-item">
                             <div class="ii-icon"><i class="fas fa-phone"></i></div>
                             <div class="ii-body">
-                                <div class="ii-label">Phone</div>
+                                <div class="ii-label">
+                                    <span class="show-en">Phone</span>
+                                    <span class="show-bn">ফোন</span>
+                                </div>
                                 <div class="ii-val"><a href="tel:01712-227983">01712-227983</a></div>
-                                <div class="ii-note">Principal: Rowshan Ara Begum</div>
+                                <div class="ii-note">
+                                    <span class="show-en">Principal: Rowshan Ara Begum</span>
+                                    <span class="show-bn">অধ্যক্ষ: রওশন আরা বেগম</span>
+                                </div>
                             </div>
                         </div>
 
                         <div class="info-item">
                             <div class="ii-icon"><i class="fas fa-envelope"></i></div>
                             <div class="ii-body">
-                                <div class="ii-label">General Email</div>
+                                <div class="ii-label">
+                                    <span class="show-en">General Email</span>
+                                    <span class="show-bn">সাধারণ ইমেইল</span>
+                                </div>
                                 <div class="ii-val"><a href="mailto:pmdc@edu.bd">pmdc@edu.bd</a></div>
                             </div>
                         </div>
@@ -56,7 +86,10 @@ include '../includes/header.php';
                         <div class="info-item">
                             <div class="ii-icon"><i class="fas fa-file-alt"></i></div>
                             <div class="ii-body">
-                                <div class="ii-label">Examination Cell</div>
+                                <div class="ii-label">
+                                    <span class="show-en">Examination Cell</span>
+                                    <span class="show-bn">পরীক্ষা সেল</span>
+                                </div>
                                 <div class="ii-val"><a href="mailto:exam@pmdc.edu.bd">exam@pmdc.edu.bd</a></div>
                             </div>
                         </div>
@@ -64,7 +97,10 @@ include '../includes/header.php';
 
                     <!-- Social -->
                     <div class="social-card reveal">
-                        <div class="sc-label">Follow Us</div>
+                        <div class="sc-label">
+                            <span class="show-en">Follow Us</span>
+                            <span class="show-bn">আমাদের অনুসরণ করুন</span>
+                        </div>
                         <div class="sc-links">
                             <a href="#" class="sc-btn sc-fb" aria-label="Facebook"><i class="fab fa-facebook-f"></i> Facebook</a>
                             <a href="#" class="sc-btn sc-yt" aria-label="YouTube"><i class="fab fa-youtube"></i> YouTube</a>
@@ -77,54 +113,104 @@ include '../includes/header.php';
                 <div class="contact-form-wrap reveal">
                     <div class="form-card">
                         <div class="fc-head">
-                            <h2>Send a Message</h2>
-                            <p>Fill in the form below and our office team will respond within 1–2 working days.</p>
+                            <h2>
+                                <span class="show-en">Send a Message</span>
+                                <span class="show-bn">একটি বার্তা পাঠান</span>
+                            </h2>
+                            <p>
+                                <span class="show-en">Fill in the form below and our office team will respond within 1–2 working days.</span>
+                                <span class="show-bn">নিচের ফর্মটি পূরণ করুন এবং আমাদের অফিস টিম ১-২ কার্যদিবসের মধ্যে উত্তর দেবে।</span>
+                            </p>
                         </div>
 
                         <div id="successMsg" class="form-success" style="display:none;">
                             <i class="fas fa-check-circle"></i>
                             <div>
-                                <strong>Message sent!</strong>
-                                <span>Thank you. We'll get back to you within 1–2 working days.</span>
+                                <strong>
+                                    <span class="show-en">Message sent!</span>
+                                    <span class="show-bn">বার্তা পাঠানো হয়েছে!</span>
+                                </strong>
+                                <span>
+                                    <span class="show-en">Thank you. We'll get back to you within 1–2 working days.</span>
+                                    <span class="show-bn">ধন্যবাদ। আমরা ১-২ কার্যদিবসের মধ্যে আপনার সাথে যোগাযোগ করব।</span>
+                                </span>
                             </div>
                         </div>
 
                         <form id="contactForm" onsubmit="handleContact(event)">
                             <div class="cf-row">
                                 <div class="form-group">
-                                    <label for="cf_name">Full Name <span class="req">*</span></label>
-                                    <input type="text" id="cf_name" placeholder="Your full name" required>
+                                    <label for="cf_name">
+                                        <span class="show-en">Full Name</span>
+                                        <span class="show-bn">পুরো নাম</span>
+                                        <span class="req">*</span>
+                                    </label>
+                                    <input type="text" id="cf_name" data-i18n-ph="cf.name.ph" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="cf_email">Email Address <span class="req">*</span></label>
-                                    <input type="email" id="cf_email" placeholder="you@example.com" required>
+                                    <label for="cf_email">
+                                        <span class="show-en">Email Address</span>
+                                        <span class="show-bn">ইমেইল ঠিকানা</span>
+                                        <span class="req">*</span>
+                                    </label>
+                                    <input type="email" id="cf_email" data-i18n-ph="cf.email.ph" required>
                                 </div>
                             </div>
                             <div class="cf-row">
                                 <div class="form-group">
-                                    <label for="cf_phone">Phone Number</label>
-                                    <input type="tel" id="cf_phone" placeholder="+880 1XXX-XXXXXX">
+                                    <label for="cf_phone">
+                                        <span class="show-en">Phone Number</span>
+                                        <span class="show-bn">ফোন নম্বর</span>
+                                    </label>
+                                    <input type="tel" id="cf_phone" data-i18n-ph="cf.phone.ph">
                                 </div>
                                 <div class="form-group">
-                                    <label for="cf_subject">Subject <span class="req">*</span></label>
+                                    <label for="cf_subject">
+                                        <span class="show-en">Subject</span>
+                                        <span class="show-bn">বিষয়</span>
+                                        <span class="req">*</span>
+                                    </label>
                                     <select id="cf_subject" required>
-                                        <option value="">Select a topic…</option>
-                                        <option value="admission">Admission Enquiry</option>
-                                        <option value="results">Results &amp; Examination</option>
-                                        <option value="scholarship">Scholarship</option>
-                                        <option value="academic">Academic Information</option>
-                                        <option value="other">Other</option>
+                                        <option value="" class="show-en">Select a topic…</option>
+                                        <option value="" class="show-bn">একটি বিষয় নির্বাচন করুন…</option>
+                                        
+                                        <option value="admission" class="show-en">Admission Enquiry</option>
+                                        <option value="admission" class="show-bn">ভর্তি জিজ্ঞাসা</option>
+                                        
+                                        <option value="results" class="show-en">Results &amp; Examination</option>
+                                        <option value="results" class="show-bn">ফলাফল ও পরীক্ষা</option>
+                                        
+                                        <option value="scholarship" class="show-en">Scholarship</option>
+                                        <option value="scholarship" class="show-bn">বৃত্তি</option>
+                                        
+                                        <option value="academic" class="show-en">Academic Information</option>
+                                        <option value="academic" class="show-bn">একাডেমিক তথ্য</option>
+                                        
+                                        <option value="other" class="show-en">Other</option>
+                                        <option value="other" class="show-bn">অন্যান্য</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="cf_message">Message <span class="req">*</span></label>
-                                <textarea id="cf_message" rows="5" placeholder="Write your message here…" required></textarea>
+                                <label for="cf_message">
+                                    <span class="show-en">Message</span>
+                                    <span class="show-bn">বার্তা</span>
+                                    <span class="req">*</span>
+                                </label>
+                                <textarea id="cf_message" rows="5" data-i18n-ph="cf.msg.ph" required></textarea>
                             </div>
 
                             <button type="submit" class="btn btn-primary btn-submit" id="submitBtn">
-                                <span class="btn-text"><i class="fas fa-paper-plane"></i> Send Message</span>
-                                <span class="btn-spin" style="display:none;"><i class="fas fa-spinner fa-spin"></i> Sending…</span>
+                                <span class="btn-text">
+                                    <i class="fas fa-paper-plane"></i> 
+                                    <span class="show-en">Send Message</span>
+                                    <span class="show-bn">বার্তা পাঠান</span>
+                                </span>
+                                <span class="btn-spin" style="display:none;">
+                                    <i class="fas fa-spinner fa-spin"></i> 
+                                    <span class="show-en">Sending…</span>
+                                    <span class="show-bn">পাঠানো হচ্ছে…</span>
+                                </span>
                             </button>
                         </form>
                     </div>

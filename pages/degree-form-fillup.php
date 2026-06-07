@@ -144,7 +144,7 @@ include '../includes/header.php';
                 </div>
                 <div style="flex-shrink:0;">
                     <?php if ($reg_state === 'open'): ?>
-                    <a href="register-degree.php"
+                    <a href="<?= BASE_URL ?>/apply/degree"
                        style="display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:12px;background:#2563eb;color:#fff;font-size:.95rem;font-weight:800;text-decoration:none;font-family:'Inter',sans-serif;box-shadow:0 4px 16px rgba(37,99,235,.4);transition:all .2s;"
                        onmouseover="this.style.background='#1d4ed8';this.style.transform='translateY(-2px)';"
                        onmouseout="this.style.background='#2563eb';this.style.transform='';">
@@ -155,7 +155,7 @@ include '../includes/header.php';
                         <i class="fas fa-hourglass-half"></i> <span data-i18n="fillup.not_open_btn">Not Open Yet</span>
                     </span>
                     <?php else: ?>
-                    <a href="announcements.php"
+                    <a href="<?= BASE_URL ?>/announcement"
                        style="display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:12px;border:1.5px solid rgba(255,255,255,.25);background:transparent;color:rgba(255,255,255,.8);font-size:.88rem;font-weight:700;text-decoration:none;font-family:'Inter',sans-serif;transition:all .2s;"
                        onmouseover="this.style.background='rgba(255,255,255,.1)';"
                        onmouseout="this.style.background='transparent';">

@@ -8,9 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/teacher.css">
-    <link rel="stylesheet" href="css/academics.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/pages/portal/admin/css/styles.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/pages/portal/admin/css/teacher.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/pages/portal/admin/css/academics.css">
 </head>
 <body>
 
@@ -30,20 +30,20 @@
         </div>
         <nav class="sidebar-nav">
             <span class="nav-section-label">Main</span>
-            <a href="index.php" class="nav-item"><i class="fas fa-th-large"></i><span>Dashboard</span></a>
-            <a href="students.php" class="nav-item"><i class="fas fa-users"></i><span>Students</span></a>
-            <a href="teacher.php" class="nav-item"><i class="fas fa-chalkboard-teacher"></i><span>Teachers &amp; Staff</span></a>
-            <a href="gallery.php" class="nav-item"><i class="fas fa-images"></i><span>Gallery</span></a>
-            <a href="academics.php" class="nav-item active"><i class="fas fa-book-open"></i><span>Academics</span></a>
-            <a href="results.php" class="nav-item"><i class="fas fa-graduation-cap"></i><span>Results</span></a>
+            <a href="<?= BASE_URL ?>/admin" class="nav-item"><i class="fas fa-th-large"></i><span>Dashboard</span></a>
+            <a href="<?= BASE_URL ?>/admin/students" class="nav-item"><i class="fas fa-users"></i><span>Students</span></a>
+            <a href="<?= BASE_URL ?>/admin/staff" class="nav-item"><i class="fas fa-chalkboard-teacher"></i><span>Teachers &amp; Staff</span></a>
+            <a href="<?= BASE_URL ?>/admin/gallery" class="nav-item"><i class="fas fa-images"></i><span>Gallery</span></a>
+            <a href="<?= BASE_URL ?>/admin/academics" class="nav-item active"><i class="fas fa-book-open"></i><span>Academics</span></a>
+            <a href="<?= BASE_URL ?>/admin/results" class="nav-item"><i class="fas fa-graduation-cap"></i><span>Results</span></a>
             <div class="nav-divider"></div>
             <span class="nav-section-label">Management</span>
-            <a href="academic-calendar.php" class="nav-item"><i class="fas fa-calendar-alt"></i><span>Academic Calendar</span></a>
-            <a href="assign_teachers.php" class="nav-item"><i class="fas fa-tasks"></i><span>Assign Teachers</span></a>
+            <a href="<?= BASE_URL ?>/admin/calendar" class="nav-item"><i class="fas fa-calendar-alt"></i><span>Academic Calendar</span></a>
+            <a href="<?= BASE_URL ?>/admin/assign-teachers" class="nav-item"><i class="fas fa-tasks"></i><span>Assign Teachers</span></a>
             <a href="#" class="nav-item"><i class="fas fa-file-invoice-dollar"></i><span>Finance</span></a>
-            <a href="announcements.php" class="nav-item"><i class="fas fa-bell"></i><span>Announcements</span></a>
-            <a href="registration-hsc.php" class="nav-item"><i class="fas fa-file-alt"></i><span>HSC Registration</span></a>
-            <a href="registration-degree.php" class="nav-item"><i class="fas fa-university"></i><span>Degree Registration</span></a>
+            <a href="<?= BASE_URL ?>/admin/announcement" class="nav-item"><i class="fas fa-bell"></i><span>Announcements</span></a>
+            <a href="<?= BASE_URL ?>/admin/registration" class="nav-item"><i class="fas fa-file-alt"></i><span>HSC Registration</span></a>
+            <a href="<?= BASE_URL ?>/admin/registration-degree" class="nav-item"><i class="fas fa-university"></i><span>Degree Registration</span></a>
             <a href="#" class="nav-item"><i class="fas fa-chart-line"></i><span>Reports</span></a>
             <div class="nav-divider"></div>
             <span class="nav-section-label">System</span>
@@ -65,7 +65,7 @@
         <header class="top-header">
             <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
             <div class="th-breadcrumb">
-                <a href="index.php">Dashboard</a>
+                <a href="<?= BASE_URL ?>/admin">Dashboard</a>
                 <i class="fas fa-chevron-right"></i>
                 <span>Academics</span>
             </div>
@@ -79,7 +79,7 @@
                     <img src="https://ui-avatars.com/api/?name=Admin+Nasrin&background=1a3a5c&color=fff&bold=true" alt="Admin">
                     <span class="um-name">Admin Nasrin</span>
                 </div>
-                <a href="../portal-login.php" class="logout-btn" title="Logout"><i class="fas fa-sign-out-alt"></i></a>
+                <a href="<?= BASE_URL ?>/admin/login" class="logout-btn" title="Logout"><i class="fas fa-sign-out-alt"></i></a>
             </div>
         </header>
 
@@ -306,7 +306,7 @@
         </div>
     </div>
 
-    <script src="js/academics.js"></script>
+    <script src="<?= BASE_URL ?>/pages/portal/admin/js/academics.js"></script>
     <script>
     (function () {
         const sidebar = document.getElementById('sidebar');

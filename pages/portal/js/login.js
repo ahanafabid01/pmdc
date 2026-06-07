@@ -149,7 +149,8 @@ loginForm?.addEventListener('submit', e => {
     btnSignIn.classList.add('loading');
 
     // Real network fetch for PHP auth
-    fetch('api/auth.php', {
+    const apiUrl = window.BASE_URL ? window.BASE_URL + '/pages/portal/api/auth.php' : 'api/auth.php';
+    fetch(apiUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

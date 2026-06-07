@@ -1,10 +1,11 @@
 <?php
+require_once dirname(__DIR__) . '/config.php';
 $page       = 'announcements';
 $page_title = 'Announcements | Phulpur Mohila Degree College';
 $page_css   = 'announcements.css';
 $base_path  = '../';
 
-require_once '../includes/announcements-data.php';
+require_once dirname(__DIR__) . '/includes/announcements-data.php';
 $announcements = pmdc_get_published_announcements();
 
 function pmdc_excerpt($text, $limit = 190) {
@@ -51,7 +52,7 @@ include '../includes/header.php';
                         <?php foreach ($announcements as $item): ?>
                             <?php
                             $ts = strtotime($item['date']);
-                            $detailUrl = 'announcement-detail.php?id=' . urlencode((string)$item['id']);
+                            $detailUrl = BASE_URL . '/announcement/' . ($item['slug'] ? $item['slug'] : $item['id']);
                             ?>
                             <div class="ann-item reveal" data-category="<?php echo htmlspecialchars($item['category'], ENT_QUOTES, 'UTF-8'); ?>">
                                 <div class="ann-date">
@@ -109,7 +110,7 @@ include '../includes/header.php';
                                 </div>
                                 <i class="fas fa-chevron-right ql-arrow"></i>
                             </a>
-                            <a href="contact.php" class="ql-item">
+                            <a href="<?= BASE_URL ?>/contact" class="ql-item">
                                 <i class="fas fa-envelope"></i>
                                 <div>
                                     <strong data-i18n="ann.sidebar.contact">অফিসে যোগাযোগ</strong>
@@ -138,7 +139,7 @@ include '../includes/header.php';
                                 if ($item['category'] !== 'event') continue;
                                 if ($event_count >= 4) break;
                                 $ts = strtotime($item['date']);
-                                $detailUrl = 'announcement-detail.php?id=' . urlencode((string)$item['id']);
+                                $detailUrl = BASE_URL . '/announcement/' . ($item['slug'] ? $item['slug'] : $item['id']);
                                 $dot_class = $dot_colors[$event_count % 4];
                                 $event_count++;
                             ?>

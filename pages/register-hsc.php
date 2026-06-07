@@ -88,7 +88,7 @@ include '../includes/header.php';
             <?php endif; ?>
         </p>
         <p class="reg-closed-session">Please check the announcements page for updates.</p>
-        <a href="announcements.php" class="reg-closed-btn"><i class="fas fa-bell"></i> View Announcements →</a>
+        <a href="<?= BASE_URL ?>/announcement" class="reg-closed-btn"><i class="fas fa-bell"></i> View Announcements →</a>
     </div>
 
     <?php elseif ($state === 'closed'): ?>
@@ -104,7 +104,7 @@ include '../includes/header.php';
             <?php endif; ?>
         </p>
         <p class="reg-closed-session">Please check the announcements page for updates on the next session.</p>
-        <a href="announcements.php" class="reg-closed-btn"><i class="fas fa-bell"></i> View Announcements →</a>
+        <a href="<?= BASE_URL ?>/announcement" class="reg-closed-btn"><i class="fas fa-bell"></i> View Announcements →</a>
     </div>
 
     <?php else: /* OPEN */ ?>
@@ -128,7 +128,7 @@ include '../includes/header.php';
                 </div>
             </div>
             <div class="reg-success-btns">
-                <a href="../index.php" class="reg-btn-home"><i class="fas fa-home"></i> Go to Home</a>
+                <a href="<?= BASE_URL ?>/" class="reg-btn-home"><i class="fas fa-home"></i> Go to Home</a>
                 <button class="reg-btn-print" id="btnPrint"><i class="fas fa-print"></i> Print Application</button>
             </div>
         </div>

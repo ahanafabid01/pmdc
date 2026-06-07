@@ -40,8 +40,14 @@ include '../includes/header.php';
     <section class="page-hero">
         <div class="container ph-content">
 
-            <div class="ph-kicker reveal">Academic Info</div>
-            <h1 class="reveal">Rules &amp; Regulation</h1>
+            <div class="ph-kicker reveal">
+                <span class="show-en">Academic Info</span>
+                <span class="show-bn">একাডেমিক তথ্য</span>
+            </div>
+            <h1 class="reveal">
+                <span class="show-en">Rules &amp; Regulation</span>
+                <span class="show-bn">নিয়ম ও বিধিমালা</span>
+            </h1>
             <p class="reveal">College rules and regulations that every student must follow</p>
         </div>
     </section>

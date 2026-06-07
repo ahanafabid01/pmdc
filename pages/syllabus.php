@@ -122,8 +122,14 @@ include '../includes/header.php';
 
     <section class="page-hero">
         <div class="container ph-content">
-            <div class="ph-kicker reveal">Academic Info</div>
-            <h1 class="reveal">Syllabus</h1>
+            <div class="ph-kicker reveal">
+                <span class="show-en">Academic Info</span>
+                <span class="show-bn">একাডেমিক তথ্য</span>
+            </div>
+            <h1 class="reveal">
+                <span class="show-en">Syllabus</span>
+                <span class="show-bn">পাঠ্যক্রম</span>
+            </h1>
             <p class="reveal">Subject-wise syllabus coverage for each examination type</p>
         </div>
     </section>

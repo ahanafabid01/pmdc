@@ -33,8 +33,14 @@ include '../includes/header.php';
 
     <section class="page-hero">
         <div class="container ph-content">
-            <div class="ph-kicker reveal">Academic Info</div>
-            <h1 class="reveal">Academic Calendar</h1>
+            <div class="ph-kicker reveal">
+                <span class="show-en">Academic Info</span>
+                <span class="show-bn">একাডেমিক তথ্য</span>
+            </div>
+            <h1 class="reveal">
+                <span class="show-en">Academic Calendar</span>
+                <span class="show-bn">একাডেমিক ক্যালেন্ডার</span>
+            </h1>
             <p class="reveal">Key academic dates, examinations, and events for each session</p>
         </div>
     </section>

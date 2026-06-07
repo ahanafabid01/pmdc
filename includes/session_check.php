@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__DIR__) . '/config.php';
 session_start();
 
 // Determine which portal is being accessed based on the URL path
@@ -13,13 +14,13 @@ if (strpos($currentPath, '/admin/') !== false) {
 
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['role'])) {
     // Not logged in
-    header("Location: /pmdc/pages/portal/portal-login.php");
+    header("Location: " . BASE_URL . "/admin/login");
     exit;
 }
 
 if ($requiredRole && $_SESSION['role'] !== $requiredRole) {
     // Logged in but wrong role
-    header("Location: /pmdc/pages/portal/portal-login.php");
+    header("Location: " . BASE_URL . "/admin/login");
     exit;
 }
 ?>

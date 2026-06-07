@@ -15,9 +15,18 @@ include '../includes/header.php';
     <section class="page-hero">
         <div class="container ph-content">
 
-            <div class="ph-kicker reveal">Academic Info</div>
-            <h1 class="reveal">Degree Program</h1>
-            <p class="reveal">BA, BSS, BSc &amp; BMT — programs, subjects, and structure</p>
+            <div class="ph-kicker reveal">
+                <span class="show-en">Academic Info</span>
+                <span class="show-bn">একাডেমিক তথ্য</span>
+            </div>
+            <h1 class="reveal">
+                <span class="show-en">Degree Program</span>
+                <span class="show-bn">ডিগ্রি প্রোগ্রাম</span>
+            </h1>
+            <p class="reveal">
+                <span class="show-en">BA, BSS, BSc &amp; BMT — programs, subjects, and structure</span>
+                <span class="show-bn">বিএ, বিএসএস, বিএসসি ও বিএমটি — প্রোগ্রাম, বিষয়সমূহ এবং কাঠামো</span>
+            </p>
         </div>
     </section>
 
@@ -29,24 +38,42 @@ include '../includes/header.php';
                 <div class="prog-overview-item">
                     <i class="fas fa-graduation-cap"></i>
                     <div>
-                        <div class="poi-label">Program Type</div>
-                        <div class="poi-val">Degree (BA / BSS / BSc / BMT)</div>
+                        <div class="poi-label">
+                            <span class="show-en">Program Type</span>
+                            <span class="show-bn">প্রোগ্রামের ধরন</span>
+                        </div>
+                        <div class="poi-val">
+                            <span class="show-en">Degree (BA / BSS / BSc / BMT)</span>
+                            <span class="show-bn">ডিগ্রি (বিএ / বিএসএস / বিএসসি / বিএমটি)</span>
+                        </div>
                     </div>
                 </div>
                 <div class="prog-overview-sep"></div>
                 <div class="prog-overview-item">
                     <i class="fas fa-clock"></i>
                     <div>
-                        <div class="poi-label">Duration</div>
-                        <div class="poi-val">3 Years (1st, 2nd &amp; 3rd Year)</div>
+                        <div class="poi-label">
+                            <span class="show-en">Duration</span>
+                            <span class="show-bn">মেয়াদ</span>
+                        </div>
+                        <div class="poi-val">
+                            <span class="show-en">3 Years (1st, 2nd &amp; 3rd Year)</span>
+                            <span class="show-bn">৩ বছর (১ম, ২য় ও ৩য় বর্ষ)</span>
+                        </div>
                     </div>
                 </div>
                 <div class="prog-overview-sep"></div>
                 <div class="prog-overview-item">
                     <i class="fas fa-university"></i>
                     <div>
-                        <div class="poi-label">Conducted By</div>
-                        <div class="poi-val">National University of Bangladesh</div>
+                        <div class="poi-label">
+                            <span class="show-en">Conducted By</span>
+                            <span class="show-bn">পরিচালনায়</span>
+                        </div>
+                        <div class="poi-val">
+                            <span class="show-en">National University of Bangladesh</span>
+                            <span class="show-bn">বাংলাদেশ জাতীয় বিশ্ববিদ্যালয়</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -57,8 +84,14 @@ include '../includes/header.php';
                 <button class="dp-tab-btn" data-target="dp-<?php echo $p['id']; ?>"
                         style="--tab-accent:<?php echo $p['accent']; ?>;">
                     <i class="<?php echo $p['icon']; ?>"></i>
-                    <span><?php echo $p['name']; ?></span>
-                    <small><?php echo $p['full']; ?></small>
+                    <span>
+                        <span class="show-en"><?php echo $p['name']; ?></span>
+                        <span class="show-bn"><?php echo $p['bengali']; ?></span>
+                    </span>
+                    <small>
+                        <span class="show-en"><?php echo $p['full']; ?></span>
+                        <span class="show-bn"><?php echo $p['bengali_full'] ?? $p['full']; ?></span>
+                    </small>
                 </button>
                 <?php endforeach; ?>
             </div>
@@ -72,18 +105,24 @@ include '../includes/header.php';
                             <i class="<?php echo $p['icon']; ?>"></i>
                         </div>
                         <div>
-                            <div class="pgc-name"><?php echo htmlspecialchars($p['name']); ?> — <?php echo htmlspecialchars($p['full']); ?></div>
-                            <div class="pgc-bengali"><?php echo htmlspecialchars($p['bengali']); ?></div>
+                            <div class="pgc-name">
+                                <span class="show-en"><?php echo htmlspecialchars($p['name']); ?> — <?php echo htmlspecialchars($p['full']); ?></span>
+                                <span class="show-bn"><?php echo htmlspecialchars($p['bengali']); ?> — <?php echo htmlspecialchars($p['bengali_full'] ?? $p['full']); ?></span>
+                            </div>
                         </div>
                         <span class="pgc-badge" style="background:<?php echo $p['accent']; ?>15;color:<?php echo $p['accent']; ?>;">
-                            <i class="fas fa-university" style="font-size:.65rem;"></i> Degree Program
+                            <i class="fas fa-university" style="font-size:.65rem;"></i> 
+                            <span class="show-en">Degree Program</span>
+                            <span class="show-bn">ডিগ্রি প্রোগ্রাম</span>
                         </span>
                     </div>
 
                     <div class="pgc-subjects" style="grid-template-columns:<?php echo empty($p['optional'])?'1fr':'1fr 1fr'; ?>;">
                         <div class="pgc-col">
                             <div class="pgc-col-head" style="color:<?php echo $p['accent']; ?>;">
-                                <i class="fas fa-check-circle"></i> Compulsory Subjects
+                                <i class="fas fa-check-circle"></i> 
+                                <span class="show-en">Compulsory Subjects</span>
+                                <span class="show-bn">বাধ্যতামূলক বিষয়সমূহ</span>
                             </div>
                             <ul class="pgc-subject-list">
                                 <?php foreach ($p['compulsory'] as $sub): ?>
@@ -94,7 +133,9 @@ include '../includes/header.php';
                         <?php if (!empty($p['optional'])): ?>
                         <div class="pgc-col">
                             <div class="pgc-col-head" style="color:<?php echo $p['accent']; ?>;">
-                                <i class="fas fa-list"></i> Optional Subjects
+                                <i class="fas fa-list"></i> 
+                                <span class="show-en">Optional Subjects</span>
+                                <span class="show-bn">ঐচ্ছিক বিষয়সমূহ</span>
                                 <span class="pgc-note-tag"><?php echo htmlspecialchars($p['optional_note']); ?></span>
                             </div>
                             <ul class="pgc-subject-list">
@@ -110,7 +151,8 @@ include '../includes/header.php';
 
                     <div style="margin-top:18px;padding:12px 16px;background:var(--surface);border-radius:10px;display:flex;align-items:center;gap:10px;font-family:'Inter',sans-serif;font-size:.8rem;color:var(--muted);">
                         <i class="fas fa-university" style="color:<?php echo $p['accent']; ?>;flex-shrink:0;"></i>
-                        Final public examinations are conducted by the <strong style="color:var(--navy);margin:0 3px;"><?php echo htmlspecialchars($p['conductor']); ?></strong>. Internal exams are held each year.
+                        <span class="show-en">Final public examinations are conducted by the <strong style="color:var(--navy);margin:0 3px;"><?php echo htmlspecialchars($p['conductor']); ?></strong>. Internal exams are held each year.</span>
+                        <span class="show-bn">চূড়ান্ত পাবলিক পরীক্ষা <strong style="color:var(--navy);margin:0 3px;">বাংলাদেশ জাতীয় বিশ্ববিদ্যালয়</strong> দ্বারা পরিচালিত হয়। প্রতি বছর অভ্যন্তরীণ পরীক্ষা অনুষ্ঠিত হয়।</span>
                     </div>
                 </div>
             </div>
@@ -120,24 +162,51 @@ include '../includes/header.php';
             <div class="ai-info-card reveal" style="margin-top:8px;">
                 <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
                     <i class="fas fa-list-ol" style="color:var(--blue);font-size:1rem;"></i>
-                    <strong style="font-size:.95rem;color:var(--navy);font-family:'Inter',sans-serif;">Degree Exam Structure</strong>
+                    <strong style="font-size:.95rem;color:var(--navy);font-family:'Inter',sans-serif;">
+                        <span class="show-en">Degree Exam Structure</span>
+                        <span class="show-bn">ডিগ্রি পরীক্ষার কাঠামো</span>
+                    </strong>
                 </div>
                 <div class="ai-info-grid">
                     <div class="ai-info-item">
-                        <span class="ai-info-label">Program Length</span>
-                        <span class="ai-info-value">3 Years — 1st Year, 2nd Year, 3rd Year</span>
+                        <span class="ai-info-label">
+                            <span class="show-en">Program Length</span>
+                            <span class="show-bn">প্রোগ্রামের মেয়াদ</span>
+                        </span>
+                        <span class="ai-info-value">
+                            <span class="show-en">3 Years — 1st Year, 2nd Year, 3rd Year</span>
+                            <span class="show-bn">৩ বছর — ১ম বর্ষ, ২য় বর্ষ, ৩য় বর্ষ</span>
+                        </span>
                     </div>
                     <div class="ai-info-item">
-                        <span class="ai-info-label">Final Exam Authority</span>
-                        <span class="ai-info-value">National University of Bangladesh</span>
+                        <span class="ai-info-label">
+                            <span class="show-en">Final Exam Authority</span>
+                            <span class="show-bn">চূড়ান্ত পরীক্ষা কর্তৃপক্ষ</span>
+                        </span>
+                        <span class="ai-info-value">
+                            <span class="show-en">National University of Bangladesh</span>
+                            <span class="show-bn">বাংলাদেশ জাতীয় বিশ্ববিদ্যালয়</span>
+                        </span>
                     </div>
                     <div class="ai-info-item">
-                        <span class="ai-info-label">Internal Exams</span>
-                        <span class="ai-info-value">Held each academic year by the college</span>
+                        <span class="ai-info-label">
+                            <span class="show-en">Internal Exams</span>
+                            <span class="show-bn">আভ্যন্তরীণ পরীক্ষা</span>
+                        </span>
+                        <span class="ai-info-value">
+                            <span class="show-en">Held each academic year by the college</span>
+                            <span class="show-bn">প্রতি শিক্ষাবর্ষে কলেজ কর্তৃক অনুষ্ঠিত হয়</span>
+                        </span>
                     </div>
                     <div class="ai-info-item">
-                        <span class="ai-info-label">Admit Card</span>
-                        <span class="ai-info-value">Must be collected 10 days before exam — late collection cancels seat</span>
+                        <span class="ai-info-label">
+                            <span class="show-en">Admit Card</span>
+                            <span class="show-bn">প্রবেশপত্র</span>
+                        </span>
+                        <span class="ai-info-value">
+                            <span class="show-en">Must be collected 10 days before exam — late collection cancels seat</span>
+                            <span class="show-bn">পরীক্ষার ১০ দিন আগে সংগ্রহ করতে হবে — দেরিতে সংগ্রহ করলে আসন বাতিল হবে</span>
+                        </span>
                     </div>
                 </div>
             </div>
