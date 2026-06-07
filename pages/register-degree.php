@@ -36,7 +36,6 @@ include '../includes/header.php';
         <div class="ph-badge-row reveal">
             <span class="ph-badge"><i class="fas fa-calendar-alt"></i> Session: <?php echo htmlspecialchars($session); ?></span>
             <span class="ph-badge"><i class="fas fa-money-bill-wave"></i> Fee: ৳<?php echo $fee; ?></span>
-            <span class="ph-badge"><i class="fas fa-university"></i> National University</span>
             <?php if ($close_date_fmt): ?>
             <span class="ph-badge" style="background:rgba(220,38,38,.25);border-color:rgba(220,38,38,.4);"><i class="fas fa-clock"></i> Closes: <?php echo $close_date_fmt; ?></span>
             <?php endif; ?>

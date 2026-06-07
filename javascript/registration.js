@@ -118,6 +118,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Address Sync Logic
+    const sameAddrCb = document.getElementById('same_address');
+    const presentAddr = document.getElementById('present_address');
+    const permanentAddr = document.getElementById('permanent_address');
+
+    if (sameAddrCb && presentAddr && permanentAddr) {
+        const syncAddress = () => {
+            if (sameAddrCb.checked) {
+                permanentAddr.value = presentAddr.value;
+                permanentAddr.readOnly = true;
+                permanentAddr.style.backgroundColor = '#f1f5f9'; // visually locked
+                // trigger change so live summary updates
+                permanentAddr.dispatchEvent(new Event('input', { bubbles: true }));
+            } else {
+                permanentAddr.readOnly = false;
+                permanentAddr.style.backgroundColor = '';
+            }
+        };
+
+        sameAddrCb.addEventListener('change', syncAddress);
+        presentAddr.addEventListener('input', () => {
+            if (sameAddrCb.checked) syncAddress();
+        });
+    }
+
     function updateSummary() {
         const tbody = document.getElementById('summaryBody');
         if (!tbody) return;
