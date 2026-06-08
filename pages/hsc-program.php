@@ -9,6 +9,13 @@ $base_path  = '../';
 require_once '../includes/academics-data.php';
 $groups = pmdc_academics_get_all('hsc');
 
+function pmdc_split_bilingual($text) {
+    if (preg_match('/^(.*?)\s*\((.*?)\)$/', trim($text), $matches)) {
+        return ['en' => trim($matches[1]), 'bn' => trim($matches[2])];
+    }
+    return ['en' => $text, 'bn' => $text];
+}
+
 include '../includes/header.php';
 ?>
 
@@ -154,8 +161,13 @@ include '../includes/header.php';
                             <span class="show-bn">বাধ্যতামূলক বিষয়সমূহ</span>
                         </div>
                         <ul class="pgc-subject-list">
-                            <?php foreach ($g['compulsory'] as $sub): ?>
-                            <li class="pgc-subject-item pgc-compulsory"><?php echo htmlspecialchars($sub); ?></li>
+                            <?php foreach ($g['compulsory'] as $sub): 
+                                $parts = pmdc_split_bilingual($sub);
+                            ?>
+                            <li class="pgc-subject-item pgc-compulsory">
+                                <span class="show-en"><?php echo htmlspecialchars($parts['en']); ?></span>
+                                <span class="show-bn"><?php echo htmlspecialchars($parts['bn']); ?></span>
+                            </li>
                             <?php endforeach; ?>
                         </ul>
                     </div>
@@ -167,8 +179,13 @@ include '../includes/header.php';
                             <span class="pgc-note-tag"><?php echo htmlspecialchars($g['optional_note']); ?></span>
                         </div>
                         <ul class="pgc-subject-list">
-                            <?php foreach ($g['optional'] as $sub): ?>
-                            <li class="pgc-subject-item pgc-optional"><?php echo htmlspecialchars($sub); ?></li>
+                            <?php foreach ($g['optional'] as $sub): 
+                                $parts = pmdc_split_bilingual($sub);
+                            ?>
+                            <li class="pgc-subject-item pgc-optional">
+                                <span class="show-en"><?php echo htmlspecialchars($parts['en']); ?></span>
+                                <span class="show-bn"><?php echo htmlspecialchars($parts['bn']); ?></span>
+                            </li>
                             <?php endforeach; ?>
                         </ul>
                     </div>
@@ -181,8 +198,13 @@ include '../includes/header.php';
                             <span class="pgc-note-tag"><?php echo htmlspecialchars($g['fourth_note']); ?></span>
                         </div>
                         <ul class="pgc-subject-list">
-                            <?php foreach ($g['fourth'] as $sub): ?>
-                            <li class="pgc-subject-item pgc-fourth"><?php echo htmlspecialchars($sub); ?></li>
+                            <?php foreach ($g['fourth'] as $sub): 
+                                $parts = pmdc_split_bilingual($sub);
+                            ?>
+                            <li class="pgc-subject-item pgc-fourth">
+                                <span class="show-en"><?php echo htmlspecialchars($parts['en']); ?></span>
+                                <span class="show-bn"><?php echo htmlspecialchars($parts['bn']); ?></span>
+                            </li>
                             <?php endforeach; ?>
                         </ul>
                     </div>

@@ -9,6 +9,27 @@ $base_path  = '../';
 require_once '../includes/academics-data.php';
 $programs = pmdc_academics_get_all('degree');
 
+function pmdc_split_bilingual($text) {
+    if (preg_match('/^(.*?)\s*\((.*?)\)$/', trim($text), $matches)) {
+        return ['en' => trim($matches[1]), 'bn' => trim($matches[2])];
+    }
+    return ['en' => $text, 'bn' => $text];
+}
+
+$bn_full_map = [
+    'Bachelor of Arts' => 'ব্যাচেলর অব আর্টস',
+    'Bachelor of Social Science' => 'ব্যাচেলর অব সোশ্যাল সায়েন্স',
+    'Bachelor of Science' => 'ব্যাচেলর অব সায়েন্স',
+    'Business Management & Technology' => 'বিজনেস ম্যানেজমেন্ট এন্ড টেকনোলজি'
+];
+
+$bn_short_map = [
+    'BA' => 'বিএ',
+    'BSS' => 'বিএসএস',
+    'BSc' => 'বিএসসি',
+    'BMT' => 'বিএমটি'
+];
+
 include '../includes/header.php';
 ?>
 
@@ -86,11 +107,10 @@ include '../includes/header.php';
                     <i class="<?php echo $p['icon']; ?>"></i>
                     <span>
                         <span class="show-en"><?php echo $p['name']; ?></span>
-                        <span class="show-bn"><?php echo $p['bengali']; ?></span>
+                        <span class="show-bn"><?php echo $bn_short_map[$p['name']] ?? $p['bengali']; ?></span>
                     </span>
-                    <small>
-                        <span class="show-en"><?php echo $p['full']; ?></span>
-                        <span class="show-bn"><?php echo $p['bengali_full'] ?? $p['full']; ?></span>
+                    <small class="show-en">
+                        <?php echo $p['full']; ?>
                     </small>
                 </button>
                 <?php endforeach; ?>
@@ -107,7 +127,7 @@ include '../includes/header.php';
                         <div>
                             <div class="pgc-name">
                                 <span class="show-en"><?php echo htmlspecialchars($p['name']); ?> — <?php echo htmlspecialchars($p['full']); ?></span>
-                                <span class="show-bn"><?php echo htmlspecialchars($p['bengali']); ?> — <?php echo htmlspecialchars($p['bengali_full'] ?? $p['full']); ?></span>
+                                <span class="show-bn"><?php echo htmlspecialchars($bn_short_map[$p['name']] ?? $p['bengali']); ?> — <?php echo htmlspecialchars($bn_full_map[$p['full']] ?? ($p['bengali_full'] ?? $p['full'])); ?></span>
                             </div>
                         </div>
                         <span class="pgc-badge" style="background:<?php echo $p['accent']; ?>15;color:<?php echo $p['accent']; ?>;">
@@ -125,8 +145,13 @@ include '../includes/header.php';
                                 <span class="show-bn">বাধ্যতামূলক বিষয়সমূহ</span>
                             </div>
                             <ul class="pgc-subject-list">
-                                <?php foreach ($p['compulsory'] as $sub): ?>
-                                <li class="pgc-subject-item pgc-compulsory"><?php echo htmlspecialchars($sub); ?></li>
+                                <?php foreach ($p['compulsory'] as $sub): 
+                                    $parts = pmdc_split_bilingual($sub);
+                                ?>
+                                <li class="pgc-subject-item pgc-compulsory">
+                                    <span class="show-en"><?php echo htmlspecialchars($parts['en']); ?></span>
+                                    <span class="show-bn"><?php echo htmlspecialchars($parts['bn']); ?></span>
+                                </li>
                                 <?php endforeach; ?>
                             </ul>
                         </div>
@@ -139,8 +164,13 @@ include '../includes/header.php';
                                 <span class="pgc-note-tag"><?php echo htmlspecialchars($p['optional_note']); ?></span>
                             </div>
                             <ul class="pgc-subject-list">
-                                <?php foreach ($p['optional'] as $sub): ?>
-                                <li class="pgc-subject-item pgc-optional"><?php echo htmlspecialchars($sub); ?></li>
+                                <?php foreach ($p['optional'] as $sub): 
+                                    $parts = pmdc_split_bilingual($sub);
+                                ?>
+                                <li class="pgc-subject-item pgc-optional">
+                                    <span class="show-en"><?php echo htmlspecialchars($parts['en']); ?></span>
+                                    <span class="show-bn"><?php echo htmlspecialchars($parts['bn']); ?></span>
+                                </li>
                                 <?php endforeach; ?>
                             </ul>
                         </div>
