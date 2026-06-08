@@ -230,15 +230,15 @@
                 <table class="tm-table" id="appTable">
                     <thead>
                         <tr>
-                            <th>Ref No.</th>
-                            <th>Name</th>
-                            <th>Desired Program</th>
-                            <th width="70" class="text-center">HSC GPA</th>
-                            <th width="80">Payment</th>
-                            <th>Transaction ID</th>
-                            <th width="130">Submitted</th>
-                            <th width="100">Status</th>
-                            <th width="100">Actions</th>
+                            <th style="min-width:110px;">Ref No.</th>
+                            <th style="min-width:180px;">Name</th>
+                            <th style="min-width:140px;">Desired Program</th>
+                            <th style="min-width:90px;" class="text-center">HSC GPA</th>
+                            <th style="min-width:100px;">Payment</th>
+                            <th style="min-width:140px;">Transaction ID</th>
+                            <th style="min-width:130px;">Submitted</th>
+                            <th style="min-width:100px;">Status</th>
+                            <th style="min-width:120px;">Actions</th>
                         </tr>
                     </thead>
                     <tbody id="appTbody"></tbody>
