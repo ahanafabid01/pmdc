@@ -123,7 +123,18 @@ if (!isset($page_title_bn)) {
                 <li><a href="<?= BASE_URL ?>/announcement" class="nav-link <?php echo isset($page) && $page == 'announcements' ? 'active' : ''; ?>" data-i18n="nav.announcements">বিজ্ঞপ্তি</a></li>
                 <li><a href="<?= BASE_URL ?>/gallery"        class="nav-link <?php echo isset($page) && $page == 'gallery' ? 'active' : ''; ?>" data-i18n="nav.gallery">গ্যালারি</a></li>
                 <li><a href="<?= BASE_URL ?>/teachers"      class="nav-link <?php echo isset($page) && $page == 'teachers' ? 'active' : ''; ?>" data-i18n="nav.teachers">শিক্ষক ও কর্মচারী</a></li>
-                <li><a href="<?= BASE_URL ?>/results"      class="nav-link <?php echo isset($page) && $page == 'results' ? 'active' : ''; ?>" data-i18n="nav.results">ফলাফল</a></li>
+                <li class="nav-has-dropdown">
+                    <a href="javascript:void(0)" class="nav-link nav-dropdown-toggle <?php echo isset($page) && $page == 'results' ? 'active' : ''; ?>">
+                        <span data-i18n="nav.results">ফলাফল</span> <i class="fas fa-chevron-down nav-dropdown-arrow"></i>
+                    </a>
+                    <ul class="nav-dropdown-menu">
+                        <div class="nav-dropdown-inner">
+                            <li><a href="<?= BASE_URL ?>/results" class="dropdown-item <?php echo isset($page) && $page == 'results' ? 'active' : ''; ?>"><i class="fas fa-poll"></i> <span data-i18n="nav.results_academic">Academic Results</span></a></li>
+                            <li><a href="https://www.educationboardresults.gov.bd/v2/home" target="_blank" rel="noopener noreferrer" class="dropdown-item"><i class="fas fa-external-link-alt"></i> <span data-i18n="nav.results_hsc">HSC Exam Result</span></a></li>
+                            <li><a href="https://results.nu.ac.bd/" target="_blank" rel="noopener noreferrer" class="dropdown-item"><i class="fas fa-external-link-alt"></i> <span data-i18n="nav.results_nu">National University Result</span></a></li>
+                        </div>
+                    </ul>
+                </li>
                 <li><a href="<?= BASE_URL ?>/contact"      class="nav-link <?php echo isset($page) && $page == 'contact' ? 'active' : ''; ?>" data-i18n="nav.contact">যোগাযোগ</a></li>
                 <li class="nav-has-dropdown">
                     <a href="javascript:void(0)" class="nav-link nav-apply nav-dropdown-toggle">
@@ -131,8 +142,8 @@ if (!isset($page_title_bn)) {
                     </a>
                     <ul class="nav-dropdown-menu">
                         <div class="nav-dropdown-inner">
-                            <li><a href="<?= BASE_URL ?>/apply/hsc" class="dropdown-item"><i class="fas fa-file-alt"></i> <span>HSC Admission</span></a></li>
-                            <li><a href="<?= BASE_URL ?>/apply/degree" class="dropdown-item"><i class="fas fa-university"></i> <span>Degree Admission</span></a></li>
+                            <li><a href="<?= BASE_URL ?>/apply/hsc" class="dropdown-item"><i class="fas fa-file-alt"></i> <span data-i18n="nav.apply_hsc">HSC Admission</span></a></li>
+                            <li><a href="<?= BASE_URL ?>/apply/degree" class="dropdown-item"><i class="fas fa-university"></i> <span data-i18n="nav.apply_degree">Degree Admission</span></a></li>
                         </div>
                     </ul>
                 </li>
