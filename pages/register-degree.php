@@ -26,7 +26,7 @@ $close_date_fmt = $close_date ? date('d M Y', strtotime($close_date)) : '';
 
 include '../includes/header.php';
 ?>
-<link rel="stylesheet" href="<?php echo $base_path; ?>styles/registration.css">
+<link rel="stylesheet" href="<?= BASE_URL ?>/styles/registration.css">
 
 <section class="page-hero">
     <div class="container ph-content">
@@ -214,5 +214,5 @@ include '../includes/header.php';
 
 <div class="reg-toast" id="regToast"></div>
 <script>document.body.dataset.formType = 'degree';</script>
-<script src="<?php echo $base_path; ?>javascript/registration.js?v=<?php echo time(); ?>"></script>
+<script src="<?= BASE_URL ?>/javascript/registration.js?v=<?= time() ?>"></script>
 <?php include '../includes/footer.php'; ?>

@@ -256,16 +256,16 @@ include '../includes/header.php';
                     <div class="sidebar-notice reveal">
                         <div class="sn-head">
                             <i class="fas fa-exclamation-triangle"></i>
-                            <span>Important Notice</span>
+                            <span data-i18n="results.notice.h3">Important Notice</span>
                         </div>
                         <ul class="sn-list">
-                            <li>All results are provisional pending verification by the Bangladesh Education Board.</li>
-                            <li>Report discrepancies to the Examination Cell within <strong>7 days</strong> of publication.</li>
-                            <li>Original mark sheets (নম্বরপত্র) available after <strong>15 working days</strong>.</li>
-                            <li>Re-checking (পুনর্নিরীক্ষণ) applications within <strong>10 days</strong> of result declaration.</li>
+                            <li data-i18n="results.notice.l1">All results are provisional pending verification by the Bangladesh Education Board.</li>
+                            <li data-i18n="results.notice.l2">Report discrepancies to the Examination Cell within <strong>7 days</strong> of publication.</li>
+                            <li data-i18n="results.notice.l3">Original mark sheets (নম্বরপত্র) available after <strong>15 working days</strong>.</li>
+                            <li data-i18n="results.notice.l4">Re-checking (পুনর্নিরীক্ষণ) applications within <strong>10 days</strong> of result declaration.</li>
                         </ul>
                         <div class="sn-contact">
-                            <div class="snc-label">Examination Cell</div>
+                            <div class="snc-label" data-i18n="results.notice.contact">Examination Cell</div>
                             <a href="tel:+880-1700-000000" class="snc-item"><i class="fas fa-phone"></i> +880-1700-000000</a>
                             <a href="mailto:exam@pmdc.edu.bd" class="snc-item"><i class="fas fa-envelope"></i> exam@pmdc.edu.bd</a>
                         </div>
@@ -273,40 +273,40 @@ include '../includes/header.php';
 
                     <!-- Summary Stats -->
                     <div class="sidebar-stats reveal">
-                        <div class="ss-head">HSC Board Results</div>
+                        <div class="ss-head" data-i18n="results.stats.h3">HSC Board Results</div>
                         <div class="ss-grid">
                             <div class="ss-item">
                                 <div class="ss-val">92%</div>
-                                <div class="ss-lbl">Pass Rate</div>
+                                <div class="ss-lbl" data-i18n="results.stats.rate">Pass Rate</div>
                             </div>
                             <div class="ss-item">
                                 <div class="ss-val">48</div>
-                                <div class="ss-lbl">GPA 5.00</div>
+                                <div class="ss-lbl" data-i18n="results.stats.gpa">GPA 5.00</div>
                             </div>
                             <div class="ss-item">
                                 <div class="ss-val">645</div>
-                                <div class="ss-lbl">Appeared</div>
+                                <div class="ss-lbl" data-i18n="results.stats.app">Appeared</div>
                             </div>
                             <div class="ss-item">
                                 <div class="ss-val">593</div>
-                                <div class="ss-lbl">Passed</div>
+                                <div class="ss-lbl" data-i18n="results.stats.pass">Passed</div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Quick Links -->
                     <div class="sidebar-links reveal">
-                        <div class="sl-head">Related Links</div>
+                        <div class="sl-head" data-i18n="results.links.h3">Related Links</div>
                         <a href="<?= BASE_URL ?>/announcement" class="sl-item">
-                            <i class="fas fa-bell"></i> Announcements
+                            <i class="fas fa-bell"></i> <span data-i18n="results.links.ann">Announcements</span>
                             <i class="fas fa-chevron-right sl-arr"></i>
                         </a>
-                        <a href="academics.php" class="sl-item">
-                            <i class="fas fa-graduation-cap"></i> Academics
+                        <a href="<?= BASE_URL ?>/academic/class-routine" class="sl-item">
+                            <i class="fas fa-graduation-cap"></i> <span data-i18n="results.links.aca">Academics</span>
                             <i class="fas fa-chevron-right sl-arr"></i>
                         </a>
                         <a href="<?= BASE_URL ?>/contact" class="sl-item">
-                            <i class="fas fa-envelope"></i> Contact Office
+                            <i class="fas fa-envelope"></i> <span data-i18n="results.links.con">Contact Office</span>
                             <i class="fas fa-chevron-right sl-arr"></i>
                         </a>
                     </div>

@@ -102,7 +102,8 @@ include '../includes/header.php';
 
     async function loadStaff() {
         try {
-            const res = await fetch('portal/admin/api/staff.php?action=list');
+            const apiUrl = (window.BASE_URL || '') + '/pages/portal/admin/api/staff.php?action=list';
+            const res = await fetch(apiUrl);
             const data = await res.json();
             if (data.ok) return data.staff;
         } catch (e) {
@@ -123,7 +124,8 @@ include '../includes/header.php';
 
     function avatarHtml(member, size = 90) {
         if (member.photo) {
-            return `<img src="../${member.photo}" alt="${esc(member.name)}" class="staff-photo" style="width:${size}px;height:${size}px;">`;
+            const photoSrc = (window.BASE_URL || '') + '/' + member.photo;
+            return `<img src="${photoSrc}" alt="${esc(member.name)}" class="staff-photo" style="width:${size}px;height:${size}px;">`;
         }
         const initials = getInitials(member.name);
         const bg = avatarColor(member.name);
@@ -145,6 +147,9 @@ include '../includes/header.php';
 
     /* ─── Principal card ─── */
     function renderPrincipal(member) {
+        const lang = window.PMDC_i18n ? window.PMDC_i18n.current() : 'bn';
+        const T = window.__pmdc_T || {};
+        const headLabel = T['ts.head_of_institution'] ? (T['ts.head_of_institution'][lang] || 'Head of Institution') : 'Head of Institution';
         return `
         <div class="principal-card reveal" data-category="teacher" data-name="${esc(member.name)}" data-desig="${esc(member.designation)}">
             <div class="pc-photo">${avatarHtml(member, 120)}</div>
@@ -154,10 +159,10 @@ include '../includes/header.php';
                         <h2 class="pc-name">${esc(member.name)}</h2>
                         <span class="staff-badge badge-teacher">${esc(member.designation)}</span>
                     </div>
-                    <span class="pc-label">Head of Institution</span>
+                    <span class="pc-label">${headLabel}</span>
                 </div>
                 <div class="pc-info">
-                    <div class="si-row"><i class="fas fa-book"></i>${contactLink(member.subject, 'text') ? `<span class="si-val">${esc(member.subject)}</span>` : ''}</div>
+                    <div class="si-row"><i class="fas fa-book"></i>${member.subject && member.subject !== '—' ? `<span class="si-val">${esc(member.subject)}</span>` : ''}</div>
                     <div class="si-row"><i class="fas fa-graduation-cap"></i><span class="si-val">${esc(member.qualification)}</span></div>
                     <div class="si-row"><i class="fas fa-envelope"></i>${contactLink(member.email, 'email')}</div>
                     <div class="si-row"><i class="fas fa-phone"></i>${contactLink(member.phone, 'tel')}</div>
@@ -168,7 +173,11 @@ include '../includes/header.php';
 
     /* ─── Regular staff card ─── */
     function staffCard(member) {
-        const label = member.category === 'admin' ? 'Department' : 'Subject';
+        const lang = window.PMDC_i18n ? window.PMDC_i18n.current() : 'bn';
+        const T = window.__pmdc_T || {};
+        const subjLabel = T['ts.subject'] ? (T['ts.subject'][lang] || 'Subject') : 'Subject';
+        const deptLabel = T['ts.department'] ? (T['ts.department'][lang] || 'Department') : 'Department';
+        const label = member.category === 'admin' ? deptLabel : subjLabel;
         const icon  = member.category === 'admin' ? 'fas fa-building' : 'fas fa-book';
         return `
         <div class="staff-card reveal" data-category="${member.category}" data-name="${esc(member.name)}" data-desig="${esc(member.designation)}">
@@ -201,9 +210,13 @@ include '../includes/header.php';
 
         /* Counts (filtered) */
         const tCount = (principal ? 1 : 0) + teachers.length;
-        document.getElementById('countTeacher').textContent = tCount + (tCount === 1 ? ' Member' : ' Members');
-        document.getElementById('countAdmin').textContent   = admins.length   + (admins.length   === 1 ? ' Member' : ' Members');
-        document.getElementById('countSupport').textContent = supports.length + (supports.length === 1 ? ' Member' : ' Members');
+        const lang = window.PMDC_i18n ? window.PMDC_i18n.current() : 'bn';
+        const T = window.__pmdc_T || {};
+        const mbrOne  = T['ts.members_one']  ? (T['ts.members_one'][lang]  || 'Member')  : 'Member';
+        const mbrMany = T['ts.members_many'] ? (T['ts.members_many'][lang] || 'Members') : 'Members';
+        document.getElementById('countTeacher').textContent = tCount   + ' ' + (tCount   === 1 ? mbrOne : mbrMany);
+        document.getElementById('countAdmin').textContent   = admins.length   + ' ' + (admins.length   === 1 ? mbrOne : mbrMany);
+        document.getElementById('countSupport').textContent = supports.length + ' ' + (supports.length === 1 ? mbrOne : mbrMany);
 
         /* Section visibility */
         const showT = filter === 'all' || filter === 'teacher';

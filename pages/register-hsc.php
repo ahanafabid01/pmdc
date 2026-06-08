@@ -42,7 +42,7 @@ if ($db) {
 
 include '../includes/header.php';
 ?>
-<link rel="stylesheet" href="<?php echo $base_path; ?>styles/registration.css">
+<link rel="stylesheet" href="<?= BASE_URL ?>/styles/registration.css">
 
 <!-- Page Hero -->
 <section class="page-hero">
@@ -270,5 +270,5 @@ include '../includes/header.php';
     document.body.dataset.formType = 'hsc';
     const programSubjects = <?php echo json_encode($program_subjects); ?>;
 </script>
-<script src="<?php echo $base_path; ?>javascript/registration.js?v=<?php echo time(); ?>"></script>
+<script src="<?= BASE_URL ?>/javascript/registration.js?v=<?= time() ?>"></script>
 <?php include '../includes/footer.php'; ?>

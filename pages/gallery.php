@@ -110,7 +110,7 @@ include '../includes/header.php';
                 <button class="glm-btn" onclick="galleryLoadMore(<?php echo $year; ?>)">
                     <i class="fas fa-plus-circle"></i>
                     <span data-i18n="gallery.loadmore">আরও ছবি দেখুন</span>
-                    <span class="glm-count">(<?php echo count($photos) - 24; ?> remaining)</span>
+                    <span class="glm-count">(<?php echo count($photos) - 24; ?> <span data-i18n="gallery.remaining">বাকি</span>)</span>
                 </button>
             </div>
             <?php endif; ?>

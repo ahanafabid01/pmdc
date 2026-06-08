@@ -371,7 +371,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (birthInput && birthInput.files[0]) formData.append('birth_cert', birthInput.files[0]);
 
             try {
-                const res = await fetch('../api/registration-submit.php', {
+                const apiUrl = (window.BASE_URL || '') + '/api/registration-submit.php';
+                const res = await fetch(apiUrl, {
                     method: 'POST',
                     body: formData
                 });

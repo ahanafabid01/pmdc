@@ -539,8 +539,52 @@
         'gallery.filter.all':     { en: 'All',                bn: 'সব' },
         'gallery.photos':         { en: 'Photos',             bn: 'ছবি' },
         'gallery.loadmore':       { en: 'Load More Photos',   bn: 'আরও ছবি দেখুন' },
+        'gallery.remaining':      { en: 'remaining',          bn: 'বাকি' },
+        'gallery.year.subtitle':  { en: 'Memories',           bn: 'সালের স্মৃতিচারণ' },
         'gallery.empty.title':    { en: 'No photos available yet.', bn: 'এখনো কোনো ছবি নেই।' },
-        'gallery.empty.sub':      { en: 'Check back soon for updates.', bn: 'শীঘ্রই আপডেট করা হবে।' }
+        'gallery.empty.sub':      { en: 'Check back soon for updates.', bn: 'শীঘ্রই আপডেট করা হবে।' },
+
+        /* ━━━━━━━━━━━ TEACHERS PAGE — DYNAMIC STRINGS ━━━━━━━━━━━ */
+        'ts.head_of_institution': { en: 'Head of Institution', bn: 'প্রতিষ্ঠান প্রধান' },
+        'ts.subject':             { en: 'Subject',             bn: 'বিষয়' },
+        'ts.department':          { en: 'Department',          bn: 'বিভাগ' },
+        'ts.members_one':         { en: 'Member',              bn: 'সদস্য' },
+        'ts.members_many':        { en: 'Members',             bn: 'সদস্য' },
+
+        /* ━━━━━━━━━━━ ANNOUNCEMENTS — SIDEBAR ━━━━━━━━━━━ */
+        'ann.no_events':          { en: 'No upcoming events.', bn: 'কোনো আসন্ন অনুষ্ঠান নেই।' },
+
+        /* ━━━━━━━━━━━ RESULTS PAGE ━━━━━━━━━━━ */
+        'results.kicker':         { en: 'PMDC',               bn: 'পিএমডিসি' },
+        'results.h1':             { en: 'HSC Examination Results', bn: 'এইচএসসি পরীক্ষার ফলাফল' },
+        'results.desc':           { en: 'Check and download published HSC results for Class XI and XII.', bn: 'একাদশ এবং দ্বাদশ শ্রেণির প্রকাশিত এইচএসসি ফলাফল পরীক্ষা করুন এবং ডাউনলোড করুন।' },
+        'results.find.h2':        { en: 'Find Your Result',   bn: 'আপনার ফলাফল খুঁজুন' },
+        'results.find.sub':       { en: 'Enter your details to look up your result', bn: 'আপনার ফলাফল খুঁজতে আপনার বিবরণ দিন' },
+        'results.pub.h3':         { en: 'Published Results',  bn: 'প্রকাশিত ফলাফল' },
+        'results.pub.all':        { en: 'All',                bn: 'সব' },
+        'results.pub.sci':        { en: 'Science',            bn: 'বিজ্ঞান' },
+        'results.pub.com':        { en: 'Commerce',           bn: 'বাণিজ্য' },
+        'results.pub.hum':        { en: 'Humanities',         bn: 'মানবিক' },
+        'results.notice.h3':      { en: 'Important Notice',   bn: 'গুরুত্বপূর্ণ নোটিশ' },
+        'results.notice.l1':      { en: 'All results are provisional pending verification.', bn: 'সকল ফলাফল যাচাইকরণ সাপেক্ষে অস্থায়ী।' },
+        'results.notice.l2':      { en: 'Report discrepancies within 7 days.', bn: '৭ দিনের মধ্যে অসঙ্গতি রিপোর্ট করুন।' },
+        'results.notice.l3':      { en: 'Original mark sheets available after 15 days.', bn: '১৫ দিন পর মূল নম্বরপত্র পাওয়া যাবে।' },
+        'results.notice.l4':      { en: 'Re-checking applications within 10 days.', bn: '১০ দিনের মধ্যে পুনর্নিরীক্ষণ আবেদন।' },
+        'results.notice.contact': { en: 'Examination Cell',   bn: 'পরীক্ষা নিয়ন্ত্রক সেল' },
+        'results.stats.h3':       { en: 'HSC Board Results',  bn: 'এইচএসসি বোর্ড ফলাফল' },
+        'results.stats.rate':     { en: 'Pass Rate',          bn: 'পাসের হার' },
+        'results.stats.gpa':      { en: 'GPA 5.00',           bn: 'জিপিএ ৫.০০' },
+        'results.stats.app':      { en: 'Appeared',           bn: 'অংশগ্রহণকারী' },
+        'results.stats.pass':     { en: 'Passed',             bn: 'উত্তীর্ণ' },
+        'results.links.h3':       { en: 'Related Links',      bn: 'সম্পর্কিত লিঙ্ক' },
+        'results.links.ann':      { en: 'Announcements',      bn: 'বিজ্ঞপ্তি' },
+        'results.links.aca':      { en: 'Academics',          bn: 'একাডেমিক' },
+        'results.links.con':      { en: 'Contact Office',     bn: 'অফিসে যোগাযোগ' },
+
+        /* ━━━━━━━━━━━ REGISTRATION PAGES ━━━━━━━━━━━ */
+        'title':                  { en: 'Form Fill-up',       bn: 'ফর্ম পূরণ' },
+        'subtitle':               { en: 'Complete your registration', bn: 'আপনার নিবন্ধন সম্পন্ন করুন' },
+        'submit':                 { en: 'Submit',             bn: 'জমা দিন' }
     };
 
     /* ── Core engine ──────────────────────────────────────── */
@@ -593,9 +637,17 @@
             }
         });
 
-        // Update placeholder attributes
+        // Update placeholder attributes (data-i18n-ph OR data-i18n-attr="placeholder")
         document.querySelectorAll('[data-i18n-ph]').forEach(el => {
             const key = el.getAttribute('data-i18n-ph');
+            const entry = T[key];
+            if (!entry) return;
+            el.placeholder = entry[lang] || entry[DEFAULT_LANG];
+        });
+
+        // Also handle data-i18n-attr="placeholder" style
+        document.querySelectorAll('[data-i18n-attr="placeholder"][data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
             const entry = T[key];
             if (!entry) return;
             el.placeholder = entry[lang] || entry[DEFAULT_LANG];
@@ -662,5 +714,6 @@
 
     // Expose for manual calls if needed
     window.PMDC_i18n = { toggle: toggleLang, current: () => currentLang };
+    window.__pmdc_T = T;
 
 })();

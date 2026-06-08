@@ -94,7 +94,7 @@ include '../includes/header.php';
                     <div class="sidebar-card reveal">
                         <h4 class="sc-title"><i class="fas fa-link"></i> <span data-i18n="ann.sidebar.quickaccess">দ্রুত অ্যাক্সেস</span></h4>
                         <div class="quick-links">
-                            <a href="results.php" class="ql-item">
+                            <a href="<?= BASE_URL ?>/results" class="ql-item">
                                 <i class="fas fa-trophy"></i>
                                 <div>
                                     <strong data-i18n="ann.sidebar.examresults">পরীক্ষার ফলাফল</strong>
@@ -102,7 +102,7 @@ include '../includes/header.php';
                                 </div>
                                 <i class="fas fa-chevron-right ql-arrow"></i>
                             </a>
-                            <a href="academics.php" class="ql-item">
+                            <a href="<?= BASE_URL ?>/academic/class-routine" class="ql-item">
                                 <i class="fas fa-graduation-cap"></i>
                                 <div>
                                     <strong data-i18n="ann.sidebar.academics">একাডেমিক</strong>
@@ -118,7 +118,7 @@ include '../includes/header.php';
                                 </div>
                                 <i class="fas fa-chevron-right ql-arrow"></i>
                             </a>
-                            <a href="../pages/portal/portal-login.php" class="ql-item">
+                            <a href="<?= BASE_URL ?>/admin/login" class="ql-item">
                                 <i class="fas fa-lock"></i>
                                 <div>
                                     <strong data-i18n="ann.sidebar.portal">স্টাফ পোর্টাল</strong>
@@ -152,7 +152,7 @@ include '../includes/header.php';
                             </a>
                             <?php endforeach; ?>
                             <?php if ($event_count === 0): ?>
-                            <p style="padding: 10px; color: var(--muted); font-size: 0.85rem;">No upcoming events.</p>
+                            <p style="padding: 10px; color: var(--muted); font-size: 0.85rem;" data-i18n="ann.no_events">No upcoming events.</p>
                             <?php endif; ?>
                         </div>
                     </div>
