@@ -48,7 +48,7 @@ if (!isset($page_title_bn)) {
     <?php if(isset($page_css)): ?>
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/<?php echo $page_css; ?>?v=<?= time() ?>">
     <?php endif; ?>
-    <!-- i18n: load early so translations apply before paint -->
+    <script>window.BASE_URL = '<?= BASE_URL ?>';</script>
     <script src="<?= BASE_URL ?>/javascript/i18n.js?v=<?= time() ?>"></script>
 </head>
 <body data-page="<?php echo isset($page) ? htmlspecialchars($page, ENT_QUOTES, 'UTF-8') : 'home'; ?>">

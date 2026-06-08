@@ -28,6 +28,8 @@
         'nav.apply_degree': { en: 'Degree Admission', bn: 'ডিগ্রি ভর্তি' },
         'nav.hsc': { en: 'HSC Program', bn: 'এইচএসসি প্রোগ্রাম' },
         'nav.degree': { en: 'Degree Program', bn: 'ডিগ্রি প্রোগ্রাম' },
+        'hero.hsc_admission': { en: 'HSC Admission Form', bn: 'এইচএসসি ভর্তি ফর্ম' },
+        'hero.degree_admission': { en: 'Degree Admission Form', bn: 'ডিগ্রি ভর্তি ফর্ম' },
         'nav.holiday': { en: 'Holiday List', bn: 'ছুটির তালিকা' },
         'nav.calendar': { en: 'Academic Calendar', bn: 'একাডেমিক ক্যালেন্ডার' },
         'nav.class-routine': { en: 'Class Routine', bn: 'ক্লাস রুটিন' },

@@ -48,7 +48,7 @@ include '../includes/header.php';
 <section class="page-hero">
     <div class="container ph-content">
         <div class="ph-kicker reveal">ADMISSION <?php echo htmlspecialchars($session); ?></div>
-        <h1 class="reveal" data-i18n="title">HSC Admission Form</h1>
+        <h1 class="reveal" data-i18n="hero.hsc_admission">HSC Admission Form</h1>
         <?php if ($state === 'open'): ?>
         <div class="ph-badge-row reveal">
             <span class="ph-badge"><i class="fas fa-calendar-alt"></i> Session: <?php echo htmlspecialchars($session); ?></span>
