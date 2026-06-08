@@ -320,6 +320,10 @@
 @media (max-width: 1280px) {
     .tm-stats-row { grid-template-columns: repeat(2, 1fr); }
 }
+@media (max-width: 768px) {
+    /* Hide breadcrumb so header doesn't squish on small tablets/mobile */
+    .th-breadcrumb { display: none; }
+}
 @media (max-width: 640px) {
     .tm-page-header { flex-direction: column; align-items: stretch; gap: 16px; padding: 24px; }
     .tm-header-actions { flex-direction: column; align-items: stretch; width: 100%; gap: 10px; }

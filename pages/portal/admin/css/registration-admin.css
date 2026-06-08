@@ -413,6 +413,7 @@
     .ra-status-row { flex-direction: column; align-items: flex-start; }
     .ra-section-head { flex-direction: column; align-items: flex-start; }
     .ra-filter-bar { flex-direction: column; align-items: stretch; }
+    .ra-filter-bar .tm-search-box { flex: none; width: 100%; }
     .ra-select { min-width: 0; width: 100%; }
 }
 @media (max-width: 640px) {

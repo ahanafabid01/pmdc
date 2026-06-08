@@ -201,5 +201,15 @@
 
     <script>window.BASE_URL = "<?= BASE_URL ?>";</script>
     <script src="<?= BASE_URL ?>/pages/portal/admin/js/assign_teachers.js?v=<?= time() ?>"></script>
+    <script>
+    (function(){
+        const sidebar=document.getElementById('sidebar'),overlay=document.getElementById('sidebarOverlay');
+        function open(){sidebar.classList.add('open');overlay.classList.add('active');document.body.style.overflow='hidden';}
+        function close(){sidebar.classList.remove('open');overlay.classList.remove('active');document.body.style.overflow='';}
+        document.getElementById('menuToggle')?.addEventListener('click',open);
+        document.getElementById('closeSidebar')?.addEventListener('click',close);
+        overlay?.addEventListener('click',close);
+    })();
+    </script>
 </body>
 </html>

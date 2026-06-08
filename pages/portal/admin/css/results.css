@@ -183,3 +183,8 @@
     font-size: 1rem;
     margin-bottom: 20px;
 }
+
+@media (max-width: 768px) {
+    /* Hide breadcrumb so header doesn't squish on small tablets/mobile */
+    .th-breadcrumb { display: none; }
+}

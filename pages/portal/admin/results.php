@@ -118,9 +118,10 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
         <button class="menu-toggle" id="menuToggle">
             <i class="fas fa-bars"></i>
         </button>
-        <div class="search-box">
-            <i class="fas fa-search"></i>
-            <input type="text" placeholder="Search students, courses, records...">
+        <div class="th-breadcrumb">
+            <a href="<?= BASE_URL ?>/admin">Dashboard</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>Results</span>
         </div>
         <div class="header-right">
             <button class="icon-btn" title="Notifications">
@@ -252,5 +253,15 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
 <script>window.BASE_URL = "<?= BASE_URL ?>";</script>
     <script src="<?= BASE_URL ?>/pages/portal/admin/js/portal.js?v=<?= time() ?>"></script>
 <script src="<?= BASE_URL ?>/pages/portal/admin/js/results.js?v=<?= time() ?>"></script>
+<script>
+(function(){
+    const sidebar=document.getElementById('sidebar'),overlay=document.getElementById('sidebarOverlay');
+    function open(){sidebar.classList.add('open');overlay.classList.add('active');document.body.style.overflow='hidden';}
+    function close(){sidebar.classList.remove('open');overlay.classList.remove('active');document.body.style.overflow='';}
+    document.getElementById('menuToggle')?.addEventListener('click',open);
+    document.getElementById('closeSidebar')?.addEventListener('click',close);
+    overlay?.addEventListener('click',close);
+})();
+</script>
 </body>
 </html>
