@@ -188,3 +188,12 @@
     /* Hide breadcrumb so header doesn't squish on small tablets/mobile */
     .th-breadcrumb { display: none; }
 }
+
+/* Results page specific filter grid */
+.results-filter { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 768px) {
+    .results-filter { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+    .results-filter { grid-template-columns: 1fr; }
+}

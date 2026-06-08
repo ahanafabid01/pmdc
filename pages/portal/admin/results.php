@@ -155,7 +155,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
                 <h3><i class="fas fa-sliders-h"></i> Select Exam & Program</h3>
             </div>
             <div class="card-body att-pad">
-                <div class="att-filter-grid" style="grid-template-columns: repeat(3, 1fr);">
+                <div class="att-filter-grid results-filter">
                     <div class="att-field">
                         <label>Exam</label>
                         <select id="examSelect"><option value="">Loading...</option></select>
