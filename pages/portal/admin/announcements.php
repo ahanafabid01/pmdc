@@ -139,12 +139,12 @@
                     <table class="tm-table" id="annTable">
                         <thead>
                             <tr>
-                                <th width="36">#</th>
-                                <th>Title</th>
-                                <th width="120">Date</th>
-                                <th width="100">Attachment</th>
-                                <th width="110">Status</th>
-                                <th width="110">Actions</th>
+                                <th style="min-width:40px;">#</th>
+                                <th style="min-width:260px;">Title</th>
+                                <th style="min-width:120px;">Date</th>
+                                <th style="min-width:100px;">Attachment</th>
+                                <th style="min-width:110px;">Status</th>
+                                <th style="min-width:110px;">Actions</th>
                             </tr>
                         </thead>
                         <tbody id="annTbody">

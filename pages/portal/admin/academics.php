@@ -114,13 +114,13 @@
                     <table class="tm-table" id="hscTable">
                         <thead>
                             <tr>
-                                <th width="36">#</th>
-                                <th>Group Name</th>
-                                <th>Bengali</th>
-                                <th width="90" class="text-center">Compulsory</th>
-                                <th width="90" class="text-center">Optional</th>
-                                <th width="90" class="text-center">4th Subject</th>
-                                <th width="110">Actions</th>
+                                <th style="min-width:40px;">#</th>
+                                <th style="min-width:140px;">Group Name</th>
+                                <th style="min-width:140px;">Bengali</th>
+                                <th style="min-width:110px;" class="text-center">Compulsory</th>
+                                <th style="min-width:110px;" class="text-center">Optional</th>
+                                <th style="min-width:110px;" class="text-center">4th Subject</th>
+                                <th style="min-width:120px;">Actions</th>
                             </tr>
                         </thead>
                         <tbody id="hscTbody"></tbody>
@@ -152,13 +152,13 @@
                     <table class="tm-table" id="degTable">
                         <thead>
                             <tr>
-                                <th width="36">#</th>
-                                <th>Program</th>
-                                <th>Full Name</th>
-                                <th>Bengali</th>
-                                <th width="100" class="text-center">Compulsory</th>
-                                <th width="100" class="text-center">Optional</th>
-                                <th width="110">Actions</th>
+                                <th style="min-width:40px;">#</th>
+                                <th style="min-width:120px;">Program</th>
+                                <th style="min-width:180px;">Full Name</th>
+                                <th style="min-width:140px;">Bengali</th>
+                                <th style="min-width:110px;" class="text-center">Compulsory</th>
+                                <th style="min-width:110px;" class="text-center">Optional</th>
+                                <th style="min-width:120px;">Actions</th>
                             </tr>
                         </thead>
                         <tbody id="degTbody"></tbody>

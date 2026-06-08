@@ -240,15 +240,15 @@
                 <table class="tm-table" id="studentsTable">
                     <thead>
                         <tr>
-                            <th><input type="checkbox" id="selectAll"></th>
-                            <th class="sortable" data-col="id">Roll No <i class="fas fa-sort"></i></th>
-                            <th class="sortable" data-col="name">Student Name <i class="fas fa-sort"></i></th>
-                            <th>Session</th>
-                            <th>Group (বিভাগ)</th>
-                            <th>Year</th>
-                            <th>Section</th>
-                            <th>Phone</th>
-                            <th>Actions</th>
+                            <th style="min-width:40px;"><input type="checkbox" id="selectAll"></th>
+                            <th class="sortable" data-col="id" style="min-width:110px;">Roll No <i class="fas fa-sort"></i></th>
+                            <th class="sortable" data-col="name" style="min-width:180px;">Student Name <i class="fas fa-sort"></i></th>
+                            <th style="min-width:100px;">Session</th>
+                            <th style="min-width:140px;">Group (বিভাগ)</th>
+                            <th style="min-width:110px;">Year</th>
+                            <th style="min-width:100px;">Section</th>
+                            <th style="min-width:120px;">Phone</th>
+                            <th style="min-width:100px;">Actions</th>
                         </tr>
                     </thead>
 

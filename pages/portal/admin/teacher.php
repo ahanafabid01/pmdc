@@ -148,13 +148,13 @@
                     <table class="tm-table" id="staffTable">
                         <thead>
                             <tr>
-                                <th style="width:36px;">#</th>
-                                <th>Name</th>
-                                <th>Designation</th>
-                                <th>Category</th>
-                                <th>Subject</th>
-                                <th>Phone</th>
-                                <th style="width:100px;">Actions</th>
+                                <th style="min-width:40px;">#</th>
+                                <th style="min-width:200px;">Name</th>
+                                <th style="min-width:160px;">Designation</th>
+                                <th style="min-width:120px;">Category</th>
+                                <th style="min-width:140px;">Subject</th>
+                                <th style="min-width:130px;">Phone</th>
+                                <th style="min-width:110px;">Actions</th>
                             </tr>
                         </thead>
                         <tbody id="staffTableBody">

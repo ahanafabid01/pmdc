@@ -215,9 +215,9 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
                     <table class="admin-table">
                         <thead>
                             <tr>
-                                <th>Subject</th>
-                                <th>Assigned Teacher</th>
-                                <th>Status</th>
+                                <th style="min-width:180px;">Subject</th>
+                                <th style="min-width:200px;">Assigned Teacher</th>
+                                <th style="min-width:120px;">Status</th>
                             </tr>
                         </thead>
                         <tbody id="progressTableBody"></tbody>

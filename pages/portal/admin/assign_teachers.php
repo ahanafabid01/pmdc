@@ -136,10 +136,10 @@
                     <table class="tm-table" id="assignmentsTable">
                         <thead>
                             <tr>
-                                <th>Teacher</th>
-                                <th>Program</th>
-                                <th>Subject</th>
-                                <th style="text-align: center; width: 80px;">Action</th>
+                                <th style="min-width:200px;">Teacher</th>
+                                <th style="min-width:180px;">Program</th>
+                                <th style="min-width:180px;">Subject</th>
+                                <th style="text-align: center; min-width: 110px;">Action</th>
                             </tr>
                         </thead>
                         <tbody id="assignTableBody">

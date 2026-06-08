@@ -112,12 +112,12 @@
                     <table class="tm-table" id="calTable">
                         <thead>
                             <tr>
-                                <th width="80">Year</th>
-                                <th width="100">Preview</th>
-                                <th>File</th>
-                                <th width="80">Type</th>
-                                <th width="150">Uploaded</th>
-                                <th width="110">Actions</th>
+                                <th style="min-width:110px;">Year</th>
+                                <th style="min-width:90px;">Preview</th>
+                                <th style="min-width:300px;">File</th>
+                                <th style="min-width:100px;">Type</th>
+                                <th style="min-width:140px;">Uploaded</th>
+                                <th style="min-width:120px;">Actions</th>
                             </tr>
                         </thead>
                         <tbody id="calBody">
@@ -310,7 +310,7 @@
                     : `<span style="display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:.7rem;font-weight:700;background:#dbeafe;color:#1e40af;"><i class="fas fa-image"></i> Image</span>`;
 
                 return `<tr>
-                    <td style="font-weight:800;color:#1e293b;font-size:.95rem;">${c.year}–${parseInt(c.year)+1}</td>
+                    <td style="font-weight:800;color:#1e293b;font-size:.95rem;white-space:nowrap;">${c.year}–${parseInt(c.year)+1}</td>
                     <td>${preview}</td>
                     <td>
                         <a href="${fileUrl}" target="_blank" style="color:var(--blue);font-weight:600;font-size:.85rem;word-break:break-all;" title="Open file">

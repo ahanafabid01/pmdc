@@ -95,7 +95,6 @@ function renderHscTable() {
                     <span class="ac-prog-dot" style="background:${esc(g.accent)};"></span>
                     <div>
                         <div class="ac-prog-name">${esc(g.name)}</div>
-                        <div class="ac-prog-bn">${esc(g.bengali)}</div>
                     </div>
                 </div>
             </td>
@@ -139,7 +138,6 @@ function renderDegTable() {
                     <span class="ac-prog-dot" style="background:${esc(p.accent)};"></span>
                     <div>
                         <div class="ac-prog-name">${esc(p.name)}</div>
-                        <div class="ac-prog-bn">${esc(p.bengali)}</div>
                     </div>
                 </div>
             </td>
