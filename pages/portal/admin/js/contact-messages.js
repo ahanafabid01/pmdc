@@ -34,8 +34,30 @@ document.addEventListener('DOMContentLoaded', () => {
         return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
     }
 
+    function getSubjectBadge(val) {
+        switch(val) {
+            case 'admission': return '<span class="subj-badge sb-admission"><i class="fas fa-user-graduate"></i> Admission</span>';
+            case 'results': return '<span class="subj-badge sb-results"><i class="fas fa-poll"></i> Results & Exam</span>';
+            case 'scholarship': return '<span class="subj-badge sb-scholarship"><i class="fas fa-award"></i> Scholarship</span>';
+            case 'academic': return '<span class="subj-badge sb-academic"><i class="fas fa-book"></i> Academics</span>';
+            default:
+                return '<span class="subj-badge sb-other"><i class="fas fa-envelope-open-text"></i> ' + esc(val.charAt(0).toUpperCase() + val.slice(1)) + '</span>';
+        }
+    }
+
+    function getSubjectLabel(val) {
+        const map = {
+            'admission': 'Admission Enquiry',
+            'results': 'Results & Examination',
+            'scholarship': 'Scholarship',
+            'academic': 'Academic Information',
+            'other': 'Other / General Enquiry'
+        };
+        return map[val] || val;
+    }
+
     window.loadMessages = async function() {
-        messagesTableBody.innerHTML = '<tr class="tm-empty-row"><td colspan="5"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>';
+        messagesTableBody.innerHTML = '<tr class="tm-empty-row"><td colspan="6"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>';
         try {
             const res = await fetch(window.BASE_URL + `/pages/portal/admin/api/contact-messages.php?action=list`);
             const data = await res.json();
@@ -57,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderMessages() {
         if (allMessages.length === 0) {
-            messagesTableBody.innerHTML = '<tr class="tm-empty-row"><td colspan="5"><i class="fas fa-inbox"></i> No messages found.</td></tr>';
+            messagesTableBody.innerHTML = '<tr class="tm-empty-row"><td colspan="6"><i class="fas fa-envelope-open"></i> No messages found.</td></tr>';
             return;
         }
 
@@ -69,11 +91,9 @@ document.addEventListener('DOMContentLoaded', () => {
             
             return `
             <tr class="msg-row ${isUnread ? 'unread' : ''}" onclick="viewMessage(${m.id})">
-                <td>
-                    <div class="msg-sender">${esc(m.name)}</div>
-                    <div class="msg-sender" style="font-size:0.8rem; color:#64748b;">${esc(m.email)}</div>
-                </td>
-                <td class="msg-subject">${esc(m.subject)}</td>
+                <td><div class="msg-sender" style="font-weight: 600;">${esc(m.name)}</div></td>
+                <td><div class="msg-email" style="color: var(--text-light); font-size: 0.9rem;">${esc(m.email)}</div></td>
+                <td>${getSubjectBadge(m.subject)}</td>
                 <td class="msg-date">${formatDate(m.created_at)}</td>
                 <td>${statusBadge}</td>
                 <td onclick="event.stopPropagation();">
@@ -90,7 +110,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!m) return;
         
         currentViewId = id;
-        document.getElementById('msgViewSubject').textContent = m.subject;
+        
+        const badgeHTML = getSubjectBadge(m.subject);
+        document.getElementById('msgViewSubject').innerHTML = badgeHTML;
+        
         document.getElementById('msgViewName').textContent = m.name;
         
         const elEmail = document.getElementById('msgViewEmail');

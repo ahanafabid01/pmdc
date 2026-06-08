@@ -81,6 +81,10 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
             <span>Announcements</span>
 
         </a>
+            <a href="<?= BASE_URL ?>/admin/contact-messages" class="nav-item">
+                <i class="fas fa-envelope"></i>
+                <span>Contact Messages</span>
+            </a>
         <a href="<?= BASE_URL ?>/admin/registration" class="nav-item">
             <i class="fas fa-file-alt"></i>
             <span>HSC Registration</span>

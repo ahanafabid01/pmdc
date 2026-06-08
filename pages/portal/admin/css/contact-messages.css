@@ -16,6 +16,21 @@
     font-weight: 600;
 }
 
+.subj-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+.sb-admission { background: #e0e7ff; color: #4338ca; border: 1px solid #c7d2fe; }
+.sb-results { background: #ffedd5; color: #c2410c; border: 1px solid #fed7aa; }
+.sb-scholarship { background: #fce7f3; color: #be185d; border: 1px solid #fbcfe8; }
+.sb-academic { background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }
+.sb-other { background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; }
+
 .msg-subject {
     color: #0f172a;
 }

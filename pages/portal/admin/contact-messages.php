@@ -120,7 +120,8 @@
                     <table class="tm-table" id="messagesTable">
                         <thead>
                             <tr>
-                                <th style="min-width:200px;">Sender</th>
+                                <th style="min-width:180px;">Name</th>
+                                <th style="min-width:200px;">Email</th>
                                 <th style="min-width:250px;">Subject</th>
                                 <th style="min-width:150px;">Date</th>
                                 <th style="min-width:100px;">Status</th>
@@ -128,7 +129,7 @@
                             </tr>
                         </thead>
                         <tbody id="messagesTableBody">
-                            <tr class="tm-empty-row"><td colspan="5"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>
+                            <tr class="tm-empty-row"><td colspan="6"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>
                         </tbody>
                     </table>
                 </div>
