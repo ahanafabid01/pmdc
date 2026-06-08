@@ -1,0 +1,91 @@
+/* ═══════════════════════════════════════════════════════════
+   Contact Messages CSS
+═══════════════════════════════════════════════════════════ */
+
+.msg-row {
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.msg-row:hover {
+    background-color: #f8fafc;
+}
+
+.msg-row.unread {
+    background-color: #eff6ff;
+    font-weight: 600;
+}
+
+.msg-subject {
+    color: #0f172a;
+}
+
+.msg-sender {
+    color: #475569;
+    font-size: 0.9rem;
+}
+
+.msg-date {
+    color: #64748b;
+    font-size: 0.85rem;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 0.25rem 0.6rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-unread {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.status-read {
+    background: #f1f5f9;
+    color: #64748b;
+}
+
+/* Modal specific styles */
+.msg-detail-header {
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.msg-detail-header h3 {
+    margin: 0 0 0.5rem 0;
+    color: #0f172a;
+    font-size: 1.25rem;
+}
+
+.msg-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    color: #475569;
+    font-size: 0.9rem;
+}
+
+.msg-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.msg-meta-item i {
+    color: #94a3b8;
+}
+
+.msg-body {
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 1.5rem;
+    color: #334155;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    min-height: 150px;
+}

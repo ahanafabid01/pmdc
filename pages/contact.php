@@ -232,17 +232,44 @@ include '../includes/header.php';
     </div>
 
     <script>
-    function handleContact(e) {
+    async function handleContact(e) {
         e.preventDefault();
         const btn  = document.getElementById('submitBtn');
         btn.querySelector('.btn-text').style.display = 'none';
         btn.querySelector('.btn-spin').style.display = 'inline-flex';
         btn.disabled = true;
 
-        setTimeout(() => {
-            document.getElementById('contactForm').style.display = 'none';
-            document.getElementById('successMsg').style.display  = 'flex';
-        }, 1400);
+        const data = {
+            name: document.getElementById('cf_name').value.trim(),
+            email: document.getElementById('cf_email').value.trim(),
+            phone: document.getElementById('cf_phone').value.trim(),
+            subject: document.getElementById('cf_subject').value,
+            message: document.getElementById('cf_message').value.trim()
+        };
+
+        try {
+            const res = await fetch('<?= BASE_URL ?>/api/contact-submit.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            const result = await res.json();
+            
+            if (result.ok) {
+                document.getElementById('contactForm').style.display = 'none';
+                document.getElementById('successMsg').style.display  = 'flex';
+            } else {
+                alert(result.msg || 'Error submitting message');
+                btn.querySelector('.btn-text').style.display = 'inline-flex';
+                btn.querySelector('.btn-spin').style.display = 'none';
+                btn.disabled = false;
+            }
+        } catch(err) {
+            alert('Network error. Please try again.');
+            btn.querySelector('.btn-text').style.display = 'inline-flex';
+            btn.querySelector('.btn-spin').style.display = 'none';
+            btn.disabled = false;
+        }
     }
     </script>
 

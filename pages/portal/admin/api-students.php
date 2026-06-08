@@ -154,3 +154,4 @@ if ($method === 'DELETE') {
 }
 
 echo json_encode(['success' => false, 'error' => 'Method not allowed']);
+

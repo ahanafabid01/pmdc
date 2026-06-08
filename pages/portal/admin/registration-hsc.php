@@ -39,6 +39,7 @@
             <a href="<?= BASE_URL ?>/admin/assign-teachers" class="nav-item"><i class="fas fa-tasks"></i><span>Assign Teachers</span></a>
         <a href="#" class="nav-item"><i class="fas fa-file-invoice-dollar"></i><span>Finance</span></a>
         <a href="<?= BASE_URL ?>/admin/announcement" class="nav-item"><i class="fas fa-bell"></i><span>Announcements</span></a>
+            <a href="<?= BASE_URL ?>/admin/contact-messages" class="nav-item"><i class="fas fa-envelope"></i><span>Contact Messages</span></a>
         <a href="<?= BASE_URL ?>/admin/registration" class="nav-item active"><i class="fas fa-file-alt"></i><span>HSC Registration</span></a>
         <a href="<?= BASE_URL ?>/admin/registration-degree" class="nav-item"><i class="fas fa-university"></i><span>Degree Registration</span></a>
         <a href="#" class="nav-item"><i class="fas fa-chart-line"></i><span>Reports</span></a>
@@ -411,6 +412,7 @@
     <script src="<?= BASE_URL ?>/pages/portal/admin/js/registration-admin.js?v=<?= time() ?>"></script>
 </body>
 </html>
+
 
 
 

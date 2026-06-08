@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assign Teachers | PMDC Admin</title>
+    <title>Contact Messages | PMDC Admin</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css?v=<?= time() ?>">
     <link rel="stylesheet" href="<?= BASE_URL ?>/pages/portal/admin/css/styles.css?v=<?= time() ?>">
-    <link rel="stylesheet" href="<?= BASE_URL ?>/pages/portal/admin/css/assign_teachers.css?v=<?= time() ?>">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/pages/portal/admin/css/teacher.css?v=<?= time() ?>">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/pages/portal/admin/css/contact-messages.css?v=<?= time() ?>">
 </head>
 <body>
 
@@ -39,10 +40,10 @@
             <div class="nav-divider"></div>
             <span class="nav-section-label">Management</span>
             <a href="<?= BASE_URL ?>/admin/calendar" class="nav-item"><i class="fas fa-calendar-alt"></i><span>Academic Calendar</span></a>
-            <a href="<?= BASE_URL ?>/admin/assign-teachers" class="nav-item active"><i class="fas fa-tasks"></i><span>Assign Teachers</span></a>
+            <a href="<?= BASE_URL ?>/admin/assign-teachers" class="nav-item"><i class="fas fa-tasks"></i><span>Assign Teachers</span></a>
             <a href="#" class="nav-item"><i class="fas fa-file-invoice-dollar"></i><span>Finance</span></a>
             <a href="<?= BASE_URL ?>/admin/announcement" class="nav-item"><i class="fas fa-bell"></i><span>Announcements</span></a>
-            <a href="<?= BASE_URL ?>/admin/contact-messages" class="nav-item"><i class="fas fa-envelope"></i><span>Contact Messages</span></a>
+            <a href="<?= BASE_URL ?>/admin/contact-messages" class="nav-item active"><i class="fas fa-envelope"></i><span>Contact Messages</span></a>
             <a href="<?= BASE_URL ?>/admin/registration" class="nav-item"><i class="fas fa-file-alt"></i><span>HSC Registration</span></a>
             <a href="<?= BASE_URL ?>/admin/registration-degree" class="nav-item"><i class="fas fa-university"></i><span>Degree Registration</span></a>
             <a href="#" class="nav-item"><i class="fas fa-chart-line"></i><span>Reports</span></a>
@@ -68,7 +69,7 @@
             <div class="th-breadcrumb">
                 <a href="<?= BASE_URL ?>/admin">Dashboard</a>
                 <i class="fas fa-chevron-right"></i>
-                <span>Assign Teachers</span>
+                <span>Contact Messages</span>
             </div>
             <div class="header-right">
                 <button class="icon-btn" title="Notifications">
@@ -89,12 +90,12 @@
             <!-- Page Header -->
             <div class="tm-page-header">
                 <div class="tm-page-title">
-                    <h1>Assign Teachers</h1>
-                    <p>Map teachers to specific academic programs and subjects.</p>
+                    <h1>Contact Messages</h1>
+                    <p>View and manage messages sent through the public contact form.</p>
                 </div>
                 <div class="tm-header-actions">
-                    <button class="btn-add-staff" id="btnOpenModal">
-                        <i class="fas fa-plus"></i> New Assignment
+                    <button class="btn-export" onclick="loadMessages()">
+                        <i class="fas fa-sync-alt"></i> Refresh
                     </button>
                 </div>
             </div>
@@ -102,50 +103,32 @@
             <!-- Summary Stats -->
             <div class="tm-stats-row">
                 <div class="tm-stat-pill">
-                    <i class="fas fa-tasks" style="background:#3b82f6;"></i>
-                    <span class="ts-val" id="statTotalAssignments">0</span>
-                    <span class="ts-lbl">Total Assignments</span>
+                    <i class="fas fa-envelope" style="background:#3b82f6;"></i>
+                    <span class="ts-val" id="statTotal">0</span>
+                    <span class="ts-lbl">Total Messages</span>
                 </div>
                 <div class="tm-stat-pill">
-                    <i class="fas fa-chalkboard-teacher" style="background:#10b981;"></i>
-                    <span class="ts-val" id="statTotalTeachers">0</span>
-                    <span class="ts-lbl">Teachers Assigned</span>
-                </div>
-                <div class="tm-stat-pill">
-                    <i class="fas fa-book" style="background:#8b5cf6;"></i>
-                    <span class="ts-val" id="statTotalSubjects">0</span>
-                    <span class="ts-lbl">Unique Subjects</span>
-                </div>
-                <div class="tm-stat-pill">
-                    <i class="fas fa-university" style="background:#f59e0b;"></i>
-                    <span class="ts-val" id="statTotalPrograms">0</span>
-                    <span class="ts-lbl">Active Programs</span>
-                </div>
-            </div>
-
-            <!-- Controls -->
-            <div class="tm-controls">
-                <div class="tm-search-box">
-                    <i class="fas fa-search"></i>
-                    <input type="text" id="searchAssignments" placeholder="Search by teacher, program, or subject...">
+                    <i class="fas fa-envelope-open-text" style="background:#10b981;"></i>
+                    <span class="ts-val" id="statUnread">0</span>
+                    <span class="ts-lbl">Unread</span>
                 </div>
             </div>
 
             <!-- Table View -->
             <div class="tm-card">
                 <div class="tm-table-wrap">
-                    <table class="tm-table" id="assignmentsTable">
+                    <table class="tm-table" id="messagesTable">
                         <thead>
                             <tr>
-                                <th style="min-width:180px;">Teacher Name</th>
-                                <th style="min-width:180px;">Email</th>
-                                <th style="min-width:180px;">Program</th>
-                                <th style="min-width:180px;">Subject</th>
-                                <th style="text-align: center; min-width: 110px;">Action</th>
+                                <th style="min-width:200px;">Sender</th>
+                                <th style="min-width:250px;">Subject</th>
+                                <th style="min-width:150px;">Date</th>
+                                <th style="min-width:100px;">Status</th>
+                                <th style="text-align: center; min-width: 80px;">Action</th>
                             </tr>
                         </thead>
-                        <tbody id="assignTableBody">
-                            <tr class="tm-empty-row"><td colspan="5"><i class="fas fa-spinner fa-spin"></i> Loading assignments...</td></tr>
+                        <tbody id="messagesTableBody">
+                            <tr class="tm-empty-row"><td colspan="5"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -154,54 +137,39 @@
         </div>
     </main>
 
-    <!-- ════════════════════ ADD ASSIGNMENT MODAL ════════════════════ -->
-    <div class="tm-modal-overlay" id="assignmentModal">
-        <div class="tm-modal tm-modal-sm">
+    <!-- ════════════════════ VIEW MESSAGE MODAL ════════════════════ -->
+    <div class="tm-modal-overlay" id="viewModal">
+        <div class="tm-modal">
             <div class="tm-modal-header">
-                <h2><i class="fas fa-plus-circle"></i> Create New Assignment</h2>
-                <button class="tm-modal-close" id="closeModal"><i class="fas fa-times"></i></button>
+                <h2><i class="fas fa-envelope-open-text"></i> Message Details</h2>
+                <button class="tm-modal-close" id="closeViewModal"><i class="fas fa-times"></i></button>
             </div>
             <div class="tm-modal-body">
-                
-                <div class="tm-form-group" style="margin-bottom: 16px;">
-                    <label>Select Teacher <span class="req">*</span></label>
-                    <select id="assignStaffId">
-                        <option value="">Loading teachers...</option>
-                    </select>
+                <div class="msg-detail-header">
+                    <h3 id="msgViewSubject">Subject here</h3>
+                    <div class="msg-meta">
+                        <div class="msg-meta-item">
+                            <i class="fas fa-user"></i> <span id="msgViewName">Name</span>
+                        </div>
+                        <div class="msg-meta-item">
+                            <i class="fas fa-envelope"></i> <a href="#" id="msgViewEmail">Email</a>
+                        </div>
+                        <div class="msg-meta-item">
+                            <i class="fas fa-phone"></i> <a href="#" id="msgViewPhone">Phone</a>
+                        </div>
+                        <div class="msg-meta-item">
+                            <i class="fas fa-calendar-alt"></i> <span id="msgViewDate">Date</span>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="tm-form-group" style="margin-bottom: 16px;">
-                    <label>Select Class <span class="req">*</span></label>
-                    <select id="assignClassType">
-                        <option value="">-- Select Class --</option>
-                        <option value="HSC">HSC</option>
-                        <option value="Degree">Degree</option>
-                    </select>
+                <div class="msg-body" id="msgViewBody">
+                    Message content goes here...
                 </div>
-
-                <div class="tm-form-group" style="margin-bottom: 16px;">
-                    <label>Select Class/Program <span class="req">*</span></label>
-                    <select id="assignClassId">
-                        <option value="">-- Select Class/Program --</option>
-                    </select>
-                </div>
-
-                <div class="tm-form-group" style="margin-bottom: 24px;">
-                    <label>Select Subject <span class="req">*</span></label>
-                    <select id="assignSubjectId">
-                        <option value="">Loading subjects...</option>
-                    </select>
-                </div>
-
-                <div id="assignLoginInfo" class="login-info-box" style="display:none; margin-bottom: 16px;">
-                    <!-- Generated login info will appear here -->
-                </div>
-
             </div>
             <div class="tm-modal-footer">
-                <button type="button" class="btn-cancel" id="btnCancelModal">Cancel</button>
-                <button type="button" class="btn-save" id="btnAddAssignment">
-                    <i class="fas fa-save"></i> Save Assignment
+                <button type="button" class="btn-cancel" id="btnCloseModalBtn">Close</button>
+                <button type="button" class="btn-delete-confirm" id="btnDeleteMsg" style="background: #dc2626; color: white;">
+                    <i class="fas fa-trash-alt"></i> Delete Message
                 </button>
             </div>
         </div>
@@ -211,7 +179,7 @@
     <div class="tm-toast" id="tmToast"></div>
 
     <script>window.BASE_URL = "<?= BASE_URL ?>";</script>
-    <script src="<?= BASE_URL ?>/pages/portal/admin/js/assign_teachers.js?v=<?= time() ?>"></script>
+    <script src="<?= BASE_URL ?>/pages/portal/admin/js/contact-messages.js?v=<?= time() ?>"></script>
     <script>
     (function(){
         const sidebar=document.getElementById('sidebar'),overlay=document.getElementById('sidebarOverlay');
@@ -224,4 +192,3 @@
     </script>
 </body>
 </html>
-
