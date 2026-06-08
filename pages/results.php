@@ -181,115 +181,11 @@ include '../includes/header.php';
                         </div>
 
                         <div class="result-list" id="resultList">
-
-                            <div class="result-row reveal" data-category="science">
-                                <div class="rr-left">
-                                    <div class="rr-icon rr-sci"><i class="fas fa-file-pdf"></i></div>
-                                    <div class="rr-info">
-                                        <div class="rr-title">Test Exam — Science <span class="rr-class class-xii">Class XII</span> <span class="rr-badge badge-new">New</span></div>
-                                        <div class="rr-meta">
-                                            <span><i class="fas fa-calendar"></i> Published Jan 20, 2026</span>
-                                            <span><i class="fas fa-users"></i> 186 Students</span>
-                                            <span class="rr-bn">দ্বাদশ শ্রেণি — বিজ্ঞান — টেস্ট পরীক্ষা ২০২৫</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="rr-actions">
-                                    <button class="rr-btn rr-view" onclick="viewResult('test_sci_xii_2025')"><i class="fas fa-eye"></i> View</button>
-                                    <button class="rr-btn rr-dl"   onclick="downloadResult('test_sci_xii_2025')"><i class="fas fa-download"></i> PDF</button>
-                                </div>
+                            <!-- Dynamic results will be populated here -->
+                            <div style="padding: 30px; text-align: center; color: var(--muted); font-family: 'Inter', sans-serif;">
+                                <i class="fas fa-info-circle" style="font-size: 1.5rem; margin-bottom: 10px; color: #cbd5e1;"></i>
+                                <p>No published results available at this time.</p>
                             </div>
-
-                            <div class="result-row reveal" data-category="commerce">
-                                <div class="rr-left">
-                                    <div class="rr-icon rr-com"><i class="fas fa-file-pdf"></i></div>
-                                    <div class="rr-info">
-                                        <div class="rr-title">Test Exam — Commerce <span class="rr-class class-xii">Class XII</span> <span class="rr-badge badge-new">New</span></div>
-                                        <div class="rr-meta">
-                                            <span><i class="fas fa-calendar"></i> Published Jan 18, 2026</span>
-                                            <span><i class="fas fa-users"></i> 212 Students</span>
-                                            <span class="rr-bn">দ্বাদশ শ্রেণি — ব্যবসায় শিক্ষা — টেস্ট পরীক্ষা ২০২৫</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="rr-actions">
-                                    <button class="rr-btn rr-view" onclick="viewResult('test_com_xii_2025')"><i class="fas fa-eye"></i> View</button>
-                                    <button class="rr-btn rr-dl"   onclick="downloadResult('test_com_xii_2025')"><i class="fas fa-download"></i> PDF</button>
-                                </div>
-                            </div>
-
-                            <div class="result-row reveal" data-category="humanities">
-                                <div class="rr-left">
-                                    <div class="rr-icon rr-hum"><i class="fas fa-file-pdf"></i></div>
-                                    <div class="rr-info">
-                                        <div class="rr-title">Test Exam — Humanities <span class="rr-class class-xii">Class XII</span> <span class="rr-badge badge-new">New</span></div>
-                                        <div class="rr-meta">
-                                            <span><i class="fas fa-calendar"></i> Published Jan 15, 2026</span>
-                                            <span><i class="fas fa-users"></i> 247 Students</span>
-                                            <span class="rr-bn">দ্বাদশ শ্রেণি — মানবিক — টেস্ট পরীক্ষা ২০২৫</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="rr-actions">
-                                    <button class="rr-btn rr-view" onclick="viewResult('test_hum_xii_2025')"><i class="fas fa-eye"></i> View</button>
-                                    <button class="rr-btn rr-dl"   onclick="downloadResult('test_hum_xii_2025')"><i class="fas fa-download"></i> PDF</button>
-                                </div>
-                            </div>
-
-                            <div class="result-row reveal" data-category="science">
-                                <div class="rr-left">
-                                    <div class="rr-icon rr-sci"><i class="fas fa-file-pdf"></i></div>
-                                    <div class="rr-info">
-                                        <div class="rr-title">Year-Change Exam — Science <span class="rr-class class-xi">Class XI</span></div>
-                                        <div class="rr-meta">
-                                            <span><i class="fas fa-calendar"></i> Published Dec 30, 2025</span>
-                                            <span><i class="fas fa-users"></i> 174 Students</span>
-                                            <span class="rr-bn">একাদশ শ্রেণি — বিজ্ঞান — বার্ষান্তর পরীক্ষা ২০২৫</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="rr-actions">
-                                    <button class="rr-btn rr-view" onclick="viewResult('yearchange_sci_xi_2025')"><i class="fas fa-eye"></i> View</button>
-                                    <button class="rr-btn rr-dl"   onclick="downloadResult('yearchange_sci_xi_2025')"><i class="fas fa-download"></i> PDF</button>
-                                </div>
-                            </div>
-
-                            <div class="result-row reveal" data-category="commerce">
-                                <div class="rr-left">
-                                    <div class="rr-icon rr-com"><i class="fas fa-file-pdf"></i></div>
-                                    <div class="rr-info">
-                                        <div class="rr-title">Year-Change Exam — Commerce <span class="rr-class class-xi">Class XI</span></div>
-                                        <div class="rr-meta">
-                                            <span><i class="fas fa-calendar"></i> Published Dec 28, 2025</span>
-                                            <span><i class="fas fa-users"></i> 198 Students</span>
-                                            <span class="rr-bn">একাদশ শ্রেণি — ব্যবসায় শিক্ষা — বার্ষান্তর পরীক্ষা ২০২৫</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="rr-actions">
-                                    <button class="rr-btn rr-view" onclick="viewResult('yearchange_com_xi_2025')"><i class="fas fa-eye"></i> View</button>
-                                    <button class="rr-btn rr-dl"   onclick="downloadResult('yearchange_com_xi_2025')"><i class="fas fa-download"></i> PDF</button>
-                                </div>
-                            </div>
-
-                            <div class="result-row reveal" data-category="humanities">
-                                <div class="rr-left">
-                                    <div class="rr-icon rr-hum"><i class="fas fa-file-pdf"></i></div>
-                                    <div class="rr-info">
-                                        <div class="rr-title">Year-Change Exam — Humanities <span class="rr-class class-xi">Class XI</span></div>
-                                        <div class="rr-meta">
-                                            <span><i class="fas fa-calendar"></i> Published Dec 25, 2025</span>
-                                            <span><i class="fas fa-users"></i> 232 Students</span>
-                                            <span class="rr-bn">একাদশ শ্রেণি — মানবিক — বার্ষান্তর পরীক্ষা ২০২৫</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="rr-actions">
-                                    <button class="rr-btn rr-view" onclick="viewResult('yearchange_hum_xi_2025')"><i class="fas fa-eye"></i> View</button>
-                                    <button class="rr-btn rr-dl"   onclick="downloadResult('yearchange_hum_xi_2025')"><i class="fas fa-download"></i> PDF</button>
-                                </div>
-                            </div>
-
                         </div><!-- /.result-list -->
                     </div>
 
@@ -298,64 +194,9 @@ include '../includes/header.php';
                 <!-- ════ RIGHT: Sidebar ════ -->
                 <aside class="results-sidebar">
 
-                    <!-- Important Notice -->
-                    <div class="sidebar-notice reveal">
-                        <div class="sn-head">
-                            <i class="fas fa-exclamation-triangle"></i>
-                            <span data-i18n="results.notice.h3">Important Notice</span>
-                        </div>
-                        <ul class="sn-list">
-                            <li data-i18n="results.notice.l1">All results are provisional pending verification by the Bangladesh Education Board.</li>
-                            <li data-i18n="results.notice.l2">Report discrepancies to the Examination Cell within <strong>7 days</strong> of publication.</li>
-                            <li data-i18n="results.notice.l3">Original mark sheets (নম্বরপত্র) available after <strong>15 working days</strong>.</li>
-                            <li data-i18n="results.notice.l4">Re-checking (পুনর্নিরীক্ষণ) applications within <strong>10 days</strong> of result declaration.</li>
-                        </ul>
-                        <div class="sn-contact">
-                            <div class="snc-label" data-i18n="results.notice.contact">Examination Cell</div>
-                            <a href="tel:+880-1700-000000" class="snc-item"><i class="fas fa-phone"></i> +880-1700-000000</a>
-                            <a href="mailto:exam@pmdc.edu.bd" class="snc-item"><i class="fas fa-envelope"></i> exam@pmdc.edu.bd</a>
-                        </div>
-                    </div>
 
-                    <!-- Summary Stats -->
-                    <div class="sidebar-stats reveal">
-                        <div class="ss-head" data-i18n="results.stats.h3">HSC Board Results</div>
-                        <div class="ss-grid">
-                            <div class="ss-item">
-                                <div class="ss-val">92%</div>
-                                <div class="ss-lbl" data-i18n="results.stats.rate">Pass Rate</div>
-                            </div>
-                            <div class="ss-item">
-                                <div class="ss-val">48</div>
-                                <div class="ss-lbl" data-i18n="results.stats.gpa">GPA 5.00</div>
-                            </div>
-                            <div class="ss-item">
-                                <div class="ss-val">645</div>
-                                <div class="ss-lbl" data-i18n="results.stats.app">Appeared</div>
-                            </div>
-                            <div class="ss-item">
-                                <div class="ss-val">593</div>
-                                <div class="ss-lbl" data-i18n="results.stats.pass">Passed</div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Quick Links -->
-                    <div class="sidebar-links reveal">
-                        <div class="sl-head" data-i18n="results.links.h3">Related Links</div>
-                        <a href="<?= BASE_URL ?>/announcement" class="sl-item">
-                            <i class="fas fa-bell"></i> <span data-i18n="results.links.ann">Announcements</span>
-                            <i class="fas fa-chevron-right sl-arr"></i>
-                        </a>
-                        <a href="<?= BASE_URL ?>/academic/class-routine" class="sl-item">
-                            <i class="fas fa-graduation-cap"></i> <span data-i18n="results.links.aca">Academics</span>
-                            <i class="fas fa-chevron-right sl-arr"></i>
-                        </a>
-                        <a href="<?= BASE_URL ?>/contact" class="sl-item">
-                            <i class="fas fa-envelope"></i> <span data-i18n="results.links.con">Contact Office</span>
-                            <i class="fas fa-chevron-right sl-arr"></i>
-                        </a>
-                    </div>
+
 
                 </aside>
 
