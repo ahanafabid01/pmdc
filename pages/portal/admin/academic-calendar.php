@@ -227,11 +227,12 @@
     <!-- Toast -->
     <div class="tm-toast" id="acToast"></div>
 
+    <script>window.BASE_URL = "<?= BASE_URL ?>";</script>
     <script>
     (function () {
         'use strict';
 
-        const API  = 'api/academic-calendar.php';
+        const API  = window.BASE_URL + '/pages/portal/admin/api/academic-calendar.php';
         const BASE = window.BASE_URL + '/uploads/academic-calendar/';
         const $    = id => document.getElementById(id);
 

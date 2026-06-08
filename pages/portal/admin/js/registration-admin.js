@@ -9,7 +9,7 @@
 const REG_TYPE = document.body.dataset.regType || 'hsc';
 
 const API_SETTINGS = window.BASE_URL + `/pages/portal/admin/api/registration-settings.php`;
-const API_SUBMIT   = 'api/registration-submit.php';
+const API_SUBMIT   = window.BASE_URL + '/pages/portal/admin/api/registration-submit.php';
 
 const ITEMS_PER_PAGE = 10;
 
