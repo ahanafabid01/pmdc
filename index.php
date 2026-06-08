@@ -3,7 +3,7 @@ require_once __DIR__ . '/includes/config.php';
 $page       = 'home';
 $page_title = 'Phulpur Mohila Degree College | Excellence in Education';
 require_once __DIR__ . '/includes/announcements-data.php';
-$ticker_notices = array_slice(pmdc_get_published_announcements(), 0, 8);
+$ticker_notices = array_slice(pmdc_get_published_announcements(), 0, 5);
 include 'includes/header.php';
 ?>
 
