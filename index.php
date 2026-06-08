@@ -32,17 +32,8 @@ include 'includes/header.php';
                 <p class="hero-desc" data-i18n="home.hero.desc">
                     ফুলপুর মহিলা ডিগ্রি কলেজ — ফুলপুরের নারী শিক্ষার এক নির্ভরযোগ্য প্রতিষ্ঠান। আমরা নিরাপদ ও সুশৃঙ্খল পরিবেশে মহিলা শিক্ষার্থীদের জন্য এইচএসসি ও ডিগ্রি প্রোগ্রাম পরিচালনা করি।
                 </p>
-                <div class="hero-buttons">
-                    <a href="#academics" class="btn btn-primary">
-                        <i class="fas fa-graduation-cap"></i> <span data-i18n="home.hero.btn1">প্রোগ্রামসমূহ দেখুন</span>
-                    </a>
-                    <a href="pages/contact.php" class="btn btn-outline">
-                        <i class="fas fa-map-marker-alt"></i> <span data-i18n="home.hero.btn2">আমাদের পরিদর্শন করুন</span>
-                    </a>
-                </div>
-                <div class="hero-scroll">
-                    <i class="fas fa-chevron-down"></i> <span data-i18n="home.hero.scroll">নিচে স্ক্রল করুন</span>
-                </div>
+
+
             </div>
         </div>
     </header>
@@ -87,10 +78,6 @@ include 'includes/header.php';
             <div class="about-grid reveal">
                 <div class="about-img-wrap">
                     <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&q=80" alt="PMDC College Library">
-                    <div class="about-img-badge">
-                        <div class="aib-val">1994</div>
-                        <div class="aib-lbl">Est.</div>
-                    </div>
                 </div>
                 <div class="about-text">
                     <p class="lead" data-i18n="home.about.p1">
