@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const assignmentModal = document.getElementById('assignmentModal');
     
     const assignStaffId = document.getElementById('assignStaffId');
+    const assignClassType = document.getElementById('assignClassType');
     const assignClassId = document.getElementById('assignClassId');
     const assignSubjectId = document.getElementById('assignSubjectId');
     const btnAddAssignment = document.getElementById('btnAddAssignment');
@@ -23,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const statTotalPrograms = document.getElementById('statTotalPrograms');
 
     let allAssignments = [];
+    let allClasses = [];
     let programSubjectsMap = {};
 
     // Init
@@ -41,6 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.overflow = '';
         // Reset form
         assignStaffId.value = '';
+        assignClassType.value = '';
+        assignClassId.innerHTML = '<option value="">-- Select Class/Program --</option>';
+        assignSubjectId.innerHTML = '<option value="">-- Select Subject --</option>';
         assignClassId.value = '';
         assignSubjectId.value = '';
         assignLoginInfo.style.display = 'none';
@@ -72,14 +77,26 @@ document.addEventListener('DOMContentLoaded', () => {
             const res = await fetch(window.BASE_URL + `/pages/portal/admin/api/assign_teacher.php?action=meta`);
             const data = await res.json();
             if (data.ok) {
-                assignClassId.innerHTML = '<option value="">-- Select Class/Program --</option>' + 
-                    data.classes.map(c => `<option value="${esc(c.id)}">${esc(c.name)}</option>`).join('');
+                allClasses = data.classes;
                 programSubjectsMap = data.program_subjects;
+                assignClassId.innerHTML = '<option value="">-- Select Class/Program --</option>';
             }
         } catch(e) {
             console.error("Failed to load metadata", e);
         }
     }
+
+    assignClassType.addEventListener('change', () => {
+        const type = assignClassType.value.toLowerCase();
+        assignSubjectId.innerHTML = '<option value="">-- Select Subject --</option>';
+        if (!type) {
+            assignClassId.innerHTML = '<option value="">-- Select Class/Program --</option>';
+            return;
+        }
+        const filtered = allClasses.filter(c => c.type && c.type.toLowerCase() === type);
+        assignClassId.innerHTML = '<option value="">-- Select Class/Program --</option>' + 
+            filtered.map(c => `<option value="${esc(c.id)}">${esc(c.name)}</option>`).join('');
+    });
 
     assignClassId.addEventListener('change', () => {
         const pId = assignClassId.value;
@@ -100,8 +117,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const teachers = data.staff.filter(s => s.category.toLowerCase() === 'teacher');
                 assignStaffId.innerHTML = '<option value="">-- Select Teacher --</option>' + 
                     teachers.map(t => {
-                        const username = "T" + String(t.id).padStart(4, '0');
-                        return `<option value="${username}" data-name="${esc(t.name)}">${esc(t.name)} (${username})</option>`;
+                        const email = t.email && t.email !== 'N/A' ? t.email : '';
+                        return `<option value="${esc(t.id)}" data-name="${esc(t.name)}" data-email="${esc(email)}">${esc(t.name)} (${esc(email || 'No Email')})</option>`;
                     }).join('');
             }
         } catch(e) {
@@ -110,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function loadAssignments() {
-        assignTableBody.innerHTML = '<tr class="tm-empty-row"><td colspan="4"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>';
+        assignTableBody.innerHTML = '<tr class="tm-empty-row"><td colspan="5"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>';
         try {
             const res = await fetch(window.BASE_URL + `/pages/portal/admin/api/assign_teacher.php?action=list_all`);
             const data = await res.json();
@@ -120,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderAssignments(allAssignments);
             }
         } catch(e) {
-            assignTableBody.innerHTML = '<tr class="tm-empty-row"><td colspan="4">Failed to load data.</td></tr>';
+            assignTableBody.innerHTML = '<tr class="tm-empty-row"><td colspan="5">Failed to load data.</td></tr>';
         }
     }
 
@@ -136,17 +153,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderAssignments(list) {
         if (list.length === 0) {
-            assignTableBody.innerHTML = '<tr class="tm-empty-row"><td colspan="4"><i class="fas fa-folder-open"></i> No assignments found.</td></tr>';
+            assignTableBody.innerHTML = '<tr class="tm-empty-row"><td colspan="5"><i class="fas fa-folder-open"></i> No assignments found.</td></tr>';
             return;
         }
 
         assignTableBody.innerHTML = list.map(a => `
             <tr>
                 <td>
-                    <div class="tm-staff-cell">
-                        <div class="tm-staff-name">${esc(a.staff_name)}</div>
-                        <div class="tm-staff-id">ID: ${esc(a.staff_id)}</div>
-                    </div>
+                    <div class="tm-staff-name" style="font-weight: 500;">${esc(a.staff_name)}</div>
+                </td>
+                <td>
+                    <div class="tm-staff-email" style="color: #64748b;">${esc(a.staff_id)}</div>
                 </td>
                 <td><span class="cat-badge cat-program">${esc(a.class_name)}</span></td>
                 <td><span class="cat-badge cat-subject">${esc(a.subject_name)}</span></td>
@@ -176,11 +193,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const staffOpt = assignStaffId.options[assignStaffId.selectedIndex];
         const staffId = assignStaffId.value;
         const staffName = staffOpt ? staffOpt.getAttribute('data-name') : '';
+        const staffEmail = staffOpt ? staffOpt.getAttribute('data-email') : '';
+        const classType = assignClassType.value;
         const classId = assignClassId.value;
         const subjectId = assignSubjectId.value;
 
-        if (!staffId || !classId || !subjectId) {
+        if (!staffId || !classType || !classId || !subjectId) {
             showToast("Please fill all fields", true);
+            return;
+        }
+        if (!staffEmail) {
+            showToast("Teacher must have an email address set in their profile", true);
             return;
         }
 
@@ -199,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 showToast("Assignment created successfully");
                 if (data.loginCreated) {
                     assignLoginInfo.style.display = 'block';
-                    assignLoginInfo.innerHTML = `New Teacher Account Created!<br><b>Username:</b> <code>${staffId}</code><br><b>Password:</b> <code>password123</code>`;
+                    assignLoginInfo.innerHTML = `New Teacher Account Created!<br><b>Email:</b> <code>${staffEmail}</code><br><b>Password:</b> <code>password123</code>`;
                 } else {
                     closeOverlay();
                 }

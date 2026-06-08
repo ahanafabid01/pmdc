@@ -233,8 +233,8 @@
                             <input type="text" id="fPhone" placeholder="e.g. 01712-227983">
                         </div>
                         <div class="tm-form-group">
-                            <label for="fEmail">Email Address</label>
-                            <input type="email" id="fEmail" placeholder="e.g. name@pmdc.edu.bd">
+                            <label for="fEmail">Email Address <span class="req">*</span></label>
+                            <input type="email" id="fEmail" placeholder="e.g. name@pmdc.edu.bd" required>
                         </div>
                         <div class="tm-form-group tm-span2">
                             <label class="tm-checkbox-label">

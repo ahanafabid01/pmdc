@@ -23,7 +23,7 @@ try {
         
         foreach ($programs as $p) {
             $name = !empty($p['full_name']) ? $p['full_name'] : $p['name'];
-            $classes_list[] = ['id' => $p['id'], 'name' => $name];
+            $classes_list[] = ['id' => $p['id'], 'name' => $name, 'type' => $p['type']];
             
             $compulsory = json_decode($p['compulsory_subjects'] ?? '[]', true) ?: [];
             $optional = json_decode($p['optional_subjects'] ?? '[]', true) ?: [];
@@ -94,17 +94,27 @@ try {
             echo json_encode(['ok' => false, 'msg' => 'Missing fields']);
             exit;
         }
+
+        // Fetch staff email
+        $stmt = $pdo->prepare("SELECT email FROM staff WHERE id = ?");
+        $stmt->execute([$staffId]);
+        $staffEmail = $stmt->fetchColumn();
+
+        if (!$staffEmail || $staffEmail === 'N/A') {
+            echo json_encode(['ok' => false, 'msg' => 'Teacher must have a valid email address']);
+            exit;
+        }
         
         // Create user if doesn't exist
         $stmt = $pdo->prepare("SELECT id FROM users WHERE username = ?");
-        $stmt->execute([$staffId]);
+        $stmt->execute([$staffEmail]);
         $userId = $stmt->fetchColumn();
         
         $loginCreated = false;
         if (!$userId) {
             $pass = password_hash('password123', PASSWORD_DEFAULT);
             $stmt = $pdo->prepare("INSERT INTO users (username, password_hash, role, name) VALUES (?, ?, 'teacher', ?)");
-            $stmt->execute([$staffId, $pass, $staffName]);
+            $stmt->execute([$staffEmail, $pass, $staffName]);
             $userId = $pdo->lastInsertId();
             $loginCreated = true;
         }

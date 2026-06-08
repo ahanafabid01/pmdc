@@ -153,14 +153,14 @@
 
                     <div class="form-group" id="fgUsername">
                         <label for="username">
-                            <i class="fas fa-user"></i> Username / Employee ID
+                            <i class="fas fa-envelope"></i> Email Address
                         </label>
                         <div class="input-wrap">
-                            <input type="text"
+                            <input type="email"
                                    id="username"
                                    name="username"
-                                   placeholder="Enter your username"
-                                   autocomplete="username"
+                                   placeholder="Enter your email address"
+                                   autocomplete="email"
                                    required>
                         </div>
                         <span class="field-err" id="err-username"></span>

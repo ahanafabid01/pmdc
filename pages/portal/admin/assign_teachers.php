@@ -136,14 +136,15 @@
                     <table class="tm-table" id="assignmentsTable">
                         <thead>
                             <tr>
-                                <th style="min-width:200px;">Teacher</th>
+                                <th style="min-width:180px;">Teacher Name</th>
+                                <th style="min-width:180px;">Email</th>
                                 <th style="min-width:180px;">Program</th>
                                 <th style="min-width:180px;">Subject</th>
                                 <th style="text-align: center; min-width: 110px;">Action</th>
                             </tr>
                         </thead>
                         <tbody id="assignTableBody">
-                            <tr class="tm-empty-row"><td colspan="4"><i class="fas fa-spinner fa-spin"></i> Loading assignments...</td></tr>
+                            <tr class="tm-empty-row"><td colspan="5"><i class="fas fa-spinner fa-spin"></i> Loading assignments...</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -169,9 +170,18 @@
                 </div>
 
                 <div class="tm-form-group" style="margin-bottom: 16px;">
+                    <label>Select Class <span class="req">*</span></label>
+                    <select id="assignClassType">
+                        <option value="">-- Select Class --</option>
+                        <option value="HSC">HSC</option>
+                        <option value="Degree">Degree</option>
+                    </select>
+                </div>
+
+                <div class="tm-form-group" style="margin-bottom: 16px;">
                     <label>Select Class/Program <span class="req">*</span></label>
                     <select id="assignClassId">
-                        <option value="">Loading classes...</option>
+                        <option value="">-- Select Class/Program --</option>
                     </select>
                 </div>
 

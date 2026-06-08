@@ -325,7 +325,7 @@ function closeModal() {
 async function saveStaffMember() {
     // Validate
     let valid = true;
-    [fName, fDesignation, fCategory].forEach(el => {
+    [fName, fDesignation, fCategory, fEmail].forEach(el => {
         el.classList.remove('error');
         if (!el.value.trim()) { el.classList.add('error'); valid = false; }
     });
