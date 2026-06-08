@@ -34,29 +34,75 @@ include '../includes/header.php';
                         </div>
 
                         <form class="lookup-form" id="resultSearchForm">
-                            <div class="form-row">
+                            <!-- Row 1 -->
+                            <div class="form-row" style="grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));">
                                 <div class="form-group">
-                                    <label for="examSelect"><i class="fas fa-file-alt"></i> Examination</label>
-                                    <select id="examSelect" name="examSelect" required>
-                                        <option value="">Loading Exams...</option>
+                                    <label for="classSelect">Class</label>
+                                    <select id="classSelect" name="classSelect" required>
+                                        <option value="">Select Class</option>
+                                        <option value="XI">Class XI</option>
+                                        <option value="XII">Class XII</option>
+                                        <option value="Degree">Degree (Pass)</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="rollInput"><i class="fas fa-id-card"></i> Roll Number</label>
-                                    <input type="text" id="rollInput" name="rollInput"
-                                           placeholder="e.g. 1010" required>
+                                    <label for="sessionSelect">Session</label>
+                                    <select id="sessionSelect" name="sessionSelect" required>
+                                        <option value="">Select Session</option>
+                                        <option value="2024-2025">2024-2025</option>
+                                        <option value="2025-2026">2025-2026</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="groupSelect">Group</label>
+                                    <select id="groupSelect" name="groupSelect" required>
+                                        <option value="">Select Group</option>
+                                        <option value="Science">Science</option>
+                                        <option value="Commerce">Commerce</option>
+                                        <option value="Humanities">Humanities</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="yearSelect">Year</label>
+                                    <select id="yearSelect" name="yearSelect" required>
+                                        <option value="">Select Class Year</option>
+                                        <option value="1st Year">1st Year</option>
+                                        <option value="2nd Year">2nd Year</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <!-- Row 2 -->
+                            <div class="form-row" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); align-items: flex-end;">
+                                <div class="form-group">
+                                    <label for="examSelect">Exam</label>
+                                    <select id="examSelect" name="examSelect" required>
+                                        <option value="">Select Exam</option>
+                                        <option value="Half Yearly">Half Yearly</option>
+                                        <option value="Annual">Annual</option>
+                                        <option value="Pre-Test">Pre-Test</option>
+                                        <option value="Test">Test</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="rollInput">Class Roll</label>
+                                    <input type="text" id="rollInput" name="rollInput" required>
+                                </div>
+                                <div class="form-actions-inline">
+                                    <button type="submit" class="btn btn-primary btn-search" id="searchBtn" style="margin-top:0;">
+                                        <i class="fas fa-search"></i>
+                                        <span class="btn-text">Search</span>
+                                    </button>
+                                    <button type="button" class="btn btn-dl" id="downloadPdfBtn">
+                                        <i class="fas fa-download"></i> Download
+                                    </button>
                                 </div>
                             </div>
 
-                            <div id="searchError" class="search-error" style="display:none;">
+                            <div id="searchError" class="search-error" style="display:none; margin-top: 10px;">
                                 <i class="fas fa-exclamation-circle"></i>
                                 <span id="searchErrorMsg">Please fill in all fields.</span>
                             </div>
-
-                            <button type="submit" class="btn btn-primary btn-search" id="searchBtn">
-                                <i class="fas fa-search"></i>
-                                <span class="btn-text">Search Result</span>
-                            </button>
                         </form>
 
                         <div class="lookup-note">

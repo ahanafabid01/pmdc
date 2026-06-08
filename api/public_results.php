@@ -13,7 +13,56 @@ try {
 
     if ($action === 'exams') {
         $stmt = $pdo->query("SELECT id, name, year FROM exams WHERE status = 'active' ORDER BY id DESC");
-        echo json_encode(['ok' => true, 'exams' => $stmt->fetchAll()]);
+        $exams = $stmt->fetchAll();
+
+        // Fetch Classes from academics_programs
+        $classes = [];
+        try {
+            $stmt = $pdo->query("SELECT DISTINCT type FROM academics_programs WHERE type = 'hsc' ORDER BY type DESC");
+            $dbClasses = $stmt->fetchAll(PDO::FETCH_COLUMN);
+            foreach ($dbClasses as $c) {
+                $classes[] = strtoupper($c); // e.g. "HSC"
+            }
+        } catch(Exception $e) {}
+
+        // Fetch Groups from academics_programs
+        $groups = [];
+        try {
+            $stmt = $pdo->query("SELECT DISTINCT name FROM academics_programs WHERE type = 'hsc' ORDER BY name");
+            $groups = $stmt->fetchAll(PDO::FETCH_COLUMN);
+        } catch(Exception $e) {}
+
+        // Fetch Years from classes
+        $years = [];
+        try {
+            $stmt = $pdo->query("SELECT DISTINCT year FROM classes WHERE name LIKE 'HSC%' ORDER BY year");
+            $dbYears = $stmt->fetchAll(PDO::FETCH_COLUMN);
+            foreach ($dbYears as $y) {
+                if (strtolower($y) === 'xi') $years[] = 'HSC 1st Year';
+                elseif (strtolower($y) === 'xii') $years[] = 'HSC 2nd Year';
+                else $years[] = ucfirst($y);
+            }
+        } catch(Exception $e) {}
+
+        // Fetch distinct sessions from students if any
+        $stmt = $pdo->query("SELECT DISTINCT session FROM students WHERE session IS NOT NULL AND session != '' ORDER BY session DESC");
+        $sessions = $stmt->fetchAll(PDO::FETCH_COLUMN);
+        // Fallback for sessions if students table is empty
+        if (empty($sessions)) {
+            try {
+                $stmt = $pdo->query("SELECT DISTINCT session FROM registration_settings WHERE session IS NOT NULL");
+                $sessions = $stmt->fetchAll(PDO::FETCH_COLUMN);
+            } catch (Exception $e) {}
+        }
+
+        echo json_encode([
+            'ok' => true,
+            'exams' => $exams,
+            'classes' => $classes,
+            'sessions' => $sessions,
+            'groups' => $groups,
+            'years' => $years
+        ]);
     } 
     elseif ($action === 'search') {
         $exam_id = (int)($_GET['exam_id'] ?? 0);
