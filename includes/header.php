@@ -64,8 +64,6 @@ if (!isset($page_title_bn)) {
                 <span><i class="fas fa-map-marker-alt"></i> Phulpur, Mymensingh</span>
             </div>
             <div class="top-links">
-                <a href="#" data-i18n="topbar.library">পাঠাগার</a>
-                <a href="#" data-i18n="topbar.alumni">প্রাক্তন শিক্ষার্থী</a>
                 <a href="<?= BASE_URL ?>/admin/login" class="portal-link">
                     <i class="fas fa-lock"></i> <span data-i18n="topbar.portal">পোর্টাল</span>
                 </a>
