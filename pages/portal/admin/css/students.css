@@ -1296,3 +1296,52 @@
     transition: all 0.2s ease;
 }
 .photo-upload-btn:hover { background: #f1f5f9; border-color: #94a3b8; color: #0f172a; }
+
+/* ════════════════════ CHECKBOX SUBJECT GROUP ════════════════════ */
+.checkbox-subject-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    padding: 12px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 8px;
+    background: #f8fafc;
+    min-height: 45px;
+}
+.chk-placeholder {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    font-style: italic;
+    grid-column: 1 / -1;
+}
+.chk-subject-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    background: #fff;
+    padding: 8px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.chk-subject-item:hover {
+    border-color: #94a3b8;
+    background: #f1f5f9;
+}
+.opt-subject-chk {
+    margin-top: 3px;
+    accent-color: #4f46e5;
+    cursor: pointer;
+}
+.opt-subject-chk:disabled {
+    cursor: not-allowed;
+}
+.opt-subject-chk:disabled + .chk-subject-name {
+    color: #94a3b8;
+}
+.chk-subject-name {
+    font-size: 0.82rem;
+    color: #334155;
+    line-height: 1.3;
+}

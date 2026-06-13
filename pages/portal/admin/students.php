@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Students | Admin Portal | PMDC</title>
-    <meta name="description" content="Manage all HSC students at Phulpur Mohila Degree College — view, add, edit and search student profiles.">
+    <meta name="description" content="Manage all HSC and Degree students at Phulpur Mohila Degree College — view, add, edit and search student profiles.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@700&display=swap" rel="stylesheet">
@@ -16,127 +16,117 @@
 <body>
 
 <!-- Sidebar Overlay -->
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <!-- Sidebar -->
-    <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <div class="logo">
-                <div class="logo-icon"><i class="fas fa-university"></i></div>
-                <div class="logo-text">
-                    <span class="logo-name">PMDC</span>
-                    <span class="logo-role">Admin Portal</span>
-                </div>
-            </div>
-            <button class="close-sidebar" id="closeSidebar">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-
-        <nav class="sidebar-nav">
-            <span class="nav-section-label">Main</span>
-            <a href="<?= BASE_URL ?>/admin" class="nav-item">
-                <i class="fas fa-th-large"></i>
-                <span>Dashboard</span>
-            </a>
-            <a href="<?= BASE_URL ?>/admin/students" class="nav-item active"><i class="fas fa-users"></i><span>Students</span>
-            </a>
-            <a href="<?= BASE_URL ?>/admin/staff" class="nav-item">
-                <i class="fas fa-chalkboard-teacher"></i>
-                <span>Teachers &amp; Staff</span>
-            </a>
-            <a href="<?= BASE_URL ?>/admin/gallery" class="nav-item">
-                <i class="fas fa-images"></i>
-                <span>Gallery</span>
-            </a>
-            <a href="<?= BASE_URL ?>/admin/academics" class="nav-item">
-                <i class="fas fa-book-open"></i>
-                <span>Academics</span>
-            </a>
-            <a href="<?= BASE_URL ?>/admin/results" class="nav-item"><i class="fas fa-graduation-cap"></i><span>Results</span></a>
-
-            <div class="nav-divider"></div>
-            <span class="nav-section-label">Management</span>
-            <a href="<?= BASE_URL ?>/admin/calendar" class="nav-item">
-                <i class="fas fa-calendar-alt"></i>
-                <span>Academic Calendar</span>
-            </a>
-            <a href="<?= BASE_URL ?>/admin/assign-teachers" class="nav-item">
-                <i class="fas fa-tasks"></i>
-                <span>Assign Teachers</span>
-            </a>
-            <a href="#" class="nav-item">
-                <i class="fas fa-file-invoice-dollar"></i>
-                <span>Finance</span>
-            </a>
-            <a href="<?= BASE_URL ?>/admin/announcement" class="nav-item">
-                <i class="fas fa-bell"></i>
-                <span>Announcements</span>
-            </a>
-            <a href="<?= BASE_URL ?>/admin/contact-messages" class="nav-item">
-                <i class="fas fa-envelope"></i>
-                <span>Contact Messages</span>
-            </a>
-            <a href="<?= BASE_URL ?>/admin/registration" class="nav-item">
-                <i class="fas fa-file-alt"></i>
-                <span>HSC Registration</span>
-            </a>
-            <a href="<?= BASE_URL ?>/admin/registration-degree" class="nav-item">
-                <i class="fas fa-university"></i>
-                <span>Degree Registration</span>
-            </a>
-            <a href="#" class="nav-item">
-                <i class="fas fa-chart-line"></i>
-                <span>Reports</span>
-            </a>
-
-            <div class="nav-divider"></div>
-            <span class="nav-section-label">System</span>
-            <a href="#" class="nav-item">
-                <i class="fas fa-cog"></i>
-                <span>Settings</span>
-            </a>
-        </nav>
-
-        <div class="sidebar-footer">
-            <div class="user-profile">
-                <div class="avatar">AN</div>
-                <div class="user-info">
-                    <div class="user-name">Admin Nasrin</div>
-                    <div class="user-role">System Administrator</div>
-                </div>
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <div class="logo">
+            <div class="logo-icon"><i class="fas fa-university"></i></div>
+            <div class="logo-text">
+                <span class="logo-name">PMDC</span>
+                <span class="logo-role">Admin Portal</span>
             </div>
         </div>
-    </aside>
+        <button class="close-sidebar" id="closeSidebar">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <nav class="sidebar-nav">
+        <span class="nav-section-label">Main</span>
+        <a href="<?= BASE_URL ?>/admin" class="nav-item">
+            <i class="fas fa-th-large"></i><span>Dashboard</span>
+        </a>
+        <a href="<?= BASE_URL ?>/admin/students" class="nav-item active">
+            <i class="fas fa-users"></i><span>Students</span>
+        </a>
+        <a href="<?= BASE_URL ?>/admin/staff" class="nav-item">
+            <i class="fas fa-chalkboard-teacher"></i><span>Teachers &amp; Staff</span>
+        </a>
+        <a href="<?= BASE_URL ?>/admin/gallery" class="nav-item">
+            <i class="fas fa-images"></i><span>Gallery</span>
+        </a>
+        <a href="<?= BASE_URL ?>/admin/academics" class="nav-item">
+            <i class="fas fa-book-open"></i><span>Academics</span>
+        </a>
+        <a href="<?= BASE_URL ?>/admin/results" class="nav-item">
+            <i class="fas fa-graduation-cap"></i><span>Results</span>
+        </a>
+
+        <div class="nav-divider"></div>
+        <span class="nav-section-label">Management</span>
+        <a href="<?= BASE_URL ?>/admin/calendar" class="nav-item">
+            <i class="fas fa-calendar-alt"></i><span>Academic Calendar</span>
+        </a>
+        <a href="<?= BASE_URL ?>/admin/assign-teachers" class="nav-item">
+            <i class="fas fa-tasks"></i><span>Assign Teachers</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-file-invoice-dollar"></i><span>Finance</span>
+        </a>
+        <a href="<?= BASE_URL ?>/admin/announcement" class="nav-item">
+            <i class="fas fa-bell"></i><span>Announcements</span>
+        </a>
+        <a href="<?= BASE_URL ?>/admin/contact-messages" class="nav-item">
+            <i class="fas fa-envelope"></i><span>Contact Messages</span>
+        </a>
+        <a href="<?= BASE_URL ?>/admin/registration" class="nav-item">
+            <i class="fas fa-file-alt"></i><span>HSC Registration</span>
+        </a>
+        <a href="<?= BASE_URL ?>/admin/registration-degree" class="nav-item">
+            <i class="fas fa-university"></i><span>Degree Registration</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-chart-line"></i><span>Reports</span>
+        </a>
+
+        <div class="nav-divider"></div>
+        <span class="nav-section-label">System</span>
+        <a href="#" class="nav-item">
+            <i class="fas fa-cog"></i><span>Settings</span>
+        </a>
+    </nav>
+
+    <div class="sidebar-footer">
+        <div class="user-profile">
+            <div class="avatar">AN</div>
+            <div class="user-info">
+                <div class="user-name">Admin Nasrin</div>
+                <div class="user-role">System Administrator</div>
+            </div>
+        </div>
+    </div>
+</aside>
 
 <!-- ════════════════════ MAIN ════════════════════ -->
 <main class="main-content">
     <header class="top-header">
-            <button class="menu-toggle" id="menuToggle">
-                <i class="fas fa-bars"></i>
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="globalSearch" placeholder="Search students, courses, records...">
+        </div>
+        <div class="header-right">
+            <button class="icon-btn" title="Notifications">
+                <i class="far fa-bell"></i>
+                <span class="notification-dot"></span>
             </button>
-            <div class="search-box">
-                <i class="fas fa-search"></i>
-                <input type="text" placeholder="Search students, courses, records...">
+            <button class="icon-btn" title="Messages">
+                <i class="far fa-envelope"></i>
+            </button>
+            <div class="header-divider"></div>
+            <div class="user-menu">
+                <img src="https://ui-avatars.com/api/?name=Admin+Nasrin&background=1a3a5c&color=fff&bold=true" alt="Admin Nasrin">
+                <span class="um-name">Admin Nasrin</span>
             </div>
-            <div class="header-right">
-                <button class="icon-btn" title="Notifications">
-                    <i class="far fa-bell"></i>
-                    <span class="notification-dot"></span>
-                </button>
-                <button class="icon-btn" title="Messages">
-                    <i class="far fa-envelope"></i>
-                </button>
-                <div class="header-divider"></div>
-                <div class="user-menu">
-                    <img src="https://ui-avatars.com/api/?name=Admin+Nasrin&background=1a3a5c&color=fff&bold=true" alt="Admin Nasrin">
-                    <span class="um-name">Admin Nasrin</span>
-                </div>
-                <a href="<?= BASE_URL ?>/admin/login" class="logout-btn" title="Logout">
-                    <i class="fas fa-sign-out-alt"></i>
-                </a>
-            </div>
-        </header>
+            <a href="<?= BASE_URL ?>/admin/login" class="logout-btn" title="Logout">
+                <i class="fas fa-sign-out-alt"></i>
+            </a>
+        </div>
+    </header>
 
     <div class="content-area">
 
@@ -144,7 +134,7 @@
         <div class="tm-page-header">
             <div class="tm-page-title">
                 <h1><i class="fas fa-users"></i> Students (শিক্ষার্থীবৃন্দ)</h1>
-                <p>Full student profiles — HSC 1st Year &amp; 2nd Year across all groups</p>
+                <p>Full student profiles — HSC (Class XI &amp; XII) and Degree (1st, 2nd &amp; 3rd Year) across all groups</p>
             </div>
             <div class="tm-header-actions">
                 <button class="btn-export" id="exportBtn"><i class="fas fa-download"></i> Export CSV</button>
@@ -158,23 +148,28 @@
         <div class="tm-stats-row">
             <div class="tm-stat-pill">
                 <i class="fas fa-users" style="color:var(--blue);font-size:1rem;flex-shrink:0;"></i>
-                <span class="ts-val" id="statTotal">120</span>
-                <span class="ts-lbl">Total Students</span>
+                <span class="ts-val" id="statTotal">0</span>
+                <span class="ts-lbl">Total</span>
             </div>
             <div class="tm-stat-pill">
                 <i class="fas fa-flask" style="color:#16a34a;font-size:1rem;flex-shrink:0;"></i>
-                <span class="ts-val" id="statSci">40</span>
+                <span class="ts-val" id="statSci">0</span>
                 <span class="ts-lbl">Science</span>
             </div>
             <div class="tm-stat-pill">
                 <i class="fas fa-briefcase" style="color:#ca8a04;font-size:1rem;flex-shrink:0;"></i>
-                <span class="ts-val" id="statCom">40</span>
-                <span class="ts-lbl">Business Studies</span>
+                <span class="ts-val" id="statCom">0</span>
+                <span class="ts-lbl">Business</span>
             </div>
             <div class="tm-stat-pill">
                 <i class="fas fa-book" style="color:#7c3aed;font-size:1rem;flex-shrink:0;"></i>
-                <span class="ts-val" id="statHum">40</span>
+                <span class="ts-val" id="statHum">0</span>
                 <span class="ts-lbl">Humanities</span>
+            </div>
+            <div class="tm-stat-pill">
+                <i class="fas fa-graduation-cap" style="color:#0ea5e9;font-size:1rem;flex-shrink:0;"></i>
+                <span class="ts-val" id="statDeg">0</span>
+                <span class="ts-lbl">Degree</span>
             </div>
         </div>
 
@@ -183,9 +178,8 @@
             <div class="fp-top">
                 <div class="tm-search-box">
                     <i class="fas fa-search"></i>
-                    <input type="text" id="studentSearch" placeholder="Search students by name, roll, or registration number...">
+                    <input type="text" id="studentSearch" placeholder="Search by name, roll, or registration number...">
                 </div>
-                
                 <div class="fp-actions">
                     <div class="bulk-actions" id="bulkActions" style="display:none;">
                         <span id="selectedCount">0 selected</span>
@@ -202,9 +196,13 @@
                     </div>
                 </div>
             </div>
-            
             <div class="fp-bottom">
                 <div class="fp-filters-grid">
+                    <select id="programTypeFilter" class="ra-select">
+                        <option value="">All Programs</option>
+                        <option value="hsc">HSC (উচ্চ মাধ্যমিক)</option>
+                        <option value="degree">Degree (ডিগ্রি)</option>
+                    </select>
                     <select id="sessionFilter" class="ra-select">
                         <option value="">All Sessions</option>
                         <option value="2022–2023">2022–2023</option>
@@ -213,15 +211,30 @@
                         <option value="2025–2026">2025–2026</option>
                     </select>
                     <select id="yearFilter" class="ra-select">
-                        <option value="">All Years</option>
-                        <option value="xi">HSC 1st Year (একাদশ)</option>
-                        <option value="xii">HSC 2nd Year (দ্বাদশ)</option>
+                        <option value="">All Years / Classes</option>
+                        <optgroup label="── HSC ──">
+                            <option value="xi">Class XI — HSC 1st Year</option>
+                            <option value="xii">Class XII — HSC 2nd Year</option>
+                        </optgroup>
+                        <optgroup label="── Degree ──">
+                            <option value="1st">1st Year</option>
+                            <option value="2nd">2nd Year</option>
+                            <option value="3rd">3rd Year</option>
+                        </optgroup>
                     </select>
                     <select id="groupFilter" class="ra-select">
                         <option value="">All Groups</option>
-                        <option value="science">বিজ্ঞান (Science)</option>
-                        <option value="commerce">ব্যবসায় (Business)</option>
-                        <option value="humanities">মানবিক (Humanities)</option>
+                        <optgroup label="── HSC ──">
+                            <option value="science">বিজ্ঞান (Science)</option>
+                            <option value="commerce">ব্যবসায় (Business)</option>
+                            <option value="humanities">মানবিক (Humanities)</option>
+                        </optgroup>
+                        <optgroup label="── Degree ──">
+                            <option value="ba">BA (Arts)</option>
+                            <option value="bmt">BMT (Business Mgmt.)</option>
+                            <option value="bsc">BSc (Science)</option>
+                            <option value="bss">BSS (Social Science)</option>
+                        </optgroup>
                     </select>
                     <select id="sectionFilter" class="ra-select">
                         <option value="">All Sections</option>
@@ -245,17 +258,16 @@
                     <thead>
                         <tr>
                             <th style="min-width:40px;"><input type="checkbox" id="selectAll"></th>
-                            <th class="sortable" data-col="id" style="min-width:110px;">Roll No <i class="fas fa-sort"></i></th>
+                            <th class="sortable" data-col="roll" style="min-width:110px;">Roll No <i class="fas fa-sort"></i></th>
                             <th class="sortable" data-col="name" style="min-width:180px;">Student Name <i class="fas fa-sort"></i></th>
                             <th style="min-width:100px;">Session</th>
-                            <th style="min-width:140px;">Group (বিভাগ)</th>
-                            <th style="min-width:110px;">Year</th>
+                            <th style="min-width:140px;">Group / Program</th>
+                            <th style="min-width:110px;">Year / Class</th>
                             <th style="min-width:100px;">Section</th>
                             <th style="min-width:120px;">Phone</th>
                             <th style="min-width:100px;">Actions</th>
                         </tr>
                     </thead>
-
                     <tbody id="studentsTableBody">
                         <!-- JS populated -->
                     </tbody>
@@ -320,45 +332,70 @@
                 <div class="form-section active" id="section-academic">
                     <div class="form-section-title"><i class="fas fa-graduation-cap"></i> Academic Information</div>
                     <div class="form-grid">
+
                         <div class="form-group req">
                             <label for="fname">Full Name <span class="req-star">*</span></label>
                             <input type="text" id="fname" placeholder="e.g. Fatema Begum" required>
                             <span class="err" id="err-fname"></span>
                         </div>
+
                         <div class="form-group req">
                             <label for="roll">Roll Number <span class="req-star">*</span></label>
                             <input type="text" id="roll" placeholder="e.g. PMDC-XI-001" required>
                             <span class="err" id="err-roll"></span>
                         </div>
+
                         <div class="form-group">
                             <label for="regno">Registration Number</label>
                             <input type="text" id="regno" placeholder="e.g. 202412345678">
                         </div>
+
+                        <!-- Program (HSC / Degree) -->
                         <div class="form-group req">
-                            <label for="hscYear">HSC Year <span class="req-star">*</span></label>
+                            <label for="programType">Program <span class="req-star">*</span></label>
+                            <select id="programType" required>
+                                <option value="">-- Select Program --</option>
+                                <option value="hsc">HSC (উচ্চ মাধ্যমিক)</option>
+                                <option value="degree">Degree (ডিগ্রি)</option>
+                            </select>
+                            <span class="err" id="err-programType"></span>
+                        </div>
+
+                        <!-- Class / Year — populated by JS based on program -->
+                        <div class="form-group req">
+                            <label for="hscYear">Class / Year <span class="req-star">*</span></label>
                             <select id="hscYear" required>
-                                <option value="">Select Year</option>
-                                <option value="xi">HSC 1st Year (একাদশ শ্রেণি)</option>
-                                <option value="xii">HSC 2nd Year (দ্বাদশ শ্রেণি)</option>
+                                <option value="">-- Select Program First --</option>
                             </select>
                             <span class="err" id="err-hscYear"></span>
                         </div>
+
+                        <!-- Group / Stream — populated by JS from DB -->
                         <div class="form-group req">
-                            <label for="group">Academic Group <span class="req-star">*</span></label>
+                            <label for="group">Group / Stream <span class="req-star">*</span></label>
                             <select id="group" required>
-                                <option value="">Select Group</option>
-                                <option value="science">বিজ্ঞান (Science)</option>
-                                <option value="commerce">ব্যবসায় শিক্ষা (Business Studies)</option>
-                                <option value="humanities">মানবিক (Humanities)</option>
+                                <option value="">-- Select Program First --</option>
                             </select>
                             <span class="err" id="err-group"></span>
                         </div>
-                        <div class="form-group">
-                            <label for="optionalSubject">Optional Subject</label>
-                            <select id="optionalSubject">
-                                <option value="">Select academic group first</option>
+
+                        <!-- Optional Subjects — up to 3 checkboxes from DB -->
+                        <div class="form-group form-full" id="optionalSubjectWrap">
+                            <label>Optional Subjects <small>(Elective — choose up to 3)</small></label>
+                            <div class="checkbox-subject-group" id="optionalSubjectGroup">
+                                <span class="chk-placeholder">Select Group / Program first</span>
+                            </div>
+                            <span class="err" id="err-optionalSubject"></span>
+                        </div>
+
+                        <!-- 4th Subject — HSC only, populated by JS -->
+                        <div class="form-group" id="fourthSubjectWrap" style="display:none;">
+                            <label for="fourthSubject">4th (Bonus) Subject <small>(Optional)</small></label>
+                            <select id="fourthSubject">
+                                <option value="">-- None / Select --</option>
                             </select>
                         </div>
+
                         <div class="form-group">
                             <label for="section">Section</label>
                             <select id="section">
@@ -368,14 +405,17 @@
                                 <option value="C">Section C</option>
                             </select>
                         </div>
+
                         <div class="form-group">
                             <label for="session">Session (শিক্ষাবর্ষ)</label>
                             <input type="text" id="session" placeholder="e.g. 2024–2025">
                         </div>
+
                         <div class="form-group">
                             <label for="institution">College / Institution Name</label>
                             <input type="text" id="institution" value="Phulpur Mohila Degree College">
                         </div>
+
                     </div>
                 </div>
 
@@ -591,7 +631,7 @@
 </div>
 
 <script>window.BASE_URL = "<?= BASE_URL ?>";</script>
-    <script src="<?= BASE_URL ?>/pages/portal/admin/js/portal.js?v=<?= time() ?>"></script>
+<script src="<?= BASE_URL ?>/pages/portal/admin/js/portal.js?v=<?= time() ?>"></script>
 <script src="<?= BASE_URL ?>/pages/portal/admin/js/students.js?v=<?= time() ?>"></script>
 <script>
 (function() {
@@ -608,5 +648,3 @@
 </script>
 </body>
 </html>
-
-

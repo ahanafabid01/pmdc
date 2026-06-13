@@ -89,7 +89,7 @@ function pmdc_add_student($data) {
     if (!$db) return false;
     
     $sql = "INSERT INTO students (
-        id, name, initials, roll, regno, year, academic_group, optional_subject, section, session, institution,
+        id, name, initials, roll, regno, year, academic_group, program_type, program_id, optional_subject, fourth_subject, section, session, institution,
         dob, gender, religion, blood_group, nid, birth_cert,
         phone, email, present_addr, permanent_addr,
         father_name, father_nid, father_phone, father_occ,
@@ -97,7 +97,7 @@ function pmdc_add_student($data) {
         guardian_name, guardian_phone, guardian_rel,
         photo_url, color, added_date
     ) VALUES (
-        :id, :name, :initials, :roll, :regno, :year, :academic_group, :optional_subject, :section, :session, :institution,
+        :id, :name, :initials, :roll, :regno, :year, :academic_group, :program_type, :program_id, :optional_subject, :fourth_subject, :section, :session, :institution,
         :dob, :gender, :religion, :blood_group, :nid, :birth_cert,
         :phone, :email, :present_addr, :permanent_addr,
         :father_name, :father_nid, :father_phone, :father_occ,
@@ -117,8 +117,9 @@ function pmdc_update_student($id, $data) {
     
     $sql = "UPDATE students SET
         name = :name, initials = :initials, roll = :roll, regno = :regno, year = :year, 
-        academic_group = :academic_group, optional_subject = :optional_subject, section = :section, 
-        session = :session, institution = :institution,
+        academic_group = :academic_group, program_type = :program_type, program_id = :program_id,
+        optional_subject = :optional_subject, fourth_subject = :fourth_subject,
+        section = :section, session = :session, institution = :institution,
         dob = :dob, gender = :gender, religion = :religion, blood_group = :blood_group, 
         nid = :nid, birth_cert = :birth_cert,
         phone = :phone, email = :email, present_addr = :present_addr, permanent_addr = :permanent_addr,
