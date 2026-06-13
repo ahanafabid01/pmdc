@@ -8,24 +8,65 @@ document.addEventListener('DOMContentLoaded', () => {
     const nodes = document.querySelectorAll('.reg-step-node');
     let currentStep = 0;
 
+    function showToast(msg, type = 'error') {
+        const toast = document.getElementById('regToast');
+        if (!toast) return;
+        toast.innerHTML = `<i class="fas fa-${type === 'error' ? 'exclamation-circle' : 'check-circle'}"></i> ${msg}`;
+        toast.className = `reg-toast show ${type}`;
+        // Ensure it has basic styles to look professional if CSS is missing
+        toast.style.position = 'fixed';
+        toast.style.bottom = '20px';
+        toast.style.right = '20px';
+        toast.style.background = type === 'error' ? '#ef4444' : '#10b981';
+        toast.style.color = '#fff';
+        toast.style.padding = '12px 24px';
+        toast.style.borderRadius = '8px';
+        toast.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+        toast.style.zIndex = '9999';
+        toast.style.fontSize = '0.95rem';
+        toast.style.fontWeight = '500';
+        toast.style.display = 'flex';
+        toast.style.alignItems = 'center';
+        toast.style.gap = '8px';
+        toast.style.transition = 'all 0.3s ease';
+        
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            setTimeout(() => toast.classList.remove('show'), 300);
+        }, 4000);
+        toast.style.opacity = '1';
+    }
+
     // Navigation
     document.querySelectorAll('[data-action="next"]').forEach(btn => {
         btn.addEventListener('click', () => {
             // Step 2 Validation for HSC dynamic subjects
             if (currentStep === 1 && formType === 'hsc') {
                 const optCbs = document.querySelectorAll('.dyn-opt-cb');
+                let selectedElectives = [];
                 if (optCbs.length > 0) {
-                    const checkedCount = document.querySelectorAll('.dyn-opt-cb:checked').length;
-                    if (checkedCount !== 3) {
-                        alert("You must select exactly 3 Optional Subjects.");
+                    const checkedCbs = document.querySelectorAll('.dyn-opt-cb:checked');
+                    if (checkedCbs.length !== 3) {
+                        showToast("You must select exactly 3 Elective Subjects.");
                         return;
                     }
+                    selectedElectives = Array.from(checkedCbs).map(cb => cb.value);
                 }
                 
-                const fourthSelect = document.getElementById('fourth_subject');
-                if (fourthSelect) {
-                    if (!fourthSelect.value) {
-                        alert("You must select a 4th Subject.");
+                const fourthRadios = document.querySelectorAll('input[name="fourth_subject"]');
+                let selectedFourth = null;
+                if (fourthRadios.length > 0) {
+                    const checkedFourth = document.querySelector('input[name="fourth_subject"]:checked');
+                    if (!checkedFourth) {
+                        showToast("You must select exactly 1 Optional Subject.");
+                        return;
+                    }
+                    selectedFourth = checkedFourth.value;
+                }
+                
+                if (selectedElectives.length > 0 && selectedFourth) {
+                    if (selectedElectives.includes(selectedFourth)) {
+                        showToast("Elective and Optional subjects cannot be the same!");
                         return;
                     }
                 }
@@ -177,51 +218,96 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = programSubjects[group];
             let html = '';
             
-            // 1. Optional Subjects (Only render if > 3 choices)
-            if (data.optional && data.optional.length > 3) {
+            // Generate exact UI matching user screenshot
+            html += `
+            <div class="hsc-sub-wrap" style="background:#fff; border-radius:12px; padding:24px; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06); border:1px solid #e2e8f0; width:100%;">
+                <div style="text-align:center; margin-bottom:24px;">
+                    <h3 style="color:#047857; font-weight:700; font-size:1.35rem; margin-bottom:8px;">Student Registration</h3>
+                    <p style="color:#b45309; font-weight:600; font-size:1rem;">Subjects to be Studied in HSC</p>
+                </div>
+                
+                <div style="margin-bottom:20px;">
+                    <div style="font-weight:600; color:#1e293b; margin-bottom:12px; font-size:0.95rem;">(A) Compulsory Subjects</div>
+                    <div style="display:flex; flex-direction:column; gap:10px; margin-left:8px;">
+                        <label style="display:flex; align-items:center; gap:10px; font-weight:400; color:#334155; font-size:0.95rem;">
+                            <input type="checkbox" checked disabled style="width:18px; height:18px; accent-color:#059669;"> Bangla ((101, 102))
+                        </label>
+                        <label style="display:flex; align-items:center; gap:10px; font-weight:400; color:#334155; font-size:0.95rem;">
+                            <input type="checkbox" checked disabled style="width:18px; height:18px; accent-color:#059669;"> English ((107, 108))
+                        </label>
+                        <label style="display:flex; align-items:center; gap:10px; font-weight:400; color:#334155; font-size:0.95rem;">
+                            <input type="checkbox" checked disabled style="width:18px; height:18px; accent-color:#059669;"> Information and Communication Technology ((275))
+                        </label>
+                    </div>
+                </div>
+            `;
+
+            // (B) Elective Subjects
+            if (data.optional && data.optional.length > 0) {
                 html += `
-                <div class="reg-group full">
-                    <label>Optional Subjects <span class="req">*</span> <span style="font-weight:400;color:#64748b;">(Choose exactly 3)</span></label>
-                    <div style="display:flex; flex-direction:column; gap:8px; padding:10px; border:1px solid #e2e8f0; border-radius:8px; background:#fff;">
+                <div style="margin-bottom:20px;">
+                    <div style="font-weight:600; color:#1e293b; margin-bottom:12px; font-size:0.95rem;">(B) Elective Subjects (Any 3)</div>
+                    <div style="display:flex; flex-direction:column; gap:10px; margin-left:8px;">
                 `;
-                data.optional.forEach((sub, idx) => {
+                data.optional.forEach((sub) => {
                     html += `
-                        <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-weight:400; font-size:0.95rem; color:#0f172a;">
-                            <input type="checkbox" name="opt_subject[]" value="${sub}" class="dyn-opt-cb" style="width:16px; height:16px;">
-                            ${sub}
+                        <label style="display:flex; align-items:center; gap:10px; cursor:pointer; font-weight:400; color:#334155; font-size:0.95rem;">
+                            <input type="checkbox" name="opt_subject[]" value="${sub}" class="dyn-opt-cb" style="width:18px; height:18px; accent-color:#059669;"> ${sub}
                         </label>
                     `;
                 });
-                html += `</div><span class="reg-err" id="err_opt_subjects"></span></div>`;
+                html += `</div><span class="reg-err" id="err_opt_subjects" style="margin-top:8px;display:block;"></span></div>`;
             }
-            
-            // 2. 4th Subject (Always render if available)
+
+            // (C) Optional Subjects
             if (data.fourth && data.fourth.length > 0) {
                 html += `
-                <div class="reg-group full">
-                    <label for="fourth_subject">4th Subject <span class="req">*</span> <span style="font-weight:400;color:#64748b;">(Choose any 1)</span></label>
-                    <select id="fourth_subject" name="fourth_subject" required>
-                        <option value="">— Select 4th Subject —</option>
+                <div style="margin-bottom:20px;">
+                    <div style="font-weight:600; color:#1e293b; margin-bottom:12px; font-size:0.95rem;">(C) Optional Subjects (Any 1)</div>
+                    <div style="display:flex; flex-direction:column; gap:10px; margin-left:8px;">
                 `;
-                data.fourth.forEach((sub, idx) => {
-                    html += `<option value="${sub}">${sub}</option>`;
+                data.fourth.forEach((sub) => {
+                    html += `
+                        <label style="display:flex; align-items:center; gap:10px; cursor:pointer; font-weight:400; color:#334155; font-size:0.95rem;">
+                            <input type="radio" name="fourth_subject" value="${sub}" required style="width:18px; height:18px; accent-color:#059669;"> ${sub}
+                        </label>
+                    `;
                 });
-                html += `</select><span class="reg-err" id="err_fourth_subject"></span></div>`;
+                html += `</div><span class="reg-err" id="err_fourth_subject" style="margin-top:8px;display:block;"></span></div>`;
             }
+            
+            html += `</div>`;
             
             container.innerHTML = html;
             
-            // Enforce max 3 checkboxes for optional
             const optCbs = container.querySelectorAll('.dyn-opt-cb');
+            const fourthRadios = container.querySelectorAll('input[name="fourth_subject"]');
+            
+            function checkOverlap(triggerEl) {
+                const checkedElectives = Array.from(container.querySelectorAll('.dyn-opt-cb:checked')).map(cb => cb.value);
+                const checkedFourth = container.querySelector('input[name="fourth_subject"]:checked');
+                
+                if (checkedFourth && checkedElectives.includes(checkedFourth.value)) {
+                    triggerEl.checked = false;
+                    showToast("Elective and Optional subjects cannot be the same!");
+                }
+            }
+
             optCbs.forEach(cb => {
-                cb.addEventListener('change', () => {
+                cb.addEventListener('change', (e) => {
                     const checkedCount = container.querySelectorAll('.dyn-opt-cb:checked').length;
                     if (checkedCount > 3) {
                         cb.checked = false;
-                        document.getElementById('err_opt_subjects').textContent = 'You can only select exactly 3 optional subjects.';
-                    } else {
-                        document.getElementById('err_opt_subjects').textContent = '';
+                        showToast("You can only select exactly 3 Elective Subjects.");
+                        return;
                     }
+                    checkOverlap(e.target);
+                });
+            });
+
+            fourthRadios.forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    checkOverlap(e.target);
                 });
             });
         });
@@ -261,9 +347,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const optVals = Array.from(optCbs).map(cb => cb.value).join(', ');
                 addRow('Optional Subjects', optVals);
             }
-            const fourthSelect = document.getElementById('fourth_subject');
+            const fourthSelect = document.querySelector('input[name="fourth_subject"]:checked');
             if (fourthSelect && fourthSelect.value) {
-                addRow('4th Subject', fourthSelect.value);
+                addRow('Optional Subject', fourthSelect.value);
             }
         } else {
             addRow('HSC Roll', document.getElementById('hsc_roll')?.value);
@@ -342,7 +428,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     academic['optional_subjects'] = Array.from(optCbs).map(cb => cb.value);
                 }
                 // Extract 4th Subject
-                const fourthSelect = document.getElementById('fourth_subject');
+                const fourthSelect = document.querySelector('input[name="fourth_subject"]:checked');
                 if (fourthSelect && fourthSelect.value) {
                     academic['fourth_subject'] = fourthSelect.value;
                 }
