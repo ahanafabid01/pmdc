@@ -76,19 +76,29 @@ function countBadge(count, cls) {
 
 function subjectPillsHsc(subjects, codesMap) {
     if (!subjects || subjects.length === 0) return `<span class="ac-count-badge none">—</span>`;
-    return subjects.map(sub => {
+    return `<div style="display:flex;flex-direction:column;gap:6px;">` + subjects.map(sub => {
         const key = sub.replace(/\s*\(.*?\)\s*/g, '').trim();
+        let bnMatch = sub.match(/\((.*?)\)/);
+        let bn = bnMatch ? bnMatch[1] : '';
         const entry = codesMap ? codesMap[key] : null;
+        
         let codeHtml = '';
         if (entry) {
-            if (entry.only) {
-                codeHtml = `<span style="font-size:0.7rem;background:#eef2ff;color:#6366f1;border:1px solid #c7d2fe;border-radius:3px;padding:1px 5px;margin-left:5px;font-weight:600;">${entry.only}</span>`;
-            } else {
-                codeHtml = `<span style="font-size:0.7rem;background:#eef2ff;color:#6366f1;border:1px solid #c7d2fe;border-radius:3px;padding:1px 5px;margin-left:5px;font-weight:600;">${entry['1st']}/${entry['2nd']}</span>`;
-            }
+            let codeText = entry.only ? entry.only : `${entry['1st']}/${entry['2nd']}`;
+            codeHtml = `<span style="font-size:0.68rem;background:#eef2ff;color:#4f46e5;border:1px solid rgba(99,102,241,0.2);border-radius:5px;padding:2px 7px;font-weight:700;letter-spacing:0.02em;">${codeText}</span>`;
         }
-        return `<div style="display:flex;align-items:center;gap:4px;margin-bottom:3px;font-size:0.78rem;color:#334155;">${esc(sub)} ${codeHtml}</div>`;
-    }).join('');
+        
+        let subText = `<span style="font-weight:600;color:#334155;">${esc(key)}</span>`;
+        if (bn) subText += ` <span style="font-size:0.75rem;color:#64748b;font-weight:400;margin-left:4px;">${esc(bn)}</span>`;
+        
+        return `<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 10px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;font-size:0.8rem;line-height:1.3;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#cbd5e1'" onmouseout="this.style.borderColor='#e2e8f0'">
+            <div style="display:flex;align-items:center;gap:6px;">
+                <i class="fas fa-book-open" style="font-size:0.65rem;color:#94a3b8;opacity:0.7;"></i>
+                ${subText}
+            </div>
+            ${codeHtml}
+        </div>`;
+    }).join('') + `</div>`;
 }
 
 function renderHscTable() {
@@ -111,22 +121,24 @@ function renderHscTable() {
         const optHtml  = subjectPillsHsc(g.optional, codes);
         const fourthHtml = subjectPillsHsc(g.fourth, codes);
         return `
-        <tr>
-            <td style="color:#94a3b8;font-size:.8rem;">${i + 1}</td>
-            <td>
+        <tr style="vertical-align:top;">
+            <td style="color:#94a3b8;font-size:.8rem;padding-top:22px;">${i + 1}</td>
+            <td style="padding-top:20px;">
                 <div class="ac-prog-cell">
-                    <span class="ac-prog-dot" style="background:${esc(g.accent)};"></span>
+                    <span class="ac-prog-dot" style="background:${esc(g.accent)};width:12px;height:12px;"></span>
                     <div>
-                        <div class="ac-prog-name">${esc(g.name)}</div>
-                        <div style="font-size:.75rem;color:var(--muted);">${esc(g.bengali)}</div>
+                        <div class="ac-prog-name" style="font-size:1.05rem;">${esc(g.name)}</div>
+                        <div style="font-size:.8rem;color:var(--muted);margin-top:2px;">${esc(g.bengali)}</div>
                     </div>
                 </div>
             </td>
-            <td style="font-size:.75rem;color:var(--muted);">${g.optional_note || 'Choose any 3'}</td>
-            <td style="min-width:220px;">${compHtml}</td>
-            <td style="min-width:220px;">${optHtml}</td>
-            <td style="min-width:220px;">${fourthHtml}</td>
-            <td>
+            <td style="padding-top:20px;">
+                <span style="font-size:0.75rem;font-weight:600;color:#64748b;background:#f1f5f9;padding:5px 10px;border-radius:6px;border:1px solid #e2e8f0;white-space:nowrap;">${esc(g.optional_note || 'Choose any 3')}</span>
+            </td>
+            <td style="min-width:260px;padding:16px 12px;">${compHtml}</td>
+            <td style="min-width:260px;padding:16px 12px;">${optHtml}</td>
+            <td style="min-width:260px;padding:16px 12px;">${fourthHtml}</td>
+            <td style="padding-top:20px;">
                 <div class="action-btns">
                     <button class="act-btn act-edit" data-type="hsc" data-id="${esc(g.id)}" data-action="edit" title="Edit"><i class="fas fa-pencil-alt"></i></button>
                     <button class="act-btn act-delete" data-type="hsc" data-id="${esc(g.id)}" data-action="delete" title="Delete"><i class="fas fa-trash-alt"></i></button>
@@ -188,6 +200,53 @@ function renderAll() {
    MODAL — OPEN / CLOSE
    ═══════════════════════════════════════════════════════════ */
 
+function formatSubjectsWithCodes(subjects, codesObj) {
+    if (!subjects) return '';
+    return subjects.map(sub => {
+        const key = sub.replace(/\s*\(.*?\)\s*/g, '').trim();
+        const entry = codesObj ? codesObj[key] : null;
+        if (entry) {
+            if (entry.only) {
+                return `${sub} - [${entry.only}]`;
+            } else if (entry['1st'] && entry['2nd']) {
+                return `${sub} - [${entry['1st']}, ${entry['2nd']}]`;
+            }
+        }
+        return sub;
+    }).join('\n');
+}
+
+function extractSubjectsAndCodes(linesRaw, codesObj) {
+    const lines = linesRaw.split('\n').map(l => l.trim()).filter(l => l !== '');
+    const cleanSubjects = [];
+    
+    for (let line of lines) {
+        // Match: `Subject Name (Optional Bengali) - [101, 102]` or `... - [275]`
+        const match = line.match(/(.*?)(?:\s*-\s*)?\[\s*([\d\s,]+)\s*\]\s*$/);
+        
+        if (match) {
+            const subject = match[1].trim(); 
+            cleanSubjects.push(subject);
+            
+            // Extract the English base key
+            const key = subject.replace(/\s*\(.*?\)\s*/g, '').trim();
+            
+            // Parse codes
+            const codesStr = match[2];
+            const codesArr = codesStr.split(',').map(c => c.trim()).filter(c => c !== '');
+            
+            if (codesArr.length === 1) {
+                codesObj[key] = { "only": parseInt(codesArr[0], 10) };
+            } else if (codesArr.length >= 2) {
+                codesObj[key] = { "1st": parseInt(codesArr[0], 10), "2nd": parseInt(codesArr[1], 10) };
+            }
+        } else {
+            cleanSubjects.push(line);
+        }
+    }
+    return cleanSubjects;
+}
+
 function openModal(type, id = null) {
     currentModalType = type;
     editingId        = id;
@@ -217,12 +276,13 @@ function openModal(type, id = null) {
         document.getElementById('fColor').value    = record.accent;
         document.getElementById('fIcon').value     = record.icon;
         updateIconPreview(record.icon);
-        document.getElementById('fCompulsory').value = joinLines(record.compulsory);
-        document.getElementById('fOptional').value   = joinLines(record.optional);
+        
+        document.getElementById('fCompulsory').value = formatSubjectsWithCodes(record.compulsory, record.subject_codes);
+        document.getElementById('fOptional').value   = formatSubjectsWithCodes(record.optional, record.subject_codes);
         document.getElementById('fOptNote').value    = record.optional_note || '';
 
         if (isHsc) {
-            document.getElementById('fFourth').value     = joinLines(record.fourth);
+            document.getElementById('fFourth').value     = formatSubjectsWithCodes(record.fourth, record.subject_codes);
             document.getElementById('fFourthNote').value = record.fourth_note || '';
         }
         if (isDegree) {
@@ -286,11 +346,11 @@ function validateForm() {
     if (currentModalType === 'degree') {
         const full = document.getElementById('fFull').value.trim();
         if (!full) {
-            document.getElementById('errFull').textContent = 'Full name is required.';
+            document.getElementById('errFull').textContent = 'Full name is required for degrees.';
             ok = false;
         }
     }
-
+    
     return ok;
 }
 
@@ -301,19 +361,29 @@ function saveProgram() {
     const isHsc    = currentModalType === 'hsc';
     const isDegree = currentModalType === 'degree';
 
+    let subjectCodesParsed = {};
+    const compSubjects = extractSubjectsAndCodes(document.getElementById('fCompulsory').value, subjectCodesParsed);
+    const optSubjects  = extractSubjectsAndCodes(document.getElementById('fOptional').value, subjectCodesParsed);
+    
+    let fourthSubjects = [];
+    if (isHsc) {
+        fourthSubjects = extractSubjectsAndCodes(document.getElementById('fFourth').value, subjectCodesParsed);
+    }
+
     const record = {
         id:           editingId || uid(isHsc ? 'hsc' : 'deg'),
         name:         document.getElementById('fName').value.trim(),
         bengali:      document.getElementById('fBengali').value.trim(),
         accent:       document.getElementById('fColor').value,
         icon:         document.getElementById('fIcon').value.trim() || 'fas fa-book',
-        compulsory:   parseLines(document.getElementById('fCompulsory').value),
-        optional:     parseLines(document.getElementById('fOptional').value),
+        compulsory:   compSubjects,
+        optional:     optSubjects,
         optional_note:document.getElementById('fOptNote').value.trim(),
+        subject_codes: subjectCodesParsed
     };
 
     if (isHsc) {
-        record.fourth      = parseLines(document.getElementById('fFourth').value);
+        record.fourth      = fourthSubjects;
         record.fourth_note = document.getElementById('fFourthNote').value.trim();
     }
 

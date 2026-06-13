@@ -188,80 +188,100 @@
                     <input type="hidden" id="acEditId">
                     <input type="hidden" id="acEditType">
 
-                    <!-- Row 1: Name + Bengali -->
-                    <div class="ac-form-row">
-                        <div class="tm-form-group">
-                            <label for="fName">Group / Program Name <span class="req">*</span></label>
-                            <input type="text" id="fName" placeholder="e.g. Science, BA">
-                            <span class="ac-err" id="errName"></span>
+                    <!-- ── Basic Details ── -->
+                    <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:18px 20px; margin-bottom:20px;">
+                        <div style="font-size:0.85rem; font-weight:700; color:#475569; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:14px; display:flex; align-items:center; gap:6px;">
+                            <i class="fas fa-info-circle" style="color:#3b82f6;"></i> Basic Details
                         </div>
-                        <div class="tm-form-group" id="fFullWrap">
-                            <label for="fFull">Full Name <span class="req">*</span></label>
-                            <input type="text" id="fFull" placeholder="e.g. Bachelor of Arts">
-                            <span class="ac-err" id="errFull"></span>
+                        
+                        <!-- Row 1: Name + Bengali -->
+                        <div class="ac-form-row">
+                            <div class="tm-form-group" style="margin-bottom:12px;">
+                                <label for="fName">Group / Program Name <span class="req">*</span></label>
+                                <input type="text" id="fName" placeholder="e.g. Science, BA">
+                                <span class="ac-err" id="errName"></span>
+                            </div>
+                            <div class="tm-form-group" id="fFullWrap" style="margin-bottom:12px;">
+                                <label for="fFull">Full Name <span class="req">*</span></label>
+                                <input type="text" id="fFull" placeholder="e.g. Bachelor of Arts">
+                                <span class="ac-err" id="errFull"></span>
+                            </div>
+                        </div>
+
+                        <!-- Bengali -->
+                        <div class="tm-form-group" style="margin-bottom:0;">
+                            <label for="fBengali">Bengali Name <span class="req">*</span></label>
+                            <input type="text" id="fBengali" placeholder="e.g. বিজ্ঞান শাখা">
+                            <span class="ac-err" id="errBengali"></span>
                         </div>
                     </div>
 
-                    <!-- Bengali -->
-                    <div class="tm-form-group">
-                        <label for="fBengali">Bengali Name <span class="req">*</span></label>
-                        <input type="text" id="fBengali" placeholder="e.g. বিজ্ঞান শাখা">
-                        <span class="ac-err" id="errBengali"></span>
-                    </div>
-
-                    <!-- Accent color + Icon -->
-                    <div class="ac-form-row">
-                        <div class="tm-form-group">
-                            <label>Accent Color</label>
-                            <div class="ac-color-row">
-                                <input type="color" id="fColor" value="#2563eb" class="ac-color-input">
-                                <div class="ac-color-presets">
-                                    <button type="button" class="ac-preset" data-color="#2563eb" style="background:#2563eb;" title="Blue"></button>
-                                    <button type="button" class="ac-preset" data-color="#7c3aed" style="background:#7c3aed;" title="Purple"></button>
-                                    <button type="button" class="ac-preset" data-color="#059669" style="background:#059669;" title="Green"></button>
-                                    <button type="button" class="ac-preset" data-color="#d97706" style="background:#d97706;" title="Amber"></button>
-                                    <button type="button" class="ac-preset" data-color="#dc2626" style="background:#dc2626;" title="Red"></button>
-                                    <button type="button" class="ac-preset" data-color="#0891b2" style="background:#0891b2;" title="Cyan"></button>
+                    <!-- ── Visual Identity ── -->
+                    <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:18px 20px; margin-bottom:20px;">
+                        <div style="font-size:0.85rem; font-weight:700; color:#475569; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:14px; display:flex; align-items:center; gap:6px;">
+                            <i class="fas fa-palette" style="color:#8b5cf6;"></i> Visual Identity
+                        </div>
+                        
+                        <div class="ac-form-row">
+                            <div class="tm-form-group" style="margin-bottom:0;">
+                                <label>Accent Color</label>
+                                <div class="ac-color-row">
+                                    <input type="color" id="fColor" value="#2563eb" class="ac-color-input">
+                                    <div class="ac-color-presets">
+                                        <button type="button" class="ac-preset" data-color="#2563eb" style="background:#2563eb;" title="Blue"></button>
+                                        <button type="button" class="ac-preset" data-color="#7c3aed" style="background:#7c3aed;" title="Purple"></button>
+                                        <button type="button" class="ac-preset" data-color="#059669" style="background:#059669;" title="Green"></button>
+                                        <button type="button" class="ac-preset" data-color="#d97706" style="background:#d97706;" title="Amber"></button>
+                                        <button type="button" class="ac-preset" data-color="#dc2626" style="background:#dc2626;" title="Red"></button>
+                                        <button type="button" class="ac-preset" data-color="#0891b2" style="background:#0891b2;" title="Cyan"></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tm-form-group" style="margin-bottom:0;">
+                                <label for="fIcon">Icon (FontAwesome class)</label>
+                                <div class="ac-icon-row">
+                                    <input type="text" id="fIcon" value="fas fa-book" placeholder="fas fa-book">
+                                    <span class="ac-icon-preview"><i id="fIconPreview" class="fas fa-book"></i></span>
                                 </div>
                             </div>
                         </div>
-                        <div class="tm-form-group">
-                            <label for="fIcon">Icon (FontAwesome class)</label>
-                            <div class="ac-icon-row">
-                                <input type="text" id="fIcon" value="fas fa-book" placeholder="fas fa-book">
-                                <span class="ac-icon-preview"><i id="fIconPreview" class="fas fa-book"></i></span>
+                    </div>
+
+                    <!-- ── Curriculum Structure ── -->
+                    <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:18px 20px; margin-bottom:20px;">
+                        <div style="font-size:0.85rem; font-weight:700; color:#475569; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:14px; display:flex; align-items:center; gap:6px;">
+                            <i class="fas fa-sitemap" style="color:#10b981;"></i> Curriculum Structure
+                        </div>
+
+                        <!-- Compulsory Subjects -->
+                        <div class="tm-form-group" style="margin-bottom:16px;">
+                            <label for="fCompulsory">Compulsory Subjects <span class="req">*</span> <span class="ac-hint">— one per line</span></label>
+                            <textarea id="fCompulsory" rows="3" placeholder="Bangla (বাংলা) - [101, 102]&#10;English - [107, 108]&#10;ICT (তথ্য ও যোগাযোগ প্রযুক্তি) - [275]" style="font-family:'Courier New', monospace; font-size:0.85rem; line-height:1.5;"></textarea>
+                            <span class="ac-err" id="errCompulsory"></span>
+                        </div>
+
+                        <!-- Optional Subjects -->
+                        <div class="tm-form-group" style="margin-bottom:16px;">
+                            <label for="fOptional">Optional/Elective Subjects <span class="ac-hint">— one per line (leave blank if none)</span></label>
+                            <textarea id="fOptional" rows="4" placeholder="Physics (পদার্থ বিজ্ঞান) - [174, 175]&#10;Chemistry (রসায়ন) - [176, 177]" style="font-family:'Courier New', monospace; font-size:0.85rem; line-height:1.5;"></textarea>
+                        </div>
+
+                        <!-- Optional note -->
+                        <div class="tm-form-group" id="fOptNoteWrap" style="margin-bottom:16px;">
+                            <label for="fOptNote">Elective Subject Rules</label>
+                            <input type="text" id="fOptNote" placeholder="e.g. Choose any 3">
+                        </div>
+
+                        <!-- 4th Subject (HSC only) -->
+                        <div id="fFourthSection" style="padding-top:16px; border-top:1px dashed #cbd5e1;">
+                            <div class="tm-form-group" style="margin-bottom:16px;">
+                                <label for="fFourth">4th (Bonus) Subject Options <span class="ac-hint">— one per line</span></label>
+                                <textarea id="fFourth" rows="3" placeholder="Higher Mathematics (উচ্চতর গণিত) - [265, 266]&#10;Biology (জীব বিজ্ঞান) - [178, 179]" style="font-family:'Courier New', monospace; font-size:0.85rem; line-height:1.5;"></textarea>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- Compulsory Subjects -->
-                    <div class="tm-form-group">
-                        <label for="fCompulsory">Compulsory Subjects <span class="req">*</span> <span class="ac-hint">— one per line</span></label>
-                        <textarea id="fCompulsory" rows="4" placeholder="Bangla (বাংলা)&#10;English&#10;ICT (তথ্য ও যোগাযোগ প্রযুক্তি)"></textarea>
-                        <span class="ac-err" id="errCompulsory"></span>
-                    </div>
-
-                    <!-- Optional Subjects -->
-                    <div class="tm-form-group">
-                        <label for="fOptional">Optional Subjects <span class="ac-hint">— one per line (leave blank if none)</span></label>
-                        <textarea id="fOptional" rows="4" placeholder="Physics (পদার্থ বিজ্ঞান)&#10;Chemistry (রসায়ন)&#10;Biology (জীব বিজ্ঞান)"></textarea>
-                    </div>
-
-                    <!-- Optional note -->
-                    <div class="tm-form-group" id="fOptNoteWrap">
-                        <label for="fOptNote">Optional Subject Note</label>
-                        <input type="text" id="fOptNote" placeholder="e.g. Choose any 3">
-                    </div>
-
-                    <!-- 4th Subject (HSC only) -->
-                    <div id="fFourthSection">
-                        <div class="tm-form-group">
-                            <label for="fFourth">4th Subject Options <span class="ac-hint">— one per line</span></label>
-                            <textarea id="fFourth" rows="3" placeholder="Higher Mathematics (উচ্চতর গণিত)&#10;Biology (জীব বিজ্ঞান)"></textarea>
-                        </div>
-                        <div class="tm-form-group">
-                            <label for="fFourthNote">4th Subject Note</label>
-                            <input type="text" id="fFourthNote" placeholder="e.g. Choose any 1 (optional)">
+                            <div class="tm-form-group" style="margin-bottom:0;">
+                                <label for="fFourthNote">4th Subject Rules</label>
+                                <input type="text" id="fFourthNote" placeholder="e.g. Choose any 1 (optional)">
+                            </div>
                         </div>
                     </div>
 
