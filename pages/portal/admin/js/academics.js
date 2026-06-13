@@ -73,6 +73,24 @@ function countBadge(count, cls) {
    RENDER — HSC TABLE
    ═══════════════════════════════════════════════════════════ */
 
+
+function subjectPillsHsc(subjects, codesMap) {
+    if (!subjects || subjects.length === 0) return `<span class="ac-count-badge none">—</span>`;
+    return subjects.map(sub => {
+        const key = sub.replace(/\s*\(.*?\)\s*/g, '').trim();
+        const entry = codesMap ? codesMap[key] : null;
+        let codeHtml = '';
+        if (entry) {
+            if (entry.only) {
+                codeHtml = `<span style="font-size:0.7rem;background:#eef2ff;color:#6366f1;border:1px solid #c7d2fe;border-radius:3px;padding:1px 5px;margin-left:5px;font-weight:600;">${entry.only}</span>`;
+            } else {
+                codeHtml = `<span style="font-size:0.7rem;background:#eef2ff;color:#6366f1;border:1px solid #c7d2fe;border-radius:3px;padding:1px 5px;margin-left:5px;font-weight:600;">${entry['1st']}/${entry['2nd']}</span>`;
+            }
+        }
+        return `<div style="display:flex;align-items:center;gap:4px;margin-bottom:3px;font-size:0.78rem;color:#334155;">${esc(sub)} ${codeHtml}</div>`;
+    }).join('');
+}
+
 function renderHscTable() {
     const tbody = document.getElementById('hscTbody');
     const empty = document.getElementById('hscEmpty');
@@ -87,7 +105,12 @@ function renderHscTable() {
     table.style.display = '';
     empty.style.display = 'none';
 
-    tbody.innerHTML = hscData.map((g, i) => `
+    tbody.innerHTML = hscData.map((g, i) => {
+        const codes = g.subject_codes || {};
+        const compHtml = subjectPillsHsc(g.compulsory, codes);
+        const optHtml  = subjectPillsHsc(g.optional, codes);
+        const fourthHtml = subjectPillsHsc(g.fourth, codes);
+        return `
         <tr>
             <td style="color:#94a3b8;font-size:.8rem;">${i + 1}</td>
             <td>
@@ -95,13 +118,14 @@ function renderHscTable() {
                     <span class="ac-prog-dot" style="background:${esc(g.accent)};"></span>
                     <div>
                         <div class="ac-prog-name">${esc(g.name)}</div>
+                        <div style="font-size:.75rem;color:var(--muted);">${esc(g.bengali)}</div>
                     </div>
                 </div>
             </td>
-            <td style="font-size:.8rem;color:var(--muted);">${esc(g.bengali)}</td>
-            <td class="text-center">${countBadge(g.compulsory?.length || 0, 'compulsory')}</td>
-            <td class="text-center">${countBadge(g.optional?.length || 0, 'optional')}</td>
-            <td class="text-center">${countBadge(g.fourth?.length || 0, 'fourth')}</td>
+            <td style="font-size:.75rem;color:var(--muted);">${g.optional_note || 'Choose any 3'}</td>
+            <td style="min-width:220px;">${compHtml}</td>
+            <td style="min-width:220px;">${optHtml}</td>
+            <td style="min-width:220px;">${fourthHtml}</td>
             <td>
                 <div class="action-btns">
                     <button class="act-btn act-edit" data-type="hsc" data-id="${esc(g.id)}" data-action="edit" title="Edit"><i class="fas fa-pencil-alt"></i></button>
@@ -109,7 +133,7 @@ function renderHscTable() {
                 </div>
             </td>
         </tr>
-    `).join('');
+    `}).join('');
 }
 
 /* ═══════════════════════════════════════════════════════════

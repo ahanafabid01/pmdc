@@ -118,23 +118,32 @@ include '../includes/header.php';
             <div class="groups-grid">
 
                 <!-- Science -->
-                <div class="group-card reveal">
+                <div class="group-card reveal" style="position:relative;">
                     <div class="group-header gc-sci">
+                        <span class="badge" style="position:absolute; top:24px; right:24px; background:rgba(255,255,255,0.25); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.85rem; font-weight:600;">7+ Subjects</span>
                         <div class="gh-icon"><i class="fas fa-flask"></i></div>
                         <div>
                             <div class="gh-label">বিজ্ঞান বিভাগ</div>
                             <div class="gh-title">Science Group</div>
                         </div>
                     </div>
+                    <div style="padding: 15px 20px 0; font-size: 0.9rem; color: #475569;">
+                        <strong>Compulsory:</strong> 3 subjects<br>
+                        <strong>Optional:</strong> 4 subjects <span style="font-size:0.8rem;">(choose any 3)</span><br>
+                        <strong>4th Subject:</strong> 2 options <span style="font-size:0.8rem;">(choose any 1)</span>
+                    </div>
                     <ul class="subject-list">
-                        <li><span class="sub-name">Physics 1st Paper <em>পদার্থবিজ্ঞান ১ম</em></span><span class="sub-code">174</span></li>
-                        <li><span class="sub-name">Physics 2nd Paper <em>পদার্থবিজ্ঞান ২য়</em></span><span class="sub-code">175</span></li>
-                        <li><span class="sub-name">Chemistry 1st Paper <em>রসায়ন ১ম</em></span><span class="sub-code">176</span></li>
-                        <li><span class="sub-name">Chemistry 2nd Paper <em>রসায়ন ২য়</em></span><span class="sub-code">177</span></li>
-                        <li><span class="sub-name">Biology 1st Paper <em>জীববিজ্ঞান ১ম</em></span><span class="sub-code">178</span></li>
-                        <li><span class="sub-name">Biology 2nd Paper <em>জীববিজ্ঞান ২য়</em></span><span class="sub-code">179</span></li>
-                        <li><span class="sub-name">Higher Math 1st Paper <em>উচ্চতর গণিত ১ম</em></span><span class="sub-code">265</span></li>
-                        <li><span class="sub-name">Higher Math 2nd Paper <em>উচ্চতর গণিত ২য়</em></span><span class="sub-code">266</span></li>
+                        <li style="background:#f0fdf4;"><span class="sub-name" style="color:#059669;font-weight:600;"><i class="fas fa-lock" style="font-size:0.7rem;margin-right:4px;"></i>Bangla (বাংলা)</span><span class="sub-code" style="background:#dcfce7;color:#059669;">101 / 102</span></li>
+                        <li style="background:#f0fdf4;"><span class="sub-name" style="color:#059669;font-weight:600;"><i class="fas fa-lock" style="font-size:0.7rem;margin-right:4px;"></i>English</span><span class="sub-code" style="background:#dcfce7;color:#059669;">107 / 108</span></li>
+                        <li style="background:#f0fdf4;"><span class="sub-name" style="color:#059669;font-weight:600;"><i class="fas fa-lock" style="font-size:0.7rem;margin-right:4px;"></i>ICT (তথ্য ও যোগাযোগ প্রযুক্তি)</span><span class="sub-code" style="background:#dcfce7;color:#059669;">275</span></li>
+                        <li style="border-top:2px dashed #e2e8f0;padding-top:6px;margin-top:2px;"><span class="sub-name" style="color:#6366f1;font-size:0.78rem;font-weight:600;">— Elective (choose any 3)</span><span class="sub-code" style="background:#eef2ff;color:#6366f1;">Optional</span></li>
+                        <li><span class="sub-name">Physics <em>পদার্থ বিজ্ঞান</em></span><span class="sub-code">174 / 175</span></li>
+                        <li><span class="sub-name">Chemistry <em>রসায়ন</em></span><span class="sub-code">176 / 177</span></li>
+                        <li><span class="sub-name">Biology <em>জীব বিজ্ঞান</em></span><span class="sub-code">178 / 179</span></li>
+                        <li><span class="sub-name">Higher Mathematics <em>উচ্চতর গণিত</em></span><span class="sub-code">265 / 266</span></li>
+                        <li style="border-top:2px dashed #e2e8f0;padding-top:6px;margin-top:2px;"><span class="sub-name" style="color:#d97706;font-size:0.78rem;font-weight:600;">— 4th Subject / Bonus (choose any 1)</span><span class="sub-code" style="background:#fef3c7;color:#d97706;">Bonus</span></li>
+                        <li><span class="sub-name">Higher Mathematics <em>উচ্চতর গণিত</em></span><span class="sub-code">265 / 266</span></li>
+                        <li><span class="sub-name">Biology <em>জীব বিজ্ঞান</em></span><span class="sub-code">178 / 179</span></li>
                     </ul>
                     <div class="group-footer">
                         <a href="#" class="read-more">View Full Syllabus <i class="fas fa-arrow-right"></i></a>
@@ -142,23 +151,31 @@ include '../includes/header.php';
                 </div>
 
                 <!-- Commerce -->
-                <div class="group-card reveal">
+                <div class="group-card reveal" style="position:relative;">
                     <div class="group-header gc-com">
+                        <span class="badge" style="position:absolute; top:24px; right:24px; background:rgba(255,255,255,0.25); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.85rem; font-weight:600;">6+ Subjects</span>
                         <div class="gh-icon"><i class="fas fa-briefcase"></i></div>
                         <div>
                             <div class="gh-label">ব্যবসায় শিক্ষা বিভাগ</div>
-                            <div class="gh-title">Commerce Group</div>
+                            <div class="gh-title">Business Studies Group</div>
                         </div>
                     </div>
+                    <div style="padding: 15px 20px 0; font-size: 0.9rem; color: #475569;">
+                        <strong>Compulsory:</strong> 3 subjects<br>
+                        <strong>Optional:</strong> 3 subjects <span style="font-size:0.8rem;">(choose any 3)</span><br>
+                        <strong>4th Subject:</strong> 2 options <span style="font-size:0.8rem;">(choose any 1)</span>
+                    </div>
                     <ul class="subject-list">
-                        <li><span class="sub-name">Accounting 1st Paper <em>হিসাববিজ্ঞান ১ম</em></span><span class="sub-code">253</span></li>
-                        <li><span class="sub-name">Accounting 2nd Paper <em>হিসাববিজ্ঞান ২য়</em></span><span class="sub-code">254</span></li>
-                        <li><span class="sub-name">Finance &amp; Banking 1st Paper</span><span class="sub-code">292</span></li>
-                        <li><span class="sub-name">Finance &amp; Banking 2nd Paper</span><span class="sub-code">293</span></li>
-                        <li><span class="sub-name">Business Organisation 1st Paper</span><span class="sub-code">277</span></li>
-                        <li><span class="sub-name">Business Organisation 2nd Paper</span><span class="sub-code">278</span></li>
-                        <li><span class="sub-name">Production Management 1st Paper</span><span class="sub-code">286</span></li>
-                        <li><span class="sub-name">Production Management 2nd Paper</span><span class="sub-code">287</span></li>
+                        <li style="background:#f0fdf4;"><span class="sub-name" style="color:#059669;font-weight:600;"><i class="fas fa-lock" style="font-size:0.7rem;margin-right:4px;"></i>Bangla (বাংলা)</span><span class="sub-code" style="background:#dcfce7;color:#059669;">101 / 102</span></li>
+                        <li style="background:#f0fdf4;"><span class="sub-name" style="color:#059669;font-weight:600;"><i class="fas fa-lock" style="font-size:0.7rem;margin-right:4px;"></i>English</span><span class="sub-code" style="background:#dcfce7;color:#059669;">107 / 108</span></li>
+                        <li style="background:#f0fdf4;"><span class="sub-name" style="color:#059669;font-weight:600;"><i class="fas fa-lock" style="font-size:0.7rem;margin-right:4px;"></i>ICT (তথ্য ও যোগাযোগ প্রযুক্তি)</span><span class="sub-code" style="background:#dcfce7;color:#059669;">275</span></li>
+                        <li style="border-top:2px dashed #e2e8f0;padding-top:6px;margin-top:2px;"><span class="sub-name" style="color:#6366f1;font-size:0.78rem;font-weight:600;">— Elective (choose any 3)</span><span class="sub-code" style="background:#eef2ff;color:#6366f1;">Optional</span></li>
+                        <li><span class="sub-name">Accounting <em>হিসাব বিজ্ঞান</em></span><span class="sub-code">253 / 254</span></li>
+                        <li><span class="sub-name">Business Policy &amp; Practice <em>ব্যবসায়নীতি ও প্রয়োগ</em></span><span class="sub-code">286 / 287</span></li>
+                        <li><span class="sub-name">Marketing <em>মার্কেটিং</em></span><span class="sub-code">277 / 278</span></li>
+                        <li style="border-top:2px dashed #e2e8f0;padding-top:6px;margin-top:2px;"><span class="sub-name" style="color:#d97706;font-size:0.78rem;font-weight:600;">— 4th Subject / Bonus (choose any 1)</span><span class="sub-code" style="background:#fef3c7;color:#d97706;">Bonus</span></li>
+                        <li><span class="sub-name">Economics <em>অর্থনীতি</em></span><span class="sub-code">109 / 110</span></li>
+                        <li><span class="sub-name">Geography <em>ভূগোল</em></span><span class="sub-code">125 / 126</span></li>
                     </ul>
                     <div class="group-footer">
                         <a href="#" class="read-more">View Full Syllabus <i class="fas fa-arrow-right"></i></a>
@@ -166,26 +183,38 @@ include '../includes/header.php';
                 </div>
 
                 <!-- Humanities -->
-                <div class="group-card reveal">
+                <div class="group-card reveal" style="position:relative;">
                     <div class="group-header gc-hum">
+                        <span class="badge" style="position:absolute; top:24px; right:24px; background:rgba(255,255,255,0.25); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.85rem; font-weight:600;">9+ Subjects</span>
                         <div class="gh-icon"><i class="fas fa-book"></i></div>
                         <div>
                             <div class="gh-label">মানবিক বিভাগ</div>
                             <div class="gh-title">Humanities Group</div>
                         </div>
                     </div>
-                    <ul class="subject-list">
-                        <li><span class="sub-name">Civics &amp; Good Governance 1st Paper</span><span class="sub-code">269</span></li>
-                        <li><span class="sub-name">Civics &amp; Good Governance 2nd Paper</span><span class="sub-code">270</span></li>
-                        <li><span class="sub-name">Sociology 1st Paper <em>সমাজবিজ্ঞান</em></span><span class="sub-code">117</span></li>
-                        <li><span class="sub-name">Sociology 2nd Paper</span><span class="sub-code">118</span></li>
-                        <li><span class="sub-name">Economics 1st Paper <em>অর্থনীতি</em></span><span class="sub-code">109</span></li>
-                        <li><span class="sub-name">Economics 2nd Paper</span><span class="sub-code">110</span></li>
-                        <li><span class="sub-name">History 1st Paper <em>ইতিহাস</em></span><span class="sub-code">304</span></li>
-                        <li><span class="sub-name">History 2nd Paper</span><span class="sub-code">305</span></li>
-                        <li><span class="sub-name">Logic <em>যুক্তিবিদ্যা</em></span><span class="sub-code">121/122</span></li>
-                        <li><span class="sub-name">Geography <em>ভূগোল</em></span><span class="sub-code">125/126</span></li>
-                        <li><span class="sub-name">Social Work <em>সমাজকর্ম</em></span><span class="sub-code">271/272</span></li>
+                    <div style="padding: 15px 20px 0; font-size: 0.9rem; color: #475569;">
+                        <strong>Compulsory:</strong> 3 subjects<br>
+                        <strong>Optional:</strong> 6 subjects <span style="font-size:0.8rem;">(choose any 3)</span><br>
+                        <strong>4th Subject:</strong> 6 options <span style="font-size:0.8rem;">(choose any 1)</span>
+                    </div>
+                    <ul class="subject-list" style="max-height:320px; overflow-y:auto;">
+                        <li style="background:#f0fdf4;"><span class="sub-name" style="color:#059669;font-weight:600;"><i class="fas fa-lock" style="font-size:0.7rem;margin-right:4px;"></i>Bangla (বাংলা)</span><span class="sub-code" style="background:#dcfce7;color:#059669;">101 / 102</span></li>
+                        <li style="background:#f0fdf4;"><span class="sub-name" style="color:#059669;font-weight:600;"><i class="fas fa-lock" style="font-size:0.7rem;margin-right:4px;"></i>English</span><span class="sub-code" style="background:#dcfce7;color:#059669;">107 / 108</span></li>
+                        <li style="background:#f0fdf4;"><span class="sub-name" style="color:#059669;font-weight:600;"><i class="fas fa-lock" style="font-size:0.7rem;margin-right:4px;"></i>ICT (তথ্য ও যোগাযোগ প্রযুক্তি)</span><span class="sub-code" style="background:#dcfce7;color:#059669;">275</span></li>
+                        <li style="border-top:2px dashed #e2e8f0;padding-top:6px;margin-top:2px;"><span class="sub-name" style="color:#6366f1;font-size:0.78rem;font-weight:600;">— Elective (choose any 3)</span><span class="sub-code" style="background:#eef2ff;color:#6366f1;">Optional</span></li>
+                        <li><span class="sub-name">Civics &amp; Good Governance <em>পৌরনীতি ও সুশাসন</em></span><span class="sub-code">269 / 270</span></li>
+                        <li><span class="sub-name">Economics <em>অর্থনীতি</em></span><span class="sub-code">109 / 110</span></li>
+                        <li><span class="sub-name">Logic <em>যুক্তিবিদ্যা</em></span><span class="sub-code">121 / 122</span></li>
+                        <li><span class="sub-name">Social Work <em>সমাজকর্ম</em></span><span class="sub-code">271 / 272</span></li>
+                        <li><span class="sub-name">History <em>ইতিহাস</em></span><span class="sub-code">304 / 305</span></li>
+                        <li><span class="sub-name">Geography <em>ভূগোল</em></span><span class="sub-code">125 / 126</span></li>
+                        <li style="border-top:2px dashed #e2e8f0;padding-top:6px;margin-top:2px;"><span class="sub-name" style="color:#d97706;font-size:0.78rem;font-weight:600;">— 4th Subject / Bonus (choose any 1)</span><span class="sub-code" style="background:#fef3c7;color:#d97706;">Bonus</span></li>
+                        <li><span class="sub-name">Civics <em>পৌরনীতি</em></span><span class="sub-code">269 / 270</span></li>
+                        <li><span class="sub-name">Economics <em>অর্থনীতি</em></span><span class="sub-code">109 / 110</span></li>
+                        <li><span class="sub-name">Logic <em>যুক্তিবিদ্যা</em></span><span class="sub-code">121 / 122</span></li>
+                        <li><span class="sub-name">Social Work <em>সমাজকর্ম</em></span><span class="sub-code">271 / 272</span></li>
+                        <li><span class="sub-name">History <em>ইতিহাস</em></span><span class="sub-code">304 / 305</span></li>
+                        <li><span class="sub-name">Islamic Studies <em>ইসলাম শিক্ষা</em></span><span class="sub-code">267 / 268</span></li>
                     </ul>
                     <div class="group-footer">
                         <a href="#" class="read-more">View Full Syllabus <i class="fas fa-arrow-right"></i></a>

@@ -27,7 +27,7 @@ Phulpur Mohila Degree College was established in 1994 with the collective effort
 
 | Group | Compulsory Subjects | Optional Subjects (any 3) | 4th Subject (any 1) |
 |-------|---------------------|--------------------------|---------------------|
-| **Science (বিজ্ঞান)** | Bangla, English, ICT | Physics, Chemistry, Biology | Higher Math, Biology |
+| **Science (বিজ্ঞান)** | Bangla, English, ICT | Physics, Chemistry, Biology, Higher Math, Biology| Higher Math, Biology |
 | **Humanities (মানবিক)** | Bangla, English, ICT | Civics, Economics, Logic, Social Work, History, Geography | Civics, Economics, Logic, Social Work, History, Geography, Islamic Studies |
 | **Business Studies (ব্যবসায় শিক্ষা)** | Bangla, English, ICT | Accounting, Business Policy & Practice, Marketing | Economics, Geography |
 

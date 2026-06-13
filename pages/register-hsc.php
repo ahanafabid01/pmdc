@@ -25,16 +25,18 @@ $rocket   = $s['rocket'] ?? '01XXXXXXXXX';
 $open_date_fmt  = $open_date  ? date('d M Y', strtotime($open_date))  : '';
 $close_date_fmt = $close_date ? date('d M Y', strtotime($close_date)) : '';
 
-// Fetch Optional & 4th Subjects Map
+// Fetch Optional & 4th Subjects Map (including subject codes)
 $program_subjects = [];
 $db = reg_db();
 if ($db) {
     try {
-        $stmt = $db->query("SELECT name, optional_subjects, fourth_subjects FROM academics_programs WHERE type = 'hsc'");
+        $stmt = $db->query("SELECT name, optional_subjects, fourth_subjects, subject_codes FROM academics_programs WHERE type = 'hsc'");
         while ($row = $stmt->fetch()) {
+            $codes = json_decode($row['subject_codes'] ?? '{}', true) ?: [];
             $program_subjects[$row['name']] = [
                 'optional' => json_decode($row['optional_subjects'], true) ?: [],
-                'fourth'   => json_decode($row['fourth_subjects'], true) ?: []
+                'fourth'   => json_decode($row['fourth_subjects'], true) ?: [],
+                'codes'    => $codes,
             ];
         }
     } catch (Exception $e) {}

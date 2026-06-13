@@ -16,6 +16,18 @@ function pmdc_split_bilingual($text) {
     return ['en' => $text, 'bn' => $text];
 }
 
+function pmdc_code_badge($sub, $codes) {
+    // Extract English key: text before the first '('
+    $key = preg_replace('/\s*\(.*?\)\s*/', '', $sub);
+    $key = trim($key);
+    if (!isset($codes[$key])) return '';
+    $entry = $codes[$key];
+    if (isset($entry['only'])) {
+        return '<span class="pgc-code-badge">' . htmlspecialchars($entry['only']) . '</span>';
+    }
+    return '<span class="pgc-code-badge">' . htmlspecialchars($entry['1st']) . ' / ' . htmlspecialchars($entry['2nd']) . '</span>';
+}
+
 include '../includes/header.php';
 ?>
 
@@ -163,10 +175,14 @@ include '../includes/header.php';
                         <ul class="pgc-subject-list">
                             <?php foreach ($g['compulsory'] as $sub): 
                                 $parts = pmdc_split_bilingual($sub);
+                                $badge = pmdc_code_badge($sub, $g['subject_codes']);
                             ?>
                             <li class="pgc-subject-item pgc-compulsory">
-                                <span class="show-en"><?php echo htmlspecialchars($parts['en']); ?></span>
-                                <span class="show-bn"><?php echo htmlspecialchars($parts['bn']); ?></span>
+                                <span class="pgc-sub-text">
+                                    <span class="show-en"><?php echo htmlspecialchars($parts['en']); ?></span>
+                                    <span class="show-bn"><?php echo htmlspecialchars($parts['bn']); ?></span>
+                                </span>
+                                <?php echo $badge; ?>
                             </li>
                             <?php endforeach; ?>
                         </ul>
@@ -181,10 +197,14 @@ include '../includes/header.php';
                         <ul class="pgc-subject-list">
                             <?php foreach ($g['optional'] as $sub): 
                                 $parts = pmdc_split_bilingual($sub);
+                                $badge = pmdc_code_badge($sub, $g['subject_codes']);
                             ?>
                             <li class="pgc-subject-item pgc-optional">
-                                <span class="show-en"><?php echo htmlspecialchars($parts['en']); ?></span>
-                                <span class="show-bn"><?php echo htmlspecialchars($parts['bn']); ?></span>
+                                <span class="pgc-sub-text">
+                                    <span class="show-en"><?php echo htmlspecialchars($parts['en']); ?></span>
+                                    <span class="show-bn"><?php echo htmlspecialchars($parts['bn']); ?></span>
+                                </span>
+                                <?php echo $badge; ?>
                             </li>
                             <?php endforeach; ?>
                         </ul>
@@ -200,10 +220,14 @@ include '../includes/header.php';
                         <ul class="pgc-subject-list">
                             <?php foreach ($g['fourth'] as $sub): 
                                 $parts = pmdc_split_bilingual($sub);
+                                $badge = pmdc_code_badge($sub, $g['subject_codes']);
                             ?>
                             <li class="pgc-subject-item pgc-fourth">
-                                <span class="show-en"><?php echo htmlspecialchars($parts['en']); ?></span>
-                                <span class="show-bn"><?php echo htmlspecialchars($parts['bn']); ?></span>
+                                <span class="pgc-sub-text">
+                                    <span class="show-en"><?php echo htmlspecialchars($parts['en']); ?></span>
+                                    <span class="show-bn"><?php echo htmlspecialchars($parts['bn']); ?></span>
+                                </span>
+                                <?php echo $badge; ?>
                             </li>
                             <?php endforeach; ?>
                         </ul>
@@ -311,6 +335,20 @@ include '../includes/header.php';
     font-size: .8rem; font-family: 'Inter',sans-serif;
     padding: 6px 11px; border-radius: 8px;
     font-weight: 600; line-height: 1.4;
+    display: flex; align-items: center; justify-content: space-between; gap: 6px;
+}
+.pgc-sub-text { flex: 1; }
+.pgc-code-badge {
+    flex-shrink: 0;
+    font-size: 0.68rem; font-weight: 700;
+    background: rgba(99,102,241,0.12);
+    color: #4f46e5;
+    border: 1px solid rgba(99,102,241,0.25);
+    border-radius: 5px;
+    padding: 2px 7px;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
 }
 .pgc-compulsory { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
 .pgc-optional   { background: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe; }

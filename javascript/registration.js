@@ -216,7 +216,24 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!group || !programSubjects[group]) return;
             
             const data = programSubjects[group];
+            const codes = data.codes || {};
             let html = '';
+
+            // Helper: get English key from "Name (Bengali)" format
+            function getKey(sub) {
+                const m = sub.match(/^([^(]+)/);
+                return m ? m[1].trim() : sub.trim();
+            }
+
+            // Helper: build paper code badge HTML
+            function codesBadge(key) {
+                const entry = codes[key];
+                if (!entry) return '';
+                if (entry.only) {
+                    return `<span style="font-size:0.75rem; color:#6366f1; background:#eef2ff; border:1px solid #c7d2fe; border-radius:4px; padding:1px 6px; margin-left:6px; font-weight:600;">${entry.only}</span>`;
+                }
+                return `<span style="font-size:0.75rem; color:#6366f1; background:#eef2ff; border:1px solid #c7d2fe; border-radius:4px; padding:1px 6px; margin-left:6px; font-weight:600;">${entry['1st']} / ${entry['2nd']}</span><span style="font-size:0.7rem; color:#94a3b8; margin-left:4px;">(1st &amp; 2nd Paper)</span>`;
+            }
             
             // Generate exact UI matching user screenshot
             html += `
@@ -230,13 +247,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div style="font-weight:600; color:#1e293b; margin-bottom:12px; font-size:0.95rem;">(A) Compulsory Subjects</div>
                     <div style="display:flex; flex-direction:column; gap:10px; margin-left:8px;">
                         <label style="display:flex; align-items:center; gap:10px; font-weight:400; color:#334155; font-size:0.95rem;">
-                            <input type="checkbox" checked disabled style="width:18px; height:18px; accent-color:#059669;"> Bangla ((101, 102))
+                            <input type="checkbox" checked disabled style="width:18px; height:18px; accent-color:#059669;"> Bangla <span style="font-size:0.75rem; color:#6366f1; background:#eef2ff; border:1px solid #c7d2fe; border-radius:4px; padding:1px 6px; margin-left:6px; font-weight:600;">101 / 102</span><span style="font-size:0.7rem; color:#94a3b8; margin-left:4px;">(1st &amp; 2nd Paper)</span>
                         </label>
                         <label style="display:flex; align-items:center; gap:10px; font-weight:400; color:#334155; font-size:0.95rem;">
-                            <input type="checkbox" checked disabled style="width:18px; height:18px; accent-color:#059669;"> English ((107, 108))
+                            <input type="checkbox" checked disabled style="width:18px; height:18px; accent-color:#059669;"> English <span style="font-size:0.75rem; color:#6366f1; background:#eef2ff; border:1px solid #c7d2fe; border-radius:4px; padding:1px 6px; margin-left:6px; font-weight:600;">107 / 108</span><span style="font-size:0.7rem; color:#94a3b8; margin-left:4px;">(1st &amp; 2nd Paper)</span>
                         </label>
                         <label style="display:flex; align-items:center; gap:10px; font-weight:400; color:#334155; font-size:0.95rem;">
-                            <input type="checkbox" checked disabled style="width:18px; height:18px; accent-color:#059669;"> Information and Communication Technology ((275))
+                            <input type="checkbox" checked disabled style="width:18px; height:18px; accent-color:#059669;"> Information &amp; Communication Technology <span style="font-size:0.75rem; color:#6366f1; background:#eef2ff; border:1px solid #c7d2fe; border-radius:4px; padding:1px 6px; margin-left:6px; font-weight:600;">275</span><span style="font-size:0.7rem; color:#94a3b8; margin-left:4px;">(Single Paper)</span>
                         </label>
                     </div>
                 </div>
@@ -250,9 +267,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div style="display:flex; flex-direction:column; gap:10px; margin-left:8px;">
                 `;
                 data.optional.forEach((sub) => {
+                    const key = getKey(sub);
                     html += `
                         <label style="display:flex; align-items:center; gap:10px; cursor:pointer; font-weight:400; color:#334155; font-size:0.95rem;">
-                            <input type="checkbox" name="opt_subject[]" value="${sub}" class="dyn-opt-cb" style="width:18px; height:18px; accent-color:#059669;"> ${sub}
+                            <input type="checkbox" name="opt_subject[]" value="${sub}" class="dyn-opt-cb" style="width:18px; height:18px; accent-color:#059669;"> ${sub} ${codesBadge(key)}
                         </label>
                     `;
                 });
@@ -267,9 +285,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div style="display:flex; flex-direction:column; gap:10px; margin-left:8px;">
                 `;
                 data.fourth.forEach((sub) => {
+                    const key = getKey(sub);
                     html += `
                         <label style="display:flex; align-items:center; gap:10px; cursor:pointer; font-weight:400; color:#334155; font-size:0.95rem;">
-                            <input type="radio" name="fourth_subject" value="${sub}" required style="width:18px; height:18px; accent-color:#059669;"> ${sub}
+                            <input type="radio" name="fourth_subject" value="${sub}" required style="width:18px; height:18px; accent-color:#059669;"> ${sub} ${codesBadge(key)}
                         </label>
                     `;
                 });
