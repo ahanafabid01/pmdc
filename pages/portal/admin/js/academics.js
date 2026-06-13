@@ -65,41 +65,14 @@ function showToast(msg, type = 'success') {
 }
 
 function countBadge(count, cls) {
-    if (count === 0) return `<span class="ac-count-badge none">—</span>`;
-    return `<span class="ac-count-badge ${cls}">${count}</span>`;
+    if (count === 0) return `<span class="ac-count-badge none" style="width:30px;height:30px;border-radius:50%;padding:0;">—</span>`;
+    return `<span class="ac-count-badge ${cls}" style="width:30px;height:30px;border-radius:50%;padding:0;">${count}</span>`;
 }
 
 /* ═══════════════════════════════════════════════════════════
    RENDER — HSC TABLE
    ═══════════════════════════════════════════════════════════ */
 
-
-function subjectPillsHsc(subjects, codesMap) {
-    if (!subjects || subjects.length === 0) return `<span class="ac-count-badge none">—</span>`;
-    return `<div style="display:flex;flex-direction:column;gap:6px;">` + subjects.map(sub => {
-        const key = sub.replace(/\s*\(.*?\)\s*/g, '').trim();
-        let bnMatch = sub.match(/\((.*?)\)/);
-        let bn = bnMatch ? bnMatch[1] : '';
-        const entry = codesMap ? codesMap[key] : null;
-        
-        let codeHtml = '';
-        if (entry) {
-            let codeText = entry.only ? entry.only : `${entry['1st']}/${entry['2nd']}`;
-            codeHtml = `<span style="font-size:0.68rem;background:#eef2ff;color:#4f46e5;border:1px solid rgba(99,102,241,0.2);border-radius:5px;padding:2px 7px;font-weight:700;letter-spacing:0.02em;">${codeText}</span>`;
-        }
-        
-        let subText = `<span style="font-weight:600;color:#334155;">${esc(key)}</span>`;
-        if (bn) subText += ` <span style="font-size:0.75rem;color:#64748b;font-weight:400;margin-left:4px;">${esc(bn)}</span>`;
-        
-        return `<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 10px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;font-size:0.8rem;line-height:1.3;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#cbd5e1'" onmouseout="this.style.borderColor='#e2e8f0'">
-            <div style="display:flex;align-items:center;gap:6px;">
-                <i class="fas fa-book-open" style="font-size:0.65rem;color:#94a3b8;opacity:0.7;"></i>
-                ${subText}
-            </div>
-            ${codeHtml}
-        </div>`;
-    }).join('') + `</div>`;
-}
 
 function renderHscTable() {
     const tbody = document.getElementById('hscTbody');
@@ -116,10 +89,6 @@ function renderHscTable() {
     empty.style.display = 'none';
 
     tbody.innerHTML = hscData.map((g, i) => {
-        const codes = g.subject_codes || {};
-        const compHtml = subjectPillsHsc(g.compulsory, codes);
-        const optHtml  = subjectPillsHsc(g.optional, codes);
-        const fourthHtml = subjectPillsHsc(g.fourth, codes);
         return `
         <tr style="vertical-align:top;">
             <td style="color:#94a3b8;font-size:.8rem;padding-top:22px;">${i + 1}</td>
@@ -135,9 +104,9 @@ function renderHscTable() {
             <td style="padding-top:20px;">
                 <span style="font-size:0.75rem;font-weight:600;color:#64748b;background:#f1f5f9;padding:5px 10px;border-radius:6px;border:1px solid #e2e8f0;white-space:nowrap;">${esc(g.optional_note || 'Choose any 3')}</span>
             </td>
-            <td style="min-width:260px;padding:16px 12px;">${compHtml}</td>
-            <td style="min-width:260px;padding:16px 12px;">${optHtml}</td>
-            <td style="min-width:260px;padding:16px 12px;">${fourthHtml}</td>
+            <td class="text-center" style="padding-top:22px;">${countBadge(g.compulsory?.length || 0, 'compulsory')}</td>
+            <td class="text-center" style="padding-top:22px;">${countBadge(g.optional?.length || 0, 'optional')}</td>
+            <td class="text-center" style="padding-top:22px;">${countBadge(g.fourth?.length || 0, 'fourth')}</td>
             <td style="padding-top:20px;">
                 <div class="action-btns">
                     <button class="act-btn act-edit" data-type="hsc" data-id="${esc(g.id)}" data-action="edit" title="Edit"><i class="fas fa-pencil-alt"></i></button>

@@ -116,9 +116,9 @@
                                 <th style="min-width:40px;">#</th>
                                 <th style="min-width:160px;">Group Name</th>
                                 <th style="min-width:110px;">Selection</th>
-                                <th style="min-width:220px;">Compulsory Subjects</th>
-                                <th style="min-width:220px;">Elective Subjects</th>
-                                <th style="min-width:220px;">4th (Bonus) Subject</th>
+                                <th style="min-width:140px;" class="text-center">Compulsory</th>
+                                <th style="min-width:140px;" class="text-center">Optional</th>
+                                <th style="min-width:140px;" class="text-center">4th Subject</th>
                                 <th style="min-width:120px;">Actions</th>
                             </tr>
                         </thead>
