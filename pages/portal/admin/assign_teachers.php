@@ -139,9 +139,10 @@
                             <tr>
                                 <th style="min-width:180px;">Teacher Name</th>
                                 <th style="min-width:180px;">Email</th>
-                                <th style="min-width:180px;">Program</th>
+                                <th style="min-width:160px;">Program</th>
                                 <th style="min-width:180px;">Subject</th>
-                                <th style="text-align: center; min-width: 110px;">Action</th>
+                                <th style="min-width:120px;">Paper</th>
+                                <th style="text-align: center; min-width: 80px;">Action</th>
                             </tr>
                         </thead>
                         <tbody id="assignTableBody">
@@ -187,9 +188,9 @@
                 </div>
 
                 <div class="tm-form-group" style="margin-bottom: 24px;">
-                    <label>Select Subject <span class="req">*</span></label>
+                    <label>Select Subject &amp; Paper <span class="req">*</span></label>
                     <select id="assignSubjectId">
-                        <option value="">Loading subjects...</option>
+                        <option value="">-- Select Subject &amp; Paper --</option>
                     </select>
                 </div>
 

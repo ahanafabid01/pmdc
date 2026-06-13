@@ -109,9 +109,17 @@ function renderSubjects(subjects) {
     }
     el.innerHTML = subjects.map((s, i) => {
         const c = SI_COLORS[i % SI_COLORS.length];
+        // s can be a string like "Physics — 1st Paper"
+        let paperBadge = '';
+        if (s.includes('— 1st Paper')) {
+            paperBadge = `<span style="font-size:0.68rem;font-weight:700;background:#dbeafe;color:#1e40af;border-radius:4px;padding:2px 6px;margin-left:6px;">1st Paper</span>`;
+        } else if (s.includes('— 2nd Paper')) {
+            paperBadge = `<span style="font-size:0.68rem;font-weight:700;background:#ede9fe;color:#5b21b6;border-radius:4px;padding:2px 6px;margin-left:6px;">2nd Paper</span>`;
+        }
+        const displayName = s.replace(' — 1st Paper', '').replace(' — 2nd Paper', '');
         return `<div class="subject-item">
             <div class="si-num" style="background:${c.bg};color:${c.color};">${i+1}</div>
-            <div class="si-name">${s}</div>
+            <div class="si-name" style="display:flex;align-items:center;gap:4px;flex-wrap:wrap;">${displayName}${paperBadge}</div>
         </div>`;
     }).join('');
 }

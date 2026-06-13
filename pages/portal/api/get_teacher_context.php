@@ -64,8 +64,15 @@ try {
                 'accent_color' => $a['accent_color'] ?? '#2563eb',
             ];
         }
-        if (!in_array($a['subject_name'], $subjectsList)) {
-            $subjectsList[] = $a['subject_name'];
+        // Build subject entry with paper info
+        $subjectKey = $a['subject_name'];
+        $paper      = $a['paper'] ?? null;
+        $paperLabel = '';
+        if ($paper === '1st')  $paperLabel = ' — 1st Paper';
+        if ($paper === '2nd')  $paperLabel = ' — 2nd Paper';
+        $subjectKey = preg_replace('/\s*\(.*?\)\s*/', '', $a['subject_name']) . $paperLabel;
+        if (!in_array($subjectKey, $subjectsList)) {
+            $subjectsList[] = $subjectKey;
         }
     }
     $programs = array_values($programsById);
